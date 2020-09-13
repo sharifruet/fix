@@ -2,7 +2,7 @@ const db = require("../models");
 const ServiceSubCategory = db.serviceSubCategory;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Service
+// Create and Save a new Service sub-category
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.title) {
@@ -11,7 +11,7 @@ exports.create = (req, res) => {
       });
       return;
     }
-    // Create a Service
+    // Create a Service sub-category
   const serviceSubCategory = {
     title: req.body.title,
     icon: req.body.icon,
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
     published: req.body.published ? req.body.published : false
   };
 
-  // Save Service in the database
+  // Save Service sub-category in the database
   ServiceSubCategory.create(serviceSubCategory)
     .then(data => {
       res.send(data);
@@ -35,7 +35,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Service from the database.
+// Retrieve all Service sub-category from the database.
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
@@ -52,7 +52,7 @@ exports.findAll = (req, res) => {
       });
   };
 
-// Find a single Service with an id
+// Find a single Service sub-category with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
@@ -62,12 +62,12 @@ exports.findOne = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving Service with id=" + id
+          message: "Error retrieving Service sub category with id=" + id
         });
       });
   };
 
-// Update a Service by the id in the request
+// Update a Service sub-category by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
   
@@ -77,22 +77,22 @@ exports.update = (req, res) => {
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Service was updated successfully."
+            message: "Service sub category was updated successfully."
           });
         } else {
           res.send({
-            message: `Cannot update Service with id=${id}. Maybe Service was not found or req.body is empty!`
+            message: `Cannot update Service sub category with id=${id}. Maybe Service was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating Service with id=" + id
+          message: "Error updating Service sub category with id=" + id
         });
       });
   };
 
-// Delete a Service with the specified id in the request
+// Delete a Service sub-category with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
   
@@ -102,17 +102,17 @@ exports.delete = (req, res) => {
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Service was deleted successfully!"
+            message: "Service sub category was deleted successfully!"
           });
         } else {
           res.send({
-            message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
+            message: `Cannot delete Service sub category with id=${id}. Maybe Service was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Service with id=" + id
+          message: "Could not delete Service sub category with id=" + id
         });
       });
   };
@@ -134,7 +134,7 @@ exports.deleteAll = (req, res) => {
       });
   };
 
-// Find all published Service
+// Find all published Service sub-category
 exports.findAllPublished = (req, res) => {
   ServiceSubCategory.findAll({ where: { published: true } })
       .then(data => {

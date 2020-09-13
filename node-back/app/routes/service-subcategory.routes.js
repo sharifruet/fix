@@ -3,25 +3,25 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new Service
+    // Create a new Service sub category
     router.post("/", ServiceSubcategory.create);
   
-    // Retrieve all Services
+    // Retrieve all Service sub-categories
     router.get("/", ServiceSubcategory.findAll);
   
-    // Retrieve all published Services
+    // Retrieve all published Service sub-categories
     router.get("/published", ServiceSubcategory.findAllPublished);
   
-    // Retrieve a single Service with id
+    // Retrieve a single Service sub-category with id
     router.get("/:id", ServiceSubcategory.findOne);
   
-    // Update a Service with id
+    // Update a Service sub-category with id
     router.put("/:id", ServiceSubcategory.update);
   
-    // Delete a Service with id
+    // Delete a Service sub-category with id
     router.delete("/:id", ServiceSubcategory.delete);
   
-    // Delete all Services
+    // Delete all Service sub-categories
     router.delete("/", ServiceSubcategory.deleteAll);
   
     app.use('/api/servicesubcategory', router);
