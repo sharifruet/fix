@@ -21,5 +21,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.service = require("./service.model.js")(sequelize, Sequelize);
+db.serviceSubCategory = require("./service-subcategory.model.js")(sequelize, Sequelize);
 
 module.exports = db;
