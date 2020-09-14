@@ -35,6 +35,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/service.routes")(app);
+require("./app/routes/service-subcategory.routes")(app);
 require("./app/routes/product.routes")(app);
 require("./app/routes/serviceCategory.routes")(app);
 
