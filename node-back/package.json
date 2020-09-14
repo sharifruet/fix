@@ -11,7 +11,7 @@
     "express",
     "mysql",
     "rest",
-	"sequelize"
+    "sequelize"
   ],
   "author": "Sharif Uddin",
   "license": "ISC",
