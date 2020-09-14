@@ -15,7 +15,6 @@ module.exports = app => {
     // Retrieve a single Service with id
     router.get("/:id", product.findOne);
   
-  
     // Update a Service with id
     router.put("/:id", product.update);
   
@@ -24,7 +23,6 @@ module.exports = app => {
   
     // Delete all Services
     router.delete("/", product.deleteAll);
-  
   
     app.use('/api/products', router);
   };
