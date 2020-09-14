@@ -1,3 +1,4 @@
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -5,7 +6,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+ origin: "http://localhost:4200"
 };
 
 app.use(cors(corsOptions));
@@ -34,6 +35,8 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/service.routes")(app);
+require("./app/routes/product.routes")(app);
+require("./app/routes/serviceCategory.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
