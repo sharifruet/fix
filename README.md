@@ -1,4 +1,3 @@
 # Fix-all : project
-## Front-end: Web
-## Back-end: Node
-
+# Graphics Design
+# Angular APP
