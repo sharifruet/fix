@@ -10,16 +10,17 @@ import { AddServiceComponent } from './components/add-service/add-service.compon
 import { ServiceDetailsComponent } from './components/service-details/service-details.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatGridListModule} from '@angular/material/grid-list';
+
 import { MaterialModule } from './material/material.module';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddServiceComponent,
     ServiceDetailsComponent,
-    ServiceListComponent
+    ServiceListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +28,6 @@ import { MaterialModule } from './material/material.module';
 	  AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatGridListModule,
     MaterialModule
   ],
   providers: [],

@@ -1,0 +1,85 @@
+*{
+    box-sizing: border-box;
+}
+.mat-toolbar {
+    background: #fff;
+    box-shadow: 0 15px 10px 2px rgba(0,0,0,0.05);
+    position: fixed!important;
+    top:0;
+    z-index: 5;
+    padding:0;
+}
+.banner{
+    background-position: center;
+    background-size: cover;
+    height: 600px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+
+
+
+ .container{
+     width: 90%;
+     margin:0 auto;
+     padding:0 15px;
+ }
+ .row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+ }
+
+ .col-3{
+    flex: 0 0 25%;
+    max-width: 25%;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+ }
+ .col-12{
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+ }
+
+
+
+
+ /* service item */
+ .single-service img{
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: 5px 15px 20px 2px rgba(0,0,0,0.08);
+}
+.single-service{
+    position: relative;
+}
+.single-service .rating{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    background-color:#E91E63;
+    color:#fff;
+    padding:5px 10px;
+    border-radius: 33px;
+    max-width: 100px;
+}
+.single-service .material-icons{
+    font-size:18px;
+    height: 18px;
+    width: 18px;
+    margin-right: 5px;
+}
+.single-service .rating span{
+    font-size:12px;
+    margin-left:5px;
+}
