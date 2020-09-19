@@ -1,137 +1,641 @@
 <mat-toolbar>
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon>menu</mat-icon>
             </button>
             <span>FixAll</span>
             <span class="example-spacer"></span>
-            <button mat-button [matMenuTriggerFor]="featureService">Polpular Services <mat-icon>keyboard_arrow_down
-                </mat-icon>
-            </button>
-            <mat-menu #featureService="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-    
-            <button mat-button>All Services</button>
-            <button mat-button>Login</button>
-            <button mat-icon-button class="example-icon search-icon">
-                <mat-icon>search</mat-icon>
-            </button>
-            <button mat-icon-button>
+
+            <button mat-button (click)="toggleCommercial()">Commercial</button>
+            <button mat-button (click)="toggleHousehold()">Household</button>
+
+            <button mat-icon-button class="cart">
                 <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
+
+
+            <button mat-button>Login</button>
+
         </div>
     </div>
 </mat-toolbar>
 
-<section class="banner" style="background-image:url(assets/images/banner.jpg);">
+<mat-toolbar style="background-color: #f5f5f5;" *ngIf="showCommercial">
+    <div class="container">
+        <div class="row align-items-center">
 
+            <button mat-button [matMenuTriggerFor]="beforeMenu">showCommercial</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+
+        </div>
+    </div>
+</mat-toolbar>
+
+<mat-toolbar style="background-color: #f5f5f5;" *ngIf="showHousehold">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">showHousehold</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+
+        </div>
+    </div>
+</mat-toolbar>
+
+
+
+
+
+<section class="banner" style="background-image:url(assets/images/banner.jpg);">
+    <div class="container height-100">
+        <div class="row justify-content-center align-items-center height-100">
+            <div class="col col-7">
+                <div class="banner-content text-center">
+                    <h2>Fix you all problem</h2>
+                    <h3>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate
+                    </h3>
+
+                    <div class="assistant-form d-flex align-items-center">
+                        <div class="select-cat">
+                            <button mat-button>
+                                <mat-icon>place</mat-icon> Rajshahi
+                            </button>
+                        </div>
+
+                        <div class="assitant-input">
+                            <input type="text" placeholder="Search by name">
+                            <button mat-raised-button color="accent">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2>Recommended</h2>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
+
+<div class="service-category">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <div class="category-area">
+
+                    <owl-carousel-o [options]="categoryOptions" class="categoryCarousel">
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template carouselSlide>
+                            <div class="single-category">
+                                <a href="#">
+                                    <div class="body">
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
+                                        <h3>AC Servicing</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2>Trending</h2>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
-                </div>
+
+<div class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <h2>Recommended</h2>
             </div>
         </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="single-service">
-                <img src="assets/images/banner.jpg" alt="">
-                <div class="rating" color="accent">
-                    <mat-icon>star</mat-icon> 5 <span>out of 5</span>
-                </div>
-                <div class="body">
-                    <h3>Daily Meal</h3>
+
+        <div class="row">
+            <div class="col col-12">
+                <div class="recomended-slider">
+                    <owl-carousel-o [options]="recommendOptions" class="categoryCarousel">
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<div class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <h2>Trending</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-12">
+                <div class="recomended-slider">
+                    <owl-carousel-o [options]="recommendOptions" class="categoryCarousel">
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/banner.jpg" alt="">
+                                        </div>
+                                        <div class="rating" color="accent">
+                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                        </div>
+                                        <div class="body">
+                                            <h3>Daily Meal</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="testmonial-area pt-5" style="background-color:#f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <div class="text-center">
+                    <span>Reviews</span>
+                    <h1>Our Customer say</h1>
+                </div>
+            </div>
+            <div class="col col-12">
+                <div class="testimonial">
+                    <owl-carousel-o [options]="testmonialOptions">
+                        <ng-template carouselSlide>
+                            <div class="single-testmonial">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col col-7">
+                                        <div class="testmonial-content">
+                                            <h3>Robert Brank</h3>
+                                            <span>IT Consultant, ITwindow</span>
+                                            <p>In publishing and graphic design, Lorem ipsum is a placeholder text
+                                                commonly used
+                                                to demonstrate the visual form of a document or a typeface without
+                                                relying. In
+                                                publishing and graphic design, Lorem ipsum is a placeholder text
+                                                commonly used
+                                                to demonstrate the visual form of a document or a typeface without
+                                                relying In
+                                                publishing and graphic design, Lorem ipsum is a placeholder text
+                                                commonly used
+                                                to demonstrate the visual form of a document or a typeface without
+                                                relying</p>
+                                        </div>
+                                    </div>
+                                    <div class="col col-5">
+                                        <div class="testmonial-img">
+                                            <img src="assets/images/testimonial3.png" alt="">
+                                            <a href="#" class="play-btn">
+                                                <mat-icon>play_circle_filled</mat-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-testmonial">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col col-7">
+                                        <div class="testmonial-content">
+                                            <h3>Robert Brank</h3>
+                                            <span>IT Consultant, ITwindow</span>
+                                            <p>In publishing and graphic design, Lorem ipsum is a placeholder text
+                                                commonly used
+                                                to demonstrate the visual form of a document or a typeface without
+                                                relying. In
+                                                publishing and graphic design, Lorem ipsum is a placeholder text
+                                                commonly used
+                                                to demonstrate the visual form of a document or a typeface without
+                                                relying</p>
+                                        </div>
+                                    </div>
+                                    <div class="col col-5">
+                                        <div class="testmonial-img">
+                                            <img src="assets/images/testimonial3.png" alt="">
+                                            <a href="#" class="play-btn">
+                                                <mat-icon>play_circle_filled</mat-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="download-app pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col col-5">
+                <div class="download-app-photo img-responsive">
+                    <img src="assets/images/mobile.png" alt="">
+                </div>
+            </div>
+            <div class="col col-7 m-auto">
+                <div class="download-app-content">
+                    <span>Download app</span>
+                    <h1>Get More In Our Application <br> Sit Back And Enjoy</h1>
+                    <p>Give us your mobile number. You’ll get an SMS with the app download link. </p>
+                    <form action="" class="get-app-form">
+                        <input type="text" placeholder="Enter your phone number..">
+                        <button mat-raised-button color="accent">
+                            <mat-icon>phone_iphone</mat-icon> Get App
+                        </button>
+                    </form>
+                    <a href="#"><img src="assets/images/play-store.png" alt=""></a>
+                    <a href="#"><img src="assets/images/app-store.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="pt-5 pb-5" style="background-color: #f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Contact Us</h4>
+                    <p>If you have any question, please contact us at <a href="#">support@example.com</a></p>
+                    <h3>
+                        <mat-icon>support_agent</mat-icon> <span>+880</span> 17458548
+                    </h3>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">FAQ's</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">How it works</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Term of use</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Newsletter</h4>
+                    <p>For get more updated information, Please subscribe newsletter. </p>
+                    <form action="" class="newsletter-form">
+                        <input type="text" placeholder="Your email..">
+                        <button mat-raised-button color="accent">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <div class="copyright d-flex justify-content-between align-items-center">
+                    <span>Copyright &copy; <a href="#">FixAll</a> All rights reserved.</span>
+                    <img src="assets/images/payment.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
