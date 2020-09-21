@@ -4,14 +4,21 @@
       <button mat-button [matMenuTriggerFor]="serviceMenu"> Services </button>
       <mat-menu #serviceMenu="matMenu" yPosition="below" xPosition="after">
         <button routerLink="services" mat-menu-item> Service List </button>
-        <button routerLink="service" mat-menu-item> Add Service </button>
+        <button routerLink="service" mat-menu-item> Add Service </button>	
       </mat-menu>
-  
+
       <button mat-button>Basic 2</button>
       <button mat-button>Basic 3</button>
       <button mat-button>Basic 4</button>
+      <button mat-button [matMenuTriggerFor]="serviceHierarchyMenu"> ServiceHierarchies </button>
+      <mat-menu #serviceHierarchyMenu="matMenu" yPosition="below" xPosition="after">
+        <button routerLink="serviceHierarchies" mat-menu-item> List </button>
+        <button routerLink="serviceHierarchy" mat-menu-item> Add </button>	
+      </mat-menu>
     </mat-toolbar>
+	
 </div>
+
 <div>
     <router-outlet></router-outlet>
 </div>

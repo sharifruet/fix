@@ -13,13 +13,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MaterialModule } from './material/material.module';
+import { ServiceHierarchyListComponent } from './components/service-hierarchy-list/service-hierarchy-list.component';
+import { ServiceHierarchyDetailsComponent } from './components/service-hierarchy-details/service-hierarchy-details.component';
+import { AddServiceHierarchyComponent } from './components/add-service-hierarchy/add-service-hierarchy.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddServiceComponent,
     ServiceDetailsComponent,
-    ServiceListComponent
+    ServiceListComponent,
+    ServiceHierarchyListComponent,
+    ServiceHierarchyDetailsComponent,
+    AddServiceHierarchyComponent
+   
   ],
   imports: [
     BrowserModule,
