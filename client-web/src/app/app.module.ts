@@ -13,13 +13,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MaterialModule } from './material/material.module';
+import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddServiceComponent,
     ServiceDetailsComponent,
-    ServiceListComponent
+    ServiceListComponent,
+    AreahierarchyComponent
   ],
   imports: [
     BrowserModule,
