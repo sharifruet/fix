@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     AddServiceComponent,
     ServiceDetailsComponent,
     ServiceListComponent,
-    HomeComponent
+    HomeComponent,
+    HowItWorkVideoComponent
   ],
   imports: [
     BrowserModule,

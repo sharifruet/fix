@@ -10,6 +10,11 @@ p{
 }
 
 
+
+.mat-dialog-container{
+    padding:0!important;
+}
+
 .categoryCarousel .owl-nav .owl-prev, .categoryCarousel .owl-nav .owl-next {
 	position: absolute;
 	top: 50%;

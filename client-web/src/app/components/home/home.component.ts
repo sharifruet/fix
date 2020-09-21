@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.component';
 
 @Component({
   selector: 'app-home',
@@ -7,19 +9,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  showCommercial:boolean = false;
-  showHousehold:boolean = false;
+  constructor(public dialog: MatDialog) {}
 
-  constructor() { }
-
+  openDialog() {
+    this.dialog.open(HowItWorkVideoComponent);
+  }
+  
   ngOnInit(): void {
   }
+ 
+
+  isSticky: boolean = false;
+  isShow: boolean = false;
+  topPosToStartShowing = 100;
+
+  @HostListener('window:scroll')
+  checkScroll() {
+    this.isSticky = window.pageYOffset >= 64;
+    this.isShow=window.pageYOffset >= 400;
+  }
+
+  // TODO: Cross browsing
+  gotoTop() {
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+  }
+
+
+  showCommercial:boolean = true;
+  showHousehold:boolean = false;
 
   toggleCommercial(){
-    this.showCommercial=!this.showCommercial;
+    this.showHousehold=false;
+    this.showCommercial=true;
   }
   toggleHousehold(){
-    this.showHousehold=!this.showHousehold;
+    this.showCommercial=false;
+    this.showHousehold=true;
+  }
+
+  // owl-carousel for hero slider
+  sliderOptions:any = {
+    items:1,
+    autoplay:true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    nav: false,
+    navText: ['<span class="material-icons">chevron_left</span>', '<span class="material-icons">chevron_right</span>'],
   }
 
   // owl-carousel for service category
@@ -74,7 +116,7 @@ export class HomeComponent implements OnInit {
     nav: true
   }
 
-  // owl-carousel for recommend
+  // owl-carousel for testmonial
   testmonialOptions: any = {
     mouseDrag: true,
     touchDrag: true,
@@ -86,5 +128,7 @@ export class HomeComponent implements OnInit {
     navText: ['<span class="material-icons">chevron_left</span>', '<span class="material-icons">chevron_right</span>'],
     nav: true
   }
+
+
 
 }

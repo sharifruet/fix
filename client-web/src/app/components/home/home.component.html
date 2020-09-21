@@ -1,140 +1,128 @@
-<mat-toolbar>
+<mat-toolbar class="main-menu" [ngClass]="{'sticky' : isSticky}">
     <div class="container">
-        <div class="row align-items-center">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                <mat-icon>menu</mat-icon>
-            </button>
+        <div class="row justify-content-between align-items-center">
             <span>FixAll</span>
-            <span class="example-spacer"></span>
-
-            <button mat-button (click)="toggleCommercial()">Commercial</button>
-            <button mat-button (click)="toggleHousehold()">Household</button>
-
-            <button mat-icon-button class="cart">
-                <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
-            </button>
-
-
-            <button mat-button>Login</button>
-
-        </div>
-    </div>
-</mat-toolbar>
-
-<mat-toolbar style="background-color: #f5f5f5;" *ngIf="showCommercial">
-    <div class="container">
-        <div class="row align-items-center">
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">showCommercial</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-
-        </div>
-    </div>
-</mat-toolbar>
-
-<mat-toolbar style="background-color: #f5f5f5;" *ngIf="showHousehold">
-    <div class="container">
-        <div class="row align-items-center">
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">showHousehold</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-            <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-
-
-        </div>
-    </div>
-</mat-toolbar>
-
-
-
-
-
-<section class="banner" style="background-image:url(assets/images/banner.jpg);">
-    <div class="container height-100">
-        <div class="row justify-content-center align-items-center height-100">
-            <div class="col col-7">
-                <div class="banner-content text-center">
-                    <h2>Fix you all problem</h2>
-                    <h3>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate
-                    </h3>
-
-                    <div class="assistant-form d-flex align-items-center">
-                        <div class="select-cat">
-                            <button mat-button>
-                                <mat-icon>place</mat-icon> Rajshahi
-                            </button>
-                        </div>
-
-                        <div class="assitant-input">
-                            <input type="text" placeholder="Search by name">
-                            <button mat-raised-button color="accent">
-                                <mat-icon>search</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-
-
+            <div class="assistant-form d-flex align-items-center">
+                <div class="select-cat">
+                    <button mat-button>
+                        <mat-icon>place</mat-icon> Dhaka
+                    </button>
                 </div>
+                <div class="assitant-input">
+                    <input type="text" placeholder="Find your service by name">
+                    <button mat-raised-button color="accent">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <button mat-button (click)="toggleCommercial()"
+                    [class.selected]="showCommercial === true">Commercial</button>
+                <button mat-button (click)="toggleHousehold()"
+                    [class.selected]="showHousehold === true">Household</button>
+                <button mat-icon-button class="cart">
+                    <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
+                </button>
+                <button mat-raised-button color="accent">Login</button>
             </div>
         </div>
     </div>
-</section>
+</mat-toolbar>
+
+<mat-toolbar style="height: 50px;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="showCommercial" *ngIf="showCommercial">
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Civil <mat-icon>expand_more</mat-icon> </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1 Item 1 Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Electrical<mat-icon>expand_more</mat-icon> </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Mechanical <mat-icon>expand_more</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+            </div>
+
+            <div class="showHousehold" *ngIf="showHousehold">
+                <button mat-button [matMenuTriggerFor]="beforeMenu"> Appliance Repair <mat-icon>expand_more</mat-icon>
+                    </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Electronics & Gadget <mat-icon>expand_more
+                    </mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Cleaning and Pest Control <mat-icon>expand_more
+                    </mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before <mat-icon>expand_more</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before<mat-icon>expand_more</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>
 
 
+<div class="banner">
+    <owl-carousel-o [options]="sliderOptions" class="categoryCarousel">
+        <ng-template carouselSlide>
+            <div class="single-slider">
+                <img src="assets/images/slider.jpg" alt="">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="single-slider">
+                <img src="assets/images/slider2.jpg" alt="">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="single-slider">
+                <img src="assets/images/slider3.jpg" alt="">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="single-slider">
+                <img src="assets/images/slider4.jpg" alt="">
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+</div>
 
 
 <div class="service-category">
@@ -148,8 +136,9 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/1664/1664651.svg"
+                                            alt="">
+                                        <h4>Appliance Repair</h4>
                                     </div>
                                 </a>
                             </div>
@@ -159,20 +148,8 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
-                                    </div>
-                                </a>
-                            </div>
-                        </ng-template>
-
-
-                        <ng-template carouselSlide>
-                            <div class="single-category">
-                                <a href="#">
-                                    <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/888/888100.svg" alt="">
+                                        <h4>Civil Service</h4>
                                     </div>
                                 </a>
                             </div>
@@ -183,8 +160,9 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/2907/2907325.svg"
+                                            alt="">
+                                        <h4>Electrical Service</h4>
                                     </div>
                                 </a>
                             </div>
@@ -195,8 +173,9 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/2426/2426141.svg"
+                                            alt="">
+                                        <h4>Electronics</h4>
                                     </div>
                                 </a>
                             </div>
@@ -207,8 +186,9 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/2850/2850362.svg"
+                                            alt="">
+                                        <h4>Cleaning & Pest</h4>
                                     </div>
                                 </a>
                             </div>
@@ -219,8 +199,8 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/948/948632.svg" alt="">
+                                        <h4>Moving Service</h4>
                                     </div>
                                 </a>
                             </div>
@@ -231,8 +211,8 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/939/939506.svg" alt="">
+                                        <h4>Painting Service</h4>
                                     </div>
                                 </a>
                             </div>
@@ -243,8 +223,9 @@
                             <div class="single-category">
                                 <a href="#">
                                     <div class="body">
-                                        <img src="https://www.flaticon.com/svg/static/icons/svg/967/967189.svg" alt="">
-                                        <h3>AC Servicing</h3>
+                                        <img src="https://www.flaticon.com/svg/static/icons/svg/2297/2297655.svg"
+                                            alt="">
+                                        <h4>Car Rental</h4>
                                     </div>
                                 </a>
                             </div>
@@ -262,7 +243,7 @@
     <div class="container">
         <div class="row">
             <div class="col col-12">
-                <h2>Recommended</h2>
+                <h2>Recently View</h2>
             </div>
         </div>
 
@@ -275,13 +256,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/laptop.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>Laptop Servicing</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -292,13 +270,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/clean.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>Cleaning Servicing</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -309,13 +284,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/ac.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>AC Repair</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -326,13 +298,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/electrical.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>Electrical & Electronics</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -343,13 +312,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/ac.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>AC Repair</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -364,7 +330,99 @@
 
 
 
-<div class="pb-5">
+<div class="pb-5 pt-5" style="background-color: #f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <h2>Recommended</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-12">
+                <div class="recomended-slider">
+                    <owl-carousel-o [options]="recommendOptions" class="categoryCarousel">
+                        
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/electrical.jpg" alt="">
+                                        </div>
+                                        <div class="body">
+                                            <h3>Electrical & Electronics</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/clean.jpg" alt="">
+                                        </div>
+                                        <div class="body">
+                                            <h3>Cleaning Servicing</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/laptop.jpg" alt="">
+                                        </div>
+                                        <div class="body">
+                                            <h3>Laptop Servicing</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/ac.jpg" alt="">
+                                        </div>
+                                        <div class="body">
+                                            <h3>AC Repair</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="single-service">
+                                <a href="#">
+                                    <div class="body">
+                                        <div class="img">
+                                            <img src="assets/images/ac.jpg" alt="">
+                                        </div>
+                                        <div class="body">
+                                            <h3>AC Repair</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="pb-5 pt-5">
     <div class="container">
         <div class="row">
             <div class="col col-12">
@@ -381,13 +439,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/laptop.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>Laptop Servicing</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -398,13 +453,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/clean.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>Cleaning Servicing</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -415,13 +467,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/ac.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>AC Repair</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -432,13 +481,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/electrical.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>Electrical & Electronics</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -449,13 +495,10 @@
                                 <a href="#">
                                     <div class="body">
                                         <div class="img">
-                                            <img src="assets/images/banner.jpg" alt="">
-                                        </div>
-                                        <div class="rating" color="accent">
-                                            <mat-icon>star</mat-icon> 5 <span>out of 5</span>
+                                            <img src="assets/images/ac.jpg" alt="">
                                         </div>
                                         <div class="body">
-                                            <h3>Daily Meal</h3>
+                                            <h3>AC Repair</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -468,15 +511,83 @@
     </div>
 </div>
 
+<div class="counter pt-5 pb-5" style="background-color:#f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="col col-3">
+                <div class="single-counter">
+                    <h2>1540+</h2>
+                    <p>Services</p>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-counter">
+                    <h2>1540+</h2>
+                    <p>Service Served</p>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-counter">
+                    <h2>1540+</h2>
+                    <p>Service Provider</p>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-counter">
+                    <h2>1540+</h2>
+                    <p>Rating Received</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="how-it-work pt-5 pb-5">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col col-12">
+                <div class="section-header">
+                    <h2>How it works</h2>
+                </div>
+            </div>
+            <div class="col col-6">
+                <div class="how-img img-responsive">
+                    <img src="assets/images/how.jpg" alt="">
+                    <button class="play-btn" mat-fab (click)="openDialog()">
+                        <mat-icon>play_arrow</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="col col-6">
+                <div class="how-topic">
+                    <div class="how-step">
+                        <button mat-fab>1</button>
+                        <h3>Choose your service</h3>
+                        <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate</p>
+                    </div>
+                    <div class="how-step">
+                        <button mat-fab>2</button>
+                        <h3>Select your time shedule</h3>
+                        <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate</p>
+                    </div>
+                    <div class="how-step">
+                        <button mat-fab>3</button>
+                        <h3>Place your order</h3>
+                        <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="testmonial-area pt-5" style="background-color:#f5f5f5;">
     <div class="container">
         <div class="row">
             <div class="col col-12">
-                <div class="text-center">
-                    <span>Reviews</span>
-                    <h1>Our Customer say</h1>
+                <div class="section-header text-center">
+                    <h2>Our Customer say</h2>
                 </div>
             </div>
             <div class="col col-12">
@@ -506,8 +617,8 @@
                                     <div class="col col-5">
                                         <div class="testmonial-img">
                                             <img src="assets/images/testimonial3.png" alt="">
-                                            <a href="#" class="play-btn">
-                                                <mat-icon>play_circle_filled</mat-icon>
+                                            <a href="#" class="play-btn" mat-fab>
+                                                <mat-icon>play_arrow</mat-icon>
                                             </a>
                                         </div>
                                     </div>
@@ -534,8 +645,8 @@
                                     <div class="col col-5">
                                         <div class="testmonial-img">
                                             <img src="assets/images/testimonial3.png" alt="">
-                                            <a href="#" class="play-btn">
-                                                <mat-icon>play_circle_filled</mat-icon>
+                                            <a href="#" class="play-btn" mat-fab>
+                                                <mat-icon>play_arrow</mat-icon>
                                             </a>
                                         </div>
                                     </div>
@@ -639,3 +750,7 @@
         </div>
     </div>
 </footer>
+
+<button class="scrollTop" *ngIf="isShow" mat-mini-fab  (click)="gotoTop()">
+    <mat-icon>arrow_upward</mat-icon>
+</button>
