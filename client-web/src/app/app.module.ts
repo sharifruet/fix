@@ -12,6 +12,7 @@ import { ServiceListComponent } from './components/service-list/service-list.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
+import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
 import { HomeComponent } from './components/home/home.component';
 
 
@@ -24,6 +25,7 @@ import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-w
     AddServiceComponent,
     ServiceDetailsComponent,
     ServiceListComponent,
+    AreahierarchyComponent
     HomeComponent,
     HowItWorkVideoComponent
   ],
