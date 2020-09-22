@@ -10,10 +10,14 @@ import { AddServiceComponent } from './components/add-service/add-service.compon
 import { ServiceDetailsComponent } from './components/service-details/service-details.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatGridListModule} from '@angular/material/grid-list';
+
 import { MaterialModule } from './material/material.module';
 import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
+import { HomeComponent } from './components/home/home.component';
+
+
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,8 @@ import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy
     ServiceDetailsComponent,
     ServiceListComponent,
     AreahierarchyComponent
+    HomeComponent,
+    HowItWorkVideoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +35,8 @@ import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy
 	  AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatGridListModule,
-    MaterialModule
+    MaterialModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
