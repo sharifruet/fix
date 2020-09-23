@@ -36,7 +36,7 @@ p{
 }
 .categoryCarousel .owl-nav .owl-prev:hover, .categoryCarousel .owl-nav .owl-next:hover, 
 .testimonial .owl-nav .owl-prev:hover, .testimonial .owl-nav .owl-next:hover{
-    background-color:#ff4081;
+    background-color:#000000;
     color:#fff;
 }
 .categoryCarousel .owl-next.disabled, .categoryCarousel .owl-prev.disabled{
