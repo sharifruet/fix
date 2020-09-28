@@ -1,4 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-size:14px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+p{
+    line-height: 22px;
+}
+*{
+    box-sizing: border-box;
+}
+
+
+
+.mat-dialog-container{
+    padding:0!important;
+}
+
+.categoryCarousel .owl-nav .owl-prev, .categoryCarousel .owl-nav .owl-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 40px;
+	width: 40px;
+	line-height: 54px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 50%;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.05);
+    transition: 0.5s;
+}
+.categoryCarousel .owl-nav .owl-prev{
+    left:-15px;
+}
+.categoryCarousel .owl-nav .owl-next{
+    right:-15px;
+}
+.categoryCarousel .owl-nav .owl-prev:hover, .categoryCarousel .owl-nav .owl-next:hover, 
+.testimonial .owl-nav .owl-prev:hover, .testimonial .owl-nav .owl-next:hover{
+    background-color:#000000;
+    color:#fff;
+}
+.categoryCarousel .owl-next.disabled, .categoryCarousel .owl-prev.disabled{
+    display:none;
+}
+
+
+.testimonial .owl-nav .owl-prev, .testimonial .owl-nav .owl-next {
+	height: 40px;
+	width: 40px;
+	line-height: 54px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 50%;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.05);
+    transition: 0.5s;
+}
+.testimonial .owl-nav{
+    position: absolute;
+    bottom:15px;
+    display: inline-flex;
+}
+.testimonial .owl-nav .owl-prev{
+    margin-right: 10px;
+}

@@ -16,8 +16,8 @@ exports.create = (req, res) => {
     title: req.body.title,
     areaType: req.body.areaType,
     parentId: req.body.parentId,
-    HierarchyPath: req.body.HierarchyPath,
-    Status: req.body.Status,
+    hierarchyPath: req.body.hierarchyPath,
+    status: req.body.status,
     published: req.body.published ? req.body.published : false
   };
 
