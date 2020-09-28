@@ -96,12 +96,19 @@ ul{
 .img-responsive img{
    width: 100%;
 }
+[color="black"]{
+    background-color:#000000;
+    color:#ffffff;
+}
 
 
 .main-menu{
     background: #fff;
     position: relative;
     z-index: 2;
+}
+.nav-brand img{
+    height:36px;
 }
 .sticky {
     position: fixed;
@@ -365,7 +372,7 @@ footer{
     transition: 0.5s;
 }
 .single-footer ul li a:hover{
-    color:#FF4081;
+    color:#000000;
 }
 
 .newsletter-form{

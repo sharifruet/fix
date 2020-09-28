@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
   // owl-carousel for hero slider
   sliderOptions:any = {
     items:1,
+    loop:true,
     autoplay:true,
     mouseDrag: true,
     touchDrag: true,
