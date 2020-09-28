@@ -3,12 +3,16 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+require('dotenv').config();
+
 const app = express();
+
 
 var corsOptions = {
  origin: "http://localhost:4200"
 };
 
+app.use(express.json());
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -40,6 +44,7 @@ require("./app/routes/product.routes")(app);
 require("./app/routes/serviceCategory.routes")(app);
 require("./app/routes/serviceHierarchy.routes")(app);
 require("./app/routes/areahierarchy.routes")(app);
+require("./app/routes/login.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
