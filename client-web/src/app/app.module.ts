@@ -19,6 +19,11 @@ import { HomeComponent } from './components/home/home.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 
+import { ServiceHierarchyListComponent } from './components/service-hierarchy-list/service-hierarchy-list.component';
+import { ServiceHierarchyDetailsComponent } from './components/service-hierarchy-details/service-hierarchy-details.component';
+import { AddServiceHierarchyComponent } from './components/add-service-hierarchy/add-service-hierarchy.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +32,10 @@ import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-w
     ServiceListComponent,
     AreahierarchyComponent,
     HomeComponent,
-    HowItWorkVideoComponent
+    HowItWorkVideoComponent,
+    ServiceHierarchyListComponent,
+    ServiceHierarchyDetailsComponent,
+    AddServiceHierarchyComponent
   ],
   imports: [
     BrowserModule,
