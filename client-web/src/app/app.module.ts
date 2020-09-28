@@ -25,7 +25,7 @@ import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-w
     AddServiceComponent,
     ServiceDetailsComponent,
     ServiceListComponent,
-    AreahierarchyComponent
+    AreahierarchyComponent,
     HomeComponent,
     HowItWorkVideoComponent
   ],
