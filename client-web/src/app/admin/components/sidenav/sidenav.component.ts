@@ -42,17 +42,14 @@ const TREE_DATA = [
     name: 'Users',
     icon:'group',
     children: [
-      {name: 'Service Manage', link:'/admin/service-manage'},
-      {name: 'Service List', link:'/admin/service-list'},
+      {name: 'Add New', link:'/admin/service-manage'},
+      {name: 'All User', link:'/admin/service-list'},
     ]
   },
   {
     name: 'Settings',
     icon:'settings_applications',
-    children: [
-      {name: 'Service Manage', link:'/admin/service-manage'},
-      {name: 'Service List', link:'/admin/service-list'},
-    ]
+    link:'/admin/settings'
   }
 ];
 

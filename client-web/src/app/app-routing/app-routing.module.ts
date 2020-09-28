@@ -15,17 +15,13 @@ import { ServiceManageComponent } from '../admin/components/service-manage/servi
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path :'home', component:DefaultComponent, children:[
+  { path :'', component:DefaultComponent, children:[
     {
-      path:'',
+      path:'home',
       component:HomeComponent
     }
-  ]},
-  { path: 'services', component: ServiceListComponent },
-  { path: 'service/:id', component: ServiceDetailsComponent },
-  { path: 'service', component: AddServiceComponent },
-
-  
+  ]},  
+  { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
   { path: 'admin', component:AdminDefaultComponent, children:[
     {
       path:'dashboard',
