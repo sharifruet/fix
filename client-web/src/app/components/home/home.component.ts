@@ -17,39 +17,8 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
   }
+
  
-
-  isSticky: boolean = false;
-  isShow: boolean = false;
-  topPosToStartShowing = 100;
-
-  @HostListener('window:scroll')
-  checkScroll() {
-    this.isSticky = window.pageYOffset >= 64;
-    this.isShow=window.pageYOffset >= 400;
-  }
-
-  // TODO: Cross browsing
-  gotoTop() {
-    window.scroll({ 
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
-    });
-  }
-
-
-  showCommercial:boolean = true;
-  showHousehold:boolean = false;
-
-  toggleCommercial(){
-    this.showHousehold=false;
-    this.showCommercial=true;
-  }
-  toggleHousehold(){
-    this.showCommercial=false;
-    this.showHousehold=true;
-  }
 
   // owl-carousel for hero slider
   sliderOptions:any = {

@@ -1,0 +1,66 @@
+<footer class="pt-5 pb-5" style="background-color: #f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Contact Us</h4>
+                    <p>If you have any question, please contact us at <a href="#">support@example.com</a></p>
+                    <h3>
+                        <mat-icon>support_agent</mat-icon> <span>+880</span> 17458548
+                    </h3>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">FAQ's</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">How it works</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Term of use</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="single-footer">
+                    <h4>Newsletter</h4>
+                    <p>For get more updated information, Please subscribe newsletter. </p>
+                    <form action="" class="newsletter-form">
+                        <input type="text" placeholder="Your email..">
+                        <button mat-raised-button color="black">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <div class="copyright d-flex justify-content-between align-items-center">
+                    <span>Copyright &copy; <a href="#">FixAll</a> All rights reserved.</span>
+                    <img src="assets/images/payment.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button class="scrollTop" *ngIf="isShow" mat-mini-fab color="black"  (click)="gotoTop()">
+    <mat-icon>arrow_upward</mat-icon>
+</button>

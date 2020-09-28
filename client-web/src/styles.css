@@ -1,15 +1,125 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-size:14px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-size:14px; font-family: Roboto, "Helvetica Neue", sans-serif;color:#555 }
 p{
     line-height: 22px;
 }
 *{
     box-sizing: border-box;
 }
+h1, h2, h3, h4, h5, h6{
+    font-weight: 500;
+}
 
 
+/* common */
+.container{
+    width: 90%;
+    margin:0 auto;
+    padding:0 15px;
+}
+.row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+}
+.pt-5{
+    padding-top:50px;
+}
+.pb-5{
+    padding-bottom:50px;
+}
+.text-center{
+   text-align: center;
+}
+
+.d-flex{
+   display: flex;
+}
+.justify-content-between{
+   justify-content: space-between;
+}
+.justify-content-center{
+   justify-content: center;
+}
+.align-items-center{
+    align-items: center;
+}
+.col{
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+}
+.col-2{
+    flex:0 0 16.66%;
+    max-width: 16.66%;
+}
+.col-3{
+   flex: 0 0 25%;
+   max-width: 25%;
+}
+.col-4{
+   flex: 0 0 33.33%;
+   max-width: 33.33%;
+}
+.col-5{
+   flex: 0 0 41.67%;
+   max-width: 41.67%;
+}
+.col-6{
+   flex: 0 0 50%;
+   max-width: 50%;
+}
+.col-7{
+   flex: 0 0 58.33%;
+   max-width: 58.33%;
+}
+.col-8{
+   flex: 0 0 66.66%;
+   max-width: 66.66%;
+}
+.col-10{
+   flex: 0 0 83.33%;
+   max-width: 83.33%;
+}
+.col-12{
+   flex: 0 0 100%;
+   max-width: 100%;
+}
+.no-gutter.row,
+.no-gutter.container,
+.no-gutter.container-fluid{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.no-gutter>[class^="col-"]{
+  padding-left: 0;
+  padding-right: 0;
+}
+.m-auto{
+    margin:auto;
+}
+ul{
+   list-style: none;
+   padding:0;
+   margin:0;
+}
+.img-responsive img{
+   width: 100%;
+}
+[color="black"]{
+    background-color:#000000;
+    color:#ffffff;
+}
+input{
+    outline: 0;
+}
+.mat-divider {
+	border-top-color: rgba(0,0,0,.06);
+}
 
 .mat-dialog-container{
     padding:0!important;
