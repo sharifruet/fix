@@ -7,6 +7,7 @@ import { AddServiceComponent } from '../components/add-service/add-service.compo
 
 import { DefaultComponent } from '../components/default/default.component';
 import { HomeComponent } from '../components/home/home.component';
+import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
     {
       path:'home',
       component:HomeComponent
+    },
+    {
+      path:'service-category',
+      component:ServiceCategoryComponent
     }
   ]},  
   { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },

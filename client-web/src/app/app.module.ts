@@ -27,6 +27,7 @@ import { TopbarComponent } from './admin/components/topbar/topbar.component';
 import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
 import { AdminDefaultComponent } from './admin/components/admin-default/admin-default.component';
 import { DefaultComponent } from './components/default/default.component';
+import { ServiceCategoryComponent } from './components/service-category/service-category.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DefaultComponent } from './components/default/default.component';
     TopbarComponent,
     ServiceManageComponent,
     AdminDefaultComponent,
-    DefaultComponent
+    DefaultComponent,
+    ServiceCategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 const Material = [
@@ -33,7 +34,8 @@ const Material = [
   MatFormFieldModule,
   MatPaginatorModule,
   MatSortModule,
-  MatInputModule
+  MatInputModule,
+  MatTabsModule
 ]
 
 @NgModule({

@@ -172,3 +172,34 @@ input{
 .testimonial .owl-nav .owl-prev{
     margin-right: 10px;
 }
+
+
+
+
+/* mat-tabs */
+.mat-tab-labels {
+	flex-direction: column;
+}
+.mat-tab-nav-bar, .mat-tab-header {
+    border-right: 1px solid rgba(0,0,0,.12);
+    border-bottom: 0;
+}
+.mat-tab-group.mat-primary .mat-ink-bar{
+    height: 0;
+}
+.mat-tab-header {
+	width: 33%;
+}
+.mat-tab-body-wrapper {
+    width: 100%;
+    border:1px solid #ddd;
+}
+.mat-tab-label{
+    border-right: 2px solid transparent;
+    transition: 0.5s;
+    justify-content: start!important;
+}
+.mat-tab-label-active{
+    border-right-color: #000;
+    background-color:#eee;
+}

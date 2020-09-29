@@ -3,6 +3,9 @@
     position: relative;
     z-index: 2;
 }
+.nav-brand{
+    cursor: pointer;
+}
 .nav-brand img{
     height:36px;
 }
