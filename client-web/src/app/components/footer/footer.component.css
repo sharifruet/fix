@@ -1,0 +1,57 @@
+
+/* footer */
+footer{
+    color: #000000;;
+}
+.single-footer h4{
+    text-transform: uppercase;
+}
+.single-footer a{
+    color:#000000;
+}
+.single-footer ul li a{
+    display: inline-block;
+    padding:5px 0;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.single-footer ul li a:hover{
+    color:#000000;
+}
+
+.newsletter-form{
+    position: relative;
+}
+.newsletter-form input{
+    height: 44px;
+    width: 100%;
+    border:1px solid #ddd;
+    padding:0 110px 0 15px;
+    border-radius: 33px;
+}
+.newsletter-form button{
+    position: absolute;
+    top:4px;
+    right:4px;
+    border-radius: 33px;
+}
+.newsletter-form button .material-icons{
+    font-size:18px;
+    height: 20px;
+}
+
+.copyright{
+    border-top:1px solid #ddd;
+    margin-top:40px;
+    padding-top:40px;
+    text-align: center;
+}
+
+
+/* scrollTop */
+.scrollTop {
+    position: fixed;
+    z-index: 3;
+    bottom: 30px;
+    right: 30px;
+}

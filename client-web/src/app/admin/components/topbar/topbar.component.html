@@ -1,0 +1,38 @@
+<mat-toolbar class="top-nav">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="slideNav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="logo"><img src="assets/images/logo.png" alt=""></span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="end">
+            <ul class="topbar-menu" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="15px">
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon matBadge="5" matBadgeColor="accent">notifications_none</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="beforeMenu">
+                        <img src="assets/images/user.jpg" alt="">
+                        <mat-icon>expand_more</mat-icon>
+                    </button>
+                    <mat-menu #beforeMenu="matMenu" xPosition="before">
+                        <button mat-menu-item>
+                          <mat-icon>person</mat-icon>
+                          <span>Your Profile</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>settings</mat-icon>
+                          <span>Account Setting</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>exit_to_app</mat-icon>
+                          <span>Sign Out</span>
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
