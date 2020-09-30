@@ -8,7 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
-import { MatListModule } from '@angular/material/list';
+import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatTableModule} from '@angular/material/table';

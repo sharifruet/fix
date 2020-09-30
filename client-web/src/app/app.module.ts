@@ -20,7 +20,6 @@ import { ServiceCategoryComponent } from './components/service-category/service-
 
 import { DefaultComponent } from './components/default/default.component';
 
-import { MaterialModule } from './material/material.module';
 import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
 
 import { HomeComponent } from './components/home/home.component';
@@ -37,6 +36,7 @@ import { TopbarComponent } from './admin/components/topbar/topbar.component';
 import { ServiceAddComponent } from './admin/components/service-add/service-add.component';
 import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
 import { ServiceDetailComponent } from './admin/components/service-detail/service-detail.component';
+import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/service-hierarchy.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { ServiceDetailComponent } from './admin/components/service-detail/servic
     AddServiceComponent,
     ServiceDetailsComponent,
     ServiceListComponent,
-    AreahierarchyComponent
+    AreahierarchyComponent,
     HomeComponent,
     HowItWorkVideoComponent,
     HeaderComponent,
@@ -57,7 +57,8 @@ import { ServiceDetailComponent } from './admin/components/service-detail/servic
     DefaultComponent,
     ServiceCategoryComponent,
     ServiceAddComponent,
-    ServiceDetailComponent
+    ServiceDetailComponent,
+    ServiceHierarchyComponent
   ],
   imports: [
     BrowserModule,

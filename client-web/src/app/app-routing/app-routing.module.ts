@@ -17,6 +17,8 @@ import { AdminDefaultComponent } from '../admin/components/admin-default/admin-d
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
 import { ServiceManageComponent } from '../admin/components/service-manage/service-manage.component';
 
+import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -52,6 +54,10 @@ const routes: Routes = [
     {
       path:'service-manage',
       component:ServiceManageComponent
+    },
+    {
+      path:'service-hierarchy',
+      component:ServiceHierarchyComponent
     }
   ] },
 
