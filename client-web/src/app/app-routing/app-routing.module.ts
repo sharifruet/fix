@@ -6,6 +6,9 @@ import { ServiceDetailsComponent } from '../components/service-details/service-d
 import { AddServiceComponent } from '../components/add-service/add-service.component';
 
 import { DefaultComponent } from '../components/default/default.component';
+
+import {AreahierarchyComponent} from '../components/areahierarchy/areahierarchy.component';
+
 import { HomeComponent } from '../components/home/home.component';
 import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
 
@@ -16,6 +19,7 @@ import { ServiceManageComponent } from '../admin/components/service-manage/servi
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
   { path :'', component:DefaultComponent, children:[
     {
       path:'home',
@@ -49,6 +53,13 @@ const routes: Routes = [
       component:ServiceManageComponent
     }
   ] },
+
+  { path :'home', component:HomeComponent},
+  { path: 'services', component: ServiceListComponent },
+  { path: 'service/:id', component: ServiceDetailsComponent },
+  { path: 'service', component: AddServiceComponent },
+  { path: 'areahierarchy', component: AreahierarchyComponent }
+
 ];
 
 

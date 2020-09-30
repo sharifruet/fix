@@ -18,6 +18,10 @@ import { ServiceListComponent } from './components/service-list/service-list.com
 import { ServiceCategoryComponent } from './components/service-category/service-category.component';
 
 import { DefaultComponent } from './components/default/default.component';
+
+import { MaterialModule } from './material/material.module';
+import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
+
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -39,6 +43,7 @@ import { ServiceDetailComponent } from './admin/components/service-detail/servic
     AddServiceComponent,
     ServiceDetailsComponent,
     ServiceListComponent,
+    AreahierarchyComponent
     HomeComponent,
     HowItWorkVideoComponent,
     HeaderComponent,
