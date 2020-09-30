@@ -13,38 +13,30 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 
-import { AddServiceComponent } from './components/add-service/add-service.component';
-import { ServiceDetailsComponent } from './components/service-details/service-details.component';
-import { ServiceListComponent } from './components/service-list/service-list.component';
-import { ServiceCategoryComponent } from './components/service-category/service-category.component';
-
-import { DefaultComponent } from './components/default/default.component';
-
-import { MaterialModule } from './material/material.module';
-import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
-
-import { HomeComponent } from './components/home/home.component';
-import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DefaultComponent } from './components/default/default.component';
+import { HomeComponent } from './components/home/home.component';
+import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 
 
-import { AdminDefaultComponent } from './admin/components/admin-default/admin-default.component';
-import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
 import { TopbarComponent } from './admin/components/topbar/topbar.component';
+import { AdminDefaultComponent } from './admin/components/admin-default/admin-default.component';
+import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 
 import { ServiceAddComponent } from './admin/components/service-add/service-add.component';
 import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
 import { ServiceDetailComponent } from './admin/components/service-detail/service-detail.component';
 
+
+
+import {ServiceCategoryComponent } from './components/service-category/service-category.component';
+import { ServiceDetailsComponent } from './components/service-details/service-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AddServiceComponent,
-    ServiceDetailsComponent,
-    ServiceListComponent,
-    AreahierarchyComponent
     HomeComponent,
     HowItWorkVideoComponent,
     HeaderComponent,
@@ -55,9 +47,10 @@ import { ServiceDetailComponent } from './admin/components/service-detail/servic
     ServiceManageComponent,
     AdminDefaultComponent,
     DefaultComponent,
-    ServiceCategoryComponent,
     ServiceAddComponent,
-    ServiceDetailComponent
+    ServiceDetailComponent,
+    ServiceCategoryComponent,
+    ServiceDetailsComponent
   ],
   imports: [
     BrowserModule,
