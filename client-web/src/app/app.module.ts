@@ -33,6 +33,7 @@ import { ServiceDetailComponent } from './admin/components/service-detail/servic
 
 import {ServiceCategoryComponent } from './components/service-category/service-category.component';
 import { ServiceDetailsComponent } from './components/service-details/service-details.component';
+import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ServiceDetailsComponent } from './components/service-details/service-de
     ServiceAddComponent,
     ServiceDetailComponent,
     ServiceCategoryComponent,
-    ServiceDetailsComponent
+    ServiceDetailsComponent,
+    ServiceEditComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,12 @@ import { ServiceDetailsComponent } from './components/service-details/service-de
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[HowItWorkVideoComponent, ServiceAddComponent, ServiceDetailComponent]
+  entryComponents:[
+    HowItWorkVideoComponent, 
+    ServiceAddComponent, 
+    ServiceDetailComponent,
+    ServiceEditComponent
+  ]
 })
 export class AppModule { }
 
