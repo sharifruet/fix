@@ -1,0 +1,99 @@
+<mat-toolbar class="main-menu" [ngClass]="{'sticky' : isSticky}" style="height: 80px;">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <span class="nav-brand" routerLink="/home"><img src="assets/images/logo.png" alt=""></span>
+            <div class="assistant-form d-flex align-items-center">
+                <div class="select-cat">
+                    <button mat-button>
+                        <mat-icon>place</mat-icon> Dhaka
+                    </button>
+                </div>
+                <div class="assitant-input">
+                    <input type="text" placeholder="Find your service by name">
+                    <button mat-raised-button color="black">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <button mat-button (click)="toggleCommercial()"
+                    [class.selected]="showCommercial === true">Commercial</button>
+                <button mat-button (click)="toggleHousehold()"
+                    [class.selected]="showHousehold === true">Household</button>
+                <button mat-icon-button class="cart">
+                    <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
+                </button>
+                <button mat-raised-button color="black">Login</button>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>
+
+<mat-toolbar style="height: 50px;" color="black">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="showCommercial" *ngIf="showCommercial">
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Civil <mat-icon>expand_more</mat-icon> </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1 Item 1 Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Electrical<mat-icon>expand_more</mat-icon> </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Mechanical <mat-icon>expand_more</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+            </div>
+
+            <div class="showHousehold" *ngIf="showHousehold">
+                <button mat-button [matMenuTriggerFor]="beforeMenu"> Appliance Repair <mat-icon>expand_more</mat-icon>
+                    </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Electronics & Gadget <mat-icon>expand_more
+                    </mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Cleaning and Pest Control <mat-icon>expand_more
+                    </mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before <mat-icon>expand_more</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="beforeMenu">Before<mat-icon>expand_more</mat-icon></button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>

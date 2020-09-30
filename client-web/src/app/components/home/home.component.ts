@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.component';
 
 @Component({
@@ -10,50 +10,20 @@ import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.
 export class HomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
-
+  
   openDialog() {
     this.dialog.open(HowItWorkVideoComponent);
   }
   
   ngOnInit(): void {
   }
+
  
-
-  isSticky: boolean = false;
-  isShow: boolean = false;
-  topPosToStartShowing = 100;
-
-  @HostListener('window:scroll')
-  checkScroll() {
-    this.isSticky = window.pageYOffset >= 64;
-    this.isShow=window.pageYOffset >= 400;
-  }
-
-  // TODO: Cross browsing
-  gotoTop() {
-    window.scroll({ 
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
-    });
-  }
-
-
-  showCommercial:boolean = true;
-  showHousehold:boolean = false;
-
-  toggleCommercial(){
-    this.showHousehold=false;
-    this.showCommercial=true;
-  }
-  toggleHousehold(){
-    this.showCommercial=false;
-    this.showHousehold=true;
-  }
 
   // owl-carousel for hero slider
   sliderOptions:any = {
     items:1,
+    loop:true,
     autoplay:true,
     mouseDrag: true,
     touchDrag: true,

@@ -1,0 +1,63 @@
+.main-menu{
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+.nav-brand{
+    cursor: pointer;
+}
+.nav-brand img{
+    height:36px;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 5px 5px 2px rgba(0,0,0,0.03);
+}
+.mat-toolbar .cart {
+	margin:0 20px 0 10px;
+}
+.selected{
+    background-color:#EBEBEB;
+}
+.mat-button img{
+    height: 20px;
+    width: auto;
+}
+
+
+/* service assitant */
+.assistant-form{
+    background-color:#fff;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.05);
+    border:1px solid #eee;
+    border-radius: 33px;
+    padding:5px;
+    max-width: 500px;
+    width: 100%;
+}
+.assistant-form button {
+	line-height: 36px;
+    padding: 0 25px;
+    border-radius: 33px;
+}
+.assitant-input button{
+    padding:0 15px;
+}
+.assitant-input {
+    width: 100%;
+    position: relative;
+}
+.assitant-input button{
+    position: absolute;
+    top:0;
+    right:0;
+}
+.assitant-input input{
+    height: 36px;
+    border:0;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 33px;
+    padding:0 15px;    
+}
