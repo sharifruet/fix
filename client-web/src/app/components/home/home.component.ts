@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.
 export class HomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
-
+  
   openDialog() {
     this.dialog.open(HowItWorkVideoComponent);
   }

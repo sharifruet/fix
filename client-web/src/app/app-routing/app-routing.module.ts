@@ -24,6 +24,18 @@ const routes: Routes = [
     {
       path:'service-category',
       component:ServiceCategoryComponent
+    },
+    {
+      path:'test1',
+      component:AddServiceComponent
+    },
+    {
+      path:'test2',
+      component:ServiceListComponent
+    },
+    {
+      path:'test3/:id',
+      component:ServiceDetailsComponent
     }
   ]},  
   { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
@@ -35,10 +47,6 @@ const routes: Routes = [
     {
       path:'service-manage',
       component:ServiceManageComponent
-    },
-    {
-      path:'service-list',
-      component:ServiceListComponent
     }
   ] },
 ];

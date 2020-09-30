@@ -121,9 +121,9 @@ input{
 	border-top-color: rgba(0,0,0,.06);
 }
 
-.mat-dialog-container{
+/* .mat-dialog-container{
     padding:0!important;
-}
+} */
 
 .categoryCarousel .owl-nav .owl-prev, .categoryCarousel .owl-nav .owl-next {
 	position: absolute;
