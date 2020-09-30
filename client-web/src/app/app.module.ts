@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -73,3 +74,4 @@ import { ServiceDetailComponent } from './admin/components/service-detail/servic
   entryComponents:[HowItWorkVideoComponent, ServiceAddComponent, ServiceDetailComponent]
 })
 export class AppModule { }
+

@@ -1,0 +1,104 @@
+<div style="width: 400px; margin: auto;">
+  <div *ngIf="currentService" class="edit-form">
+    <h4>ServiceHierarchy</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <select id="title">
+          <option value="commercial">Commercial</option>
+          <option value="household">Household</option>
+          <option value="civil">Civil</option>
+          <option value="electrical" >Electrical</option>
+        </select>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentService.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentService.description"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="parentId">ParentId</label>
+        <input
+          type="text"
+          class="form-control"
+          id="parentId"
+          [(ngModel)]="currentService.parentId"
+          name="parentId"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="isServiceLayer">isServiceLayer</label>
+        <input
+          type="text"
+          class="form-control"
+          id="isServiceLayer"
+          [(ngModel)]="currentService.isServiceLayer"
+          name="isServiceLayer"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="isEnd">isEnd</label>
+        <input
+          type="text"
+          class="form-control"
+          id="isEnd"
+          [(ngModel)]="currentService.isEnd"
+          name="isEnd"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentService.published ? "Published" : "Pending" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentService.published"
+      (click)="updatePublished(false)"
+    >
+      UnPublish
+    </button>
+    <button
+      *ngIf="!currentService.published"
+      class="badge badge-primary mr-2"
+      (click)="updatePublished(true)"
+    >
+      Publish
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteServiceHierarchy()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success"
+      (click)="updateServiceHierarchy()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentService">
+    <br />
+    <p>Cannot access this Service...</p>
+  </div>
+</div>
