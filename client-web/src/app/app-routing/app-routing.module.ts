@@ -11,6 +11,7 @@ import {AreahierarchyComponent} from '../components/areahierarchy/areahierarchy.
 
 import { HomeComponent } from '../components/home/home.component';
 import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
+import {ServiceCategoriesComponent} from '../components/service-categories/service-categories.component';
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
     {
       path:'service-category',
       component:ServiceCategoryComponent
+    },
+    {
+      path: 'service-categories',
+      component:ServiceCategoriesComponent
     },
     {
       path:'test1',

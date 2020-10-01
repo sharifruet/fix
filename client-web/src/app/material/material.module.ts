@@ -8,7 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
-import { MatListModule } from '@angular/material/list';
+import {MatListModule } from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatTableModule} from '@angular/material/table';
@@ -17,6 +17,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatRippleModule} from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 const Material = [
@@ -35,7 +37,9 @@ const Material = [
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
-  MatTabsModule
+  MatTabsModule,
+  MatRippleModule,
+  MatGridListModule
 ]
 
 @NgModule({
