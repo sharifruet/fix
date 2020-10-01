@@ -25,10 +25,6 @@ const routes: Routes = [
     {
       path:'service-category',
       component:ServiceCategoryComponent
-    },
-    {
-      path:'test3/:id',
-      component:ServiceDetailsComponent
     }
   ]},  
   { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },

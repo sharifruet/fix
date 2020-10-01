@@ -1,4 +1,4 @@
-<div *ngIf="!submitted">
+<div>
     <h3 mat-dialog-title>Add Service</h3>
 
     <div mat-dialog-content>
@@ -17,9 +17,4 @@
     </div>
     <button mat-raised-button (click)="saveService()">Submit</button>
     <button mat-button [mat-dialog-close]>Close</button>
-</div>
-
-<div *ngIf="submitted">
-    <h4>You submitted successfully!</h4>
-    <button mat-raised-button (click)="newService()">Add New</button>
 </div>

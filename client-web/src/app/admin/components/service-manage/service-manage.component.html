@@ -10,8 +10,6 @@
 </div>
 
 
-
-
 <mat-card style="margin-bottom: 20px;">
   <div fxLayout="row" fxLayoutAlign="space-between">
     <div>
@@ -63,10 +61,10 @@
         <button mat-icon-button color="primary" matTooltip="View Service" (click)="viewService(element)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button color="accent" matTooltip="Edit Service" (click)="editService(element.id)">
+        <button mat-icon-button color="accent" matTooltip="Edit Service" (click)="editService(element)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" matTooltip="Delete Service">
+        <button mat-icon-button color="warn" (click)="deleteService(element.id)" matTooltip="Delete Service">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
