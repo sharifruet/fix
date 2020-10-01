@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../../../services/service.service'
+import { ServiceService } from '../../../services/service.service';
 
 @Component({
   selector: 'app-service-add',
@@ -34,7 +34,7 @@ export class ServiceAddComponent implements OnInit {
         },
         error => {
           console.log(error);
-        });
+      });
   }
 
   newService(): void {

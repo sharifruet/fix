@@ -2,16 +2,12 @@
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
-import { ServiceListComponent } from '../components/service-list/service-list.component';
 import { ServiceDetailsComponent } from '../components/service-details/service-details.component';
-import { AddServiceComponent } from '../components/add-service/add-service.component';
+
 
 import { DefaultComponent } from '../components/default/default.component';
-
-import {AreahierarchyComponent} from '../components/areahierarchy/areahierarchy.component';
-
 import { HomeComponent } from '../components/home/home.component';
-import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
+import { ServiceCategoryComponent } from '../components/service-category/service-category.component';
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
@@ -33,14 +29,6 @@ const routes: Routes = [
       component:ServiceCategoryComponent
     },
     {
-      path:'test1',
-      component:AddServiceComponent
-    },
-    {
-      path:'test2',
-      component:ServiceListComponent
-    },
-    {
       path:'test3/:id',
       component:ServiceDetailsComponent
     }
@@ -60,12 +48,6 @@ const routes: Routes = [
       component:ServiceHierarchyComponent
     }
   ] },
-
-  { path :'home', component:HomeComponent},
-  { path: 'services', component: ServiceListComponent },
-  { path: 'service/:id', component: ServiceDetailsComponent },
-  { path: 'service', component: AddServiceComponent },
-  { path: 'areahierarchy', component: AreahierarchyComponent }
 
 ];
 

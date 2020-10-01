@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AreahierarchyComponent } from './areahierarchy.component';
+import { ServiceEditComponent } from './service-edit.component';
 
-describe('AreahierarchyComponent', () => {
-  let component: AreahierarchyComponent;
-  let fixture: ComponentFixture<AreahierarchyComponent>;
+describe('ServiceEditComponent', () => {
+  let component: ServiceEditComponent;
+  let fixture: ComponentFixture<ServiceEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AreahierarchyComponent ]
+      declarations: [ ServiceEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AreahierarchyComponent);
+    fixture = TestBed.createComponent(ServiceEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
