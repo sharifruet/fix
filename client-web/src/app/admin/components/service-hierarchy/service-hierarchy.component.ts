@@ -13,23 +13,27 @@ import { ServiceService } from '../../../services/service.service';
   styleUrls: ['./service-hierarchy.component.css']
 })
 export class ServiceHierarchyComponent implements OnInit, AfterViewInit {
-	services: any;
-	currentService = null;
-	currentIndex = -1;
-	title = '';
-	
-	displayedColumns = ['title', 'description', 'published', 'details', 'update', 'delete'];
-	dataSource = new MatTableDataSource<any>();
-	
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+  
+  services: any;
+  currentService = null;
+  currentIndex = -1;
+  title = '';
+  resultsLength = 7;
+  pageSize = 5;
+   
 
-	constructor(public dialog: MatDialog, private serviceService:ServiceService) {
-		
-	}
-	
-	ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  displayedColumns = ['title', 'description', 'published', 'details', 'update', 'delete'];
+  dataSource = new MatTableDataSource<any>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  
+
+  constructor(public dialog: MatDialog, private serviceService:ServiceService) {
+  }
+
+  ngAfterViewInit() {
+   // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -49,7 +53,7 @@ export class ServiceHierarchyComponent implements OnInit, AfterViewInit {
     this.serviceService.getAll()
       .subscribe(
         data => {
-          this.dataSource = data;
+          this.dataSource = new MatTableDataSource(data);
           console.log(data);
         },
         error => {
