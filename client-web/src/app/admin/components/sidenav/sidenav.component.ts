@@ -36,6 +36,7 @@ const TREE_DATA = [
     children: [
       {name: 'Service Manage', link:'/admin/service-manage'},
       {name: 'Service List', link:'/admin/service-list'},
+	  {name: 'Service Hierarchy', link:'/admin/service-hierarchy'},
     ]
   },
   {
