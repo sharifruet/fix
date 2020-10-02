@@ -7,6 +7,7 @@ import { ServiceAddComponent } from '../service-add/service-add.component';
 import { ServiceDetailComponent } from '../service-detail/service-detail.component';
 import { ServiceEditComponent } from '../service-edit/service-edit.component';
 import { ServiceService } from '../../../services/service.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-service-manage',
@@ -26,13 +27,21 @@ export class ServiceManageComponent implements OnInit {
   displayedColumns = ['title', 'description', 'published', 'action'];
   dataSource;
   
-  constructor(public dialog: MatDialog, private serviceService:ServiceService) {
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private serviceService:ServiceService) {
   }
 
+  
   ngOnInit(): void {
     this.retrieveServices();
   }
 
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
+    });
+  }
+
+  // retrive service
   retrieveServices(): void {
     this.serviceService.getAll()
       .subscribe(
@@ -70,7 +79,6 @@ export class ServiceManageComponent implements OnInit {
     this.currentIndex = -1;
   }
 
-
   viewService(service) {
     this.dialog.open(ServiceDetailComponent, {
       width:'300px',
@@ -88,36 +96,49 @@ export class ServiceManageComponent implements OnInit {
     })
   }
 
-  
-
-  setActiveService(service, index): void {
-    this.currentService = service;
-    this.currentIndex = index;
-  }
-
-  removeAllServices(): void {
-    this.serviceService.deleteAll()
+  deleteService(id): void {
+    this.serviceService.delete(id)
       .subscribe(
         response => {
           console.log(response);
-          this.retrieveServices();
+          this.openSnackBar('The service deleted successfully');
+          this.refreshList();
         },
         error => {
           console.log(error);
         });
   }
 
-  searchTitle(): void {
-    this.serviceService.findByTitle(this.title)
-      .subscribe(
-        data => {
-          this.services = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
+  
+
+  // setActiveService(service, index): void {
+  //   this.currentService = service;
+  //   this.currentIndex = index;
+  // }
+
+  // removeAllServices(): void {
+  //   this.serviceService.deleteAll()
+  //     .subscribe(
+  //       response => {
+  //         console.log(response);
+  //         this.retrieveServices();
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       });
+  // }
+
+  // searchTitle(): void {
+  //   this.serviceService.findByTitle(this.title)
+  //     .subscribe(
+  //       data => {
+  //         this.services = data;
+  //         console.log(data);
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       });
+  // }
 
 
   
