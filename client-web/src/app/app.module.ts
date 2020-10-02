@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DefaultComponent } from './components/default/default.component';
+//import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
@@ -28,6 +29,7 @@ import { DashboardComponent } from './admin/components/dashboard/dashboard.compo
 import { ServiceAddComponent } from './admin/components/service-add/service-add.component';
 import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
 import { ServiceDetailComponent } from './admin/components/service-detail/service-detail.component';
+import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/service-hierarchy.component';
 
 
 
@@ -57,7 +59,8 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     ServiceEditComponent,
     UsersManageComponent,
     AdminLoginComponent,
-    LoginSignupComponent
+    LoginSignupComponent,
+    ServiceHierarchyComponent
   ],
   imports: [
     BrowserModule,
