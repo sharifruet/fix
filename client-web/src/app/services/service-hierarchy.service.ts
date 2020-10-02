@@ -9,7 +9,7 @@ import { BaseService } from './base.service';
 export class ServiceHierarchyService extends BaseService implements OnInit {
   
   constructor(http:HttpClient) { 
-	  super(http, "/services");
+	  super(http, "/service-hierarchy");
   }
 
   ngOnInit(){
