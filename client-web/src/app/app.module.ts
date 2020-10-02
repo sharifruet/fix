@@ -19,7 +19,7 @@ import { DefaultComponent } from './components/default/default.component';
 //import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
-
+import { LoginSignupComponent } from './components/login-signup/login-signup.component';
 
 import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
 import { TopbarComponent } from './admin/components/topbar/topbar.component';
@@ -33,9 +33,11 @@ import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/
 
 
 
-import {ServiceCategoryComponent } from './components/service-category/service-category.component';
+import { ServiceCategoryComponent } from './components/service-category/service-category.component';
 import { ServiceDetailsComponent } from './components/service-details/service-details.component';
 import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
+import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
+import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,9 @@ import { ServiceEditComponent } from './admin/components/service-edit/service-ed
     ServiceCategoryComponent,
     ServiceDetailsComponent,
     ServiceEditComponent,
+    UsersManageComponent,
+    AdminLoginComponent,
+    LoginSignupComponent,
     ServiceHierarchyComponent
   ],
   imports: [
@@ -73,7 +78,8 @@ import { ServiceEditComponent } from './admin/components/service-edit/service-ed
     HowItWorkVideoComponent, 
     ServiceAddComponent, 
     ServiceDetailComponent,
-    ServiceEditComponent
+    ServiceEditComponent,
+    LoginSignupComponent
   ]
 })
 export class AppModule { }

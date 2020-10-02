@@ -43,7 +43,7 @@ const TREE_DATA = [
     name: 'Users',
     icon:'group',
     children: [
-      {name: 'Add New', link:'/admin/service-manage'},
+      {name: 'User Manage', link:'/admin/users-manage'},
       {name: 'All User', link:'/admin/service-list'},
     ]
   },

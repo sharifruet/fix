@@ -1,13 +1,13 @@
-import {OnInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { OnInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceAddComponent } from '../service-add/service-add.component';
 import { ServiceDetailComponent } from '../service-detail/service-detail.component';
 import { ServiceEditComponent } from '../service-edit/service-edit.component';
 import { ServiceService } from '../../../services/service.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-service-manage',

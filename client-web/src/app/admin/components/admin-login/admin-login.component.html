@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="login-area">
+        <div class="login-form">
+            <h3>Welcome to</h3>
+            <img src="assets/images/logo.png" alt="">
+            <div>
+                <mat-form-field appearance="fill" class="input-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill" class="input-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+            </div>
+            <button mat-raised-button routerLink="/admin/dashboard" color="primary" class="input-button">Login</button>
+        </div>
+    </div>
+</div>

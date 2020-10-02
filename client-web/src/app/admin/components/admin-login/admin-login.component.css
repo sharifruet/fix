@@ -1,0 +1,28 @@
+.login-area{
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form img{
+    height:35px;
+    margin-bottom: 40px;
+}
+.login-form h3{
+    margin-top: 0;
+    color:#000;
+}
+.login-form{
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    padding:40px 50px;
+    box-shadow: 0 1px 15px -1px rgba(0,0,0,.08);
+}
+.input-width{
+    width: 100%;
+}
+.input-button{
+    line-height: 44px;
+    width: 100%;
+}
