@@ -1,4 +1,49 @@
 .mat-tab-group {
 	flex-direction: row;
 }
+.ng-star-inserted {
+	padding:5px;
+	font-size: 16px;
+}
+
+
+
+img{
+	width: 30px;
+	margin-right: 15px;
+	border-radius: 50%;
+	background-color: #fff;
+	padding: 5px;
+}
+
+li{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding:20px;
+	margin-bottom: 10px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	box-shadow: 0 1px 4px -1px rgba(0,0,0,.15);
+	cursor: pointer;
+	transition: .6s;
+	
+}
+
+li div {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+}
+
+
+
+li:hover {
+	background-color: #eee;
+	box-shadow: 0 3px 1px -1px rgba(0,0,0,.15);
+}
+
+
+
+
 

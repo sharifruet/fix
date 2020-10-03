@@ -5,7 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DefaultComponent } from '../components/default/default.component';
 import { HomeComponent } from '../components/home/home.component';
-import { ServiceCategoryComponent } from '../components/service-category/service-category.component';
+import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
+import {ServiceCategoriesComponent} from '../components/service-categories/service-categories.component';
+
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { AdminLoginComponent } from '../admin/components/admin-login/admin-login.component'
@@ -27,6 +29,11 @@ const routes: Routes = [
     {
       path:'service-category',
       component:ServiceCategoryComponent
+
+    },
+    {
+      path: 'service-categories',
+      component:ServiceCategoriesComponent
     }
   ]},  
   { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
