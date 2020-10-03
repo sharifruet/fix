@@ -1,6 +1,4 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-
-
   <mat-tree-node *matTreeNodeDef="let node" routerLink="{{node.link}}">
     <button mat-button> <mat-icon class="menu-icon">{{node.icon}}</mat-icon> {{node.name}} 
       <mat-icon style="display: none;"></mat-icon>

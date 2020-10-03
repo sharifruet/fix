@@ -10,10 +10,9 @@ module.exports = app => {
     router.get("/", serviceHierarchy.findAll);
   
     // Retrieve all published Services
-    router.get("/ispublished", serviceHierarchy.findAllPublished);
-	
-	  // Retrieve all published Services
-    router.get("/isEnd", serviceHierarchy.findAllisEnd);
+    router.get("/published", serviceHierarchy.findAllPublished);
+
+    router.post("/filter", serviceHierarchy.findByFilter);
 	
     // Retrieve a single Service with id
     router.get("/:id", serviceHierarchy.findOne);
@@ -27,5 +26,5 @@ module.exports = app => {
     // Delete all Services
     router.delete("/", serviceHierarchy.deleteAll);
   
-    app.use('/api/serviceHierarchies', router);
+    app.use('/api/service-hierarchy', router);
   };

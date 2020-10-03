@@ -1,21 +1,21 @@
+
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
-import { ServiceListComponent } from '../components/service-list/service-list.component';
-import { ServiceDetailsComponent } from '../components/service-details/service-details.component';
-import { AddServiceComponent } from '../components/add-service/add-service.component';
 
 import { DefaultComponent } from '../components/default/default.component';
-
-import {AreahierarchyComponent} from '../components/areahierarchy/areahierarchy.component';
-
 import { HomeComponent } from '../components/home/home.component';
 import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
 import {ServiceCategoriesComponent} from '../components/service-categories/service-categories.component';
 
+
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
+import { AdminLoginComponent } from '../admin/components/admin-login/admin-login.component'
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
 import { ServiceManageComponent } from '../admin/components/service-manage/service-manage.component';
+import { UsersManageComponent } from '../admin/components/users-manage/users-manage.component'; 
+
+import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
 
 
 const routes: Routes = [
@@ -29,25 +29,15 @@ const routes: Routes = [
     {
       path:'service-category',
       component:ServiceCategoryComponent
+
     },
     {
       path: 'service-categories',
       component:ServiceCategoriesComponent
-    },
-    {
-      path:'test1',
-      component:AddServiceComponent
-    },
-    {
-      path:'test2',
-      component:ServiceListComponent
-    },
-    {
-      path:'test3/:id',
-      component:ServiceDetailsComponent
     }
   ]},  
-  { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+  { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
+  { path:'admin/login', component:AdminLoginComponent },
   { path: 'admin', component:AdminDefaultComponent, children:[
     {
       path:'dashboard',
@@ -56,14 +46,16 @@ const routes: Routes = [
     {
       path:'service-manage',
       component:ServiceManageComponent
+    },
+    {
+      path:'users-manage',
+      component:UsersManageComponent
+    },
+    {
+      path:'service-hierarchy',
+      component:ServiceHierarchyComponent
     }
   ] },
-
-  { path :'home', component:HomeComponent},
-  { path: 'services', component: ServiceListComponent },
-  { path: 'service/:id', component: ServiceDetailsComponent },
-  { path: 'service', component: AddServiceComponent },
-  { path: 'areahierarchy', component: AreahierarchyComponent }
 
 ];
 

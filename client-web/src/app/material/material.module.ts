@@ -8,7 +8,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatListModule } from '@angular/material/list';
+import {MatListModule} from '@angular/material/list';
+
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatTableModule} from '@angular/material/table';
@@ -18,8 +19,9 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRippleModule} from '@angular/material/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 const Material = [
   MatMenuModule,
@@ -39,7 +41,9 @@ const Material = [
   MatInputModule,
   MatTabsModule,
   MatRippleModule,
-  MatGridListModule
+  MatTooltipModule,
+  MatSelectModule,
+  MatSnackBarModule
 ]
 
 @NgModule({

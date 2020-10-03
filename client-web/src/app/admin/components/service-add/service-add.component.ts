@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../../../services/service.service'
+import { ServiceService } from '../../../services/service.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-service-add',
@@ -13,11 +14,16 @@ export class ServiceAddComponent implements OnInit {
     description: '',
     published: false
   };
-  submitted = false;
 
-  constructor(private serviceService: ServiceService) { }
+  constructor(private serviceService: ServiceService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+  
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
+    });
   }
 
   saveService(): void {
@@ -30,15 +36,15 @@ export class ServiceAddComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.submitted = true;
+          this.openSnackBar('The service added successfully!');
+          this.newService();
         },
         error => {
           console.log(error);
-        });
+      });
   }
 
   newService(): void {
-    this.submitted = false;
     this.service = {
       title: '',
       description: '',

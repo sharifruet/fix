@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AreahierarchyComponent } from './areahierarchy.component';
+import { AdminLoginComponent } from './admin-login.component';
 
-describe('AreahierarchyComponent', () => {
-  let component: AreahierarchyComponent;
-  let fixture: ComponentFixture<AreahierarchyComponent>;
+describe('AdminLoginComponent', () => {
+  let component: AdminLoginComponent;
+  let fixture: ComponentFixture<AdminLoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AreahierarchyComponent ]
+      declarations: [ AdminLoginComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AreahierarchyComponent);
+    fixture = TestBed.createComponent(AdminLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
