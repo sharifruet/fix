@@ -43,6 +43,7 @@ require("./app/routes/serviceCategory.routes")(app);
 require("./app/routes/serviceHierarchy.routes")(app);
 require("./app/routes/areahierarchy.routes")(app);
 require("./app/routes/login.routes")(app);
+require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

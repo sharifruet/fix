@@ -3,9 +3,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { ServiceAddComponent } from '../service-add/service-add.component';
 import { ServiceDetailComponent } from '../service-detail/service-detail.component';
-import { ServiceService } from '../../../services/service.service';
+import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
 import { ServiceEditComponent } from '../service-edit/service-edit.component';
 
 @Component({
@@ -24,10 +25,10 @@ export class ServiceHierarchyComponent implements OnInit {
   currentIndex = -1;
   title = '';
   
-  displayedColumns = ['title', 'description', 'published', 'action'];
-  dataSource;
+  displayedColumns = ['title', 'description', 'published','parent', 'hierarchyPath','serviceLayer','end','action'];
+  dataSource = new MatTableDataSource<any>();
   
-  constructor(public dialog: MatDialog, private serviceService:ServiceService) {
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private service:ServiceHierarchyService) {
   }
 
   ngOnInit(): void {
@@ -35,8 +36,7 @@ export class ServiceHierarchyComponent implements OnInit {
   }
 
   retrieveServices(): void {
-    console.log("------------------1");
-    this.serviceService.getAll()
+    this.service.getAll()
       .subscribe(
         data => {
           this.dataSource = new MatTableDataSource<any>(data);
@@ -58,7 +58,7 @@ export class ServiceHierarchyComponent implements OnInit {
   }
 
   // add service dialog
-  addServiceDialog() {
+  addItemDialog() {
     const dialogRef = this.dialog.open(ServiceAddComponent, {
       width:'300px'
     });
@@ -90,7 +90,11 @@ export class ServiceHierarchyComponent implements OnInit {
     })
   }
 
-  
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
+    });
+  }
 
   setActiveService(service, index): void {
     this.currentService = service;
@@ -98,7 +102,7 @@ export class ServiceHierarchyComponent implements OnInit {
   }
 
   removeAllServices(): void {
-    this.serviceService.deleteAll()
+    this.service.deleteAll()
       .subscribe(
         response => {
           console.log(response);
@@ -110,11 +114,24 @@ export class ServiceHierarchyComponent implements OnInit {
   }
 
   searchTitle(): void {
-    this.serviceService.findByTitle(this.title)
+    this.service.findByTitle(this.title)
       .subscribe(
         data => {
           this.services = data;
           console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  deleteService(id): void {
+    this.service.delete(id)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.openSnackBar('The service deleted successfully');
+          this.refreshList();
         },
         error => {
           console.log(error);

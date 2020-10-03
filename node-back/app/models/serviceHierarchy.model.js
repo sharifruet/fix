@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
-    const serviceHierarchy = sequelize.define("serviceHierarchy", {
+    const serviceHierarchy = sequelize.define("ServiceHierarchy", {
       title: {
         type: Sequelize.STRING
       },
       description: {
         type: Sequelize.STRING
       },
-      ispublished: {
+      isPublished: {
         type: Sequelize.BOOLEAN
       },
 	  hierarchyPath:{
@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
 	  isEnd: {
         type: Sequelize.BOOLEAN
       },
-	   Status: {
+	   status: {
         type: Sequelize.STRING
       }
     });

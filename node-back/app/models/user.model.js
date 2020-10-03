@@ -19,11 +19,15 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
 	  district: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
 	  upazila: {
-        type: Sequelize.STRING
-      }
+        type: Sequelize.BIGINT
+      },
+    status:  {
+      type: Sequelize.INTEGER
+    }
+    
     });
     return userModel;
 };
