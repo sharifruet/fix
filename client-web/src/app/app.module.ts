@@ -16,7 +16,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DefaultComponent } from './components/default/default.component';
-//import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
+import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
+
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
@@ -29,20 +30,25 @@ import { DashboardComponent } from './admin/components/dashboard/dashboard.compo
 import { ServiceAddComponent } from './admin/components/service-add/service-add.component';
 import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
 import { ServiceDetailComponent } from './admin/components/service-detail/service-detail.component';
+import { ServiceCategoriesComponent } from './components/service-categories/service-categories.component';
 import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/service-hierarchy.component';
-
-
-
 import { ServiceCategoryComponent } from './components/service-category/service-category.component';
 import { ServiceDetailsComponent } from './components/service-details/service-details.component';
 import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+
+    AddServiceComponent,
+    ServiceDetailsComponent,
+    ServiceListComponent,
+    AreahierarchyComponent,
+
+    HomeComponent
     HowItWorkVideoComponent,
     HeaderComponent,
     FooterComponent,
@@ -54,6 +60,7 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     DefaultComponent,
     ServiceAddComponent,
     ServiceDetailComponent,
+    ServiceCategoriesComponent
     ServiceCategoryComponent,
     ServiceDetailsComponent,
     ServiceEditComponent,
@@ -61,6 +68,7 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     AdminLoginComponent,
     LoginSignupComponent,
     ServiceHierarchyComponent
+
   ],
   imports: [
     BrowserModule,

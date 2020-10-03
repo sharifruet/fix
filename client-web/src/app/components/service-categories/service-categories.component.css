@@ -1,0 +1,36 @@
+.banner{
+    height: 500px;
+    background-position: top;
+    background-size: cover;
+    
+}
+
+.service_categories{
+    background-color: #f9f9f9;
+}
+
+.container{
+    width: 80%;
+}
+
+img {
+	width: 100%;
+    border-radius: 5px;
+    transition: .6s;
+    margin-bottom: 50px;
+}
+
+
+
+.fxFlex{
+    padding: 10px!important;
+}
+
+h2 {
+    margin: 0;
+    font-size: 22px;
+}
+p{
+    font-size:16px;
+    text-align: justify;
+}
