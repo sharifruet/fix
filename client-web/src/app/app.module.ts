@@ -19,6 +19,8 @@ import { DefaultComponent } from './components/default/default.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
+import { ServiceCategoriesComponent } from './components/service-categories/service-categories.component';
+import { ServiceCategoryComponent } from './components/service-category/service-category.component';
 
 import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
 import { TopbarComponent } from './admin/components/topbar/topbar.component';
@@ -28,10 +30,7 @@ import { DashboardComponent } from './admin/components/dashboard/dashboard.compo
 import { ServiceAddComponent } from './admin/components/service-add/service-add.component';
 import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
 import { ServiceDetailComponent } from './admin/components/service-detail/service-detail.component';
-import { ServiceCategoriesComponent } from './components/service-categories/service-categories.component';
 import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/service-hierarchy.component';
-import { ServiceCategoryComponent } from './components/service-category/service-category.component';
-import { ServiceDetailsComponent } from './components/service-details/service-details.component';
 import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
@@ -40,7 +39,6 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
 @NgModule({
   declarations: [
     AppComponent,
-    ServiceDetailsComponent,
     HomeComponent,
     HowItWorkVideoComponent,
     HeaderComponent,
@@ -55,13 +53,11 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     ServiceDetailComponent,
     ServiceCategoriesComponent,
     ServiceCategoryComponent,
-    ServiceDetailsComponent,
     ServiceEditComponent,
     UsersManageComponent,
     AdminLoginComponent,
     LoginSignupComponent,
     ServiceHierarchyComponent
-
   ],
   imports: [
     BrowserModule,
