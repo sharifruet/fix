@@ -6,13 +6,13 @@ import {BaseService} from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService extends BaseService implements OnInit {
+export class UserService extends BaseService implements OnInit {
 
   constructor(http:HttpClient) { 
-	  super(http, "/services");
+	  super(http, "/user");
   }
 
   ngOnInit(){
-    console.log("ServiceService Init called :)");
+    console.log("User Service Init called :)");
   }
 }

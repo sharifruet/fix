@@ -1,5 +1,6 @@
 const db = require("../models");
 const jwt = require("jsonwebtoken");
+const { request } = require("express");
 const userDao = db.userDao;
 const Op = db.Sequelize.Op;
 
@@ -22,8 +23,10 @@ exports.login = (req, res) => {
   userDao.findAll({ where: {username} })
       .then(data => {
         console.log(data);
-		const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-		res.json({accessToken:accessToken});
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+    refreshTokens.push(refreshToken);
+		res.json({accessToken:accessToken,refreshToken:refreshToken});
 		//res.send(data);
       })
       .catch(err => {
@@ -34,6 +37,14 @@ exports.login = (req, res) => {
       });
 };
 
+function generateAccessToken(user){
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {"expiresIn":"1m"});
+}
+
+function generateRefreshToken(user){
+  return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+}
+
 exports.authenticateToken = (req,res, next) =>{
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
@@ -43,6 +54,25 @@ exports.authenticateToken = (req,res, next) =>{
 		if(err) return res.sendStatus(401);
 		req.user = user;
 		next();
+	});
+};
+
+exports.deleteToken = (req,res) =>{
+  refreshTokens = refreshTokens.filter(token=>token!=req.body.token);
+  res.sendStatus(204);
+};
+
+let refreshTokens = [];
+exports.refreshToken = (req,res) =>{
+
+	const refreshToken = req.body.token;;
+  if(refreshToken == null) return res.sendStatus(401);
+  if(!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
+	
+	jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user)=>{
+		if(err) return res.sendStatus(403);
+		const accessToken = generateAccessToken({name:user.name});
+		res.json({accessToken:accessToken});
 	});
 };
 
