@@ -22,6 +22,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatChipsModule} from '@angular/material/chips';
 
 const Material = [
   MatMenuModule,
@@ -43,7 +44,8 @@ const Material = [
   MatRippleModule,
   MatTooltipModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatChipsModule
 ]
 
 @NgModule({

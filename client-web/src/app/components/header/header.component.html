@@ -33,41 +33,39 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="showCommercial" *ngIf="showCommercial">
-                <button mat-button [matMenuTriggerFor]="beforeMenu">Electronics <mat-icon>expand_more</mat-icon> </button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                <button mat-button [matMenuTriggerFor]="menu1">Electronics <mat-icon>expand_more</mat-icon> </button>
+                <mat-menu #menu1="matMenu" xPosition="after">
                     <button mat-menu-item>Desktop Computer servicing</button>
                     <button mat-menu-item>Laptop servicing</button>
                     <button mat-menu-item>CCTV  camera</button>
                     <button mat-menu-item>Smart Phone</button>
                 </mat-menu>
-                <button mat-button [matMenuTriggerFor]="beforeMenu">Civil<mat-icon>expand_more</mat-icon> </button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
-                    <button mat-menu-item>Desktop Computer servicing</button>
-                    <button mat-menu-item>Laptop servicing</button>
-                    <button mat-menu-item>CCTV  camera</button>
-                    <button mat-menu-item>Smart Phone</button>
-                </mat-menu>
-                <button mat-button [matMenuTriggerFor]="beforeMenu">Mechanical <mat-icon>expand_more</mat-icon></button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                <button mat-button [matMenuTriggerFor]="menu2">Civil<mat-icon>expand_more</mat-icon> </button>
+                <mat-menu #menu2="matMenu" xPosition="after">
                     <button mat-menu-item>Item 1</button>
                     <button mat-menu-item>Item 2</button>
                 </mat-menu>
-                <button mat-button [matMenuTriggerFor]="beforeMenu">Electrical<mat-icon>expand_more</mat-icon></button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                <button mat-button [matMenuTriggerFor]="menu3">Mechanical <mat-icon>expand_more</mat-icon></button>
+                <mat-menu #menu3="matMenu" xPosition="after">
                     <button mat-menu-item>Item 1</button>
                     <button mat-menu-item>Item 2</button>
                 </mat-menu>
-                <button mat-button [matMenuTriggerFor]="beforeMenu">Architecture<mat-icon>expand_more</mat-icon></button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                <button mat-button [matMenuTriggerFor]="menu4">Electrical<mat-icon>expand_more</mat-icon></button>
+                <mat-menu #menu4="matMenu" xPosition="after">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="menu5">Architecture<mat-icon>expand_more</mat-icon></button>
+                <mat-menu #menu5="matMenu" xPosition="after">
                     <button mat-menu-item>Item 1</button>
                     <button mat-menu-item>Item 2</button>
                 </mat-menu>
             </div>
 
             <div class="showHousehold" *ngIf="showHousehold">
-                <button mat-button [matMenuTriggerFor]="beforeMenu"> Appliance Repair <mat-icon>expand_more</mat-icon>
+                <button mat-button [matMenuTriggerFor]="menu6"> Appliance Repair <mat-icon>expand_more</mat-icon>
                     </button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
+                <mat-menu #menu6="matMenu" xPosition="after">
                     <button mat-menu-item>Item 1</button>
                     <button mat-menu-item>Item 2</button>
                 </mat-menu>

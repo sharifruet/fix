@@ -1,44 +1,44 @@
 .mat-tab-group {
 	flex-direction: row;
 }
-.ng-star-inserted {
-	padding:5px;
-	font-size: 16px;
+.mat-icon {
+	margin-right: 10px;
 }
 
-
-
+.mat-tab-label {
+	height: 50px;
+}
 img{
-	width: 30px;
-	margin-right: 15px;
-	border-radius: 50%;
-	background-color: #fff;
-	padding: 5px;
+	width: 100px;
+	margin-right: 10px;
+	border-radius:4px;
 }
 
-li{
+.tab-item{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding:20px;
+	padding:10px;
 	margin-bottom: 10px;
 	background-color: #f9f9f9;
-	border-radius: 8px;
+	border-radius: 4px;
 	box-shadow: 0 1px 4px -1px rgba(0,0,0,.15);
 	cursor: pointer;
 	transition: .6s;
-	
 }
 
-li div {
+.tab-item>div {
 	display: flex;
 	align-items: center;
 	font-size: 16px;
 }
+.tab-item ul li{
+	display: inline-block;
+}
 
 
 
-li:hover {
+.tab-item:hover {
 	background-color: #eee;
 	box-shadow: 0 3px 1px -1px rgba(0,0,0,.15);
 }
