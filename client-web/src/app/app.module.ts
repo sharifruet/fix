@@ -36,7 +36,8 @@ import { UsersManageComponent } from './admin/components/users-manage/users-mana
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
 import { ServiceComponent } from './components/service/service.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
-
+import { RolesComponent } from './admin/components/roles/roles.component';
+import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     LoginSignupComponent,
     ServiceHierarchyComponent,
     ServiceComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    RolesComponent,
+    RoleAddComponent
   ],
   imports: [
     BrowserModule,
