@@ -26,5 +26,6 @@ db.serviceCategory = require("./serviceCategory.model.js")(sequelize, Sequelize)
 db.serviceHierarchy = require("./serviceHierarchy.model.js")(sequelize, Sequelize);
 db.areaHierarchy = require("./areaHierarchy.model.js")(sequelize, Sequelize);
 db.userDao = require("./user.model.js")(sequelize, Sequelize);
+db.roleDao = require("./role.model.js")(sequelize, Sequelize);
 
 module.exports = db;

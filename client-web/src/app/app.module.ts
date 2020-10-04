@@ -34,6 +34,8 @@ import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/
 import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
+import { RolesComponent } from './admin/components/roles/roles.component';
+import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     UsersManageComponent,
     AdminLoginComponent,
     LoginSignupComponent,
-    ServiceHierarchyComponent
+    ServiceHierarchyComponent,
+    RolesComponent,
+    RoleAddComponent
   ],
   imports: [
     BrowserModule,

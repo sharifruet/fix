@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree'
 
-
 const TREE_DATA = [ 
   {
     name: 'Dashboard',
@@ -43,8 +42,8 @@ const TREE_DATA = [
     name: 'Users',
     icon:'group',
     children: [
-      {name: 'User Manage', link:'/admin/users-manage'},
-      {name: 'All User', link:'/admin/service-list'},
+      {name: 'Manage Users', link:'/admin/users-manage'},
+      {name: 'Manage Roles', link:'/admin/roles'},
     ]
   },
   {

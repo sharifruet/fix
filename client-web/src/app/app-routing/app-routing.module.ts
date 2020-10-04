@@ -14,7 +14,7 @@ import { AdminLoginComponent } from '../admin/components/admin-login/admin-login
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
 import { ServiceManageComponent } from '../admin/components/service-manage/service-manage.component';
 import { UsersManageComponent } from '../admin/components/users-manage/users-manage.component'; 
-
+import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
 
 
@@ -50,6 +50,10 @@ const routes: Routes = [
     {
       path:'users-manage',
       component:UsersManageComponent
+    },
+	 {
+      path:'roles',
+      component:RolesComponent
     },
     {
       path:'service-hierarchy',

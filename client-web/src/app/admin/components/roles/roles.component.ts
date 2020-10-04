@@ -2,30 +2,37 @@ import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserService } from '../../../services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { RoleService } from '../../../services/role.service';
+import {RoleAddComponent} from './role-add/role-add.component';
 
 @Component({
-  selector: 'app-users-manage',
-  templateUrl: './users-manage.component.html',
-  styleUrls: ['./users-manage.component.css']
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css']
 })
-export class UsersManageComponent implements OnInit {
+
+export class RolesComponent implements OnInit {
+
+  comp = {title:"Roles"};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  displayedColumns = ['name', 'username', 'email', 'status', 'action'];
+  displayedColumns = ['name', 'description', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:UserService) { }
+  constructor(private service:RoleService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
 
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getRoles();
   }
 
-  getUsers(): void {
+  getRoles(): void {
     this.service.getAll()
       .subscribe(
         result => {
@@ -49,6 +56,16 @@ export class UsersManageComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  addDialog = ()=>{
+    const dialogRef = this.dialog.open(RoleAddComponent, {
+      width:'300px'
+    });
+    
+    dialogRef.afterClosed().subscribe(result=>{
+      //this.refreshList();
+    })
   }
 
 }
