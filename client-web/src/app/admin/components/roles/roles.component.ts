@@ -2,30 +2,33 @@ import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserService } from '../../../services/user.service';
+import { RoleService } from '../../../services/role.service';
 
 @Component({
-  selector: 'app-users-manage',
-  templateUrl: './users-manage.component.html',
-  styleUrls: ['./users-manage.component.css']
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css']
 })
-export class UsersManageComponent implements OnInit {
+
+export class RolesComponent implements OnInit {
+
+  comp = {title:"Roles"};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  displayedColumns = ['name', 'username', 'email', 'status', 'action'];
+  displayedColumns = ['name', 'description', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:UserService) { }
+  constructor(private service:RoleService) { }
 
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getRoles();
   }
 
-  getUsers(): void {
+  getRoles(): void {
     this.service.getAll()
       .subscribe(
         result => {
