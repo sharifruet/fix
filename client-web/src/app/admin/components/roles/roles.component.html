@@ -2,7 +2,7 @@
     <div fxFlex="100%" style="margin-bottom: 20px;">
         <mat-card fxLayout="row" fxLayoutAlign="space-between center">
             <h3 style="margin-bottom: 0;">{{comp.title}}</h3>
-            <button mat-raised-button>
+            <button mat-raised-button (click)="addDialog()">
                 Add New
             </button>
         </mat-card>

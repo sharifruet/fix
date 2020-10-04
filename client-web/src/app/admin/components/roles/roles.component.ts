@@ -2,7 +2,11 @@ import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { RoleService } from '../../../services/role.service';
+import {RoleAddComponent} from './role-add/role-add.component';
 
 @Component({
   selector: 'app-roles',
@@ -21,7 +25,7 @@ export class RolesComponent implements OnInit {
   displayedColumns = ['name', 'description', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:RoleService) { }
+  constructor(private service:RoleService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
 
 
   ngOnInit(): void {
@@ -52,6 +56,16 @@ export class RolesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  addDialog = ()=>{
+    const dialogRef = this.dialog.open(RoleAddComponent, {
+      width:'300px'
+    });
+    
+    dialogRef.afterClosed().subscribe(result=>{
+      //this.refreshList();
+    })
   }
 
 }
