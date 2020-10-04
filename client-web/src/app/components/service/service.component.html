@@ -1,0 +1,313 @@
+<div class="service-area" style="background-image:url('assets/images/laptop-servicing.jpg');">
+    <div class="container">
+        <div fxLaout="row">
+            <div fxFlex="80">
+                <div class="breadcrumb pb-5">
+                    <ul>
+                        <li> <a href="#">Home</a> </li>
+                        <li> <a href="#">Commercial</a> </li>
+                        <li> <a href="#">Electronics</a> </li>
+                        <li>Laptop Servicing</li>
+                    </ul>
+                </div>
+            </div>
+            <div fxFlex="20">
+                <div class="social-share">
+                    <span>Share on</span>
+                    <ul>
+                        <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/733/733547.svg"
+                                    alt=""></a></li>
+                        <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/1409/1409937.svg"
+                                    alt=""></a></li>
+                        <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg"
+                                    alt=""></a></li>
+                        <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/2111/2111463.svg"
+                                    alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="30px">
+            <div fxFlex="50">
+                <div class="service-content">
+                    <h2>Laptop Servicing</h2>
+                    <div class="ratings">
+                        <button mat-raised-button color="accent">
+                            <mat-icon>star</mat-icon> 4.5 Out of 5
+                        </button>
+                        <span>( 100 ratings on 2 services)</span>
+                    </div>
+                    <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate
+                        the visual form of a document or a typeface without relying on meaningful content. </p>
+                </div>
+            </div>
+            <div fxFlex="50">
+                <div class="service-content">
+                    <ul>
+                        <li>
+                            <mat-icon>check</mat-icon> In publishing and graphic design
+                        </li>
+                        <li>
+                            <mat-icon>check</mat-icon> Lorem ipsum is a placeholder text commonly
+                        </li>
+                        <li>
+                            <mat-icon>check</mat-icon> A document or a typeface without relying on meaningful content
+                        </li>
+                        <li>
+                            <mat-icon>check</mat-icon> In publishing and graphic design
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="service-tab" style="background-color: #fdfdfd;">
+    <div class="container">
+        <div fxLayout="row" fxLayoutGap="30px">
+            <div fxFlex="65" class="pt-5">
+                <mat-tab-group>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon>description</mat-icon>
+                            <p>Service Overview</p>
+                        </ng-template>
+
+                        <div class="description-block">
+                            <h2>Overview of Laptop servicing</h2>
+                            <div class="service-content">
+                                <ul>
+                                    <li>
+                                        <mat-icon>check</mat-icon> In publishing and graphic design
+                                    </li>
+                                    <li>
+                                        <mat-icon>check</mat-icon> Lorem ipsum is a placeholder text commonly
+                                    </li>
+                                    <li>
+                                        <mat-icon>check</mat-icon> A document or a typeface without relying on
+                                        meaningful content
+                                    </li>
+                                    <li>
+                                        <mat-icon>check</mat-icon> In publishing and graphic design
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+                    <mat-tab label="Tab Two">
+                        <ng-template mat-tab-label>
+                            <mat-icon>live_help</mat-icon>
+                            <p>FAQ</p>
+                        </ng-template>
+                        <div class="description-block">
+                            <mat-accordion>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Tab Two">
+                        <ng-template mat-tab-label>
+                            <mat-icon>stars</mat-icon>
+                            <p>Reviews</p>
+                        </ng-template>
+                        <div class="description-block">
+                            <mat-accordion>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Tab Two">
+                        <ng-template mat-tab-label>
+                            <mat-icon>description</mat-icon>
+                            <p>Details</p>
+                        </ng-template>
+                        <div class="description-block">
+                            <mat-accordion>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Self aware panel
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>I'm visible because I am open</p>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+            </div>
+            <div fxFlex="35">
+                <div class="service-sub-category">
+                    <h2>Laptop servicing</h2>
+                    <div matRipple class="tab-item" (click)="openAddToCart()">
+                        <div>
+                            <img src="assets/images/laptop.jpg">
+                            <div>
+                                Software related service
+                            </div>
+                        </div>
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </div>
+                    <div matRipple class="tab-item" (click)="openAddToCart()">
+                        <div>
+                            <img src="assets/images/laptop.jpg">
+                            <div>
+                                Hardware related service
+                            </div>
+                        </div>
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="related-service pt-5 pb-5">
+    <div class="container">
+        <div class="title">
+            <h2>Related Service</h2>
+        </div>
+
+        <owl-carousel-o [options]="relatedService" class="categoryCarousel">
+            <ng-template carouselSlide>
+                <div matRipple class="tab-item">
+                    <div>
+                        <img src="assets/images/laptop2.jpg">
+                        <div>
+                            Laptop Service
+                        </div>
+                    </div>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div matRipple class="tab-item">
+                    <div>
+                        <img src="assets/images/laptop2.jpg">
+                        <div>
+                            Laptop Service
+                        </div>
+                    </div>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div matRipple class="tab-item">
+                    <div>
+                        <img src="assets/images/laptop2.jpg">
+                        <div>
+                            Laptop Service
+                        </div>
+                    </div>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div matRipple class="tab-item">
+                    <div>
+                        <img src="assets/images/laptop.jpg">
+                        <div>
+                            Desktop Service
+                        </div>
+                    </div>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+        
+    </div>
+</div>

@@ -34,6 +34,8 @@ import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/
 import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
+import { ServiceComponent } from './components/service/service.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     UsersManageComponent,
     AdminLoginComponent,
     LoginSignupComponent,
-    ServiceHierarchyComponent
+    ServiceHierarchyComponent,
+    ServiceComponent,
+    AddToCartComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,8 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     ServiceAddComponent, 
     ServiceDetailComponent,
     ServiceEditComponent,
-    LoginSignupComponent
+    LoginSignupComponent,
+    AddToCartComponent
   ]
 })
 export class AppModule { }
