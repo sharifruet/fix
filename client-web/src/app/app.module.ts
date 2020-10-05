@@ -34,9 +34,10 @@ import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/
 import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
+import { ServiceComponent } from './components/service/service.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { RolesComponent } from './admin/components/roles/roles.component';
 import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
-
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
     AdminLoginComponent,
     LoginSignupComponent,
     ServiceHierarchyComponent,
+    ServiceComponent,
+    AddToCartComponent,
     RolesComponent,
     RoleAddComponent
   ],
@@ -80,7 +83,8 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
     ServiceAddComponent, 
     ServiceDetailComponent,
     ServiceEditComponent,
-    LoginSignupComponent
+    LoginSignupComponent,
+    AddToCartComponent
   ]
 })
 export class AppModule { }

@@ -23,7 +23,7 @@
                 <button mat-icon-button class="cart">
                     <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
-                <button mat-raised-button color="black" (click)="openLogin()">Login</button>
+                <button mat-button color="black" (click)="openLogin()">Login</button>
             </div>
         </div>
     </div>
@@ -35,10 +35,10 @@
             <div class="showCommercial" *ngIf="showCommercial">
                 <button mat-button [matMenuTriggerFor]="menu1">Electronics <mat-icon>expand_more</mat-icon> </button>
                 <mat-menu #menu1="matMenu" xPosition="after">
-                    <button mat-menu-item>Desktop Computer servicing</button>
-                    <button mat-menu-item>Laptop servicing</button>
-                    <button mat-menu-item>CCTV  camera</button>
-                    <button mat-menu-item>Smart Phone</button>
+                    <button mat-menu-item routerLink="/service">Desktop Computer servicing</button>
+                    <button mat-menu-item routerLink="/service">Laptop servicing</button>
+                    <button mat-menu-item routerLink="/service">CCTV  camera</button>
+                    <button mat-menu-item routerLink="/service">Smart Phone</button>
                 </mat-menu>
                 <button mat-button [matMenuTriggerFor]="menu2">Civil<mat-icon>expand_more</mat-icon> </button>
                 <mat-menu #menu2="matMenu" xPosition="after">
