@@ -38,6 +38,9 @@ import { ServiceComponent } from './components/service/service.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { RolesComponent } from './admin/components/roles/roles.component';
 import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
+import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
+import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
+import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
     ServiceComponent,
     AddToCartComponent,
     RolesComponent,
-    RoleAddComponent
+    RoleAddComponent,
+    UserAddComponent,
+    UserEditComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +90,11 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
     ServiceDetailComponent,
     ServiceEditComponent,
     LoginSignupComponent,
-    AddToCartComponent
+    AddToCartComponent,
+	UserAddComponent,
+	RoleAddComponent,
+	UserEditComponent,
+	UserDetailComponent
   ]
 })
 export class AppModule { }

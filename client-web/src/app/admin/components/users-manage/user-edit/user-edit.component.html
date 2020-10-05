@@ -1,0 +1,27 @@
+<div *ngIf="currentService">
+    <h3 mat-dialog-title>{{currentService.title}} Edit</h3>
+
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Name</mat-label>
+                <input matInput id="title" [(ngModel)]="currentService.name" required name="name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Email</mat-label>
+                <input matInput required [(ngModel)]="currentService.email" name="email">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Status</mat-label>
+                <input matInput readonly [value]="currentService.published?'Published':'Pending'"  name="status">
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-raised-button (click)="updateService()">Update</button>
+    <button mat-button *ngIf="currentService.published" (click)="updateService">publish</button>
+    
+</div>
