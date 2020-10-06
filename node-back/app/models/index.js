@@ -29,3 +29,84 @@ db.userDao = require("./user.model.js")(sequelize, Sequelize);
 db.roleDao = require("./role.model.js")(sequelize, Sequelize);
 
 module.exports = db;
+
+addEntity = (dao, entity, cb) => {
+
+  console.log(' - role - ');
+
+  dao.create(entity)
+    .then(data => {
+      cb({
+        status:0,
+        message: "Added successfully",
+        data: data
+      });
+      //res.send(data);
+    })
+    .catch(err => {
+      console.log('ERROR @ INSERT');
+      cb({
+        status:1,
+        message: err.message || "Some error occurred while creating the Service.",
+      });
+    });
+}
+
+updateEntity = (dao, entity, id, cb) => {
+  dao.update(entity, {
+    where: { id: id }
+  })
+    .then(num => {
+      if (num >= 1) {
+        cb({
+          status:0,
+          message: "Updated successfully",
+          data: []
+        });
+      } else {
+        cb({
+          status:1,
+          message: `Cannot update Service with id=${id}!`
+        });
+      }
+    })
+    .catch(err => {
+      cb( {
+        status:1,
+        message: err.message || "Some error occurred while creating the Service.",
+      });
+    });
+}
+
+getById = (dao, id, cb) => {
+  dao.findByPk(id)
+      .then(data => {
+        cb( {
+          status:0,
+          message: "Fetch successfully",
+          data: data
+        });
+      })
+      .catch(err => {
+        cb( {
+          status:1,
+          message: err.message || "Some error occurred while creating the Service.",
+        });
+      });
+}
+
+getByFilter = (dao, filter, cb) => {
+  dao.findAll({ where: filter })
+      .then(data => {
+        cb({
+          status:0,
+          message:'Fetch successful',
+          data:data});
+      })
+      .catch(err => {
+        cb( {
+          status:1,
+          message: err.message || "Some error occurred while creating the Service.",
+        });
+      });
+}

@@ -27,6 +27,7 @@ export class UserAddComponent implements OnInit {
   }
 
   save(): void {
+    console.log(this.service);
     const data = {
       name: this.user.name,
       email: this.user.email,

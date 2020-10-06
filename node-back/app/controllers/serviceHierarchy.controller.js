@@ -1,68 +1,8 @@
 const db = require("../models");
-const ServiceHierarchy = db.serviceHierarchy;
+const serviceHierarchyDao = db.serviceHierarchy;
 const Op = db.Sequelize.Op;
 
-addEntity = (entity, cb) => {
-  ServiceHierarchy.create(entity)
-    .then(data => {
-      cb({
-        status:0,
-        message: "Added successfully",
-        data: data
-      });
-      //res.send(data);
-    })
-    .catch(err => {
-      console.log('ERROR @ INSERT');
-      cb({
-        status:1,
-        message: err.message || "Some error occurred while creating the Service.",
-      });
-    });
-}
 
-updateEntity = (entity, id, cb) => {
-  ServiceHierarchy.update(entity, {
-    where: { id: id }
-  })
-    .then(num => {
-      if (num == 1) {
-        cb({
-          status:0,
-          message: "Added successfully",
-          data: []
-        });
-      } else {
-        cb({
-          status:1,
-          message: `Cannot update Service with id=${id}. Maybe Service was not found or req.body is empty!`
-        });
-      }
-    })
-    .catch(err => {
-      cb( {
-        status:1,
-        message: err.message || "Some error occurred while creating the Service.",
-      });
-    });
-}
-
-getById = (id, cb) => {
-    ServiceHierarchy.findByPk(id)
-      .then(data => {
-        cb( {
-          status:0,
-          message: "Fetch successfully",
-          data: data
-        });
-      })
-      .catch(err => {
-        cb( {
-          status:1,
-          message: err.message || "Some error occurred while creating the Service.",
-        });
-      });
-}
 // Create and Save a new Service
 exports.create = (req, res) => {
     // Validate request
@@ -85,10 +25,10 @@ exports.create = (req, res) => {
 	
   };
 
-  addEntity(serviceHierarchy, (result) => {
+  addEntity(serviceHierarchyDao, serviceHierarchy, (result) => {
     if (result.status == 0) {
       serviceHierarchy = result.data;
-      getById(serviceHierarchy.parentId, (parent)=>{
+      getById(serviceHierarchyDao, serviceHierarchy.parentId, (parent)=>{
         console.log("--parent--");
         console.log(parent);
         
@@ -99,7 +39,7 @@ exports.create = (req, res) => {
         } else{
           hierarchyPath = '-' + serviceHierarchy.id + '-';
         }
-        updateEntity({hierarchyPath:hierarchyPath}, serviceHierarchy.id, (result)=>{
+        updateEntity(serviceHierarchyDao, {hierarchyPath:hierarchyPath}, serviceHierarchy.id, (result)=>{
           if (result.status == 0) {
             res.send(result);
           } else {
@@ -119,7 +59,7 @@ exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
   
-    ServiceHierarchy.findAll({ where: condition })
+    serviceHierarchyDao.findAll({ where: condition })
       .then(data => {
         res.send(data);
       })
@@ -135,7 +75,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    ServiceHierarchy.findByPk(id)
+    serviceHierarchyDao.findByPk(id)
       .then(data => {
         res.send(data);
       })
@@ -150,7 +90,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
   
-    ServiceHierarchy.update(req.body, {
+    serviceHierarchyDao.update(req.body, {
       where: { id: id }
     })
       .then(num => {
@@ -175,7 +115,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
   
-    ServiceHierarchy.destroy({
+    serviceHierarchyDao.destroy({
       where: { id: id }
     })
       .then(num => {
@@ -198,7 +138,7 @@ exports.delete = (req, res) => {
 
 // Delete all Service from the database.
 exports.deleteAll = (req, res) => {
-  ServiceHierarchy.destroy({
+  serviceHierarchyDao.destroy({
       where: {},
       truncate: false
     })
@@ -215,7 +155,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Service
 exports.findAllPublished = (req, res) => {
-  ServiceHierarchy.findAll({ where: { ispublished: true } })
+  serviceHierarchyDao.findAll({ where: { ispublished: true } })
       .then(data => {
         res.send(data);
       })
@@ -229,7 +169,7 @@ exports.findAllPublished = (req, res) => {
   
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  ServiceHierarchy.findAll({ where: req.body })
+  serviceHierarchyDao.findAll({ where: req.body })
       .then(data => {
         res.send(data);
       })
