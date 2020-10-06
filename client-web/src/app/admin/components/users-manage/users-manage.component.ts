@@ -24,7 +24,7 @@ export class UsersManageComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  displayedColumns = ['name', 'email', 'status', 'action'];
+  displayedColumns = ['name','username', 'email', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
   constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
@@ -71,7 +71,7 @@ export class UsersManageComponent implements OnInit {
   }
   
   
-  viewUser(service) {
+  viewService(service) {
     this.dialog.open(UserDetailComponent, {
       width:'300px',
       data:service
