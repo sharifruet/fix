@@ -148,3 +148,38 @@ img{
 .title h2{
     margin-top: 0;
 }
+
+.review-image img{
+	width: 50px !important;
+	border-radius: 50%;
+}
+
+.review-details {
+	padding: 5px 0;
+}
+
+.review-details mat-icon{
+    margin-right: 2px;
+    color:gold;
+}
+
+.review-details h4{
+    margin:3px 0;
+}
+.review-details h4 i{
+    font-size: 12px;
+    font-weight: 200;
+    color:#444;
+    margin-left: 10px;
+}
+.review-details p{
+    margin: 0;
+}
+
+.margin-top{
+    margin-top: 10px;
+}
+
+.content h2, h4, p{
+    margin:2px 0;
+}
