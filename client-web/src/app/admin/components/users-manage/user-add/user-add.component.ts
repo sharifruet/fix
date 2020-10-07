@@ -11,6 +11,7 @@ export class UserAddComponent implements OnInit {
 
   user = {
     name: '',
+	username:'',
     email: '',
     status: ''
   };
@@ -30,6 +31,7 @@ export class UserAddComponent implements OnInit {
     console.log(this.service);
     const data = {
       name: this.user.name,
+	  username: this.user.username,
       email: this.user.email,
 	  status: this.user.status
     };
@@ -49,6 +51,7 @@ export class UserAddComponent implements OnInit {
   newService(): void {
     this.user = {
       name: '',
+	  username:'',
       email: '',
       status: ''
     }

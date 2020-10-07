@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor() { }
-
+  serviceDetail;
+  
+  constructor(public dialogRef:MatDialogRef<UserService>, 
+    @Inject(MAT_DIALOG_DATA) public data:any) { 
+      this.serviceDetail=data;
+     }
+  
   ngOnInit(): void {
   }
 
