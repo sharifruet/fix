@@ -2,30 +2,39 @@ import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { UserService } from '../../../services/user.service';
+import {UserAddComponent} from './user-add/user-add.component';
+import {UserEditComponent} from './user-edit/user-edit.component';
+import {UserDetailComponent} from './user-detail/user-detail.component';
 
 @Component({
   selector: 'app-users-manage',
   templateUrl: './users-manage.component.html',
   styleUrls: ['./users-manage.component.css']
 })
+
 export class UsersManageComponent implements OnInit {
+
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  displayedColumns = ['name', 'username', 'email', 'status', 'action'];
+  displayedColumns = ['name','username', 'email', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:UserService) { }
+  constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
 
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsersManage();
   }
 
-  getUsers(): void {
+  getUsersManage(): void {
     this.service.getAll()
       .subscribe(
         result => {
@@ -51,4 +60,45 @@ export class UsersManageComponent implements OnInit {
     }
   }
 
+  addUserDialog = ()=>{
+    const dialogRef = this.dialog.open(UserAddComponent, {
+      width:'300px'
+    });
+    
+    dialogRef.afterClosed().subscribe(result=>{
+      //this.refreshList();
+    })
+  }
+  
+  
+  viewService(service) {
+    this.dialog.open(UserDetailComponent, {
+      width:'300px',
+      data:service
+    });
+  }
+
+  editService(service) {
+    const dialogRef = this.dialog.open(UserEditComponent, {
+      width:'300px',
+      data:service
+    });
+    dialogRef.afterClosed().subscribe(result=>{
+      //this.refreshList();
+    })
+  }
+
+deleteService(id): void {
+    this.service.delete(id)
+      .subscribe(
+        response => {
+          console.log(response);
+          this._snackBar.open('The service deleted successfully');
+          //this.refreshList();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+  
 }

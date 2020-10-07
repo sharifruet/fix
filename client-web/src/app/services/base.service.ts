@@ -35,8 +35,8 @@ export class BaseService {
     return this.http.delete(this.apiBaseUrl);
   }
 
-  findByTitle(title): Observable<any> {
-    return this.http.get(`${this.apiBaseUrl}?title=${title}`);
+  filter(data): Observable<any> {
+    return this.http.post(this.apiBaseUrl +"/filter", data);
   }
   
 }

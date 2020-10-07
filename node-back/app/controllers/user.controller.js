@@ -2,85 +2,9 @@ const db = require("../models");
 const userDao = db.userDao;
 const Op = db.Sequelize.Op;
 
-addEntity = (entity, cb) => {
-  userDao.create(entity)
-    .then(data => {
-      cb({
-        status:0,
-        message: "Added successfully",
-        data: data
-      });
-      //res.send(data);
-    })
-    .catch(err => {
-      console.log('ERROR @ INSERT');
-      cb({
-        status:1,
-        message: err.message || "Some error occurred while creating the Service.",
-      });
-    });
-}
-
-updateEntity = (entity, id, cb) => {
-  userDao.update(entity, {
-    where: { id: id }
-  })
-    .then(num => {
-      if (num >= 1) {
-        cb({
-          status:0,
-          message: "Updated successfully",
-          data: []
-        });
-      } else {
-        cb({
-          status:1,
-          message: `Cannot update Service with id=${id}!`
-        });
-      }
-    })
-    .catch(err => {
-      cb( {
-        status:1,
-        message: err.message || "Some error occurred while creating the Service.",
-      });
-    });
-}
-
-getById = (id, cb) => {
-  userDao.findByPk(id)
-      .then(data => {
-        cb( {
-          status:0,
-          message: "Fetch successfully",
-          data: data
-        });
-      })
-      .catch(err => {
-        cb( {
-          status:1,
-          message: err.message || "Some error occurred while creating the Service.",
-        });
-      });
-}
-
-getByFilter = (filter, cb) => {
-  userDao.findAll({ where: filter })
-      .then(data => {
-        cb({
-          status:0,
-          message:'Fetch successful',
-          data:data});
-      })
-      .catch(err => {
-        cb( {
-          status:1,
-          message: err.message || "Some error occurred while creating the Service.",
-        });
-      });
-}
 // Create and Save a new Service
 exports.create = (req, res) => {
+  console.log('user');
     // Validate request
     if (!req.body.name) {
       res.status(400).send({
@@ -101,7 +25,7 @@ exports.create = (req, res) => {
     upazila: req.body.upazila? req.body.upazila : '',
   };
 
-  addEntity(user, (result) => {
+  addEntity(userDao, user, (result) => {
     if (result.status == 0) {
       res.send(result);
     } else {
@@ -114,7 +38,7 @@ exports.create = (req, res) => {
 // Retrieve all Service from the database.
 exports.findAll = (req, res) => {
     const filter = {};
-    getByFilter(filter, (result) => {
+    getByFilter(userDao, filter, (result) => {
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -127,7 +51,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    getById (id, (result) => {
+    getById (userDao, id, (result) => {
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -140,7 +64,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
   
-    updateEntity(req.body,id, (result)=>{
+    updateEntity(userDao, req.body,id, (result)=>{
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -153,7 +77,7 @@ exports.update = (req, res) => {
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-	updateEntity({status:1}, id, (result)=>{
+	updateEntity(userDao, {status:1}, id, (result)=>{
 		if (result.status == 0) {
           res.send(result);
         } else {
@@ -166,7 +90,7 @@ exports.delete = (req, res) => {
   
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  getByFilter(req.body,(result)=>{
+  getByFilter(userDao, req.body,(result)=>{
     if (result.status == 0) {
       res.send(result);
     } else {
