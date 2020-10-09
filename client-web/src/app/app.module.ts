@@ -41,6 +41,11 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
 import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
 import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
 import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
+import { RoleEditComponent } from './admin/components/roles/role-edit/role-edit.component';
+import { RoleDetailComponent } from './admin/components/roles/role-detail/role-detail.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +75,9 @@ import { UserDetailComponent } from './admin/components/users-manage/user-detail
     RoleAddComponent,
     UserAddComponent,
     UserEditComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    RoleEditComponent,
+    RoleDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +87,9 @@ import { UserDetailComponent } from './admin/components/users-manage/user-detail
     BrowserAnimationsModule,
     MaterialModule,
     CarouselModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+	MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -94,7 +103,10 @@ import { UserDetailComponent } from './admin/components/users-manage/user-detail
 	UserAddComponent,
 	RoleAddComponent,
 	UserEditComponent,
-	UserDetailComponent
+	UserDetailComponent,
+	RoleDetailComponent,
+	RoleEditComponent,
+	RolesComponent,
   ]
 })
 export class AppModule { }

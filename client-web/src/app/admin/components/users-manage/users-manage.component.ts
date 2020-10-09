@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { UserService } from '../../../services/user.service';
 import {UserAddComponent} from './user-add/user-add.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
@@ -17,14 +16,17 @@ import {UserDetailComponent} from './user-detail/user-detail.component';
 })
 
 export class UsersManageComponent implements OnInit {
-
+//selectedValue: string;
   
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+services: any;
+  currentService = null;
+  currentIndex = -1;
+  title = '';
 
-  displayedColumns = ['name','username', 'email', 'status', 'action'];
+  displayedColumns = ['name','username','password', 'email','phone','address','district','upazila', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
   constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
@@ -66,10 +68,15 @@ export class UsersManageComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      //this.refreshList();
+      this.refreshList();
     })
   }
   
+  refreshList(): void {
+    //this.retrieveServices();
+    this.currentService = null;
+    this.currentIndex = -1;
+  }
   
   viewService(service) {
     this.dialog.open(UserDetailComponent, {
@@ -84,8 +91,19 @@ export class UsersManageComponent implements OnInit {
       data:service
     });
     dialogRef.afterClosed().subscribe(result=>{
-      //this.refreshList();
+      this.refreshList();
     })
+  }
+  
+    openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
+    });
+  }
+
+setActiveService(service, index): void {
+    this.currentService = service;
+    this.currentIndex = index;
   }
 
 deleteService(id): void {
@@ -93,8 +111,8 @@ deleteService(id): void {
       .subscribe(
         response => {
           console.log(response);
-          this._snackBar.open('The service deleted successfully');
-          //this.refreshList();
+          this.openSnackBar('The service deleted successfully');
+          this.refreshList();
         },
         error => {
           console.log(error);
