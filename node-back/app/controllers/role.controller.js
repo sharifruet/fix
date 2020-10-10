@@ -77,16 +77,29 @@ exports.update = (req, res) => {
 
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
-	updateEntity(roleDao, {status:1}, id, (result)=>{
-		if (result.status == 0) {
-          res.send(result);
+    const id = req.params.id;
+  
+    roleDao.destroy({
+      where: { id: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Service was deleted successfully!"
+          });
         } else {
-          res.status(500).send(result);
+          res.send({
+            message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
+          });
         }
-  });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Could not delete Service with id=" + id
+        });
+      });
+  };
 
-};
 
   
   // Find all isEnd Service
