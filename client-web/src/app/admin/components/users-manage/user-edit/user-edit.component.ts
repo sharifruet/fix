@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UsersManageComponent } from '../../users-manage/users-manage.component';
 
 @Component({
   selector: 'app-user-edit',
@@ -12,7 +13,10 @@ export class UserEditComponent implements OnInit {
 
   currentService;
   
-  constructor(private service: UserService, private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar, private userService:UserService, public dialogRef:MatDialogRef<UsersManageComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data:any) { 
+      this.currentService=data;
+     }
   
   ngOnInit(): void {
   }
@@ -24,7 +28,7 @@ export class UserEditComponent implements OnInit {
   }
 
   updateService(): void {
-    this.currentService.update(this.currentService.id, this.currentService)
+    this.userService.update(this.currentService.id, this.currentService)
       .subscribe(
         response => {
           console.log(response);
@@ -42,7 +46,7 @@ export class UserEditComponent implements OnInit {
       published: status
     };
 
-    this.userService.update(this.currentService.id, data)
+    this.serviceService.update(this.currentService.id, data)
       .subscribe(
         response => {
           this.currentService.published = status;
@@ -52,7 +56,8 @@ export class UserEditComponent implements OnInit {
         error => {
           console.log(error);
         });
-  }*/
+  }
+  */
 
  
 }

@@ -112,7 +112,7 @@ export class ServiceHierarchyComponent implements OnInit {
           console.log(error);
         });
   }
-
+/*
   searchTitle(): void {
     this.service.findByTitle(this.title)
       .subscribe(
@@ -124,7 +124,7 @@ export class ServiceHierarchyComponent implements OnInit {
           console.log(error);
         });
   }
-
+*/
   deleteService(id): void {
     this.service.delete(id)
       .subscribe(

@@ -23,6 +23,7 @@ exports.create = (req, res) => {
 	  address: req.body.address? req.body.address : '',
     district: req.body.district? req.body.district : '',
     upazila: req.body.upazila? req.body.upazila : '',
+    status: req.body.status? req.body.status : 0,
   };
 
   addEntity(userDao, user, (result) => {
