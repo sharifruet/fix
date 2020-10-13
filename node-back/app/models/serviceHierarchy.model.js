@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
       description: {
         type: Sequelize.STRING
       },
-      isPublished: {
+      published: {
         type: Sequelize.BOOLEAN
       },
 	  hierarchyPath:{
@@ -15,14 +15,14 @@ module.exports = (sequelize, Sequelize) => {
 	  parentId:{
 		  type: Sequelize.BOOLEAN
 	  },
-	   isServiceLayer: {
+	   serviceLayer: {
         type: Sequelize.STRING
       },
-	  isEnd: {
+	  end: {
         type: Sequelize.BOOLEAN
       },
-	   status: {
-        type: Sequelize.STRING
+	  status: {
+        type: Sequelize.BOOLEAN
       }
     });
     return serviceHierarchy;
