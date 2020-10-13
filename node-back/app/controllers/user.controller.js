@@ -1,6 +1,8 @@
 const db = require("../models");
 const userDao = db.userDao;
+const Role = db.roleDao;
 const Op = db.Sequelize.Op;
+
 
 // Create and Save a new Service
 exports.create = (req, res) => {
@@ -21,13 +23,23 @@ exports.create = (req, res) => {
 	  username: req.body.username,
 	  phone: req.body.phone? req.body.phone : '',
 	  address: req.body.address? req.body.address : '',
-    district: req.body.district? req.body.district : '',
-    upazila: req.body.upazila? req.body.upazila : '',
+    district: req.body.district? req.body.district : -1,
+    upazila: req.body.upazila? req.body.upazila : -1,
     status: req.body.status? req.body.status : 0,
   };
 
+  const roles = req.body.roles?req.body.roles:[];
+  console.log(roles);
+  console.log(userDao);
+
   addEntity(userDao, user, (result) => {
+    
     if (result.status == 0) {
+      userObj = result.data;
+      roles.forEach(role => {
+        userObj.addRole(role.id);
+      });
+      
       res.send(result);
     } else {
       res.status(500).send(result);
@@ -39,26 +51,38 @@ exports.create = (req, res) => {
 // Retrieve all Service from the database.
 exports.findAll = (req, res) => {
     const filter = {};
-    getByFilter(userDao, filter, (result) => {
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
-      }
-    });
+    userDao.findAll({ include: Role, where: filter })
+      .then(data => {
+        res.send({
+          status:0,
+          message:'Fetch successful',
+          data:data});
+      })
+      .catch(err => {
+        res.status(500).send( {
+          status:1,
+          message: err.message || "Some error occurred while creating the Service.",
+        });
+      });
   }
 
 // Find a single Service with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-  
-    getById (userDao, id, (result) => {
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
-      }
-    });
+    userDao.findByPk(id, { include: Role })
+      .then(data => {
+        res.send( {
+          status:0,
+          message: "Fetch successfully",
+          data: data
+        });
+      })
+      .catch(err => {
+        res.send( {
+          status:1,
+          message: err.message || "Some error occurred while creating the Service.",
+        });
+      });
   }
 
 // Update a Service by the id in the request
@@ -91,11 +115,18 @@ exports.delete = (req, res) => {
   
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  getByFilter(userDao, req.body,(result)=>{
-    if (result.status == 0) {
-      res.send(result);
-    } else {
-      res.status(500).send(result);
-    }
-  });
+
+  userDao.findAll({ include: Role, where: req.body })
+      .then(data => {
+        res.send({
+          status:0,
+          message:'Fetch successful',
+          data:data});
+      })
+      .catch(err => {
+        res.status(500).send( {
+          status:1,
+          message: err.message || "Some error occurred while creating the Service.",
+        });
+      });
 };

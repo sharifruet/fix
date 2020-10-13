@@ -10,23 +10,18 @@ exports.create = (req, res) => {
     if (!req.body.name) {
       res.status(400).send({
         status:2,
-        message: "Content can not be empty!"
+        message: "'name' can not be empty!"
       });
       return;
     }
     // Create a Service
-  const user = {
+  const role = {
     name: req.body.name,
-    email: req.body.email,
-	  password: req.body.password ? req.body.password : '',
-	  username: req.body.username,
-	  phone: req.body.phone? req.body.phone : '',
-	  address: req.body.address? req.body.address : '',
-    district: req.body.district? req.body.district : '',
-    upazila: req.body.upazila? req.body.upazila : '',
+    description: req.body.description,
+	  status: req.body.status? req.body.status : 0,
   };
 
-  addEntity(roleDao, user, (result) => {
+  addEntity(roleDao, role, (result) => {
     if (result.status == 0) {
       res.send(result);
     } else {

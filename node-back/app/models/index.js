@@ -28,6 +28,8 @@ db.areaHierarchy = require("./areaHierarchy.model.js")(sequelize, Sequelize);
 db.userDao = require("./user.model.js")(sequelize, Sequelize);
 db.roleDao = require("./role.model.js")(sequelize, Sequelize);
 
+db.userDao.belongsToMany(db.roleDao, { through: 'UserRole' }); 
+
 module.exports = db;
 
 addEntity = (dao, entity, cb) => {
