@@ -23,20 +23,22 @@ db.sequelize = sequelize;
 db.service = require("./service.model.js")(sequelize, Sequelize);
 db.product = require("./product.model.js")(sequelize, Sequelize);
 db.serviceCategory = require("./serviceCategory.model.js")(sequelize, Sequelize);
-db.serviceHierarchyDao = require("./serviceHierarchy.model.js")(sequelize, Sequelize);
-db.areaHierarchy = require("./areaHierarchy.model.js")(sequelize, Sequelize);
-db.userDao = require("./user.model.js")(sequelize, Sequelize);
-db.roleDao = require("./role.model.js")(sequelize, Sequelize);
+db.ServiceHierarchy = require("./serviceHierarchy.model.js")(sequelize, Sequelize);
+db.AreaHierarchy = require("./areaHierarchy.model.js")(sequelize, Sequelize);
+db.User = require("./user.model.js")(sequelize, Sequelize);
+db.Role = require("./role.model.js")(sequelize, Sequelize);
+db.Privilege = require("./privilege.model.js")(sequelize, Sequelize);
 
-db.userDao.belongsToMany(db.roleDao, { through: 'UserRole' }); 
+db.User.belongsToMany(db.Role, { through: 'UserRole' }); 
+db.Role.belongsToMany(db.Privilege, { through: 'RolePrivilege' }); 
 
 module.exports = db;
 
-addEntity = (dao, entity, cb) => {
+addEntity = (model, entity, cb) => {
 
   console.log(' - role - ');
 
-  dao.create(entity)
+  model.create(entity)
     .then(data => {
       cb({
         status:0,
@@ -54,8 +56,8 @@ addEntity = (dao, entity, cb) => {
     });
 }
 
-updateEntity = (dao, entity, id, cb) => {
-  dao.update(entity, {
+updateEntity = (model, entity, id, cb) => {
+  model.update(entity, {
     where: { id: id }
   })
     .then(num => {
@@ -80,8 +82,8 @@ updateEntity = (dao, entity, id, cb) => {
     });
 }
 
-getById = (dao, id, cb) => {
-  dao.findByPk(id)
+getById = (model, id, cb) => {
+  model.findByPk(id)
       .then(data => {
         cb( {
           status:0,
@@ -97,8 +99,8 @@ getById = (dao, id, cb) => {
       });
 }
 
-getByFilter = (dao, filter, cb) => {
-  dao.findAll({ where: filter })
+getByFilter = (model, filter, cb) => {
+  model.findAll({ where: filter })
       .then(data => {
         cb({
           status:0,

@@ -1,5 +1,5 @@
 const db = require("../models");
-const RoleModel = db.Role;
+const privilegeModel = db.Privilege;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Service
@@ -15,13 +15,14 @@ exports.create = (req, res) => {
       return;
     }
     // Create a Service
-  const role = {
+  const privilege = {
     name: req.body.name,
-    description: req.body.description,
-	  status: req.body.status? req.body.status : 0,
+    description: req.body.description? req.body.description : '',
+	status: req.body.status? req.body.status : 0,
+	menu: req.body.menu? req.body.menu : null,
   };
 
-  addEntity(RoleModel, role, (result) => {
+  addEntity(privilegeModel, privilege, (result) => {
     if (result.status == 0) {
       res.send(result);
     } else {
@@ -34,7 +35,7 @@ exports.create = (req, res) => {
 // Retrieve all Service from the database.
 exports.findAll = (req, res) => {
     const filter = {};
-    getByFilter(RoleModel, filter, (result) => {
+    getByFilter(privilegeModel, filter, (result) => {
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -47,7 +48,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    getById (RoleModel, id, (result) => {
+    getById (privilegeModel, id, (result) => {
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -60,7 +61,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
   
-    updateEntity(RoleModel, req.body,id, (result)=>{
+    updateEntity(privilegeModel, req.body,id, (result)=>{
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -74,7 +75,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
   
-    RoleModel.destroy({
+    privilegeModel.destroy({
       where: { id: id }
     })
       .then(num => {
@@ -99,7 +100,7 @@ exports.delete = (req, res) => {
   
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  getByFilter(RoleModel, req.body,(result)=>{
+  getByFilter(privilegeModel, req.body,(result)=>{
     if (result.status == 0) {
       res.send(result);
     } else {

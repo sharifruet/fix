@@ -1,5 +1,5 @@
 const db = require("../models");
-const serviceHierarchyDao = db.serviceHierarchyDao;
+const ServiceHierarchyModel = db.ServiceHierarchy;
 const Op = db.Sequelize.Op;
 
 
@@ -27,12 +27,12 @@ exports.create = (req, res) => {
   
 
 
-  addEntity(serviceHierarchyDao, serviceHierarchy, (result) => {
+  addEntity(ServiceHierarchyModel, serviceHierarchy, (result) => {
 	  
     if (result.status == 0) {
       serviceHierarchy = result.data;
 	  //console.log(serviceHierarchy);
-      getById(serviceHierarchyDao, serviceHierarchy.parentId, (parent)=>{
+      getById(ServiceHierarchyModel, serviceHierarchy.parentId, (parent)=>{
         console.log("--parent--");
         console.log(parent);
         
@@ -43,7 +43,7 @@ exports.create = (req, res) => {
         } else{
           hierarchyPath = '-' + serviceHierarchy.id + '-';
         }
-        updateEntity(serviceHierarchyDao, {hierarchyPath:hierarchyPath}, serviceHierarchy.id, (result)=>{
+        updateEntity(ServiceHierarchyModel, {hierarchyPath:hierarchyPath}, serviceHierarchy.id, (result)=>{
           if (result.status == 0) {
             res.send(result);
           } else {
@@ -63,7 +63,7 @@ exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-    serviceHierarchyDao.findAll({ where: condition })
+    ServiceHierarchyModel.findAll({ where: condition })
       .then(data => {
         res.send(data);
       })
@@ -81,7 +81,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    getById (serviceHierarchyDao, id, (result) => {
+    getById (ServiceHierarchyModel, id, (result) => {
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -94,7 +94,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
   
-    serviceHierarchyDao.update(req.body, {
+    ServiceHierarchyModel.update(req.body, {
       where: { id: id }
     })
       .then(num => {
@@ -119,7 +119,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
   
-    serviceHierarchyDao.destroy({
+    ServiceHierarchyModel.destroy({
       where: { id: id }
     })
       .then(num => {
@@ -142,7 +142,7 @@ exports.delete = (req, res) => {
 
 // Delete all Service from the database.
 exports.deleteAll = (req, res) => {
-  serviceHierarchyDao.destroy({
+  ServiceHierarchyModel.destroy({
       where: {},
       truncate: false
     })
@@ -159,7 +159,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Service
 /*exports.findAllPublished = (req, res) => {
-  serviceHierarchyDao.findAll({ where: { ispublished: true } })
+  ServiceHierarchyModel.findAll({ where: { ispublished: true } })
       .then(data => {
         res.send(data);
       })
@@ -173,7 +173,7 @@ exports.deleteAll = (req, res) => {
   
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  serviceHierarchyDao.findAll({ where: req.body })
+  ServiceHierarchyModel.findAll({ where: req.body })
       .then(data => {
         res.send(data);
       })
