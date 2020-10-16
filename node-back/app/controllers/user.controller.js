@@ -1,5 +1,5 @@
 const db = require("../models");
-const userDao = db.userDao;
+const UserModel = db.User;
 const Role = db.roleDao;
 const Op = db.Sequelize.Op;
 
@@ -30,9 +30,9 @@ exports.create = (req, res) => {
 
   const roles = req.body.roles?req.body.roles:[];
   console.log(roles);
-  console.log(userDao);
+  console.log(UserModel);
 
-  addEntity(userDao, user, (result) => {
+  addEntity(UserModel, user, (result) => {
     
     if (result.status == 0) {
       userObj = result.data;
@@ -51,7 +51,7 @@ exports.create = (req, res) => {
 // Retrieve all Service from the database.
 exports.findAll = (req, res) => {
     const filter = {};
-    userDao.findAll({ include: Role, where: filter })
+    UserModel.findAll({ include: Role, where: filter })
       .then(data => {
         res.send({
           status:0,
@@ -69,7 +69,7 @@ exports.findAll = (req, res) => {
 // Find a single Service with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    userDao.findByPk(id, { include: Role })
+    UserModel.findByPk(id, { include: Role })
       .then(data => {
         res.send( {
           status:0,
@@ -89,7 +89,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
   
-    updateEntity(userDao, req.body,id, (result)=>{
+    updateEntity(UserModel, req.body,id, (result)=>{
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -102,7 +102,7 @@ exports.update = (req, res) => {
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-	updateEntity(userDao, {status:1}, id, (result)=>{
+	updateEntity(UserModel, {status:1}, id, (result)=>{
 		if (result.status == 0) {
           res.send(result);
         } else {
@@ -116,7 +116,7 @@ exports.delete = (req, res) => {
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
 
-  userDao.findAll({ include: Role, where: req.body })
+  UserModel.findAll({ include: Role, where: req.body })
       .then(data => {
         res.send({
           status:0,
