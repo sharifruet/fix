@@ -1,0 +1,50 @@
+
+
+        <div fxLayout="row">
+            <div fxFlex="100%" style="margin-bottom: 20px;">
+                <mat-card>
+                    <h3>Media Upload</h3>
+                </mat-card>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="100%">
+                <mat-card>
+                    <h3>Drop and Drag</h3>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                        <div 
+                            class="droparea"
+                            (dragover) = "onDragOver($event)"
+                            (dragleave) = "onDragLeave($event)"
+                            (drop) = "onDrop($event)"
+                            [class.active]="isActive"
+                        >
+                            <input type="file" name="mediafiles" class="browse-file" (change)="onSelectFile($event)" multiple>
+                            <h4>Choose files or <br> Drag and drop files</h4>
+                        </div>
+
+                        <ul class="progress">  
+                            <li *ngIf="upload.progress && upload.progress != 100">  
+                                <mat-progress-bar [value]="upload.progress"></mat-progress-bar>
+                                <span>{{upload.progress}}%</span>
+                            </li>  
+                        </ul>  
+                        
+                        <div *ngIf="upload.files">
+                            <div>File List</div>
+                            <ul>
+                                <ng-container *ngFor="let item of upload.files">
+                                    <li>{{item.filename}} - Status: <span>Upload complete</span></li>
+                                </ng-container>
+                            </ul>
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            
+        </div>
+
+

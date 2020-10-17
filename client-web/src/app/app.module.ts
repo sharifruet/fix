@@ -41,6 +41,7 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
 import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
 import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
 import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
+import { MediaUploadComponent } from './admin/components/media-upload/media-upload.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { UserDetailComponent } from './admin/components/users-manage/user-detail
     RoleAddComponent,
     UserAddComponent,
     UserEditComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    MediaUploadComponent
   ],
   imports: [
     BrowserModule,
