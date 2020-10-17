@@ -19,5 +19,19 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BOOLEAN
       }
     });
+
+    AreaHierarchy.sync().then(() => {
+      AreaHierarchy.create({
+        title: 'Neuquen',
+        areaType : "mohishalbari",
+        parentId : "1",
+        HierarchyPath : "1-2",
+        Status : "Active",
+        published : true
+      });
+    });
+
     return AreaHierarchy;
+
+    
 };

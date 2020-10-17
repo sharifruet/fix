@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DefaultComponent } from './components/default/default.component';
-import { AreahierarchyComponent } from './components/areahierarchy/areahierarchy.component';
+
 
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
@@ -43,12 +43,9 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
   declarations: [
     AppComponent,
 
-    AddServiceComponent,
     ServiceDetailsComponent,
-    ServiceListComponent,
-    AreahierarchyComponent,
 
-    HomeComponent
+    HomeComponent,
     HowItWorkVideoComponent,
     HeaderComponent,
     FooterComponent,
@@ -60,7 +57,7 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
     DefaultComponent,
     ServiceAddComponent,
     ServiceDetailComponent,
-    ServiceCategoriesComponent
+    ServiceCategoriesComponent,
     ServiceCategoryComponent,
     ServiceDetailsComponent,
     ServiceEditComponent,
