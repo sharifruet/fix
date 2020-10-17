@@ -1,19 +1,20 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from '../../../../services/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { UsersManageComponent } from '../../users-manage/users-manage.component';
+import { ServiceHierarchyComponent } from '../service-hierarchy/service-hierarchy.component';
+import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css']
+  selector: 'app-service-hierarchy-edit',
+  templateUrl: './service-hierarchy-edit.component.html',
+  styleUrls: ['./service-hierarchy-edit.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class ServiceHierarchyEditComponent implements OnInit {
 
   currentService;
   
-  constructor(private _snackBar: MatSnackBar, private userService:UserService, public dialogRef:MatDialogRef<UsersManageComponent>, 
+  constructor(private _snackBar: MatSnackBar, private serviceHierarchyService:ServiceHierarchyService, public dialogRef:MatDialogRef<ServiceHierarchyComponent>, 
     @Inject(MAT_DIALOG_DATA) public data:any) { 
       this.currentService=data;
      }
@@ -27,8 +28,8 @@ export class UserEditComponent implements OnInit {
     });
   }
 
-  updateService(): void {
-    this.userService.update(this.currentService.id, this.currentService)
+updateService(): void {
+    this.serviceHierarchyService.update(this.currentService.id, this.currentService)
       .subscribe(
         response => {
           console.log(response);
@@ -38,11 +39,11 @@ export class UserEditComponent implements OnInit {
           console.log(error);
         });
   }
-  /*
+/*
   updatePublished(status): void {
     const data = {
-      name: this.currentService.name,
-      email: this.currentService.email,
+      title: this.currentService.title,
+      description: this.currentService.description,
       published: status
     };
 
@@ -50,7 +51,7 @@ export class UserEditComponent implements OnInit {
       .subscribe(
         response => {
           this.currentService.published = status;
-          console.log(response)
+          console.log(response);
           this.openSnackBar('The service updated successfully!');
         },
         error => {
@@ -58,6 +59,4 @@ export class UserEditComponent implements OnInit {
         });
   }
   */
-
- 
 }

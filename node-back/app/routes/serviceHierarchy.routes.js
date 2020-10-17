@@ -10,7 +10,7 @@ module.exports = app => {
     router.get("/", serviceHierarchy.findAll);
   
     // Retrieve all published Services
-    router.get("/published", serviceHierarchy.findAllPublished);
+   // router.get("/published", serviceHierarchy.findAllPublished);
 
     router.post("/filter", serviceHierarchy.findByFilter);
 	

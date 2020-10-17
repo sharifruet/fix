@@ -1,63 +1,63 @@
-<div>
-    <h3 mat-dialog-title>Add User</h3>
+<div *ngIf="currentService">
+    <h3 mat-dialog-title>{{currentService.title}} Edit</h3>
 
     <div mat-dialog-content>
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Name</mat-label>
-                <input matInput id="name" required [(ngModel)]="user.name" name="name">
+                <input matInput id="title" [(ngModel)]="currentService.name" required name="name">
             </mat-form-field>
         </div>
-		<div>
+        <div>
             <mat-form-field class="input-width">
                 <mat-label>Username</mat-label>
-                <input matInput required [(ngModel)]="user.username" name="username">
+                <input matInput required [(ngModel)]="currentService.username" name="username">
             </mat-form-field>
         </div>
 		<div>
             <mat-form-field class="input-width">
                 <mat-label>Password</mat-label>
-                <input matInput required [(ngModel)]="user.password" name="password">
+                <input matInput id="title" [(ngModel)]="currentService.password" required name="password">
             </mat-form-field>
         </div>
-        <div>
+		<div>
             <mat-form-field class="input-width">
                 <mat-label>Email</mat-label>
-                <input matInput required [(ngModel)]="user.email" name="email">
+                <input matInput id="title" [(ngModel)]="currentService.email" required name="email">
             </mat-form-field>
         </div>
 		<div>
             <mat-form-field class="input-width">
                 <mat-label>Phone</mat-label>
-                <input matInput required [(ngModel)]="user.phone" name="phone">
+                <input matInput id="title" [(ngModel)]="currentService.phone" required name="phone">
             </mat-form-field>
         </div>
 		<div>
             <mat-form-field class="input-width">
                 <mat-label>Address</mat-label>
-                <input matInput required [(ngModel)]="user.address" name="address">
+                <input matInput id="title" [(ngModel)]="currentService.address" required name="address">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>District</mat-label>
+                <input matInput id="title" [(ngModel)]="currentService.district" required name="district">
             </mat-form-field>
         </div>
 		
 		<div>
             <mat-form-field class="input-width">
-                <mat-label>District</mat-label>
-                <input matInput required [(ngModel)]="user.district" name="district">
-            </mat-form-field>
-        </div>
-		<div>
-            <mat-form-field class="input-width">
                 <mat-label>Upazila</mat-label>
-                <input matInput required [(ngModel)]="user.upazila" name="upazila">
+                <input matInput id="title" [(ngModel)]="currentService.upazila" required name="upazila">
             </mat-form-field>
         </div>
-		<div>
+        <div>
             <mat-form-field class="input-width">
                 <mat-label>Status</mat-label>
-                <input matInput required [(ngModel)]="user.status" name="status">
+                <input matInput readonly [value]="currentService.published?'Published':'Pending'"  name="status">
             </mat-form-field>
         </div>
     </div>
-    <button mat-raised-button (click)="save()">Submit</button>
-    <button mat-button [mat-dialog-close]>Close</button>
+    <button mat-raised-button (click)="updateService()">Update</button>
+    <button mat-button *ngIf="currentService.published" (click)="updateService">publish</button>
 </div>

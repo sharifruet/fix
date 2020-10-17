@@ -12,7 +12,12 @@ export class UserAddComponent implements OnInit {
   user = {
     name: '',
 	username:'',
+	password:'',
     email: '',
+	phone: '',
+	address:'',
+	district:'',
+	upazila:'',
     status: ''
   };
 
@@ -32,18 +37,25 @@ export class UserAddComponent implements OnInit {
     const data = {
       name: this.user.name,
 	  username: this.user.username,
+	  password: this.user.password,
       email: this.user.email,
+	  phone: this.user.phone,
+	  address: this.user.address,
+	  district: this.user.district,
+	  upazila: this.user.upazila,
 	  status: this.user.status
     };
 
     this.service.create(data)
       .subscribe(
         response => {
+			console.log("1");
           console.log(response);
           this.openSnackBar('The service added successfully!');
           this.newService();
         },
         error => {
+				console.log("2");
           console.log(error);
       });
   }
@@ -52,7 +64,12 @@ export class UserAddComponent implements OnInit {
     this.user = {
       name: '',
 	  username:'',
+	  password:'',
       email: '',
+	  phone:'',
+	  address:'',
+	  district:'',
+	  upazila:'',
       status: ''
     }
   }
