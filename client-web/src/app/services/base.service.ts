@@ -6,7 +6,7 @@ const baseUrl = 'http://localhost:8080/api';
 export class BaseService {
   apiBaseUrl = '';
 
-  constructor(private http: HttpClient, path:String) {
+  constructor(public http: HttpClient, path:String) {
     this.apiBaseUrl = baseUrl + path;
  }
 

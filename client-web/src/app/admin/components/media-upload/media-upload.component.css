@@ -1,0 +1,30 @@
+.droparea{
+    border:2px dashed #ddd;
+    height: 250px;
+    text-align: center;
+    position: relative;
+    background-color:#f5f5f5;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.droparea.active{
+    border-color:#000;background-color: #f2f2f2;
+}
+.droparea h4{
+    margin-bottom: 0;
+}
+.browse-file{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+.progress li{
+    margin:2px 0;
+}

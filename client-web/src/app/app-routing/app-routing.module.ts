@@ -17,6 +17,7 @@ import { ServiceManageComponent } from '../admin/components/service-manage/servi
 import { UsersManageComponent } from '../admin/components/users-manage/users-manage.component'; 
 import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
+import { MediaUploadComponent } from '../admin/components/media-upload/media-upload.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,10 @@ const routes: Routes = [
     {
       path:'dashboard',
       component:DashboardComponent
+    },
+    {
+      path:'media-upload',
+      component:MediaUploadComponent
     },
     {
       path:'service-manage',
