@@ -41,7 +41,16 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
 import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
 import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
 import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
+
 import { MediaUploadComponent } from './admin/components/media-upload/media-upload.component';
+
+import { RoleEditComponent } from './admin/components/roles/role-edit/role-edit.component';
+import { RoleDetailComponent } from './admin/components/roles/role-detail/role-detail.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { ServiceHierarchyAddComponent } from './admin/components/service-hierarchy-add/service-hierarchy-add.component';
+import { ServiceHierarchyEditComponent } from './admin/components/service-hierarchy-edit/service-hierarchy-edit.component';
+import { ServiceHierarchyDetailComponent } from './admin/components/service-hierarchy-detail/service-hierarchy-detail.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +81,12 @@ import { MediaUploadComponent } from './admin/components/media-upload/media-uplo
     UserAddComponent,
     UserEditComponent,
     UserDetailComponent,
-    MediaUploadComponent
+    MediaUploadComponent,
+    RoleEditComponent,
+    RoleDetailComponent,
+	  ServiceHierarchyAddComponent,
+	  ServiceHierarchyEditComponent,
+	  ServiceHierarchyDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +96,9 @@ import { MediaUploadComponent } from './admin/components/media-upload/media-uplo
     BrowserAnimationsModule,
     MaterialModule,
     CarouselModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+	MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -93,10 +109,16 @@ import { MediaUploadComponent } from './admin/components/media-upload/media-uplo
     ServiceEditComponent,
     LoginSignupComponent,
     AddToCartComponent,
-	UserAddComponent,
-	RoleAddComponent,
-	UserEditComponent,
-	UserDetailComponent
+	  UserAddComponent,
+	  RoleAddComponent,
+	  UserEditComponent,
+	  UserDetailComponent,
+	  RoleDetailComponent,
+	  RoleEditComponent,
+	  RolesComponent,
+	  ServiceHierarchyDetailComponent,
+	  ServiceHierarchyEditComponent,
+	  ServiceHierarchyAddComponent
   ]
 })
 export class AppModule { }

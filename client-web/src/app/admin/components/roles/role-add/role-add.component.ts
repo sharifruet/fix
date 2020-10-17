@@ -11,9 +11,17 @@ export class RoleAddComponent implements OnInit {
 
   role = {
     name: '',
-    description: '',
+    username: '',
+	password:'',
+	email:'',
+	phone:'',
+	address:'',
+	district:'',
+	upazila:'',
     status: 0
   };
+  
+  errorMessage="test 123";
 
   constructor(private service: RoleService, private _snackBar: MatSnackBar) { }
 
@@ -27,19 +35,26 @@ export class RoleAddComponent implements OnInit {
   }
 
   save(): void {
-    const data = {
-      title: this.role.name,
-      description: this.role.description
-    };
+    const data = this.role;
 
     this.service.create(data)
       .subscribe(
         response => {
+			console.log(1);
           console.log(response);
-          this.openSnackBar('The service added successfully!');
-          this.newService();
+		  if (response.status==0){
+			this.openSnackBar('The service added successfully!');
+			this.newService();
+		  }
+		  else {
+			 this.errorMessage=response.message;
+		  }
         },
         error => {
+			console.log(2);
+			this.errorMessage=error.error.message;
+			
+			console.log(this.errorMessage);
           console.log(error);
       });
   }
@@ -47,7 +62,13 @@ export class RoleAddComponent implements OnInit {
   newService(): void {
     this.role = {
       name: '',
-      description: '',
+      username: '',
+	  password:'',
+	  email:'',
+	  phone:'',
+	  address:'',
+	  district:'',
+	  upazila:'',
       status: 0
     };
   }
