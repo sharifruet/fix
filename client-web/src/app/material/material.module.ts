@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -22,6 +21,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const Material = [
   MatMenuModule,
@@ -44,7 +44,8 @@ const Material = [
   MatTooltipModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatExpansionModule
+  MatExpansionModule, 
+  MatProgressBarModule
 ]
 
 @NgModule({
