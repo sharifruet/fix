@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
-import { ServiceHierarchyComponent } from '../service-hierarchy/service-hierarchy.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -9,6 +8,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./service-hierarchy-add.component.css']
 })
 export class ServiceHierarchyAddComponent implements OnInit {
+  
+
 
 serviceHierarchy = {
     title: '',
@@ -19,12 +20,19 @@ serviceHierarchy = {
 	serviceLayer:'',
 	end:'',
 	status:''
-	
   };
+
+  
+  serviceHierarchies;
 
   constructor(private service: ServiceHierarchyService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.getAllServiceHierarchy();
+  }
+
+  getAllServiceHierarchy(){
+    this.service.getAll().subscribe(serviceHierarchies => this.serviceHierarchies = serviceHierarchies);
   }
   
   openSnackBar(message: string) {

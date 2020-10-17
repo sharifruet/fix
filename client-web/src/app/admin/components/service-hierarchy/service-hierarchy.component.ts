@@ -60,7 +60,7 @@ export class ServiceHierarchyComponent implements OnInit {
   // add service dialog
   addItemDialog() {
     const dialogRef = this.dialog.open(ServiceHierarchyAddComponent, {
-      width:'300px'
+      width:'500px'
     });
     dialogRef.afterClosed().subscribe(result=>{
       this.refreshList();
@@ -82,7 +82,7 @@ export class ServiceHierarchyComponent implements OnInit {
 
   editService(service) {
     const dialogRef = this.dialog.open(ServiceHierarchyEditComponent, {
-      width:'300px',
+      width:'500px',
       data:service
     });
     dialogRef.afterClosed().subscribe(result=>{

@@ -46,8 +46,6 @@ import { MediaUploadComponent } from './admin/components/media-upload/media-uplo
 
 import { RoleEditComponent } from './admin/components/roles/role-edit/role-edit.component';
 import { RoleDetailComponent } from './admin/components/roles/role-detail/role-detail.component';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
 import { ServiceHierarchyAddComponent } from './admin/components/service-hierarchy-add/service-hierarchy-add.component';
 import { ServiceHierarchyEditComponent } from './admin/components/service-hierarchy-edit/service-hierarchy-edit.component';
 import { ServiceHierarchyDetailComponent } from './admin/components/service-hierarchy-detail/service-hierarchy-detail.component';
@@ -96,9 +94,7 @@ import { ServiceHierarchyDetailComponent } from './admin/components/service-hier
     BrowserAnimationsModule,
     MaterialModule,
     CarouselModule,
-    FlexLayoutModule,
-	MatSelectModule,
-    MatInputModule
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],
