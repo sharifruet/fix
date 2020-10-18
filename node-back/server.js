@@ -22,13 +22,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./app/models");
 
 /***********************  FOR PRODUCTION *****************************/
-//db.sequelize.sync();
+db.sequelize.sync();
 /*********************************************************************/
 
 /***********************  FOR DEVELOPMENT ****************************/
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 /*********************************************************************/
 
 // simple route
