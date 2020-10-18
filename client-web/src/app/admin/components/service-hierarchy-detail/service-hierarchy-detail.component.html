@@ -1,0 +1,42 @@
+<div *ngIf="serviceDetail">
+    <h3 mat-dialog-title>{{serviceDetail.title}} Detail</h3>
+
+    <div mat-dialog-content>
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <span mat-line>Title</span>
+                <span mat-line>{{serviceDetail.title}}</span>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <span mat-line>Description</span>
+                <span mat-line>{{serviceDetail.description}}</span>
+            </mat-list-item>
+			<mat-list-item role="listitem">
+                <span mat-line>Published</span>
+                <span mat-line>{{serviceDetail.published}}</span>
+            </mat-list-item>
+			<mat-list-item role="listitem">
+                <span mat-line>ParentId</span>
+                <span mat-line>{{serviceDetail.parentId}}</span>
+            </mat-list-item>
+			<mat-list-item role="listitem">
+                <span mat-line>HierarchyPath</span>
+                <span mat-line>{{serviceDetail.hierarchyPath}}</span>
+            </mat-list-item>
+            
+			<mat-list-item role="listitem">
+                <span mat-line>ServiceLayer</span>
+                <span mat-line>{{serviceDetail.serviceLayer}}</span>
+            </mat-list-item>
+			<mat-list-item role="listitem">
+                <span mat-line>End</span>
+                <span mat-line>{{serviceDetail.end}}</span>
+            </mat-list-item>
+			<mat-list-item role="listitem">
+                <span mat-line>Status</span>
+                <span mat-line>{{serviceDetail.status}}</span>
+            </mat-list-item>
+        </mat-list>
+        
+    </div>
+</div>

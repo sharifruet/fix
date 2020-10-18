@@ -4,10 +4,10 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { ServiceAddComponent } from '../service-add/service-add.component';
-import { ServiceDetailComponent } from '../service-detail/service-detail.component';
+import { ServiceHierarchyAddComponent } from '../service-hierarchy-add/service-hierarchy-add.component';
+import { ServiceHierarchyDetailComponent } from '../service-hierarchy-detail/service-hierarchy-detail.component';
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
-import { ServiceEditComponent } from '../service-edit/service-edit.component';
+import { ServiceHierarchyEditComponent } from '../service-hierarchy-edit/service-hierarchy-edit.component';
 
 @Component({
   selector: 'app-service-hierarchy',
@@ -15,7 +15,7 @@ import { ServiceEditComponent } from '../service-edit/service-edit.component';
   styleUrls: ['./service-hierarchy.component.css']
 })
 export class ServiceHierarchyComponent implements OnInit {
-  comp = {title:"Service-hierarchy"};
+  //comp = {title:"Service-hierarchy"};
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -25,18 +25,18 @@ export class ServiceHierarchyComponent implements OnInit {
   currentIndex = -1;
   title = '';
   
-  displayedColumns = ['title', 'description', 'published','parent', 'hierarchyPath','serviceLayer','end','action'];
-  dataSource = new MatTableDataSource<any>();
+  displayedColumns = ['title', 'description', 'published','parent','serviceLayer','end','status','action'];
+  dataSource = new MatTableDataSource();
   
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private service:ServiceHierarchyService) {
+ constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private serviceHierarchyService:ServiceHierarchyService) {
   }
 
   ngOnInit(): void {
-    this.retrieveServices();
+    this.retrieveServiceHierarchy();
   }
 
-  retrieveServices(): void {
-    this.service.getAll()
+  retrieveServiceHierarchy(): void {
+    this.serviceHierarchyService.getAll()
       .subscribe(
         data => {
           this.dataSource = new MatTableDataSource<any>(data);
@@ -59,7 +59,7 @@ export class ServiceHierarchyComponent implements OnInit {
 
   // add service dialog
   addItemDialog() {
-    const dialogRef = this.dialog.open(ServiceAddComponent, {
+    const dialogRef = this.dialog.open(ServiceHierarchyAddComponent, {
       width:'300px'
     });
     dialogRef.afterClosed().subscribe(result=>{
@@ -67,21 +67,21 @@ export class ServiceHierarchyComponent implements OnInit {
     })
   }
   refreshList(): void {
-    this.retrieveServices();
+    this.retrieveServiceHierarchy();
     this.currentService = null;
     this.currentIndex = -1;
   }
 
 
   viewService(service) {
-    this.dialog.open(ServiceDetailComponent, {
+    this.dialog.open(ServiceHierarchyDetailComponent, {
       width:'300px',
       data:service
     });
   }
 
   editService(service) {
-    const dialogRef = this.dialog.open(ServiceEditComponent, {
+    const dialogRef = this.dialog.open(ServiceHierarchyEditComponent, {
       width:'300px',
       data:service
     });
@@ -101,32 +101,10 @@ export class ServiceHierarchyComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  removeAllServices(): void {
-    this.service.deleteAll()
-      .subscribe(
-        response => {
-          console.log(response);
-          this.retrieveServices();
-        },
-        error => {
-          console.log(error);
-        });
-  }
 
-  searchTitle(): void {
-    this.service.findByTitle(this.title)
-      .subscribe(
-        data => {
-          this.services = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
 
   deleteService(id): void {
-    this.service.delete(id)
+    this.serviceHierarchyService.delete(id)
       .subscribe(
         response => {
           console.log(response);

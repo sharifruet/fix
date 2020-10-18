@@ -1,0 +1,56 @@
+<div>
+    <h3 mat-dialog-title>Add Role</h3>
+    <h4>{{errorMessage}}</h4>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Name</mat-label>
+                <input matInput id="name" required [(ngModel)]="role.name" name="name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Username</mat-label>
+                <input matInput required [(ngModel)]="role.username" name="username">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>Password</mat-label>
+                <input matInput required [(ngModel)]="role.password" name="password">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>Email</mat-label>
+                <input matInput required [(ngModel)]="role.email" name="email">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>Phone</mat-label>
+                <input matInput required [(ngModel)]="role.phone" name="phone">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>Address</mat-label>
+                <input matInput required [(ngModel)]="role.address" name="address">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>District</mat-label>
+                <input matInput required [(ngModel)]="role.district" name="district">
+            </mat-form-field>
+        </div>
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>Upazila</mat-label>
+                <input matInput required [(ngModel)]="role.upazila" name="upazila">
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-raised-button (click)="save()">Submit</button>
+    <button mat-button [mat-dialog-close]>Close</button>
+</div>

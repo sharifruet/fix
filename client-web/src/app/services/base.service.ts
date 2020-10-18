@@ -6,7 +6,7 @@ const baseUrl = 'http://localhost:8080/api';
 export class BaseService {
   apiBaseUrl = '';
 
-  constructor(private http: HttpClient, path:String) {
+  constructor(public http: HttpClient, path:String) {
     this.apiBaseUrl = baseUrl + path;
  }
 
@@ -35,8 +35,8 @@ export class BaseService {
     return this.http.delete(this.apiBaseUrl);
   }
 
-  findByTitle(title): Observable<any> {
-    return this.http.get(`${this.apiBaseUrl}?title=${title}`);
+  filter(data): Observable<any> {
+    return this.http.post(this.apiBaseUrl +"/filter", data);
   }
   
 }

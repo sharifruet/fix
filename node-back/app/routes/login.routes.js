@@ -5,8 +5,10 @@ module.exports = app => {
   
     // Create a new Service
     router.post("/login", loginController.login);
-	router.post("/authenticateToken", loginController.authenticateToken);
+    router.post("/authenticateToken", loginController.authenticateToken);
+    router.post("/refresh-token", loginController.refreshToken);
+    router.post("/logout", loginController.deleteToken);
 	router.get("/posts", loginController.authenticateToken, loginController.posts);
   
-    app.use('/api/login', router);
+    app.use('/api/auth', router);
   };

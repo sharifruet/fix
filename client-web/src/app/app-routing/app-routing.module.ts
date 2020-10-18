@@ -5,8 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DefaultComponent } from '../components/default/default.component';
 import { HomeComponent } from '../components/home/home.component';
-import {ServiceCategoryComponent} from '../components/service-category/service-category.component';
-import {ServiceCategoriesComponent} from '../components/service-categories/service-categories.component';
+import { ServiceCategoryComponent } from '../components/service-category/service-category.component';
+import { ServiceComponent } from '../components/service/service.component';
+import { ServiceCategoriesComponent } from '../components/service-categories/service-categories.component';
 
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
@@ -14,8 +15,9 @@ import { AdminLoginComponent } from '../admin/components/admin-login/admin-login
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
 import { ServiceManageComponent } from '../admin/components/service-manage/service-manage.component';
 import { UsersManageComponent } from '../admin/components/users-manage/users-manage.component'; 
-
+import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
+import { MediaUploadComponent } from '../admin/components/media-upload/media-upload.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,11 @@ const routes: Routes = [
 
     },
     {
+      path:'service',
+      component:ServiceComponent
+
+    },
+    {
       path: 'service-categories',
       component:ServiceCategoriesComponent
     }
@@ -44,12 +51,20 @@ const routes: Routes = [
       component:DashboardComponent
     },
     {
+      path:'media-upload',
+      component:MediaUploadComponent
+    },
+    {
       path:'service-manage',
       component:ServiceManageComponent
     },
     {
       path:'users-manage',
       component:UsersManageComponent
+    },
+	 {
+      path:'roles',
+      component:RolesComponent
     },
     {
       path:'service-hierarchy',

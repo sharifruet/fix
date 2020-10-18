@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -9,7 +8,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
-
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatTableModule} from '@angular/material/table';
@@ -22,6 +20,8 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const Material = [
   MatMenuModule,
@@ -43,7 +43,9 @@ const Material = [
   MatRippleModule,
   MatTooltipModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatExpansionModule, 
+  MatProgressBarModule
 ]
 
 @NgModule({
