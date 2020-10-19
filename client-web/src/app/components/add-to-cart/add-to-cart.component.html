@@ -58,7 +58,11 @@
                     <div class="added-item">
                         <div>
                             <h4>Software Related Service</h4>
-                            <button mat-button color="black">2</button>
+                            <div class="quantity-area">
+                                <button (click)="minus()"><mat-icon>remove</mat-icon></button>
+                                <input type="text" [value]="quantity">
+                                <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                            </div>
                         </div>
                         <div>
                             <p>Driver installation</p>
@@ -68,8 +72,11 @@
                     <div class="added-item">
                         <div>
                             <h4>Software Related Service</h4>
-                            <button mat-button color="black">4</button>
-
+                            <div class="quantity-area">
+                                <button (click)="minus()"><mat-icon>remove</mat-icon></button>
+                                <input type="text" [value]="quantity">
+                                <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                            </div>
                         </div>
                         <div>
                             <p>Driver installation</p>
@@ -79,14 +86,18 @@
                     <div class="added-item">
                         <div>
                             <h4>Software Related Service</h4>
-                            <button mat-button color="black">1</button>
-
+                            <div class="quantity-area">
+                                <button (click)="minus()"><mat-icon>remove</mat-icon></button>
+                                <input type="text" [value]="quantity">
+                                <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                            </div>
                         </div>
                         <div>
                             <p>Driver installation</p>
                             <span> <span>৳200</span>/unit</span>
                         </div>
                     </div>
+                    
 
                     <mat-divider></mat-divider>
                     <div class="added-item">

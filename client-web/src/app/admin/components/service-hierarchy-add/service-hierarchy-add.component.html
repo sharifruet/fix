@@ -14,25 +14,17 @@
                 <textarea matInput required [(ngModel)]="serviceHierarchy.description" name="description"></textarea>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" >
-            
+        <div fxLayout="row" fxLayoutGap="20px">
+
             <div fxFlex="50">
-
                 <mat-form-field class="input-width">
-                    <mat-label>Parent</mat-label>
-                    <mat-select [(ngModel)]="serviceHierarchy.parentId" name="parentId">
-                      <mat-option *ngFor="let parent of serviceHierarchies" [value]="parent.id">
-                        {{parent.title}}
-                      </mat-option>
-                    </mat-select>
+                    <input matInput [(ngModel)]="serviceHierarchy.parentId" name="parentId" type="text" [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
+                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)" #serviceHPList="matAutocomplete">
+                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}</mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
-
-                <!-- <mat-form-field class="input-width">
-                    <mat-label>ParentId</mat-label>
-                    <input matInput required [(ngModel)]="serviceHierarchy.parentId" name="parentId">
-                </mat-form-field> -->
             </div>
-            
+
             <div fxFlex="50">
                 <mat-form-field class="input-width">
                     <mat-label>ServiceLayer</mat-label>
@@ -50,15 +42,10 @@
             </div>
             <div fxFlex="50" gdAlignColumns="center">
                 <mat-slide-toggle [(ngModel)]="serviceHierarchy.published" name="published">Published</mat-slide-toggle>
-                <!--     
-                <mat-form-field class="input-width">
-                    <mat-label>Published</mat-label>
-                    <input matInput required [(ngModel)]="serviceHierarchy.published" name="published"> 
-                </mat-form-field> -->
             </div>
         </div>
 
-        
+
 
         <div>
             <mat-form-field class="input-width">
