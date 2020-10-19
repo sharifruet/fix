@@ -24,6 +24,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatRadioModule} from '@angular/material/radio'; 
 
 const Material = [
   MatMenuModule,
@@ -49,7 +50,8 @@ const Material = [
   MatExpansionModule, 
   MatProgressBarModule,
   MatSlideToggleModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatRadioModule
 ]
 
 @NgModule({

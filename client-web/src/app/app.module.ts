@@ -50,6 +50,7 @@ import { ServiceHierarchyAddComponent } from './admin/components/service-hierarc
 import { ServiceHierarchyEditComponent } from './admin/components/service-hierarchy-edit/service-hierarchy-edit.component';
 import { ServiceHierarchyDetailComponent } from './admin/components/service-hierarchy-detail/service-hierarchy-detail.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

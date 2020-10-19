@@ -12,6 +12,12 @@ export class AddToCartComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isShow:boolean = true;
+
+  toggleShow(){
+    this.isShow = ! this.isShow;
+  }
+
   quantity:number = 1;
   i=1;
   plus(){
