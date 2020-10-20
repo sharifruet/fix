@@ -1,11 +1,11 @@
-<div class="add-to-cart-area">
+<div class="add-to-cart-area" *ngIf="isShow">
     <div class="title">
         <h2>Laptop Servicing</h2>
     </div>
     <mat-divider></mat-divider>
 
-    <div fxLayout="row" fxLayoutGap="24px">
-        <div fxFlex="60">
+    <div fxLayout="row" fxLayoutGap="20px">
+        <div fxFlex="55">
             <div class="cart-item-area">
                 <h4>Software Related Service</h4>
                 <div class="cart-item-list">
@@ -14,7 +14,7 @@
                             <p>OS installation</p>
                             <span> <span>৳500</span>/unit</span>
                         </div>
-                        <button mat-raised-button color="accent">Add to cart</button>
+                        <button mat-button color="black">Add to cart</button>
                     </div>
 
                     <mat-divider></mat-divider>
@@ -23,7 +23,7 @@
                             <p>Driver installation</p>
                             <span> <span>৳200</span>/unit</span>
                         </div>
-                        <button mat-raised-button color="accent">Add to cart</button>
+                        <button mat-button color="black">Add to cart</button>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="cart-item">
@@ -31,7 +31,7 @@
                             <p>Driver installation</p>
                             <span> <span>৳200</span>/unit</span>
                         </div>
-                        <button mat-raised-button color="accent">Add to cart</button>
+                        <button mat-button color="black">Add to cart</button>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="cart-item">
@@ -39,7 +39,7 @@
                             <p>Driver installation</p>
                             <span> <span>৳200</span>/unit</span>
                         </div>
-                        <button mat-raised-button color="accent">Add to cart</button>
+                        <button mat-button color="black">Add to cart</button>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="cart-item">
@@ -47,18 +47,23 @@
                             <p>Driver installation</p>
                             <span> <span>৳200</span>/unit</span>
                         </div>
-                        <button mat-raised-button color="accent">Add to cart</button>
+                        <button mat-button color="black">Add to cart</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div fxFlex="40">
+        <div fxFlex="45">
             <div class="added-item-area">
                 <div class="added-item-list">
                     <div class="added-item">
+                        <button mat-icon-button class="cart-remove"><mat-icon>clear</mat-icon></button>
                         <div>
                             <h4>Software Related Service</h4>
-                            <button mat-button color="black">2</button>
+                            <div class="quantity-area">
+                                <button (click)="minus()"><mat-icon>remove</mat-icon></button>
+                                <input type="text" [value]="quantity">
+                                <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                            </div>
                         </div>
                         <div>
                             <p>Driver installation</p>
@@ -66,10 +71,14 @@
                         </div>
                     </div>
                     <div class="added-item">
+                        <button mat-icon-button class="cart-remove"><mat-icon>clear</mat-icon></button>
                         <div>
                             <h4>Software Related Service</h4>
-                            <button mat-button color="black">4</button>
-
+                            <div class="quantity-area">
+                                <button (click)="minus()"><mat-icon>remove</mat-icon></button>
+                                <input type="text" [value]="quantity">
+                                <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                            </div>
                         </div>
                         <div>
                             <p>Driver installation</p>
@@ -77,16 +86,21 @@
                         </div>
                     </div>
                     <div class="added-item">
+                        <button mat-icon-button class="cart-remove"><mat-icon>clear</mat-icon></button>
                         <div>
                             <h4>Software Related Service</h4>
-                            <button mat-button color="black">1</button>
-
+                            <div class="quantity-area">
+                                <button (click)="minus()"><mat-icon>remove</mat-icon></button>
+                                <input type="text" [value]="quantity">
+                                <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                            </div>
                         </div>
                         <div>
                             <p>Driver installation</p>
                             <span> <span>৳200</span>/unit</span>
                         </div>
                     </div>
+                    
 
                     <mat-divider></mat-divider>
                     <div class="added-item">
@@ -96,8 +110,62 @@
                         </div>
                     </div>
                 </div>
-                <button class="checkout" mat-button color="black">Proceed To Checkout</button>
+                <button class="checkout-btn" (click)="toggleShow()" mat-button color="black">Proceed To Checkout</button>
             </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="checkout-area" *ngIf="!isShow">
+    <div class="title">
+        <h2>Checkout</h2>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row">
+        <div fxFlex="55">
+            <div class="checkout-text">
+                <h4>Dear X, Your order has been placed successfully</h4>
+                <p>Your order ID: 5412B1C</p>
+                <div>
+                    <h4>Some text</h4>
+                    <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. </p>
+                </div>
+                <div class="order-btn">
+                    <button mat-button color="black" (click)="toggleShow()">Order Detail</button>
+                    <button mat-flat-button (click)="toggleShow()">More Order</button>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="45" class="payment">
+            <h4>Payment</h4>
+            <p>Total payable ৳1212</p>
+            <div class="payment-list">
+                <div>
+                    <mat-radio-group>
+                        <mat-radio-button value="1">Bkash</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div>
+                    <mat-radio-group>
+                        <mat-radio-button value="1">Bank</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div>
+                    <mat-radio-group>
+                        <mat-radio-button value="1">Debit/Credit Card</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div>
+                    <mat-radio-group>
+                        <mat-radio-button value="1">Cash on delivery</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                    
+            </div>
+            <button class="payment-btn" mat-button color="black">Proceed To Payment</button>
         </div>
     </div>
 </div>
