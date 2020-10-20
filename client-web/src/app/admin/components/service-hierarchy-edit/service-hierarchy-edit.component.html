@@ -2,6 +2,7 @@
     <h3 mat-dialog-title>{{currentService.title}} Edit</h3>
 
     <div mat-dialog-content>
+        
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Title</mat-label>
@@ -11,35 +12,40 @@
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Description</mat-label>
-                <input matInput required [(ngModel)]="currentService.description" name="description">
-            </mat-form-field>
-        </div>
-		<div>
-            <mat-form-field class="input-width">
-                <mat-label>Published</mat-label>
-                <input matInput required [(ngModel)]="currentService.published" name="published">
-            </mat-form-field>
-        </div>
-		<div>
-            <mat-form-field class="input-width">
-                <mat-label>ParentId</mat-label>
-                <input matInput required [(ngModel)]="currentService.parentId" name="parentId">
-            </mat-form-field>
-        </div>
-		
-		<div>
-            <mat-form-field class="input-width">
-                <mat-label>ServiceLayer</mat-label>
-                <input matInput required [(ngModel)]="currentService.serviceLayer" name="serviceLayer">
-            </mat-form-field>
-        </div>
-		<div>
-            <mat-form-field class="input-width">
-                <mat-label>End</mat-label>
-                <input matInput required [(ngModel)]="currentService.end" name="end">
+                <textarea matInput required [(ngModel)]="currentService.description" name="description"></textarea>
             </mat-form-field>
         </div>
 
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <mat-form-field class="input-width">
+                    <input matInput [(ngModel)]="currentService.parentId" name="parentId" type="text" [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
+                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)" #serviceHPList="matAutocomplete">
+                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50">
+                <mat-form-field class="input-width">
+                    <mat-label>ServiceLayer</mat-label>
+                    <input matInput required [(ngModel)]="currentService.serviceLayer" name="serviceLayer">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <mat-form-field class="input-width">
+                    <mat-label>End</mat-label>
+                    <input matInput required [(ngModel)]="currentService.end" name="end">
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" gdAlignColumns="center">
+                <mat-slide-toggle required [(ngModel)]="currentService.published" name="published">Published</mat-slide-toggle>
+            </div>
+
+        </div>
+        
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Status</mat-label>

@@ -9,7 +9,6 @@ import { ServiceCategoryComponent } from '../components/service-category/service
 import { ServiceComponent } from '../components/service/service.component';
 import { ServiceCategoriesComponent } from '../components/service-categories/service-categories.component';
 
-
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { AdminLoginComponent } from '../admin/components/admin-login/admin-login.component'
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
