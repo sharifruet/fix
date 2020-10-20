@@ -4,8 +4,8 @@ module.exports = (sequelize, Sequelize) => {
         title:          {type: Sequelize.STRING},
         areaType:       {type: Sequelize.STRING},
         parentId:       {type: Sequelize.INTEGER},
-        HierarchyPath:  {type: Sequelize.STRING},
-        Status:         {type: Sequelize.INTEGER},
+        hierarchyPath:  {type: Sequelize.STRING},
+        status:         {type: Sequelize.INTEGER},
         end:            {type: Sequelize.BOOLEAN}
       }
     );

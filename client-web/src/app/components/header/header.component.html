@@ -33,16 +33,16 @@
                 <button mat-button (click)="hLayer2(menuChild.id)" *ngFor="let menuChild of serviceHLayer2"> {{menuChild.title}} </button>
                 
                 <!-- <mat-icon *ngIf="serviceHLayer3?.length">expand_more</mat-icon> -->
-
-            <div class="showHousehold" *ngIf="showHousehold">
-                <button mat-button [matMenuTriggerFor]="beforeMenu"> Appliance Repair <mat-icon>expand_more</mat-icon>
-                </button>
-                <mat-menu #beforeMenu="matMenu" xPosition="after">
-                    <button mat-menu-item>Item 1</button>
-                    <button mat-menu-item>Item 2</button>
-                </mat-menu>
-
-                <!-- <button mat-button [matMenuTriggerFor]="menu1">Electronics <mat-icon>expand_more</mat-icon> </button>
+				<!--
+				<div class="showHousehold" *ngIf="showHousehold">
+					<button mat-button [matMenuTriggerFor]="beforeMenu"> Appliance Repair <mat-icon>expand_more</mat-icon>
+					</button>
+					<mat-menu #beforeMenu="matMenu" xPosition="after">
+						<button mat-menu-item>Item 1</button>
+						<button mat-menu-item>Item 2</button>
+					</mat-menu>
+				</div>
+                 <button mat-button [matMenuTriggerFor]="menu1">Electronics <mat-icon>expand_more</mat-icon> </button>
                 <mat-menu #menu1="matMenu" xPosition="after">
                     <button mat-menu-item routerLink="/service">Desktop Computer servicing</button>
                     <button mat-menu-item routerLink="/service">Laptop servicing</button>
