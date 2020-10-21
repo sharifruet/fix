@@ -101,10 +101,9 @@ export class ServiceHierarchyComponent implements OnInit {
     this.currentIndex = index;
   }
 
-
-
   deleteService(id): void {
-    this.serviceHierarchyService.delete(id)
+    if(confirm('Are you sure to delete')){
+      this.serviceHierarchyService.delete(id)
       .subscribe(
         response => {
           console.log(response);
@@ -114,5 +113,9 @@ export class ServiceHierarchyComponent implements OnInit {
         error => {
           console.log(error);
         });
+    }
   }
+
+
+
 }
