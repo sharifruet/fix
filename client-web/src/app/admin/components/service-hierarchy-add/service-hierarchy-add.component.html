@@ -11,48 +11,61 @@
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Description</mat-label>
-                <textarea matInput required [(ngModel)]="serviceHierarchy.description" name="description"></textarea>
+                <textarea matInput [(ngModel)]="serviceHierarchy.description" name="description"></textarea>
             </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutGap="20px">
 
             <div fxFlex="50">
                 <mat-form-field class="input-width">
-                    <input matInput [(ngModel)]="serviceHierarchy.parentId" name="parentId" type="text" [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
-                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)" #serviceHPList="matAutocomplete">
-                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}</mat-option>
+                    <input matInput [(ngModel)]="serviceHierarchy.parentId" name="parentId" type="text"
+                        [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
+                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)"
+                        #serviceHPList="matAutocomplete">
+                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}
+                        </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
-
             <div fxFlex="50">
-                <mat-form-field class="input-width">
-                    <mat-label>ServiceLayer</mat-label>
-                    <input matInput required [(ngModel)]="serviceHierarchy.serviceLayer" name="serviceLayer">
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select required [(ngModel)]="serviceHierarchy.status" name="status">
+                        <mat-option>None</mat-option>
+                        <mat-option value="option1">Option 1</mat-option>
+                        <mat-option value="option2">Option 2</mat-option>
+                        <mat-option value="option3">Option 3</mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
         </div>
 
-        <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+            <div fxFlex="auto">
+                <mat-slide-toggle [(ngModel)]="serviceHierarchy.serviceLayer" name="serviceLayer">ServiceLayer
+                </mat-slide-toggle>
+            </div>
+            <div fxFlex="auto">
+                <mat-slide-toggle [(ngModel)]="serviceHierarchy.published" name="published">
+                    Published</mat-slide-toggle>
+            </div>
+            <div fxFlex="auto">
+                <mat-slide-toggle (change)="onChange($event)" [(ngModel)]="serviceHierarchy.end" name="end">End</mat-slide-toggle>
+            </div>
+        </div>
+
+        <div *ngIf="endLevel" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex="50">
                 <mat-form-field class="input-width">
-                    <mat-label>End</mat-label>
-                    <input matInput required [(ngModel)]="serviceHierarchy.end" name="end">
+                    <mat-label>Price</mat-label>
+                    <input [disabled]="disabled" matInput type="text">
                 </mat-form-field>
             </div>
-            <div fxFlex="50" gdAlignColumns="center">
-                <mat-slide-toggle [(ngModel)]="serviceHierarchy.published" name="published">Published</mat-slide-toggle>
+            <div fxFlex="50">
+                <mat-slide-toggle (change)="on($event)"> Negotiable</mat-slide-toggle>
             </div>
         </div>
 
-
-
-        <div>
-            <mat-form-field class="input-width">
-                <mat-label>Status</mat-label>
-                <input matInput required [(ngModel)]="serviceHierarchy.status" name="status">
-            </mat-form-field>
-        </div>
     </div>
     <button mat-raised-button (click)="save()">Submit</button>
     <button mat-button [mat-dialog-close]>Close</button>
