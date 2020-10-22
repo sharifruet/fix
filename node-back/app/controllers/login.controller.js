@@ -25,14 +25,14 @@ exports.login = (req, res) => {
 			res.status(404).send({status:1, message:"User not found"});
 		}else{
 			const usr = data[0];
-
+			
 			if(stringUtil.compareHash(password, usr.password)){
-				res.status(404).send({status:3, message:"Wrong password"});
-			}else{
 				const accessToken = generateAccessToken(user);
 				const refreshToken = generateRefreshToken(user);
 				refreshTokens.push(refreshToken);
 				res.json({status:0, message:"Login successful", accessToken:accessToken,refreshToken:refreshToken});
+			}else{
+				res.status(404).send({status:3, message:"Wrong password"});
 			}
 		}
 		//res.send(data);
