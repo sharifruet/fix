@@ -1,18 +1,17 @@
 const db = require("../models");
 const jwt = require("jsonwebtoken");
 const { request } = require("express");
-const userDao = db.userDao;
+const userModel = db.User;
 const Op = db.Sequelize.Op;
+
+const stringUtil = require("../util/stringUtil.js");
 
 // Create and Save a new Service
 exports.login = (req, res) => {
 	
     // Validate request
     if (!req.body.username || !req.body.password) {
-      res.status(400).send({
-		  code: ERR001,
-		  message: "Content can not be empty!"
-      });
+      res.status(400).send({status: 1, message: "Username and password can not be empty!"});
       return;
     }
     // Create a Service
@@ -20,20 +19,26 @@ exports.login = (req, res) => {
   const password = req.body.password;
   const user = {name:username};
   
-  userDao.findAll({ where: {username} })
+  userModel.findAll({ where: {username} })
       .then(data => {
-        console.log(data);
-    const accessToken = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
-    refreshTokens.push(refreshToken);
-		res.json({accessToken:accessToken,refreshToken:refreshToken});
+        if(data.length == 0){
+			res.status(404).send({status:1, message:"User not found"});
+		}else{
+			const usr = data[0];
+
+			if(stringUtil.compareHash(password, usr.password)){
+				res.status(404).send({status:3, message:"Wrong password"});
+			}else{
+				const accessToken = generateAccessToken(user);
+				const refreshToken = generateRefreshToken(user);
+				refreshTokens.push(refreshToken);
+				res.json({status:0, message:"Login successful", accessToken:accessToken,refreshToken:refreshToken});
+			}
+		}
 		//res.send(data);
       })
       .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving Service."
-        });
+        res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
       });
 };
 
@@ -48,10 +53,10 @@ function generateRefreshToken(user){
 exports.authenticateToken = (req,res, next) =>{
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
-	if(token == null) return res.sendStatus(401);
+	if(token == null) return res.sendStatus(401).send({status:2, message: "Token not found"});;
 	
 	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user)=>{
-		if(err) return res.sendStatus(401);
+		if(err) return res.sendStatus(401).send({status:2, message: err.message});;
 		req.user = user;
 		next();
 	});
@@ -64,18 +69,16 @@ exports.deleteToken = (req,res) =>{
 
 let refreshTokens = [];
 exports.refreshToken = (req,res) =>{
-
 	const refreshToken = req.body.token;;
-  if(refreshToken == null) return res.sendStatus(401);
-  if(!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
+	if(refreshToken == null) return res.sendStatus(401).send({status:2, message: "Refresh token not found"});
+  if(!refreshTokens.includes(refreshToken)) return res.sendStatus(403).send({status:2, message: "Refresh token not found"});
 	
 	jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user)=>{
-		if(err) return res.sendStatus(403);
+		if(err) return res.sendStatus(403).send({status:2, message: err.message});
 		const accessToken = generateAccessToken({name:user.name});
-		res.json({accessToken:accessToken});
+		res.send({status:0, message:"Token refresh successful!",accessToken:accessToken});
 	});
 };
-
 
 exports.posts = (req, res) =>{
 	res.json(req.user);
