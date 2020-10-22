@@ -1,23 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
-    const AreaHierarchy = sequelize.define("areaHierarchy", {
-      title: {
-        type: Sequelize.STRING
-      },
-      areaType: {
-        type: Sequelize.STRING
-      },
-      parentId: {
-        type: Sequelize.STRING
-      },
-      HierarchyPath: {
-        type: Sequelize.STRING
-      },
-      Status: {
-        type: Sequelize.STRING
-      },
-      published: {
-        type: Sequelize.BOOLEAN
+    const AreaHierarchy = sequelize.define("AreaHierarchy", 
+      {
+        title:          {type: Sequelize.STRING},
+        areaType:       {type: Sequelize.STRING},
+        parentId:       {type: Sequelize.INTEGER},
+        hierarchyPath:  {type: Sequelize.STRING},
+        status:         {type: Sequelize.INTEGER},
+        end:            {type: Sequelize.BOOLEAN}
       }
-    });
+    );
+    
     return AreaHierarchy;
+
+    
 };

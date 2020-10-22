@@ -68,6 +68,7 @@ exports.findOne = (req, res) => {
 
 // Update a Service AreaHierarchy by the id in the request
 exports.update = (req, res) => {
+  
     const id = req.params.id;
   
     AreaHierarchy.update(req.body, {

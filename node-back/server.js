@@ -26,9 +26,10 @@ const db = require("./app/models");
 /*********************************************************************/
 
 /***********************  FOR DEVELOPMENT ****************************/
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+ db.sequelize.sync({ force: true }).then(() => {
+   console.log("Drop and re-sync db.");
+   require("./app/models/init.js")();
+ });
 /*********************************************************************/
 
 // simple route
