@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs'
@@ -16,13 +16,32 @@ export class ServiceHierarchyAddComponent implements OnInit {
   serviceHierarchy = {
     title: '',
     description: '',
-    published: '',
+    published: true,
     parentId: '',
     hierarchyPath: '',
     serviceLayer: '',
     end: '',
     status: ''
   };
+  
+  endLevel=false;
+  onChange(event){
+    console.log(event);
+    if(event.checked == true){
+      this.endLevel= true;
+    }else{
+      this.endLevel = false;
+    }
+  }
+
+  disabled=false;
+  on(event){
+    if(event.checked == true){
+      this.disabled= true;
+    }else{
+      this.disabled = false;
+    }
+  }
 
   serviceHParent: any[] = [];
   filteredOptions: Observable<any[]>;
@@ -47,20 +66,14 @@ export class ServiceHierarchyAddComponent implements OnInit {
         this.filteredOptions = this.myControl.valueChanges.pipe(
           startWith(''),
           map(value => typeof value === 'string' ? value : value.title),
-          // map(value => this._filterTour(value)),
           map(value => value ? this._filterTour(value) : this.serviceHParent.slice())
         );
       });
  }
  
- displayFn(parent) {
-    // return parent ? parent.title : parent;
+displayFn(parent) {
     return this.serviceHParent.find(item => item.id === parent).title;
 }
-
-
-
-
 
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
@@ -99,7 +112,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     this.serviceHierarchy = {
       title: '',
       description: '',
-      published: '',
+      published: true,
       parentId: '',
       hierarchyPath: '',
       serviceLayer: '',
