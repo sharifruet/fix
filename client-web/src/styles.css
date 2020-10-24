@@ -228,3 +228,9 @@ input{
 	height: 1.5em;
 	width: 1.5em;
 }
+
+
+/* mat-table */
+.cdk-column-action {
+	width: 150px;
+}

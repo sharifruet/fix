@@ -4,6 +4,10 @@
 		{"id":2, "title": "Bangladesh", "areaType" : "Country", "parentId" : "1", "hierarchyPath" : "-1--2-", "status" : 0, "end":false},
 		{"id":3, "title": "Dhaka", "areaType" : "Division", "parentId" : "2", "hierarchyPath" : "-1--2-3", "status" : 0, "end":false}
     ],
+    "ServiceHierarchy":[
+        {"id":1, "title": "Commercial", "published" : "1", "hierarchyPath" : "-1-", "parentId" : -1, "serviceLayer" : false, "end":false, "status" : 0 },
+        {"id":2, "title": "Household", "published" : "1", "hierarchyPath" : "-1-", "parentId" : -1, "serviceLayer" : false, "end":false, "status" : 0 }
+    ],
     "User":[
         {"id":1, "name": "Admin", "username" : "admin", "password" : "$2b$10$kPrDtKc/DMZ9mxDKQ4dGfe9/MyNRHy23c4q0W7axgCRARHqEzKO8K", "email" : "admin@fixall.com.bd", "phone" : "017XXXXXX", "address":"","district":-1, "upazila":-1, "status":0}
     ]

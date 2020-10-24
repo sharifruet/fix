@@ -77,13 +77,13 @@
 
         <div *ngIf="endLevel" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex="50">
-                <mat-form-field class="input-width">
-                    <mat-label>Price</mat-label>
-                    <input [disabled]="disabled" matInput type="text">
-                </mat-form-field>
+                <mat-slide-toggle (change)="on($event)"> Negotiable</mat-slide-toggle>
             </div>
             <div fxFlex="50">
-                <mat-slide-toggle (change)="on($event)"> Negotiable</mat-slide-toggle>
+                <mat-form-field class="input-width" *ngIf="!hidden">
+                    <mat-label>Price</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
             </div>
         </div>
 

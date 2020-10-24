@@ -45,12 +45,12 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
 
-  disabled=false;
+  hidden=false;
   on(event){
     if(event.checked == true){
-      this.disabled= true;
+      this.hidden= true;
     }else{
-      this.disabled = false;
+      this.hidden = false;
     }
   }
 
