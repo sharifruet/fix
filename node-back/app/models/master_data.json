@@ -6,5 +6,16 @@
     ],
     "User":[
         {"id":1, "name": "Admin", "username" : "admin", "password" : "$2b$10$kPrDtKc/DMZ9mxDKQ4dGfe9/MyNRHy23c4q0W7axgCRARHqEzKO8K", "email" : "admin@fixall.com.bd", "phone" : "017XXXXXX", "address":"","district":-1, "upazila":-1, "status":0}
+    ],
+    "ServiceHierarchy":[
+        {"id":1, "title": "Commercial", "description": "", "published": true,"hierarchyPath":"-1-","parentId":-1,"serviceLayer": false, "end": false,"status":0},
+        {"id":2, "title": "Household", "description": "", "published": true,"hierarchyPath":"-2-","parentId":-1,"serviceLayer": false, "end": false,"status":0},
+        {"id":3, "title": "Civil", "description": "", "published": true,"hierarchyPath":"-1--3-","parentId":1,"serviceLayer": false, "end": false,"status":0},
+        {"id":4, "title": "Electrical", "description": "", "published": true,"hierarchyPath":"-1--4-","parentId":1,"serviceLayer": false, "end": false,"status":0},
+        {"id":5, "title": "Mechanical", "description": "", "published": true,"hierarchyPath":"-1--5-","parentId":1,"serviceLayer": false, "end": false,"status":0},
+        {"id":6, "title": "Appliance Repair", "description": "", "published": true,"hierarchyPath":"-2--6-","parentId":1,"serviceLayer": false, "end": false,"status":0},
+        {"id":7, "title": "Car Care Services", "description": "", "published": true,"hierarchyPath":"-2--7-","parentId":1,"serviceLayer": false, "end": false,"status":0},
+        {"id":8, "title": "AC Repair Services", "description": "", "published": true,"hierarchyPath":"-2--6--8-","parentId":1,"serviceLayer": false, "end": false,"status":0},
+        {"id":9, "title": "TV Repair Services ", "description": "", "published": true,"hierarchyPath":"-2--7--8-","parentId":1,"serviceLayer": false, "end": false,"status":0}
     ]
 }

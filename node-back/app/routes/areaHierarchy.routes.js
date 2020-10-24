@@ -1,28 +1,28 @@
 module.exports = app => {
-    const AreaHierarchy = require("../controllers/areaHierarchy.controller.js");
+    const areaHierarchyController = require("../controllers/areaHierarchy.controller.js");
   
     var router = require("express").Router();
   
     // Create a new Service AreaHierarchy
-    router.post("/", AreaHierarchy.create);
+    router.post("/", areaHierarchyController.create);
   
     // Retrieve all Service AreaHierarchy
-    router.get("/", AreaHierarchy.findAll);
+    router.get("/", areaHierarchyController.findAll);
   
     // Retrieve all published Service AreaHierarchy
-    router.get("/published", AreaHierarchy.findAllPublished);
+    router.get("/published", areaHierarchyController.findAllPublished);
   
     // Retrieve a single Service AreaHierarchy with id
-    router.get("/:id", AreaHierarchy.findOne);
+    router.get("/:id", areaHierarchyController.findOne);
   
     // Update a Service AreaHierarchy with id
-    router.put("/:id", AreaHierarchy.update);
+    router.put("/:id", areaHierarchyController.update);
   
     // Delete a Service AreaHierarchy with id
-    router.delete("/:id", AreaHierarchy.delete);
+    router.delete("/:id", areaHierarchyController.delete);
   
     // Delete all Service AreaHierarchies
-    router.delete("/", AreaHierarchy.deleteAll);
+    router.delete("/", areaHierarchyController.deleteAll);
   
     app.use('/api/areahierarchy', router);
   };

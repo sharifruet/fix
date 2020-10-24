@@ -3,6 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+//const env = "prd";
+const env = "dev";
+
+
 const app = express();
 require('dotenv').config();
 
@@ -42,7 +46,7 @@ require("./app/routes/service-subcategory.routes")(app);
 require("./app/routes/product.routes")(app);
 require("./app/routes/serviceCategory.routes")(app);
 require("./app/routes/serviceHierarchy.routes")(app);
-require("./app/routes/areahierarchy.routes")(app);
+require("./app/routes/areaHierarchy.routes")(app);
 require("./app/routes/login.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/role.routes")(app);
