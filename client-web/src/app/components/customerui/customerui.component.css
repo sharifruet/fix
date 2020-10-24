@@ -1,0 +1,96 @@
+/* service tab */
+.mat-tab-group {
+	flex-direction: row;
+}
+.mat-icon {
+	margin-right: 10px;
+}
+.mat-tab-label {
+	height: 50px;
+}
+
+
+/* description area */
+
+.content_aria h4{
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+.content_aria{
+    width: 70%;
+    margin: auto;
+}
+
+.profile_icon img{
+    width: 160px;
+    margin-bottom: 30px;
+}
+.profile_icon{
+    text-align: center;
+}
+.profile_content{
+    border-bottom: 1px solid #dddddd;
+    padding:10px 0;
+    margin-bottom: 10px;
+}
+.profile_content strong{
+    width: 120px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    
+}
+.profile_content span{
+    font-size: 18px;
+}
+
+.mb-5{
+    margin-bottom: 100px;
+}
+
+
+
+.address_content p{
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    padding:3px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    transition:.5s;
+
+}
+
+.flex:hover{
+    box-shadow:0px 0px 15px 5px rgba(0,0,0,0.1);
+    border: 1px solid #999;
+}
+.flex h4{
+    margin-left: 10px;
+}
+
+.gradient{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border-radius: 5px 5px 0 0;
+}
+.gradient h2{
+    padding:25px 15px;
+    color:#fff;
+    margin: 0;
+}
+p {
+	margin: 10px 0 !important;
+}
+.validity{
+    display: flex;
+    align-items: center;
+}
+
+.offers_content>h1 {
+	margin-top: 0;
+}

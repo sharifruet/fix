@@ -17,6 +17,7 @@ import { UsersManageComponent } from '../admin/components/users-manage/users-man
 import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
 import { MediaUploadComponent } from '../admin/components/media-upload/media-upload.component';
+import {CustomeruiComponent} from '../components/customerui/customerui.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,10 @@ const routes: Routes = [
     {
       path: 'service-categories',
       component:ServiceCategoriesComponent
+    },
+    {
+      path: 'customerui',
+      component:CustomeruiComponent
     }
   ]},  
   { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
