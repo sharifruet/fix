@@ -9,9 +9,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginSignupComponent implements OnInit {
 
-  hide = true;
-  openAnother() {
-    this.hide = !this.hide;
+  logIn=true;
+  signUp;
+  openSignUp() {
+    this.signUp = true;
+    this.logIn = false;
+    this.otpSection = false;
+  }
+  openLogIn(){
+    this.signUp = false;
+    this.logIn = true;
+  }
+
+  login(){
+    this.otpSection = true;
+    this.logIn = false;
   }
 
   user = {
@@ -40,7 +52,7 @@ export class LoginSignupComponent implements OnInit {
 
 
   // otp form section
-  otpSection=true;
+  otpSection=false;
 
   save(): void {
     console.log(this.userservice);
@@ -63,7 +75,8 @@ export class LoginSignupComponent implements OnInit {
           console.log("1");
           console.log(response);
           // this.openSnackBar('The user added successfully!');
-          this.otpSection = !this.otpSection;
+          this.otpSection = true;
+          this.signUp = false;
         },
         error => {
           console.log("2");

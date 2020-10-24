@@ -1,22 +1,22 @@
-<div *ngIf="hide" class="login-form">
+<div *ngIf="logIn" class="login-form">
     <img src="assets/images/logo.png" alt="">
     <h4>Login with</h4>
     <div>
         <mat-form-field appearance="fill" class="input-width">
             <mat-label>Mobile Number</mat-label>
-            <input matInput type="text" required>
+            <input matInput [(ngModel)]="user.phone" name="phone" type="text" required>
         </mat-form-field>
     </div>
-    <button mat-button color="black" class="input-button">Continue</button>
+    <button mat-button color="black" class="input-button" (click)="login()">Continue</button>
 
     <div class="refer-btn">
         <span>Don't have an account in fixall?</span>
-        <button mat-button color="primary" (click)="openAnother()">Signup Now</button>
+        <button mat-button color="primary" (click)="openSignUp()">Signup Now</button>
     </div>
 </div>
 
 
-<div *ngIf="!hide && otpSection" class="signup-form">
+<div *ngIf="signUp" class="signup-form">
     <img src="assets/images/logo.png" alt="">
     <h4>Signup with</h4>
     <div>
@@ -29,11 +29,11 @@
 
     <div class="refer-btn">
         <span>Already have an account in fixall?</span>
-        <button mat-button color="primary" (click)="openAnother()">Login Now</button>
+        <button mat-button color="primary" (click)="openLogIn()">Login Now</button>
     </div>
 </div>
 
-<div *ngIf="!otpSection" class="otp-form">
+<div *ngIf="otpSection" class="otp-form">
     <img src="assets/images/logo.png" alt="">
     <p>Type the 4 digit code send to <strong>{{user.phone}}</strong></p>
     <div>
@@ -47,6 +47,6 @@
 
     <div class="refer-btn">
         <span>Don't have an account in fixall?</span>
-        <button mat-button color="primary" (click)="openAnother()">Signup Now</button>
+        <button mat-button color="primary" (click)="openSignUp()">Signup Now</button>
     </div>
 </div>

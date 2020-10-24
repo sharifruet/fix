@@ -192,7 +192,8 @@ input{
     height: 0;
 }
 .mat-tab-header {
-	width: 33%;
+	width: 100%;
+	max-width: 250px;
 }
 .mat-tab-body-wrapper {
     width: 100%;

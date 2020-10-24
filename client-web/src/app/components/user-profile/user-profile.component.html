@@ -1,55 +1,49 @@
-<div class="service-tab pt-5" style="background-color: #fdfdfd;">
+<div class="profile-tab pt-5 pb-5" style="background-color: #fdfdfd;">
     <div class="container">
         <div fxLayout="row" fxLayoutGap="30px">
-            <div fxFlex="" class="pt-5">
+            <div fxFlex="">
                 <mat-tab-group>
                     <mat-tab>
                         <ng-template mat-tab-label>
-                            <h3>My Account</h3>
+                            <p>My Account</p>
                         </ng-template>
 
-                        <div class="description-block">
-                            <div class="content_aria">
-                                <h4>Personal Info</h4>
-                                <div class="profile_icon">
-                                    <img src="https://www.flaticon.com/svg/static/icons/svg/848/848006.svg" alt="">
-                                </div>
-                                <div class="profile_content">
-                                    <strong>Name:</strong><span>Md.Tanvir Rahman</span>
-                                </div>
-                                <div class="profile_content">
-                                    <strong>Phone:</strong><span>+8801749996663</span>
-                                </div>
-                                <div class="profile_content">
-                                    <strong>Email:</strong><span>123tanvirlove@gmail.com</span>
-                                </div>
-                                <div class="profile_content">
-                                    <strong>Date Of Birth:</strong><span>18-02-1996</span>
-                                </div>
-                                <div class="profile_content mb-5">
-                                    <strong>Gender:</strong><span>Male</span>
-                                </div>
+                        <div class="block text-center">
+                            <h2>Personal Info</h2>
+                            <div class="profile_icon">
+                                <img src="https://www.flaticon.com/svg/static/icons/svg/848/848006.svg" alt="">
                             </div>
+                            <mat-list>
+                                <mat-list-item><span>Name: </span> Md.Tanvir Rahman</mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item><span>Phone: </span> +8801749996663</mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item><span>Email: </span> 123tanvirlove@gmail.com</mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item><span>Date Of Birth: </span> 18-02-1996</mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item><span>Gender: </span> Male</mat-list-item>
+                              </mat-list>
                         </div>
 
                     </mat-tab>
                     <mat-tab label="Tab Two">
                         <ng-template mat-tab-label>
-                            <h3>My Addresses</h3>
+                            <p>My Addresses</p>
                         </ng-template>
-                        <div class="description-block">
+                        <div class="block">
                             <div class="address_content">
                                 <h2>Saved Addresses</h2>
                                 <p>Save your frequently used addresses to make life easier </p>
                                 <div fxLayout="row" fxLayoutGap="15px">
                                     <div fxFlex="50">
-                                        <div class="flex">
+                                        <div class="flex" matRipple>
                                             <mat-icon>home</mat-icon>
                                             <h4>Add Home</h4>
                                         </div>
                                     </div>
                                     <div fxFlex="50">
-                                        <div class="flex">
+                                        <div class="flex" matRipple>
                                             <mat-icon>home</mat-icon>
                                             <h4>Add Work</h4>
                                         </div>
@@ -61,10 +55,10 @@
 
                     <mat-tab label="Tab Two">
                         <ng-template mat-tab-label>
-                            <h3>My Offers</h3>
+                            <p>My Offers</p>
                         </ng-template>
                         <div class="offers_content">
-                            <h1>My Offers</h1>
+                            <h2>My Offers</h2>
                             <div fxLayout="row" fxLayoutGap="15px">
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
@@ -75,9 +69,11 @@
                                         </div>
                                         <mat-card-content>
                                             <p>
-                                                STARTER PACK promo code for any type of Beauty service 
+                                                STARTER PACK promo code for any type of Beauty service
                                             </p>
-                                            <div class="validity"><mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i></div>
+                                            <div class="validity">
+                                                <mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i>
+                                            </div>
                                         </mat-card-content>
                                         <mat-card-actions>
                                             <button mat-stroked-button>View Details</button>
@@ -88,15 +84,17 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2>  Promo CLEANING
+                                            <h2> Promo CLEANING
                                                 CLEANING<br>
-                                                9% off  </h2>
+                                                9% off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
-                                                STARTER PACK promo code for any type of Beauty service 
+                                                STARTER PACK promo code for any type of Beauty service
                                             </p>
-                                            <div class="validity"><mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i></div>
+                                            <div class="validity">
+                                                <mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i>
+                                            </div>
                                         </mat-card-content>
                                         <mat-card-actions>
                                             <button mat-stroked-button>View Details</button>
@@ -107,15 +105,17 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2>  LPG100<br>
+                                            <h2> LPG100<br>
                                                 LPG Offer<br>
-                                                Tk 100 off  </h2>
+                                                Tk 100 off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
-                                                STARTER PACK promo code for any type of Beauty service 
+                                                STARTER PACK promo code for any type of Beauty service
                                             </p>
-                                            <div class="validity"><mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i></div>
+                                            <div class="validity">
+                                                <mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i>
+                                            </div>
                                         </mat-card-content>
                                         <mat-card-actions>
                                             <button mat-stroked-button>View Details</button>
@@ -134,9 +134,11 @@
                                         </div>
                                         <mat-card-content>
                                             <p>
-                                                STARTER PACK promo code for any type of Beauty service 
+                                                STARTER PACK promo code for any type of Beauty service
                                             </p>
-                                            <div class="validity"><mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i></div>
+                                            <div class="validity">
+                                                <mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i>
+                                            </div>
                                         </mat-card-content>
                                         <mat-card-actions>
                                             <button mat-stroked-button>View Details</button>
@@ -147,15 +149,17 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2>  Promo CLEANING
+                                            <h2> Promo CLEANING
                                                 CLEANING<br>
-                                                9% off  </h2>
+                                                9% off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
-                                                STARTER PACK promo code for any type of Beauty service 
+                                                STARTER PACK promo code for any type of Beauty service
                                             </p>
-                                            <div class="validity"><mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i></div>
+                                            <div class="validity">
+                                                <mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i>
+                                            </div>
                                         </mat-card-content>
                                         <mat-card-actions>
                                             <button mat-stroked-button>View Details</button>
@@ -166,15 +170,17 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2>  LPG100<br>
+                                            <h2> LPG100<br>
                                                 LPG Offer<br>
-                                                Tk 100 off  </h2>
+                                                Tk 100 off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
-                                                STARTER PACK promo code for any type of Beauty service 
+                                                STARTER PACK promo code for any type of Beauty service
                                             </p>
-                                            <div class="validity"><mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i></div>
+                                            <div class="validity">
+                                                <mat-icon>hourglass_empty</mat-icon><i>validity:1 Feb-31 Dec </i>
+                                            </div>
                                         </mat-card-content>
                                         <mat-card-actions>
                                             <button mat-stroked-button>View Details</button>
@@ -188,7 +194,7 @@
 
                     <mat-tab label="Tab Two">
                         <ng-template mat-tab-label>
-                            <h3>My Promosions</h3>
+                            <p>My Promosions</p>
                         </ng-template>
                         <div class="description-block">
                             <div class="content">
@@ -206,7 +212,7 @@
 
                     <mat-tab label="Tab Two">
                         <ng-template mat-tab-label>
-                            <h3>Free Services</h3>
+                            <p>Free Services</p>
                         </ng-template>
                         <div class="description-block">
                             <div class="content">
