@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
 
   openLogin(){
     const dialogRef = this.dialog.open(LoginSignupComponent, {
-      width:'600px'
+      width:'500px'
     });
   }
 
