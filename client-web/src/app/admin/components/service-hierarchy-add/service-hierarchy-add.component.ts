@@ -25,7 +25,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   };
   
   endLevel=false;
-  onChange(event){
+  isEnd(event){
     console.log(event);
     if(event.checked == true){
       this.endLevel= true;
@@ -34,12 +34,23 @@ export class ServiceHierarchyAddComponent implements OnInit {
     }
   }
 
-  disabled=false;
+  serviceLayer=false;
+  isServiceLayer(event){
+    console.log(event);
+    if(event.checked == true){
+      this.serviceLayer= true;
+    }else{
+      this.serviceLayer = false;
+    }
+  }
+
+
+  hidden=false;
   on(event){
     if(event.checked == true){
-      this.disabled= true;
+      this.hidden= true;
     }else{
-      this.disabled = false;
+      this.hidden = false;
     }
   }
 

@@ -1,35 +1,52 @@
-<div *ngIf="hide" class="login-form">
+<div *ngIf="logIn" class="login-form">
     <img src="assets/images/logo.png" alt="">
     <h4>Login with</h4>
     <div>
         <mat-form-field appearance="fill" class="input-width">
             <mat-label>Mobile Number</mat-label>
-            <input matInput type="text" required>
+            <input matInput [(ngModel)]="user.phone" name="phone" type="text" required>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" class="input-button">Continue</button>
+    <button mat-button color="black" class="input-button" (click)="login()">Continue</button>
 
     <div class="refer-btn">
         <span>Don't have an account in fixall?</span>
-        <button mat-stroked-button color="primary" (click)="openAnother()">Signup Now</button>
+        <button mat-button color="primary" (click)="openSignUp()">Signup Now</button>
     </div>
 </div>
 
 
-<div *ngIf="!hide" class="login-form">
+<div *ngIf="signUp" class="signup-form">
     <img src="assets/images/logo.png" alt="">
     <h4>Signup with</h4>
     <div>
         <mat-form-field appearance="fill" class="input-width">
             <mat-label>Mobile Number</mat-label>
-            <input matInput type="text" required>
+            <input matInput [(ngModel)]="user.phone" type="text" name="phone" required>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" class="input-button">Continue</button>
+    <button mat-button color="black" class="input-button" (click)="save()">Continue</button>
 
     <div class="refer-btn">
-        <p>Before signing an account I agree the <a href="#">terms and conditions</a></p>
         <span>Already have an account in fixall?</span>
-        <button mat-stroked-button color="primary" (click)="openAnother()">Login Now</button>
+        <button mat-button color="primary" (click)="openLogIn()">Login Now</button>
+    </div>
+</div>
+
+<div *ngIf="otpSection" class="otp-form">
+    <img src="assets/images/logo.png" alt="">
+    <p>Type the 4 digit code send to <strong>{{user.phone}}</strong></p>
+    <div>
+        <mat-form-field appearance="fill" class="input-width">
+            <mat-label>OTP</mat-label>
+            <input matInput type="text" name="otp" required>
+        </mat-form-field>
+    </div>
+    <p class="resend-code">Resend code in 02:00 </p>
+    <button mat-button color="black" class="input-button" routerLink="/profile">Continue</button>
+
+    <div class="refer-btn">
+        <span>Don't have an account in fixall?</span>
+        <button mat-button color="primary" (click)="openSignUp()">Signup Now</button>
     </div>
 </div>

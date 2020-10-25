@@ -51,6 +51,9 @@ import { ServiceHierarchyAddComponent } from './admin/components/service-hierarc
 import { ServiceHierarchyEditComponent } from './admin/components/service-hierarchy-edit/service-hierarchy-edit.component';
 import { ServiceHierarchyDetailComponent } from './admin/components/service-hierarchy-detail/service-hierarchy-detail.component';
 
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
+
 
 @NgModule({
   declarations: [
@@ -86,7 +89,8 @@ import { ServiceHierarchyDetailComponent } from './admin/components/service-hier
     RoleDetailComponent,
 	  ServiceHierarchyAddComponent,
 	  ServiceHierarchyEditComponent,
-	  ServiceHierarchyDetailComponent
+	  ServiceHierarchyDetailComponent,
+	  UserProfileComponent,
   ],
   imports: [
     BrowserModule,
