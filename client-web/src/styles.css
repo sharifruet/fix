@@ -192,7 +192,8 @@ input{
     height: 0;
 }
 .mat-tab-header {
-	width: 33%;
+	width: 100%;
+	max-width: 250px;
 }
 .mat-tab-body-wrapper {
     width: 100%;
@@ -226,4 +227,10 @@ input{
 .mat-form-field-prefix .mat-icon-button, .mat-form-field-suffix .mat-icon-button {
 	height: 1.5em;
 	width: 1.5em;
+}
+
+
+/* mat-table */
+.cdk-column-action {
+	width: 150px;
 }

@@ -4,24 +4,25 @@ const Role = db.roleDao;
 const Op = db.Sequelize.Op;
 
 
-// Create and Save a new Service
+// Create and Save a new user
 exports.create = (req, res) => {
   console.log('user');
     // Validate request
-    if (!req.body.name) {
+    if (!req.body.phone) {
       res.status(400).send({
         status:2,
         message: "Content can not be empty!"
       });
       return;
     }
-    // Create a Service
+    // Create a user
   const user = {
     name: req.body.name,
     email: req.body.email,
 	  password: req.body.password ? req.body.password : '',
 	  username: req.body.username,
 	  phone: req.body.phone? req.body.phone : '',
+	  otp: req.body.otp? req.body.otp :'',
 	  address: req.body.address? req.body.address : '',
     district: req.body.district? req.body.district : -1,
     upazila: req.body.upazila? req.body.upazila : -1,
@@ -39,7 +40,6 @@ exports.create = (req, res) => {
       roles.forEach(role => {
         userObj.addRole(role.id);
       });
-      
       res.send(result);
     } else {
       res.status(500).send(result);
@@ -48,7 +48,7 @@ exports.create = (req, res) => {
   });
 }
 
-// Retrieve all Service from the database.
+// Retrieve all user from the database.
 exports.findAll = (req, res) => {
     const filter = {};
     UserModel.findAll({ include: Role, where: filter })
@@ -66,7 +66,7 @@ exports.findAll = (req, res) => {
       });
   }
 
-// Find a single Service with an id
+// Find a single user with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
     UserModel.findByPk(id, { include: Role })
@@ -85,7 +85,7 @@ exports.findOne = (req, res) => {
       });
   }
 
-// Update a Service by the id in the request
+// Update a user by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
   
@@ -99,7 +99,7 @@ exports.update = (req, res) => {
      
   }
 
-// Delete a Service with the specified id in the request
+// Delete a user with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 	updateEntity(UserModel, {status:1}, id, (result)=>{
@@ -113,7 +113,7 @@ exports.delete = (req, res) => {
 };
 
   
-  // Find all isEnd Service
+  // filder a user
 exports.findByFilter = (req, res) => {
 
   UserModel.findAll({ include: Role, where: req.body })
