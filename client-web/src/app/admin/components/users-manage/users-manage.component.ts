@@ -26,7 +26,7 @@ services: any;
   currentIndex = -1;
   title = '';
 
-  displayedColumns = ['name','username','password', 'email','phone','address','district','upazila', 'status', 'action'];
+  displayedColumns = ['name','username', 'email','phone','address','district','upazila', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
   constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
@@ -70,6 +70,10 @@ services: any;
     dialogRef.afterClosed().subscribe(result=>{
       this.refreshList();
     })
+  }
+
+  getAreaName(areaId: number) : string{
+    return "Test "+areaId;
   }
   
   refreshList(): void {
