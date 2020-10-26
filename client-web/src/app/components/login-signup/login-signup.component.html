@@ -22,10 +22,10 @@
     <div>
         <mat-form-field appearance="fill" class="input-width">
             <mat-label>Mobile Number</mat-label>
-            <input matInput [(ngModel)]="user.phone" type="text" name="phone" required>
+            <input matInput [(ngModel)]="phoneNumber" type="text" name="phone" required>
         </mat-form-field>
     </div>
-    <button mat-button color="black" class="input-button" (click)="save()">Continue</button>
+    <button mat-button color="black" class="input-button" (click)="sendOTP()">Continue</button>
 
     <div class="refer-btn">
         <span>Already have an account in fixall?</span>

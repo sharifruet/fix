@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { LoginService } from '../../services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -8,13 +9,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent implements OnInit {
+  
+  logIn : boolean = true;
+  signUp : boolean;
+  phoneNumber:string = '';
 
-  logIn=true;
-  signUp;
+  constructor(private userservice: UserService, private loginService: LoginService, private _snackBar: MatSnackBar) { }
+
   openSignUp() {
+
     this.signUp = true;
     this.logIn = false;
     this.otpSection = false;
+
   }
   openLogIn(){
     this.signUp = false;
@@ -39,7 +46,7 @@ export class LoginSignupComponent implements OnInit {
     status: ''
   };
 
-  constructor(private userservice: UserService, private _snackBar: MatSnackBar) { }
+  
 
   ngOnInit(): void {
   }
@@ -54,22 +61,11 @@ export class LoginSignupComponent implements OnInit {
   // otp form section
   otpSection=false;
 
-  save(): void {
-    console.log(this.userservice);
-    const data = {
-      name: this.user.name,
-      username: this.user.username,
-      password: this.user.password,
-      email: this.user.email,
-      phone: this.user.phone,
-      otp: this.user.otp,
-      address: this.user.address,
-      district: this.user.district,
-      upazila: this.user.upazila,
-      status: this.user.status
-    };
+  sendOTP(): void {
+    console.log(this.phoneNumber);
 
-    this.userservice.create(data)
+
+    this.loginService.signUpOTP(this.phoneNumber)
       .subscribe(
         response => {
           console.log("1");

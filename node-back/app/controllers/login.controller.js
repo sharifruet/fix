@@ -67,6 +67,55 @@ exports.deleteToken = (req,res) =>{
   res.sendStatus(204);
 };
 
+genOtp = function(){
+	return Math.floor(Math.random()*89999 +10000);
+}
+exports.signupOTP = (req,res) =>{
+	const phone = req.params.phone;
+	console.log("phoneNumber = " + phone);
+	const userEntity = {phone:phone, otp:genOtp()}
+	userModel.create(userEntity)
+	.then(result=>{
+		res.send({status:0, message:"OTP Sent", data:result});
+	}).catch(err => {
+        res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
+      });
+  };
+
+  exports.signInOTP = (req,res) =>{
+	const phone = req.params.phone;
+	console.log("phoneNumber = " + phone);
+	const userEntity = {phone:phone, otp:genOtp()}
+	userModel.findAll({where:{phone:phone}})
+	.then(result=>{
+		if(result.length>0){
+			res.send({status:0, message:"OTP Sent", data:result});
+		}else{
+			res.status(404).send({status:1, message:"This number is not registered yet, please sign up."});
+		}
+	}).catch(err => {
+        res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
+      });
+  };
+
+  exports.verifyOTP = (req,res) =>{
+	  const filter = {phone:req.body.phone, otp:req.body.otp}; 
+	  console.log(filter);
+	  
+	  userModel.findAll({where:filter})
+		.then(result=>{
+
+			if(result.length>0){
+				res.send({status:0, message:"OTP Verified", data:result});
+			}else{
+				res.status(404).send({status:0, message:"OTP not found", data:result});
+			}
+			
+		}).catch(err => {
+        	res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
+      	});
+  };
+
 let refreshTokens = [];
 exports.refreshToken = (req,res) =>{
 	const refreshToken = req.body.token;;
