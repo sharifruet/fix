@@ -9,27 +9,33 @@ import { ServiceHierarchyService } from '../../services/service-hierarchy.servic
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  serviceHierarchies;
+  initalParent:number = 1;
+  serviceHLayer1;
+  serviceHLayer2;
 
   constructor(public dialog: MatDialog, private servicehierarchy:ServiceHierarchyService) { }
 
   ngOnInit(): void {
     this.getServiceHierarchyParent();
   }
-  serviceHLayer1;
-  serviceHLayer2;
-  serviceHLayer3;
-
 
   getServiceHierarchyParent(){
-    this.servicehierarchy.getAll().subscribe(serviceHLayer1=>this.serviceHLayer1=serviceHLayer1.filter((serviceH) => serviceH.parentId == -1));
-  }
-  
-  hLayer1(id){
-    this.servicehierarchy.getAll().subscribe(serviceHLayer2=>this.serviceHLayer2=serviceHLayer2.filter((serviceC) => serviceC.parentId == id));
+    this.servicehierarchy.getAll().subscribe(data=>{
+      this.serviceHierarchies = data;
+      this.serviceHLayer1 = this.serviceHierarchies.filter((sh) => sh.parentId == -1);
+      this.changeSecondLayer(this.initalParent);
+    });
   }
 
-  hLayer2(id){
-    this.servicehierarchy.getAll().subscribe(serviceHLayer3=>this.serviceHLayer3=serviceHLayer3.filter((serviceCC) => serviceCC.parentId == id));
+  changeSecondLayer(parentId : number){
+    this.initalParent = parentId;
+    this.serviceHLayer2 = this.serviceHierarchies.filter((sh) => sh.parentId == this.initalParent);
+  }
+  
+  getChildren(parentId : number){
+    let c = this.serviceHierarchies.filter((sh) => sh.parentId == parentId);
+    return c;
   }
 
   isSticky: boolean = false;
