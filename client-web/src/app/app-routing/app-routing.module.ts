@@ -18,6 +18,7 @@ import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
 import { MediaUploadComponent } from '../admin/components/media-upload/media-upload.component';
 import { UserProfileComponent } from '../components/user-profile/user-profile.component';
+import { AreaHierarchyComponent } from '../admin/components/area-hierarchy/area-hierarchy.component';
 
 
 const routes: Routes = [
@@ -73,6 +74,10 @@ const routes: Routes = [
     {
       path:'service-hierarchy',
       component:ServiceHierarchyComponent
+    },
+	{
+      path:'area-hierarchy',
+      component:AreaHierarchyComponent
     }
   ] },
 

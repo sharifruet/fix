@@ -1,0 +1,47 @@
+<div>
+    <h3 mat-dialog-title>Add AreaHierarchy</h3>
+
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Title</mat-label>
+                <input matInput id="title" required [(ngModel)]="areaHierarchy.title" name="title">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>AreaTitle</mat-label>
+                <input matInput required [(ngModel)]="areaHierarchy.areaType" name="areaType">
+            </mat-form-field>
+        </div>
+		
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>ParentId</mat-label>
+                <input matInput required [(ngModel)]="areaHierarchy.parentId" name="parentId">
+            </mat-form-field>
+        </div>
+		
+			<div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select required [(ngModel)]="areaHierarchy.status" name="status">
+                        <mat-option>None</mat-option>
+                        <mat-option value="0">Active</mat-option>
+                        <mat-option value="1">Inactive</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+		
+		 <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+            <div fxFlex="auto">
+                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="areaHierarchy.end" name="end">End</mat-slide-toggle>
+            </div>
+        </div>
+
+    </div>
+    <button mat-raised-button (click)="save()">Submit</button>
+    <button mat-button [mat-dialog-close]>Close</button>
+</div>
