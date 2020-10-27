@@ -34,7 +34,7 @@ const TREE_DATA = [
     icon:'assignment',
     children: [
       {name: 'Service Manage', link:'/admin/service-manage'},
-      {name: 'Service List', link:'/admin/service-list'},
+      {name: 'Area Hierarchy', link:'/admin/area-hierarchy'},
 	  {name: 'Service Hierarchy', link:'/admin/service-hierarchy'},
     ]
   },

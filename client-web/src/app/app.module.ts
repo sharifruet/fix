@@ -42,7 +42,7 @@ import { RoleAddComponent } from './admin/components/roles/role-add/role-add.com
 import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
 import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
 import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
-
+import { AreaHierarchyComponent } from './admin/components/area-hierarchy/area-hierarchy.component';
 import { MediaUploadComponent } from './admin/components/media-upload/media-upload.component';
 
 import { RoleEditComponent } from './admin/components/roles/role-edit/role-edit.component';
@@ -53,6 +53,9 @@ import { ServiceHierarchyDetailComponent } from './admin/components/service-hier
 
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
+import { AreaHierarchyAddComponent } from './admin/components/area-hierarchy-add/area-hierarchy-add.component';
+import { AreaHierarchyEditComponent } from './admin/components/area-hierarchy-edit/area-hierarchy-edit.component';
+import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-detail/area-hierarchy-detail.component';
 
 
 @NgModule({
@@ -79,6 +82,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ServiceHierarchyComponent,
     ServiceComponent,
     AddToCartComponent,
+	AreaHierarchyComponent,
     RolesComponent,
     RoleAddComponent,
     UserAddComponent,
@@ -91,6 +95,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 	  ServiceHierarchyEditComponent,
 	  ServiceHierarchyDetailComponent,
 	  UserProfileComponent,
+	  AreaHierarchyAddComponent,
+	  AreaHierarchyEditComponent,
+	  AreaHierarchyDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +128,10 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 	  RolesComponent,
 	  ServiceHierarchyDetailComponent,
 	  ServiceHierarchyEditComponent,
-	  ServiceHierarchyAddComponent
+	  ServiceHierarchyAddComponent,
+	  AreaHierarchyDetailComponent,
+	  AreaHierarchyEditComponent,
+	  AreaHierarchyAddComponent
   ]
 })
 export class AppModule { }

@@ -24,5 +24,5 @@ module.exports = app => {
     // Delete all Service AreaHierarchies
     router.delete("/", areaHierarchyController.deleteAll);
   
-    app.use('/api/areahierarchy', router);
+    app.use('/api/area-hierarchy', router);
   };

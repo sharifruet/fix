@@ -1,0 +1,55 @@
+<div *ngIf="currentService">
+    <h3 mat-dialog-title>{{currentService.title}} Edit</h3>
+
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Title</mat-label>
+                <input matInput id="title" [(ngModel)]="currentService.title" required name="title">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>AreaType</mat-label>
+                <input matInput required [(ngModel)]="currentService.areaType" name="areaType">
+            </mat-form-field>
+        </div>
+		
+		<div>
+            <mat-form-field class="input-width">
+                <mat-label>ParentId</mat-label>
+                <input matInput required [(ngModel)]="currentService.parentId" name="parentId">
+            </mat-form-field>
+        </div>
+
+<div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <mat-form-field class="input-width">
+                    <input matInput [(ngModel)]="currentService.parentId" name="parentId" type="text" [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
+                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)" #serviceHPList="matAutocomplete">
+                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="50">
+                <mat-form-field class="input-width">
+                    <mat-label>End</mat-label>
+                    <input matInput required [(ngModel)]="currentService.end" name="end">
+                </mat-form-field>
+            </div>
+
+        </div>
+        
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Status</mat-label>
+                <input matInput required [(ngModel)]="currentService.status" name="status">
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-raised-button (click)="updateService()">Update</button>
+    
+</div>
