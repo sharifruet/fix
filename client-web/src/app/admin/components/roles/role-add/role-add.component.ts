@@ -11,13 +11,7 @@ export class RoleAddComponent implements OnInit {
 
   role = {
     name: '',
-    username: '',
-	password:'',
-	email:'',
-	phone:'',
-	address:'',
-	district:'',
-	upazila:'',
+    description: '',
     status: 0
   };
   
@@ -62,13 +56,7 @@ export class RoleAddComponent implements OnInit {
   newService(): void {
     this.role = {
       name: '',
-      username: '',
-	  password:'',
-	  email:'',
-	  phone:'',
-	  address:'',
-	  district:'',
-	  upazila:'',
+      description: '',
       status: 0
     };
   }

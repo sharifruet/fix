@@ -1,5 +1,5 @@
 const db = require("../models");
-const roleDao = db.roleDao;
+const Role = db.Role;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Service
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
 
   const privileges = req.body.roles?req.body.privileges:[];
 
-  addEntity(roleDao, role, (result) => {
+  addEntity(Role, role, (result) => {
     if (result.status == 0) {
 
       let roleObj = result.data;
@@ -40,36 +40,28 @@ exports.create = (req, res) => {
 }
 
 // Retrieve all Service from the database.
-exports.findAll = (req, res) => {
-  const filter = {};
-    userDao.findAll({ include: Role, where: filter })
-      .then(data => {
-        res.send({
-          status:0,
-          message:'Fetch successful',
-          data:data});
-      })
-      .catch(err => {
-        res.status(500).send( {
-          status:1,
-          message: err.message || "Some error occurred while creating the Service.",
-        });
-      });
 
-    getByFilter(roleDao, filter, (result) => {
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
-      }
+ exports.findAll = (req, res) => {
+  const title = req.query.title;
+  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+
+  Role.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Service."
+      });
     });
-  }
+};
 
 // Find a single Service with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    getById (roleDao, id, (result) => {
+    getById (Role, id, (result) => {
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -82,7 +74,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
   
-    updateEntity(roleDao, req.body,id, (result)=>{
+    updateEntity(Role, req.body,id, (result)=>{
       if (result.status == 0) {
         res.send(result);
       } else {
@@ -96,7 +88,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
   
-    roleDao.destroy({
+    Role.destroy({
       where: { id: id }
     })
       .then(num => {
@@ -121,7 +113,7 @@ exports.delete = (req, res) => {
   
   // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  getByFilter(roleDao, req.body,(result)=>{
+  getByFilter(Role, req.body,(result)=>{
     if (result.status == 0) {
       res.send(result);
     } else {
@@ -129,3 +121,4 @@ exports.findByFilter = (req, res) => {
     }
   });
 };
+  

@@ -27,7 +27,7 @@ services: any;
   currentIndex = -1;
   title = '';
 
-  displayedColumns = ['name','username','password', 'email','phone','address','district','upazila', 'status', 'action'];
+  displayedColumns = ['name','description', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
   constructor(private service:RoleService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
