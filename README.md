@@ -5,3 +5,6 @@
     
 ## 2. Back-end (Node js)
     node server
+    
+## 3. Client-mobile (Flutter)
+    
