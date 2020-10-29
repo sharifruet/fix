@@ -25,7 +25,7 @@
         </div>
     </div>
 </mat-toolbar>
-
+{{getChildrenTree(2)}}
 <mat-toolbar style="height: 50px;" color="black" *ngIf="serviceHLayer2?.length">
     <div class="container">
         <div class="row align-items-center">
@@ -39,7 +39,12 @@
                             <mat-menu #beforeMenu="matMenu" xPosition="after">  
                                 <ng-container *ngFor="let child3 of getChildren(child2.id)">
                                     <button mat-menu-item [matMenuTriggerFor]="beforeMenu" > {{child3.title}} </button>
-                                    <mat-menu #beforeMenu="matMenu" xPosition="after">  
+                                    <mat-menu #beforeMenu="matMenu" xPosition="after"> 
+										<ng-container *ngFor="let child4 of getChildren(child3.id)">
+											<button mat-menu-item [matMenuTriggerFor]="beforeMenu" > {{child4.title}} </button>
+											<mat-menu #beforeMenu="matMenu" xPosition="after">  
+											</mat-menu>
+										</ng-container>
                                     </mat-menu>
                                 </ng-container>
                             </mat-menu>
