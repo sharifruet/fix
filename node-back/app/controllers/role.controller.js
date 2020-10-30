@@ -1,3 +1,4 @@
+const { Privilege } = require("../models");
 const db = require("../models");
 const Role = db.Role;
 const Op = db.Sequelize.Op;
@@ -39,23 +40,23 @@ exports.create = (req, res) => {
   });
 }
 
-// Retrieve all Service from the database.
-
- exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-
-  Role.findAll({ where: condition })
+// Retrieve all roles from the database.
+exports.findAll = (req, res) => {
+  const filter = {};
+  Role.findAll({ include: Privilege, where: filter })
     .then(data => {
-      res.send(data);
+      res.send({
+        status:0,
+        message:'Fetch successful',
+        data:data});
     })
     .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Service."
+      res.status(500).send( {
+        status:1,
+        message: err.message || "Some error occurred while creating the Service.",
       });
     });
-};
+}
 
 // Find a single Service with an id
 exports.findOne = (req, res) => {

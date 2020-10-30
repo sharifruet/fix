@@ -7,6 +7,12 @@
     "User":[
         {"id":1, "name": "Admin", "username" : "admin", "password" : "$2b$10$kPrDtKc/DMZ9mxDKQ4dGfe9/MyNRHy23c4q0W7axgCRARHqEzKO8K", "email" : "admin@fixall.com.bd", "phone" : "017XXXXXX", "address":"","district":1, "upazila":2, "status":0}
     ],
+    "Role":[
+        {"id":1, "name": "Admin", "description" : "Admin Role", "status":0},
+        {"id":2, "name": "Customer", "description" : "Customer Role", "status":0},
+        {"id":3, "name": "Service Provider", "description" : "Service Provider Role", "status":0},
+        {"id":4, "name": "Manager", "description" : "Manager", "status":0}
+    ],
     "ServiceHierarchy":[
         {"id":1, "title": "Commercial", "description": "", "published": true,"hierarchyPath":"-1-","parentId":-1,"serviceLayer": false, "end": false,"status":0},
         {"id":2, "title": "Household", "description": "", "published": true,"hierarchyPath":"-2-","parentId":-1,"serviceLayer": false, "end": false,"status":0},
