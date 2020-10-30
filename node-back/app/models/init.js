@@ -3,12 +3,20 @@ const data = require("./master_data.json");
 const AreaHierarchy = db.AreaHierarchy;
 const ServiceHierarchy = db.ServiceHierarchy;
 const User = db.User;
+const Role = db.Role;
 module.exports =  () => {
 	console.log("DB Initializations");
 	if(data.AreaHierarchy){
 		console.log("Inserting Area Hierarchy data");
 		data.AreaHierarchy.forEach((ah)=>{
 			AreaHierarchy.create(ah).then((d)=>{console.log("Inserted");}).catch((e)=>{console.log("Error: "+e);});
+		});
+	}
+
+	if(data.Role){
+		console.log("Inserting Role data");
+		data.Role.forEach((role)=>{
+			Role.create(role).then((d)=>{console.log("Inserted");}).catch((e)=>{console.log("Error: "+e);});
 		});
 	}
 

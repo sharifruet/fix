@@ -29,7 +29,6 @@ db.AreaHierarchy = require("./areaHierarchy.model.js")(sequelize, Sequelize);
 db.User = require("./user.model.js")(sequelize, Sequelize);
 db.Role = require("./role.model.js")(sequelize, Sequelize);
 db.Privilege = require("./privilege.model.js")(sequelize, Sequelize);
-//db.roleDao = require("./role.model.js")(sequelize, Sequelize);
 
 db.User.belongsToMany(db.Role, { through: 'UserRole' }); 
 db.Role.belongsToMany(db.Privilege, { through: 'RolePrivilege' }); 
