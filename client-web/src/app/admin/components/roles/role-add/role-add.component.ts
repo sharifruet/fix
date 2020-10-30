@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../../../services/role.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
+import { AppSettings } from '../../../../app.settings';
+
 @Component({
   selector: 'app-role-add',
   templateUrl: './role-add.component.html',
@@ -14,6 +16,7 @@ export class RoleAddComponent implements OnInit {
     description: '',
     status: 0
   };
+  statusList = AppSettings.STATUS;
   
   errorMessage="test 123";
 

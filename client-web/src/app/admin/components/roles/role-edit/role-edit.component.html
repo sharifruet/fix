@@ -1,27 +1,29 @@
-<div *ngIf="currentService">
-    <h3 mat-dialog-title>{{currentService.title}} Edit</h3>
+<div *ngIf="currentRole">
+    <h3 mat-dialog-title>{{currentRole.title}} Edit</h3>
 
     <div mat-dialog-content>
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Name</mat-label>
-                <input matInput id="title" [(ngModel)]="currentService.name" required name="name">
+                <input matInput id="title" [(ngModel)]="currentRole.name" required name="name">
             </mat-form-field>
         </div>
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Description</mat-label>
-                <input matInput required [(ngModel)]="currentService.description" name="description">
+                <input matInput required [(ngModel)]="currentRole.description" name="description">
             </mat-form-field>
         </div>
 		
         <div>
             <mat-form-field class="input-width">
-                <mat-label>Status</mat-label>
-                <input matInput readonly [value]="currentService.published?'Published':'Pending'"  name="status">
+                <mat-label>Status </mat-label>
+                <mat-select required [(ngModel)]="currentRole.status" name="status">
+                    <mat-option *ngFor="let status of statusList" [value]="status.id">{{status.value}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
     </div>
     <button mat-raised-button (click)="updateService()">Update</button>
-    <button mat-button *ngIf="currentService.published" (click)="updateService">publish</button>
+    <button mat-button *ngIf="currentRole.published" (click)="updateService">publish</button>
 </div>

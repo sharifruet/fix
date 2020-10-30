@@ -10,6 +10,8 @@ import {RoleAddComponent} from './role-add/role-add.component';
 import { RoleDetailComponent } from './role-detail/role-detail.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
 
+import { AppSettings } from '../../../app.settings';
+
 
 @Component({
   selector: 'app-roles',
@@ -26,6 +28,7 @@ services: any;
   currentService = null;
   currentIndex = -1;
   title = '';
+  statusList = AppSettings.STATUS;
 
   displayedColumns = ['name','description', 'status', 'action'];
   dataSource = new MatTableDataSource();
@@ -35,6 +38,13 @@ services: any;
 
   ngOnInit(): void {
     this.getRoles();
+  }
+
+  getStatusName(id:number): string {
+    let filtered = this.statusList.filter(st=>st.id == id);
+    if(filtered.length>0)
+      return filtered[0].value;
+    return "";
   }
 
   getRoles(): void {
