@@ -24,6 +24,7 @@ export class ServiceHierarchyComponent implements OnInit {
   currentService = null;
   currentIndex = -1;
   title = '';
+  serviceHierarchies : any[] = [];
   
   displayedColumns = ['title', 'description', 'published','parent','serviceLayer','end','status','action'];
   dataSource = new MatTableDataSource();
@@ -35,10 +36,18 @@ export class ServiceHierarchyComponent implements OnInit {
     this.retrieveServiceHierarchy();
   }
 
+  getParentName(parentId: number) : string {
+    let parent = this.serviceHierarchies.filter(sh=>sh.id==parentId);
+    if(parent.length > 0)
+      return parent[0].title;
+    return "";
+  }
+
   retrieveServiceHierarchy(): void {
     this.serviceHierarchyService.getAll()
       .subscribe(
         data => {
+          this.serviceHierarchies = data;
           this.dataSource = new MatTableDataSource<any>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

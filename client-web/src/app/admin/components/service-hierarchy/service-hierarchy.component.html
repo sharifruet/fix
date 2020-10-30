@@ -55,8 +55,8 @@
     </ng-container>
 
     <ng-container matColumnDef="parent">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ParentId </th>
-      <td mat-cell *matCellDef="let element"> {{element.parentId}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Parent </th>
+      <td mat-cell *matCellDef="let element"> {{getParentName(element.parentId)}} </td>
     </ng-container>
 
     <ng-container matColumnDef="hierarchyPath">

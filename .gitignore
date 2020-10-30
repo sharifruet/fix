@@ -4531,3 +4531,5 @@ volumes/mysql/fix/Roles.frm
 volumes/mysql/fix/Roles.ibd
 volumes/mysql/fix/UserRole.frm
 volumes/mysql/fix/UserRole.ibd
+.vscode/launch.json
+debug.log
