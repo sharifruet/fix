@@ -12,9 +12,16 @@
 
 /* description area */
 .block{
-    max-width:700px;
+    max-width:600px;
     width: 100%;
 }
+
+
+.content_list{
+    width: 500px;
+    margin: auto;
+}
+
 .mat-list span{
     font-weight:500;
     color:#000;
@@ -26,13 +33,25 @@
 } 
 
 .profile_icon img{
-    width: 120px;
+    width: 140px;
+}
+
+.profile_icon {
+    position: relative;
+}
+.mat-focus-indicator.mat-mini-fab.mat-button-base.mat-basic{
+	position: absolute;
+	transform: translateX(-38px);
+	bottom: 10px;
 }
 
 
 
 .mb-5{
     margin-bottom: 100px;
+}
+.mb-2{
+    margin-bottom: 20px!important;
 }
 
 
@@ -47,7 +66,6 @@
 .flex h4{
     margin-left: 10px;
 }
-
 
 
 
@@ -68,4 +86,30 @@
 
 .offers_content>h1 {
 	margin-top: 0;
+}
+
+
+mat-form-field, mat-radio-group{
+    display: block;
+    width: 90%;
+    margin:auto;
+}
+mat-radio-group {
+    text-align: left;
+}
+.mat-focus-indicator.mat-stroked-button.mat-button-base {
+	margin-top: 12px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+mat-label {
+	margin-right: 12px;
+}  
+
+
+.mat-card-content {
+	margin: 0;
 }
