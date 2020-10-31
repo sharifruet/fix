@@ -19,6 +19,7 @@ import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy
 import { MediaUploadComponent } from '../admin/components/media-upload/media-upload.component';
 import { UserProfileComponent } from '../components/user-profile/user-profile.component';
 import { AreaHierarchyComponent } from '../admin/components/area-hierarchy/area-hierarchy.component';
+import { MediaComponent } from '../admin/components/media/media.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,10 @@ const routes: Routes = [
     {
       path:'dashboard',
       component:DashboardComponent
+    },
+    {
+      path:'media',
+      component:MediaComponent
     },
     {
       path:'media-upload',

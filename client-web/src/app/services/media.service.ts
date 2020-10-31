@@ -40,4 +40,7 @@ export class MediaService extends BaseService implements OnInit {
     const percentDone = Math.round(100 * event.loaded / event.total);
     return { progress: percentDone, files: [] };
   }
+
+
+  
 }

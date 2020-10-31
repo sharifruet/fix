@@ -57,6 +57,7 @@ import { AreaHierarchyAddComponent } from './admin/components/area-hierarchy-add
 import { AreaHierarchyEditComponent } from './admin/components/area-hierarchy-edit/area-hierarchy-edit.component';
 import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-detail/area-hierarchy-detail.component';
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
+import { MediaComponent } from './admin/components/media/media.component';
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { MenuItemComponent } from './components/menu-item/menu-item.component';
 	  AreaHierarchyEditComponent,
 	  AreaHierarchyDetailComponent,
 	  MenuItemComponent,
+	  MediaComponent,
   ],
   imports: [
     BrowserModule,
