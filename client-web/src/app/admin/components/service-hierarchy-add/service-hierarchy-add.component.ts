@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs'
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+
+
 
 
 @Component({
@@ -13,6 +16,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ServiceHierarchyAddComponent implements OnInit {
 
+  @ViewChild('viewContainer', {read: ViewContainerRef}) viewContainer: ViewContainerRef;
+  @ViewChild('template') template: TemplateRef<any>;
+
+  insertView() {
+    const template = this.template.createEmbeddedView(null);
+    this.viewContainer.insert(template);
+  }
+
+  editorConfig: AngularEditorConfig = {
+      editable: true,
+      spellcheck: true,
+      minHeight: '60px',
+      placeholder: 'Enter text here...',
+      defaultFontName: '',
+      defaultFontSize: '',
+      toolbarPosition: 'top',
+      toolbarHiddenButtons: [
+        ['fontSize'],['undo','redo','subscript',
+        'superscript','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent','fontName'],
+        ['fontSize','textColor', 'backgroundColor','customClasses','link',
+          'unlink',
+          'insertImage',
+          'insertVideo',
+          'insertHorizontalRule',
+          'removeFormat',
+          'toggleEditorMode'
+        ]
+      ]
+};
+
   serviceHierarchy = {
     title: '',
     description: '',
@@ -21,7 +54,10 @@ export class ServiceHierarchyAddComponent implements OnInit {
     hierarchyPath: '',
     serviceLayer: '',
     end: '',
-    status: ''
+    status: '',
+    overview:'',
+    faq:'',
+    detail:''
   };
   
   endLevel=false;
@@ -128,8 +164,10 @@ displayFn(parent) {
       hierarchyPath: '',
       serviceLayer: '',
       end: '',
-      status: ''
-
+      status: '',
+      overview:'',
+      faq:'',
+      detail:''
     }
   }
 

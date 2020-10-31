@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularEditorModule } from '@kolkov/angular-editor'
 
 import { AppComponent } from './app.component';
 
@@ -82,7 +83,7 @@ import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-
     ServiceHierarchyComponent,
     ServiceComponent,
     AddToCartComponent,
-	AreaHierarchyComponent,
+	  AreaHierarchyComponent,
     RolesComponent,
     RoleAddComponent,
     UserAddComponent,
@@ -108,7 +109,8 @@ import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-
     BrowserAnimationsModule,
     MaterialModule,
     CarouselModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

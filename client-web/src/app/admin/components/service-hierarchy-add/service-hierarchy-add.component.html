@@ -41,7 +41,8 @@
 
         <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
             <div fxFlex="auto">
-                <mat-slide-toggle (change)="isServiceLayer($event)" [(ngModel)]="serviceHierarchy.serviceLayer" name="serviceLayer">ServiceLayer
+                <mat-slide-toggle (change)="isServiceLayer($event)" [(ngModel)]="serviceHierarchy.serviceLayer"
+                    name="serviceLayer">ServiceLayer
                 </mat-slide-toggle>
             </div>
             <div fxFlex="auto">
@@ -49,35 +50,56 @@
                     Published</mat-slide-toggle>
             </div>
             <div fxFlex="auto">
-                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="serviceHierarchy.end" name="end">End</mat-slide-toggle>
+                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="serviceHierarchy.end" name="end">End
+                </mat-slide-toggle>
             </div>
         </div>
 
 
         <div *ngIf="serviceLayer">
             <div>
-                <mat-form-field class="input-width">
-                    <mat-label>Overview</mat-label>
-                    <textarea matInput name="overview"></textarea>
-                </mat-form-field>
+                <angular-editor id="editor1" [config]="editorConfig" [placeholder]="'Enter overview...'"
+                    [(ngModel)]="serviceHierarchy.overview"></angular-editor>
             </div>
             <div>
-                <mat-form-field class="input-width">
-                    <mat-label>Details</mat-label>
-                    <textarea matInput name="details"></textarea>
-                </mat-form-field>
+                <angular-editor id="editor2" [config]="editorConfig" [placeholder]="'Enter detail...'"
+                    [(ngModel)]="serviceHierarchy.detail"></angular-editor>
             </div>
             <div>
-                <mat-form-field class="input-width">
-                    <mat-label>FAQ</mat-label>
-                    <textarea matInput name="faq"></textarea>
-                </mat-form-field>
+                <mat-label>FAQ</mat-label>
+                <div fxLayout="row" fxLayoutGap="20px">
+                    <div fxFlex="85">
+                        <ng-template #template>
+                            <div fxLayout="row" fxLayoutGap="20px">
+                                <div fxFlex="50">
+                                    <mat-form-field class="input-width">
+                                        <mat-label>Question</mat-label>
+                                        <input matInput required type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex="50">
+                                    <mat-form-field class="input-width">
+                                        <mat-label>Answer</mat-label>
+                                        <input matInput required type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-container *ngTemplateOutlet="template"></ng-container>
+                        <ng-container #viewContainer></ng-container>
+                    </div>
+                    <div fxFlex="auto">
+                        <button mat-mini-fab (click)="insertView()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div *ngIf="endLevel" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex="50">
-                <mat-slide-toggle (change)="on($event)"> Negotiable</mat-slide-toggle>
+                <mat-slide-toggle (change)="on($event)"> Negotiable </mat-slide-toggle>
             </div>
             <div fxFlex="50">
                 <mat-form-field class="input-width" *ngIf="!hidden">
