@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
       published: {type: Sequelize.BOOLEAN},
 	    hierarchyPath:{type:Sequelize.STRING},
 	    parentId:{type: Sequelize.INTEGER},
-	    serviceLayer: {type: Sequelize.STRING},
+	    serviceLayer: {type: Sequelize.BOOLEAN},
 	    end: {type: Sequelize.BOOLEAN},
 	    status: {type: Sequelize.INTEGER}
     });
