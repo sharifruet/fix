@@ -14,15 +14,15 @@
                 <input matInput required [(ngModel)]="areaHierarchy.areaType" name="areaType">
             </mat-form-field>
         </div>
-		
-		<div>
+
+        <div>
             <mat-form-field class="input-width">
                 <mat-label>ParentId</mat-label>
                 <input matInput required [(ngModel)]="areaHierarchy.parentId" name="parentId">
             </mat-form-field>
         </div>
-		
-			<div fxLayout="row" fxLayoutGap="20px">
+
+        <div fxLayout="row" fxLayoutGap="20px">
             <div fxFlex="50">
                 <mat-form-field>
                     <mat-label>Status</mat-label>
@@ -33,11 +33,9 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-        </div>
-		
-		 <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
             <div fxFlex="auto">
-                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="areaHierarchy.end" name="end">End</mat-slide-toggle>
+                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="areaHierarchy.end" name="end">End
+                </mat-slide-toggle>
             </div>
         </div>
 

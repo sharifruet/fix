@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { Observable } from 'rxjs'
 import { ServiceHierarchyComponent } from '../service-hierarchy/service-hierarchy.component';
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
 @Component({
@@ -15,7 +16,66 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class ServiceHierarchyEditComponent implements OnInit {
 
+  @ViewChild('viewContainer', {read: ViewContainerRef}) viewContainer: ViewContainerRef;
+  @ViewChild('template') template: TemplateRef<any>;
+
+  insertView() {
+    const template = this.template.createEmbeddedView(null);
+    this.viewContainer.insert(template);
+  }
+
+  editorConfig: AngularEditorConfig = {
+      editable: true,
+      spellcheck: true,
+      minHeight: '60px',
+      placeholder: 'Enter text here...',
+      defaultFontName: '',
+      defaultFontSize: '',
+      toolbarPosition: 'top',
+      toolbarHiddenButtons: [
+        ['fontSize'],['undo','redo','subscript',
+        'superscript','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent','fontName'],
+        ['fontSize','textColor', 'backgroundColor','customClasses','link',
+          'unlink',
+          'insertImage',
+          'insertVideo',
+          'insertHorizontalRule',
+          'removeFormat',
+          'toggleEditorMode'
+        ]
+      ]
+};
+
   currentService;
+
+  endLevel=false;
+  isEnd(event){
+    console.log(event);
+    if(event.checked == true){
+      this.endLevel= true;
+    }else{
+      this.endLevel = false;
+    }
+  }
+
+  serviceLayer=false;
+  isServiceLayer(event){
+    console.log(event);
+    if(event.checked == true){
+      this.serviceLayer= true;
+    }else{
+      this.serviceLayer = false;
+    }
+  }
+
+  hidden=false;
+  on(event){
+    if(event.checked == true){
+      this.hidden= true;
+    }else{
+      this.hidden = false;
+    }
+  }
 
   serviceHParent: any[] = [];
   filteredOptions: Observable<any[]>;

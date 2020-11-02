@@ -2,57 +2,115 @@
     <h3 mat-dialog-title>{{currentService.title}} Edit</h3>
 
     <div mat-dialog-content>
-        
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Title</mat-label>
-                <input matInput id="title" [(ngModel)]="currentService.title" required name="title">
+                <input matInput id="title" required [(ngModel)]="currentService.title" name="title">
             </mat-form-field>
         </div>
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Description</mat-label>
-                <textarea matInput required [(ngModel)]="currentService.description" name="description"></textarea>
+                <textarea matInput [(ngModel)]="currentService.description" name="description"></textarea>
             </mat-form-field>
         </div>
-
         <div fxLayout="row" fxLayoutGap="20px">
+
             <div fxFlex="50">
                 <mat-form-field class="input-width">
-                    <input matInput [(ngModel)]="currentService.parentId" name="parentId" type="text" [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
-                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)" #serviceHPList="matAutocomplete">
-                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}</mat-option>
+                    <input matInput [(ngModel)]="currentService.parentId" name="parentId" type="text"
+                        [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
+                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)"
+                        #serviceHPList="matAutocomplete">
+                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}
+                        </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
             <div fxFlex="50">
                 <mat-form-field class="input-width">
-                    <mat-label>ServiceLayer</mat-label>
-                    <input matInput required [(ngModel)]="currentService.serviceLayer" name="serviceLayer">
+                    <mat-label>Status</mat-label>
+                    <mat-select required [(ngModel)]="currentService.status" name="status">
+                        <mat-option>None</mat-option>
+                        <mat-option value="0">Active</mat-option>
+                        <mat-option value="1">Inactive</mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
         </div>
 
-        <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+            <div fxFlex="auto">
+                <mat-slide-toggle (change)="isServiceLayer($event)" [(ngModel)]="currentService.serviceLayer"
+                    name="serviceLayer">ServiceLayer
+                </mat-slide-toggle>
+            </div>
+            <div fxFlex="auto">
+                <mat-slide-toggle [(ngModel)]="currentService.published" name="published">
+                    Published</mat-slide-toggle>
+            </div>
+            <div fxFlex="auto">
+                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="currentService.end" name="end">End
+                </mat-slide-toggle>
+            </div>
+        </div>
+
+
+        <div *ngIf="serviceLayer">
+            <div>
+                <angular-editor id="editor1" [config]="editorConfig" [placeholder]="'Enter overview...'"
+                    [(ngModel)]="currentService.overview"></angular-editor>
+            </div>
+            <div>
+                <angular-editor id="editor2" [config]="editorConfig" [placeholder]="'Enter detail...'"
+                    [(ngModel)]="currentService.detail"></angular-editor>
+            </div>
+            <div>
+                <mat-label>FAQ</mat-label>
+                <div fxLayout="row" fxLayoutGap="20px">
+                    <div fxFlex="85">
+                        <ng-template #template>
+                            <div fxLayout="row" fxLayoutGap="20px">
+                                <div fxFlex="50">
+                                    <mat-form-field class="input-width">
+                                        <mat-label>Question</mat-label>
+                                        <input matInput required type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex="50">
+                                    <mat-form-field class="input-width">
+                                        <mat-label>Answer</mat-label>
+                                        <input matInput required type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-container *ngTemplateOutlet="template"></ng-container>
+                        <ng-container #viewContainer></ng-container>
+                    </div>
+                    <div fxFlex="auto">
+                        <button mat-mini-fab (click)="insertView()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="endLevel" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex="50">
-                <mat-form-field class="input-width">
-                    <mat-label>End</mat-label>
-                    <input matInput required [(ngModel)]="currentService.end" name="end">
+                <mat-slide-toggle (change)="on($event)"> Negotiable </mat-slide-toggle>
+            </div>
+            <div fxFlex="50">
+                <mat-form-field class="input-width" *ngIf="!hidden">
+                    <mat-label>Price</mat-label>
+                    <input matInput type="text">
                 </mat-form-field>
             </div>
-            <div fxFlex="50" gdAlignColumns="center">
-                <mat-slide-toggle required [(ngModel)]="currentService.published" name="published">Published</mat-slide-toggle>
-            </div>
+        </div>
 
-        </div>
-        
-        <div>
-            <mat-form-field class="input-width">
-                <mat-label>Status</mat-label>
-                <input matInput required [(ngModel)]="currentService.status" name="status">
-            </mat-form-field>
-        </div>
     </div>
+
     <button mat-raised-button (click)="updateService()">Update</button>
     
 </div>

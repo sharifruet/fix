@@ -53,11 +53,12 @@ export class ServiceHierarchyAddComponent implements OnInit {
     parentId: '',
     hierarchyPath: '',
     serviceLayer: '',
-    end: '',
-    status: '',
     overview:'',
+    detail:'',
     faq:'',
-    detail:''
+    end: '',
+    price:'',
+    status: ''
   };
   
   endLevel=false;
@@ -129,7 +130,7 @@ displayFn(parent) {
   }
 
   save(): void {
-    console.log(this.service);
+    // console.log(this.service);
     const data = {
       title: this.serviceHierarchy.title,
       description: this.serviceHierarchy.description,
@@ -137,10 +138,14 @@ displayFn(parent) {
       parentId: this.serviceHierarchy.parentId,
       hierarchyPath: this.serviceHierarchy.hierarchyPath,
       serviceLayer: this.serviceHierarchy.serviceLayer,
+      overview: this.serviceHierarchy.overview,
+      detail: this.serviceHierarchy.detail,
+      faq: this.serviceHierarchy.faq,
       end: this.serviceHierarchy.end,
+      price: this.serviceHierarchy.price,
       status: this.serviceHierarchy.status
     };
-
+    
     this.service.create(data)
       .subscribe(
         response => {
@@ -163,11 +168,12 @@ displayFn(parent) {
       parentId: '',
       hierarchyPath: '',
       serviceLayer: '',
-      end: '',
-      status: '',
       overview:'',
+      detail:'',
       faq:'',
-      detail:''
+      end: '',
+      price: '',
+      status: ''
     }
   }
 
