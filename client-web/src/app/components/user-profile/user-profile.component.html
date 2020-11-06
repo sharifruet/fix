@@ -8,23 +8,64 @@
                             <p>My Account</p>
                         </ng-template>
 
-                        <div class="block text-center">
+                        <div *ngIf="profile" class="block text-center">
                             <h2>Personal Info</h2>
                             <div class="profile_icon">
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/848/848006.svg" alt="">
                             </div>
-                            <mat-list>
-                                <mat-list-item><span>Name: </span> Md.Tanvir Rahman</mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item><span>Phone: </span> +8801749996663</mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item><span>Email: </span> 123tanvirlove@gmail.com</mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item><span>Date Of Birth: </span> 18-02-1996</mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item><span>Gender: </span> Male</mat-list-item>
-                              </mat-list>
+                            <div class="content_list">
+                                <mat-list>
+                                    <mat-list-item><span>Name: </span> Md.Tanvir Rahman</mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><span>Phone: </span> +8801749996663</mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><span>Email: </span> 123tanvirlove@gmail.com</mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><span>Date Of Birth: </span> 18-02-1996</mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><span>Gender: </span> Male</mat-list-item>
+                                </mat-list>
+                                <button mat-stroked-button (click)="openEditProfile()">Edit Profile</button>
+                            </div>
                         </div>
+
+                        <div *ngIf="editProfile" class="block text-center">
+                            <h2>Edit Porfile</h2>
+                            <div class="profile_icon">
+                                <img src="https://www.flaticon.com/svg/static/icons/svg/848/848006.svg" alt="">
+                                <button mat-mini-fab color="basic">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </div>
+                            <div class="content_list">
+                                <mat-form-field>
+                                    <mat-label>Name</mat-label>
+                                    <input matInput type="text">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Phone No:</mat-label>
+                                    <span matPrefix>+880 &nbsp;</span>
+                                    <input type="tel" matInput placeholder="555-555-1234">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Ex. pat@example.com">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Date Of Birth:</mat-label>
+                                    <input matInput type="text">
+                                </mat-form-field>
+                                <mat-radio-group>
+                                    <mat-label>Gender:</mat-label>
+                                    <mat-radio-button value="1">Male</mat-radio-button>
+                                    <mat-radio-button value="2">Female</mat-radio-button>
+                                </mat-radio-group>
+                                <button mat-stroked-button (click)="openProfile()">Submit</button>
+                            </div>
+                        </div>
+
 
                     </mat-tab>
                     <mat-tab label="Tab Two">
@@ -57,14 +98,13 @@
                         <ng-template mat-tab-label>
                             <p>My Offers</p>
                         </ng-template>
-                        <div class="block offers_content">
+                        <div class="offers_content">
                             <h2>My Offers</h2>
-                            <div fxLayout="row" fxLayoutGap="15px">
+                            <div fxLayout="row" fxLayoutGap="20px" class="mb-2">
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
                                             <h2> Promo BEAUTY
-                                                BEAUTY
                                                 Tk 300 off </h2>
                                         </div>
                                         <mat-card-content>
@@ -85,7 +125,6 @@
                                     <mat-card class="example-card">
                                         <div class="gradient">
                                             <h2> Promo CLEANING
-                                                CLEANING<br>
                                                 9% off </h2>
                                         </div>
                                         <mat-card-content>
@@ -105,9 +144,7 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2> LPG100<br>
-                                                LPG Offer<br>
-                                                Tk 100 off </h2>
+                                            <h2>LPG100 Offer Tk 100 off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
@@ -124,13 +161,11 @@
                                     </mat-card>
                                 </div>
                             </div>
-                            <div fxLayout="row" fxLayoutGap="15px">
+                            <div fxLayout="row" fxLayoutGap="20px">
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2> Promo BEAUTY
-                                                BEAUTY
-                                                Tk 300 off </h2>
+                                            <h2> Promo BEAUTY Tk 300 off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
@@ -149,9 +184,7 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2> Promo CLEANING
-                                                CLEANING<br>
-                                                9% off </h2>
+                                            <h2> Promo CLEANING 9% off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>
@@ -170,9 +203,7 @@
                                 <div fxFlex="33.33">
                                     <mat-card class="example-card">
                                         <div class="gradient">
-                                            <h2> LPG100<br>
-                                                LPG Offer<br>
-                                                Tk 100 off </h2>
+                                            <h2>LPG100 Offer Tk 100 off </h2>
                                         </div>
                                         <mat-card-content>
                                             <p>

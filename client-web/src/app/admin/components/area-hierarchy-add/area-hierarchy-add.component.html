@@ -10,19 +10,25 @@
         </div>
         <div>
             <mat-form-field class="input-width">
-                <mat-label>AreaTitle</mat-label>
+                <mat-label>AreaType</mat-label>
                 <input matInput required [(ngModel)]="areaHierarchy.areaType" name="areaType">
             </mat-form-field>
         </div>
 		
-		<div>
-            <mat-form-field class="input-width">
-                <mat-label>ParentId</mat-label>
-                <input matInput required [(ngModel)]="areaHierarchy.parentId" name="parentId">
-            </mat-form-field>
-        </div>
+		
 		
 			<div fxLayout="row" fxLayoutGap="20px">
+			            <div fxFlex="50">
+                <mat-form-field class="input-width">
+                    <input matInput [(ngModel)]="areaHierarchy.parentId" name="parentId" type="text"
+                        [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
+                    <mat-autocomplete autoActiveFirstOption [displayWith]="displayFn.bind(this)"
+                        #serviceHPList="matAutocomplete">
+                        <mat-option *ngFor="let parent of filteredOptions | async" [value]="parent.id"> {{parent.title}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
             <div fxFlex="50">
                 <mat-form-field>
                     <mat-label>Status</mat-label>

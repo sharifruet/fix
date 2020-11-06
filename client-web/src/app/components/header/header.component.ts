@@ -35,6 +35,22 @@ export class HeaderComponent implements OnInit {
     let c = this.serviceHierarchies.filter((sh:any) => sh.parentId == parentId);
     return c;
   }
+  
+  getChildrenTree(id : number){
+	  let tree = this.getChildren(id);
+	  tree.forEach(node=>{
+		  node.children = this.getChildren(node.id);
+		  node.children.forEach(node1=>{
+			  node1.children = this.getChildren(node1.id);
+				node1.children.forEach(node2=>{
+				  node2.children = this.getChildren(node2.id);
+			  });
+		  });
+	  });
+	  
+	console.log(tree);
+	return tree;
+  }
 
 
   changeTopLevelMenu(id : number): void{

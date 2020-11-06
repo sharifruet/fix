@@ -3,7 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RolesComponent } from '../../roles/roles.component';
 import { RoleService } from '../../../../services/role.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import { AppSettings } from '../../../../app.settings';
 
 @Component({
   selector: 'app-role-edit',
@@ -12,11 +12,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class RoleEditComponent implements OnInit {
 
-  currentService;
+  currentRole;
+  statusList = AppSettings.STATUS;
   
   constructor(private _snackBar: MatSnackBar, private roleService:RoleService, public dialogRef:MatDialogRef<RolesComponent>, 
     @Inject(MAT_DIALOG_DATA) public data:any) { 
-      this.currentService=data;
+      this.currentRole=data;
      }
   
   ngOnInit(): void {
@@ -29,7 +30,7 @@ export class RoleEditComponent implements OnInit {
   }
 
   updateService(): void {
-    this.roleService.update(this.currentService.id, this.currentService)
+    this.roleService.update(this.currentRole.id, this.currentRole)
       .subscribe(
         response => {
           console.log(response);

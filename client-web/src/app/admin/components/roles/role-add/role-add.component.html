@@ -19,9 +19,7 @@
                 <mat-form-field>
                     <mat-label>Status</mat-label>
                     <mat-select required [(ngModel)]="role.status" name="status">
-                        <mat-option>None</mat-option>
-                        <mat-option value="0">Active</mat-option>
-                        <mat-option value="1">Inactive</mat-option>
+                        <mat-option *ngFor="let status of statusList" value="{{status.id}}">{{status.value}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
