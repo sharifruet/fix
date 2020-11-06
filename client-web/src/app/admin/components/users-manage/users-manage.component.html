@@ -10,7 +10,6 @@
     </div>
 </div>
 
-
 <mat-card style="margin-bottom: 20px;">
     <div fxLayout="row" fxLayoutAlign="space-between">
         <div>
@@ -95,8 +94,15 @@
                  <button mat-icon-button color="warn" (click)="deleteService(element.id)" matTooltip="Delete User">
           <mat-icon>delete</mat-icon>
         </button>
+		
+             <button mat-raised-button (click)="openDialog()">
+                RoleAssign
+            </button>
+
             </td>
+			 
         </ng-container>
+		
 
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
