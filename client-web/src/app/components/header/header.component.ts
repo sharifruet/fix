@@ -9,10 +9,9 @@ import { ServiceHierarchyService } from '../../services/service-hierarchy.servic
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  serviceHierarchies;
+  serviceHierarchies:any = [];
   initalParent:number = 1;
-  serviceHLayer1;
-  serviceHLayer2;
+  topLevelMenu : any;
 
   constructor(public dialog: MatDialog, private servicehierarchy:ServiceHierarchyService) { }
 
@@ -23,18 +22,17 @@ export class HeaderComponent implements OnInit {
   getServiceHierarchyParent(){
     this.servicehierarchy.getAll().subscribe(data=>{
       this.serviceHierarchies = data;
-      this.serviceHLayer1 = this.serviceHierarchies.filter((sh) => sh.parentId == -1);
-      this.changeSecondLayer(this.initalParent);
-    });
-  }
+      this.topLevelMenu = this.serviceHierarchies.filter((sh:any) => sh.parentId == -1);
+      
+      this.serviceHierarchies.forEach(element => {
+        element.children = this.getChildren(element.id);
+      });
 
-  changeSecondLayer(parentId : number){
-    this.initalParent = parentId;
-    this.serviceHLayer2 = this.serviceHierarchies.filter((sh) => sh.parentId == this.initalParent);
+    });
   }
   
   getChildren(parentId : number){
-    let c = this.serviceHierarchies.filter((sh) => sh.parentId == parentId);
+    let c = this.serviceHierarchies.filter((sh:any) => sh.parentId == parentId);
     return c;
   }
   
@@ -54,6 +52,15 @@ export class HeaderComponent implements OnInit {
 	return tree;
   }
 
+
+  changeTopLevelMenu(id : number): void{
+    this.initalParent = id;
+  }
+
+  getSecondLevelMenu(): any[]{
+    return this.serviceHierarchies.filter((sh) => sh.parentId == this.initalParent);
+  }
+
   isSticky: boolean = false;
 
   @HostListener('window:scroll')
@@ -66,7 +73,4 @@ export class HeaderComponent implements OnInit {
       width:'500px'
     });
   }
-
-  
-
 }

@@ -16,7 +16,9 @@
                 </div>
             </div>
             <div>
-                <button *ngFor="let serviceHParent of serviceHLayer1" mat-button (click)="changeSecondLayer(serviceHParent.id)" [class.selected]="false">{{serviceHParent.title}}</button>
+                <button *ngFor="let menuItem of topLevelMenu" mat-button
+                    (click)="changeTopLevelMenu(menuItem.id)"
+                    [class.selected]="[(initalParent==menuItem.id)?'true':'false']">{{menuItem.title}}</button>
                 <button mat-icon-button class="cart">
                     <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
@@ -26,32 +28,22 @@
     </div>
 </mat-toolbar>
 
-<mat-toolbar style="height: 50px;" color="black" *ngIf="serviceHLayer2?.length">
-    <div class="container">
-        <div class="row align-items-center">
-            <div>
-                <ng-container *ngFor="let child1 of serviceHLayer2">
-                    <button mat-button [matMenuTriggerFor]="beforeMenu"> {{child1.title}} <mat-icon>expand_more</mat-icon>
-                    </button>
-                    <mat-menu #beforeMenu="matMenu" xPosition="after">
-                        <ng-container *ngFor="let child2 of getChildren(child1.id)">
-                            <button mat-menu-item [matMenuTriggerFor]="beforeMenu" > {{child2.title}} </button>
-                            <mat-menu #beforeMenu="matMenu" xPosition="after">  
-                                <ng-container *ngFor="let child3 of getChildren(child2.id)">
-                                    <button mat-menu-item [matMenuTriggerFor]="beforeMenu" > {{child3.title}} </button>
-                                    <mat-menu #beforeMenu="matMenu" xPosition="after"> 
-										<ng-container *ngFor="let child4 of getChildren(child3.id)">
-											<button mat-menu-item [matMenuTriggerFor]="beforeMenu" > {{child4.title}} </button>
-											<mat-menu #beforeMenu="matMenu" xPosition="after">  
-											</mat-menu>
-										</ng-container>
-                                    </mat-menu>
-                                </ng-container>
-                            </mat-menu>
-                        </ng-container>
-                    </mat-menu>
-                </ng-container>
-            </div>
-        </div>
-    </div>
-</mat-toolbar>
+<mat-toolbar class="menu-bar mat-elevation-z1">
+    <span *ngFor="let item of getSecondLevelMenu()">
+      <!-- Handle branch node buttons here -->
+      <span *ngIf="item.children && item.children.length > 0">
+        <button mat-button [matMenuTriggerFor]="menu.childMenu"
+        [disabled]="item.disabled">
+          {{item.title}}
+        </button>
+        <app-menu-item #menu [items]="item.children"></app-menu-item>
+      </span>
+      <!-- Leaf node buttons here -->
+      <span *ngIf="!item.children || item.children.length === 0">
+        <button mat-button color="primary" [routerLink]="item.route">
+          {{item.title}}
+        </button>
+      </span>
+    </span>
+  </mat-toolbar>
+

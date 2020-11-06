@@ -30,6 +30,9 @@
         {"id":6, "title": "Appliance Repair", "description": "", "published": true,"hierarchyPath":"-2--6-","parentId":2,"serviceLayer": false, "end": false,"status":0},
         {"id":7, "title": "Car Care Services", "description": "", "published": true,"hierarchyPath":"-2--7-","parentId":2,"serviceLayer": false, "end": false,"status":0},
         {"id":8, "title": "AC Repair Services", "description": "", "published": true,"hierarchyPath":"-2--6--8-","parentId":6,"serviceLayer": false, "end": false,"status":0},
-        {"id":9, "title": "TV Repair Services ", "description": "", "published": true,"hierarchyPath":"-2--6--9-","parentId":7,"serviceLayer": false, "end": false,"status":0}
+        {"id":9, "title": "TV Repair Services ", "description": "", "published": true,"hierarchyPath":"-2--6--9-","parentId":6,"serviceLayer": false, "end": false,"status":0},
+        {"id":10, "title": "AC Repair 2", "description": "", "published": true,"hierarchyPath":"-2--6--8--10-","parentId":8,"serviceLayer": false, "end": false,"status":0},
+        {"id":11, "title": "AC Repair 2.1", "description": "", "published": true,"hierarchyPath":"-2--6--8--10--11-","parentId":10,"serviceLayer": false, "end": false,"status":0}
+
     ]
 }

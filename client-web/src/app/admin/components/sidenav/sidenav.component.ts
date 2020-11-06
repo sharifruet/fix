@@ -21,7 +21,7 @@ const TREE_DATA = [
     icon:'perm_media',
     children: [
       {name: 'Add New', link:'/admin/media-upload'},
-      {name: 'All Media', link:'/admin/service-list'},
+      {name: 'All Media', link:'/admin/media'},
     ]
   },
   {
