@@ -8,8 +8,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 export class MenuItemComponent implements OnInit {
 
   @Input() items:any;
-  @ViewChild('childMenu') public childMenu;
-
+  @ViewChild('childMenu', {static: true}) public childMenu: any[];
 
   constructor() { }
 

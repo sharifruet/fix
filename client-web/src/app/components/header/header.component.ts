@@ -9,9 +9,9 @@ import { ServiceHierarchyService } from '../../services/service-hierarchy.servic
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  serviceHierarchies:any;
+  serviceHierarchies:any = [];
   initalParent:number = 1;
-  serviceHLayer1;
+  topLevelMenu : any;
 
   constructor(public dialog: MatDialog, private servicehierarchy:ServiceHierarchyService) { }
 
@@ -22,37 +22,27 @@ export class HeaderComponent implements OnInit {
   getServiceHierarchyParent(){
     this.servicehierarchy.getAll().subscribe(data=>{
       this.serviceHierarchies = data;
-      this.serviceHLayer1 = this.serviceHierarchies.filter((sh) => sh.parentId == -1);
-      this.getChildrenTree(this.initalParent);
+      this.topLevelMenu = this.serviceHierarchies.filter((sh:any) => sh.parentId == -1);
+      
+      this.serviceHierarchies.forEach(element => {
+        element.children = this.getChildren(element.id);
+      });
+
     });
   }
   
   getChildren(parentId : number){
-    let c = this.serviceHierarchies.filter((sh) => sh.parentId == parentId);
+    let c = this.serviceHierarchies.filter((sh:any) => sh.parentId == parentId);
     return c;
   }
-  navItem:any;
-  getChildrenTree(id : number){
-	  let tree = this.getChildren(id);
-	  tree.forEach(node=>{
-		  node.children = this.getChildren(node.id);
-		  node.children.forEach(node1=>{
-			  node1.children = this.getChildren(node1.id);
-				node1.children.forEach(node2=>{
-          node2.children = this.getChildren(node2.id);
-          node2.children.forEach(node3=>{
-            node3.children = this.getChildren(node3.id);
-            node3.children.forEach(node4=>{
-              node4.children = this.getChildren(node4.id);
-            });
-          });
-			  });
-		  });
-	  });
-  this.navItem = tree;
-  
-	 
-  console.log(tree);
+
+
+  changeTopLevelMenu(id : number): void{
+    this.initalParent = id;
+  }
+
+  getSecondLevelMenu(): any[]{
+    return this.serviceHierarchies.filter((sh) => sh.parentId == this.initalParent);
   }
 
   isSticky: boolean = false;
@@ -67,7 +57,4 @@ export class HeaderComponent implements OnInit {
       width:'500px'
     });
   }
-
-  
-
 }

@@ -56,7 +56,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AreaHierarchyAddComponent } from './admin/components/area-hierarchy-add/area-hierarchy-add.component';
 import { AreaHierarchyEditComponent } from './admin/components/area-hierarchy-edit/area-hierarchy-edit.component';
 import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-detail/area-hierarchy-detail.component';
-import { MenuItemComponent } from './components/menu-item/menu-item.component';
+import { MenuItemComponent } from './components/header/menu-item/menu-item.component';
 import { MediaComponent } from './admin/components/media/media.component';
 
 
@@ -101,7 +101,7 @@ import { MediaComponent } from './admin/components/media/media.component';
 	  AreaHierarchyEditComponent,
 	  AreaHierarchyDetailComponent,
 	  MenuItemComponent,
-	  MediaComponent,
+    MediaComponent,
   ],
   imports: [
     BrowserModule,
