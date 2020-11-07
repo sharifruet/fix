@@ -20,12 +20,13 @@ exports.create = (req, res) => {
     hierarchyPath: req.body.hierarchyPath ? req.body.hierarchyPath : false,
     parentId: req.body.parentId ? req.body.parentId : -1,
     serviceLayer: req.body.serviceLayer ? req.body.serviceLayer : false,
+    overview: req.body.overview,
+    detail: req.body.detail,
+    faq: req.body.faq,
     end: req.body.end ? req.body.end : false,
+    price: req.body.price,
     status: req.body.status ? req.body.status : false
-
   };
-
-
 
   addEntity(ServiceHierarchyModel, serviceHierarchy, (result) => {
 

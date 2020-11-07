@@ -8,7 +8,13 @@ module.exports = (sequelize, Sequelize) => {
 		serviceLayer: { type: Sequelize.BOOLEAN },
 		overview: { type: Sequelize.STRING },
 		detail: { type: Sequelize.STRING },
-		faq: { type: Sequelize.STRING },
+		faq: { type: Sequelize.STRING,
+			get: function() {
+			  return JSON.parse(this.getDataValue("faq"));
+			},
+			set: function(value) {
+			  return this.setDataValue("faq", JSON.stringify(value));
+			}},
 		end: { type: Sequelize.BOOLEAN },
 		price: { type: Sequelize.STRING },
 		status: { type: Sequelize.INTEGER }

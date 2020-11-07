@@ -55,7 +55,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     serviceLayer: '',
     overview:'',
     detail:'',
-    faq:'',
+    faq:[{'question':'', 'answer':''}],
     end: '',
     price:'',
     status: ''
@@ -105,6 +105,9 @@ export class ServiceHierarchyAddComponent implements OnInit {
     return this.serviceHParent.filter(option => option.title.toLowerCase().includes(filterValue));
   }
 
+  displayFn(parent) {
+    return this.serviceHParent.find(item => item.id === parent).title;
+}
 
 
   getAllServiceHierarchy(){
@@ -119,9 +122,6 @@ export class ServiceHierarchyAddComponent implements OnInit {
       });
  }
  
-displayFn(parent) {
-    return this.serviceHParent.find(item => item.id === parent).title;
-}
 
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
@@ -145,6 +145,7 @@ displayFn(parent) {
       price: this.serviceHierarchy.price,
       status: this.serviceHierarchy.status
     };
+    console.log(data);
     
     this.service.create(data)
       .subscribe(
@@ -170,7 +171,7 @@ displayFn(parent) {
       serviceLayer: '',
       overview:'',
       detail:'',
-      faq:'',
+      faq:[{'question':'', 'answer':''}],
       end: '',
       price: '',
       status: ''

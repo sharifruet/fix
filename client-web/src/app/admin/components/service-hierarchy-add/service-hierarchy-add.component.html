@@ -69,18 +69,18 @@
                 <mat-label>FAQ</mat-label>
                 <div fxLayout="row" fxLayoutGap="20px">
                     <div fxFlex="85">
-                        <ng-template #template>
+                        <ng-template #template *ngFor="let faq of serviceHierarchy.faq">
                             <div fxLayout="row" fxLayoutGap="20px">
                                 <div fxFlex="50">
                                     <mat-form-field class="input-width">
                                         <mat-label>Question</mat-label>
-                                        <input matInput required type="text">
+                                        <input matInput required type="text" [(ngModel)]="faq.question">
                                     </mat-form-field>
                                 </div>
                                 <div fxFlex="50">
                                     <mat-form-field class="input-width">
                                         <mat-label>Answer</mat-label>
-                                        <input matInput required type="text">
+                                        <input matInput required type="text" [(ngModel)]="faq.answer">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -99,12 +99,12 @@
 
         <div *ngIf="endLevel" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex="50">
-                <mat-slide-toggle (change)="on($event)"> Negotiable </mat-slide-toggle>
+                <mat-slide-toggle (change)="on($event)" [(ngModel)]="serviceHierarchy.price"> Negotiable </mat-slide-toggle>
             </div>
             <div fxFlex="50">
                 <mat-form-field class="input-width" *ngIf="!hidden">
                     <mat-label>Price</mat-label>
-                    <input matInput type="text">
+                    <input matInput type="text" [(ngModel)]="serviceHierarchy.price">
                 </mat-form-field>
             </div>
         </div>
