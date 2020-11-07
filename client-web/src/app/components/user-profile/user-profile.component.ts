@@ -7,7 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
+  profile : boolean = true;
+  editProfile : boolean;
+
   constructor() { }
+
+  openEditProfile() {
+
+    this.editProfile = true;
+    this.profile = false;
+
+  }
+  openProfile(){
+    this.editProfile = false;
+    this.profile = true;
+  }
 
   ngOnInit(): void {
   }

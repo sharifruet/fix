@@ -41,12 +41,36 @@ endLevel=false;
       this.hidden = false;
     }
   }
-
+ serviceHParent: any[] = [];
+  filteredOptions: Observable<any[]>;
+  myControl = new FormControl;
   
   constructor(private service: AreaHierarchyService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+	  this.getAllAreaHierarchy();
   }
+  
+    private _filterTour(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.serviceHParent.filter(option => option.title.toLowerCase().includes(filterValue));
+  }
+  
+  getAllAreaHierarchy(){
+     this.service.getAll().subscribe(
+      data => {
+        this.serviceHParent = data;
+        this.filteredOptions = this.myControl.valueChanges.pipe(
+          startWith(''),
+          map(value => typeof value === 'string' ? value : value.title),
+          map(value => value ? this._filterTour(value) : this.serviceHParent.slice())
+        );
+      });
+ }
+ 
+displayFn(parent) {
+    return this.serviceHParent.find(item => item.id === parent).title;
+}
 
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {

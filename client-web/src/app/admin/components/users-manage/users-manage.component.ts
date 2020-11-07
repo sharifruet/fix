@@ -9,6 +9,7 @@ import {UserAddComponent} from './user-add/user-add.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {UserDetailComponent} from './user-detail/user-detail.component';
 
+
 @Component({
   selector: 'app-users-manage',
   templateUrl: './users-manage.component.html',
@@ -31,9 +32,9 @@ services: any;
 
   constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
 
-
   ngOnInit(): void {
     this.getUsersManage();
+	//this.getRoles();
   }
 
   getUsersManage(): void {
@@ -121,6 +122,17 @@ deleteService(id): void {
         error => {
           console.log(error);
         });
+  }
+  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UserAddComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.openSnackBar = result;
+    });
   }
   
 }

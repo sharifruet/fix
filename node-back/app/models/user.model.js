@@ -22,10 +22,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     district: {
-      type: Sequelize.BIGINT
+      type: Sequelize.STRING
     },
     upazila: {
-      type: Sequelize.BIGINT
+      type: Sequelize.STRING
     },
     status: {
       type: Sequelize.INTEGER
