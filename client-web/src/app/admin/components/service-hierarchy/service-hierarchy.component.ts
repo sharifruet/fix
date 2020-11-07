@@ -69,7 +69,7 @@ export class ServiceHierarchyComponent implements OnInit {
   // add serviceHierarchy dialog
   addItemDialog() {
     const dialogRef = this.dialog.open(ServiceHierarchyAddComponent, {
-      width:'450px'
+      width:'500px'
     });
     dialogRef.afterClosed().subscribe(result=>{
       this.refreshList();
