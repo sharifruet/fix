@@ -32,7 +32,11 @@ db.Privilege = require("./privilege.model.js")(sequelize, Sequelize);
 db.Fileupload = require("./fileupload.model.js")(sequelize, Sequelize);
 
 db.User.belongsToMany(db.Role, { through: 'UserRole' }); 
-db.Role.belongsToMany(db.Privilege, { through: 'RolePrivilege' }); 
+db.Role.belongsToMany(db.Privilege, { through: 'RolePrivilege' });
+ 
+db.Order = require("./order.model.js")(sequelize, Sequelize);
+db.OrderItems = require("./orderItems.model.js")(sequelize, Sequelize);
+db.OrderItemPayment = require("./orderItemPayment.model.js")(sequelize, Sequelize);
 
 module.exports = db;
 

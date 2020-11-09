@@ -1,0 +1,28 @@
+module.exports = app => {
+    const order = require("../controllers/order.controller.js");
+  
+    var router = require("express").Router();
+  
+    // Create a new Service
+    router.post("/", order.create);
+  
+    // Retrieve all Services
+    router.get("/", order.findAll);
+  
+    // Retrieve all published Services
+    //router.get("/published", order.findAllPublished);
+  
+    // Retrieve a single Service with id
+    router.get("/:id", order.findOne);
+  
+    // Update a Service with id
+    router.put("/:id", order.update);
+  
+    // Delete a Service with id
+    router.delete("/:id", order.delete);
+  
+    // Delete all Services
+   // router.delete("/", order.deleteAll);
+  
+    app.use('/api/orders', router);
+  };
