@@ -20,6 +20,10 @@ import { MediaUploadComponent } from '../admin/components/media-upload/media-upl
 import { UserProfileComponent } from '../components/user-profile/user-profile.component';
 import { AreaHierarchyComponent } from '../admin/components/area-hierarchy/area-hierarchy.component';
 import { MediaComponent } from '../admin/components/media/media.component';
+import { OrdersComponent } from '../admin/components/orders/orders.component';
+import { OrderItemComponent } from '../admin/components/order-item/order-item.component';
+import { OrderItemPaymentComponent } from '../admin/components/order-item-payment/order-item-payment.component';
+
 
 
 const routes: Routes = [
@@ -83,6 +87,18 @@ const routes: Routes = [
 	{
       path:'area-hierarchy',
       component:AreaHierarchyComponent
+    },
+    {
+      path:'orders',
+      component:OrdersComponent
+    },
+    {
+      path:'order-item',
+      component:OrderItemComponent
+    },
+    {
+      path:'order-item-payment',
+      component:OrderItemPaymentComponent
     }
   ] },
 
