@@ -59,6 +59,9 @@ import { AreaHierarchyEditComponent } from './admin/components/area-hierarchy-ed
 import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-detail/area-hierarchy-detail.component';
 import { MenuItemComponent } from './components/header/menu-item/menu-item.component';
 import { MediaComponent } from './admin/components/media/media.component';
+import { OrdersComponent } from './admin/components/orders/orders.component';
+import { OrderItemComponent } from './admin/components/order-item/order-item.component';
+import { OrderItemPaymentComponent } from './admin/components/order-item-payment/order-item-payment.component';
 
 
 @NgModule({
@@ -103,6 +106,9 @@ import { MediaComponent } from './admin/components/media/media.component';
 	  AreaHierarchyDetailComponent,
 	  MenuItemComponent,
     MediaComponent,
+    OrdersComponent,
+    OrderItemComponent,
+    OrderItemPaymentComponent,
   ],
   imports: [
     BrowserModule,

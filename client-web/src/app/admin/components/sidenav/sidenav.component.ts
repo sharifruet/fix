@@ -39,6 +39,15 @@ const TREE_DATA = [
     ]
   },
   {
+    name: 'Orders',
+    icon:'how_to_vote',
+    children: [
+      {name: 'Order', link:'/admin/orders'},
+      {name: 'Order Items', link:'/admin/order-item'},
+      {name: 'Order Item Payment', link:'/admin/order-item-payment'},
+    ]
+  },
+  {
     name: 'Users',
     icon:'group',
     children: [

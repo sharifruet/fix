@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
     this.servicehierarchy.getAll().subscribe(data=>{
       this.serviceHierarchies = data;
       this.topLevelMenu = this.serviceHierarchies.filter((sh:any) => sh.parentId == -1);
-      
       this.serviceHierarchies.forEach(element => {
         element.children = this.getChildren(element.id);
       });
