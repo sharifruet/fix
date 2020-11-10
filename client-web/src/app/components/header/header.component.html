@@ -18,7 +18,7 @@
             <div>
                 <button *ngFor="let menuItem of topLevelMenu" mat-button
                     (click)="changeTopLevelMenu(menuItem.id)"
-                    [class.selected]="[(initalParent==menuItem.id)?'true':'false']">{{menuItem.title}}</button>
+                    [class.selected]="initalParent===menuItem.id">{{menuItem.title}}</button>
                 <button mat-icon-button class="cart">
                     <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
@@ -34,13 +34,13 @@
       <span *ngIf="item.children && item.children.length > 0">
         <button mat-button [matMenuTriggerFor]="menu.childMenu"
         [disabled]="item.disabled">
-          {{item.title}}
+          {{item.title}} <mat-icon>expand_more</mat-icon>
         </button>
         <app-menu-item #menu [items]="item.children"></app-menu-item>
       </span>
       <!-- Leaf node buttons here -->
       <span *ngIf="!item.children || item.children.length === 0">
-        <button mat-button color="primary" [routerLink]="item.route">
+        <button mat-button [routerLink]="item.route">
           {{item.title}}
         </button>
       </span>
