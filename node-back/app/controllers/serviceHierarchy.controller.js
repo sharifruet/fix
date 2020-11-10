@@ -32,20 +32,21 @@ exports.create = (req, res) => {
 
     if (result.status == 0) {
       serviceHierarchy = result.data;
-      //console.log(serviceHierarchy);
+      console.log("Inserted");
+	  
       getById(ServiceHierarchyModel, serviceHierarchy.parentId, (parent) => {
-        console.log("--parent--");
-        console.log(parent);
 
-        console.log("==parent==");
         let hierarchyPath = '';
         if (parent.status == 0 && parent.data != null) {
           hierarchyPath = parent.data.hierarchyPath + '-' + serviceHierarchy.id + '-';
         } else {
           hierarchyPath = '-' + serviceHierarchy.id + '-';
         }
+		let updateJson = { hierarchyPath: hierarchyPath };
+	
         updateEntity(ServiceHierarchyModel, { hierarchyPath: hierarchyPath }, serviceHierarchy.id, (result) => {
           if (result.status == 0) {
+
             res.send(result);
           } else {
             res.status(500).send(result);
