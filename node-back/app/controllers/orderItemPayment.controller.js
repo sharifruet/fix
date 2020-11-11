@@ -4,26 +4,27 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Service
 exports.create = (req, res) => {
-	console.log();
-    // Validate request
-    if (!req.body.orderItemId) {
-      res.status(400).send({
-			status:1,
-			message: "Order number can not be empty!",
-			data:[]
-      });
-      return;
-    }
-    // Create a Service
+  console.log();
+  // Validate request
+  if (!req.body.orderItemId) {
+    res.status(400).send({
+      status: 1,
+      message: "Order item id can not be empty!",
+      data: []
+    });
+    return;
+  }
+  // Create a Service
   let orderItemPayment = {
     orderItemId: req.body.orderItemId,
     amount: req.body.amount,
-	paymentStatus : req.body.paymentStatus ,
-	paymentDate: req.body.paymentDate,
+    paymentStatus: req.body.paymentStatus,
+    paymentDate: req.body.paymentDate,
     returnedDate: req.body.returnedDate
   };
+
   addEntity(orderItemPaymentModel, orderItemPayment, (result) => {
-    
+
     if (result.status == 0) {
       res.send(result);
     } else {
@@ -33,19 +34,23 @@ exports.create = (req, res) => {
   });
 }
 
-// Retrieve all Service from the database.
+// Retrieve all order item payment from the database.
 exports.findAll = (req, res) => {
-  var condition =  {} ;
+  var condition = {};
 
   orderItemPaymentModel.findAll({ where: condition })
-  
+
     .then(data => {
-      res.send(data);
+      res.send({
+        status: 0,
+        message: 'Fetch successful',
+        data: data
+      });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Service."
+          err.message || "Some error occurred while retrieving Order item payment."
       });
     });
 };
@@ -63,20 +68,20 @@ exports.findOne = (req, res) => {
   });
 }
 
-// Update a Service by the id in the request
+// Update order item payment by the id in the request
 exports.update = (req, res) => {
-    const id = req.params.id;
-  
-    updateEntity(orderItemPaymentModel, req.body,id, (result)=>{
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
-      }
-    });
-     
-  }
-// Delete a Service with the specified id in the request
+  const id = req.params.id;
+
+  updateEntity(orderItemPaymentModel, req.body, id, (result) => {
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
+
+}
+// Delete order item payment with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -86,7 +91,7 @@ exports.delete = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Service was deleted successfully!"
+          message: "Order item Payment was deleted successfully!"
         });
       } else {
         res.send({
@@ -105,13 +110,17 @@ exports.delete = (req, res) => {
 // Find all isEnd Service
 exports.findByFilter = (req, res) => {
   orderItemPaymentModel.findAll({ where: req.body })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
-      });
+  .then(data => {
+    res.send({
+      status: 0,
+      message: 'Fetch successful',
+      data: data
     });
+  })
+  .catch(err => {
+    res.status(500).send({
+      status: 1,
+      message: err.message || "Some error occurred while creating the Service.",
+    });
+  });
 };

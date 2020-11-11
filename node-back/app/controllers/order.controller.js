@@ -2,62 +2,60 @@ const db = require("../models");
 const orderModel = db.Order;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Service
+// Create and Save a new order
 exports.create = (req, res) => {
-	console.log();
-    // Validate request
-    if (!req.body.orderNumber) {
-      res.status(400).send({
-			status:1,
-			message: "Order number can not be empty!",
-			data:[]
-      });
-      return;
-    }
-    // Create a Service
+  console.log();
+  // Validate request
+  if (!req.body.orderNumber) {
+    res.status(400).send({
+      status: 1,
+      message: "Order number can not be empty!",
+      data: []
+    });
+    return;
+  }
+  // Create a order
   let order = {
     orderNumber: req.body.orderNumber,
     userId: req.body.userId,
-	cartOrOrder: req.body.cartOrOrder,
-	orderDate: req.body.orderDate,
+    cartOrOrder: req.body.cartOrOrder,
+    orderDate: req.body.orderDate,
     paymentType: req.body.paymentType
   };
-  
+
   addEntity(orderModel, order, (result) => {
-    
     if (result.status == 0) {
       res.send(result);
     } else {
       res.status(500).send(result);
     }
-
   });
-
 }
 
-// Retrieve all Service from the database.
+// Retrieve all order from the database.
 exports.findAll = (req, res) => {
   var condition = {};
-
   orderModel.findAll({ where: condition })
-  
     .then(data => {
-      res.send(data);
+      res.send({
+        status: 0,
+        message: 'Fetch successful',
+        data: data
+      });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Service."
+          err.message || "Some error occurred while retrieving order."
       });
     });
 };
 
 
 
-// Find a single Service with an id
+// Find a single order with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
   getById(orderModel, id, (result) => {
     if (result.status == 0) {
       res.send(result);
@@ -69,58 +67,59 @@ exports.findOne = (req, res) => {
 
 // Update a Service by the id in the request
 exports.update = (req, res) => {
-    const id = req.params.id;
-  
-    updateEntity(orderModel, req.body,id, (result)=>{
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
-      }
-    });
-     
-  }
+  const id = req.params.id;
+
+  updateEntity(orderModel, req.body, id, (result) => {
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
+
+}
 
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.id;
-  
-    orderModel.destroy({
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Service was deleted successfully!"
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Service with id=" + id
+  const id = req.params.id;
+
+  orderModel.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Service was deleted successfully!"
         });
+      } else {
+        res.send({
+          message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Service with id=" + id
       });
-  };
+    });
+};
 
 
 // Find all isEnd Service
 exports.findByFilter = (req, res) => {
 
   orderModel.findAll({ where: req.body })
-      .then(data => {
-        res.send({
-          status:0,
-          message:'Fetch successful',
-          data:data});
-      })
-      .catch(err => {
-        res.status(500).send( {
-          status:1,
-          message: err.message || "Some error occurred while creating the Service.",
-        });
+    .then(data => {
+      res.send({
+        status: 0,
+        message: 'Fetch successful',
+        data: data
       });
+    })
+    .catch(err => {
+      res.status(500).send({
+        status: 1,
+        message: err.message || "Some error occurred while creating the Service.",
+      });
+    });
 };

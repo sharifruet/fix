@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '../../../services/user.service';
+import { OrderItemPaymentService } from '../../../services/order-item-payment.service';
 
 @Component({
   selector: 'app-order-item-payment',
@@ -16,18 +16,36 @@ export class OrderItemPaymentComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-services: any;
+  services: any;
   currentService = null;
   currentIndex = -1;
   title = '';
 
-  displayedColumns = ['orderItemId','amount', 'paymentStatus','paymentDate','returnDate','action'];
+  displayedColumns = ['orderItemId','amount', 'paymentStatus','paymentDate','returnDate', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
+  constructor(private orders:OrderItemPaymentService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
-    
+    this.getOrderItemPayment();
+  }
+
+  getOrderItemPayment(): void {
+    this.orders.getAll()
+      .subscribe(
+        result => {
+			if(result.status ==0){
+			  this.dataSource = new MatTableDataSource<any>(result.data);
+			  this.dataSource.paginator = this.paginator;
+			  this.dataSource.sort = this.sort;
+			  console.log(result.data);
+			}else{
+				console.log(result.message);
+			}
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   applyFilter(event: Event) {
@@ -39,12 +57,9 @@ services: any;
   }
 
 
-  getAreaName(areaId: number) : string{
-    return "Test "+areaId;
-  }
   
   refreshList(): void {
-    //this.retrieveServices();
+    this.getOrderItemPayment();
     this.currentService = null;
     this.currentIndex = -1;
   }
@@ -57,22 +72,24 @@ services: any;
     });
   }
 
-setActiveService(service, index): void {
-    this.currentService = service;
-    this.currentIndex = index;
+  // view order
+  viewOrderPayment(id):void{
+    
   }
 
-deleteService(id): void {
-    this.service.delete(id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('The order item deleted successfully');
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
+  deleteOrderPayment(id): void {
+   if(confirm("Are you sure to delete?")){
+    this.orders.delete(id)
+    .subscribe(
+      response => {
+        console.log(response);
+        this.openSnackBar('The order item payment deleted successfully');
+        this.refreshList();
+      },
+      error => {
+        console.log(error);
+      });
+   }
   }
 
   
