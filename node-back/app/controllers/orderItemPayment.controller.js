@@ -20,7 +20,8 @@ exports.create = (req, res) => {
     amount: req.body.amount,
 	paymentStatus : req.body.paymentStatus ,
 	paymentDate: req.body.paymentDate,
-    returnedDate: req.body.returnedDate
+    returnedDate: req.body.returnedDate,
+	status: req.body.status? req.body.status : 0,
   };
   addEntity(orderItemPaymentModel, orderItemPayment, (result) => {
     
@@ -79,26 +80,15 @@ exports.update = (req, res) => {
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-
-  orderItemPaymentModel.destroy({
-    where: { id: id }
-  })
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "Service was deleted successfully!"
-        });
-      } else {
-        res.send({
-          message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Could not delete Service with id=" + id
-      });
-    });
+  
+	updateEntity(orderItemPaymentModel, {status:1}, id, (result)=>{
+		if (result.status == 0) {
+          res.send(result);
+        } else {
+          res.status(500).send(result);
+        }
+  });
+ 
 };
 
 

@@ -5,6 +5,7 @@ module.exports = (sequelize, Sequelize) => {
 		cartOrOrder: { type: Sequelize.BOOLEAN },
 		orderDate: { type: Sequelize.DATE },
 		paymentType: { type: Sequelize.STRING },
+		 status: { type: Sequelize.BOOLEAN}
 		
 	});
 	return order;

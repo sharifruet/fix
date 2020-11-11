@@ -4,7 +4,8 @@ module.exports = (sequelize, Sequelize) => {
 		amount: { type: Sequelize.INTEGER },
 		paymentStatus : { type: Sequelize.BOOLEAN },
 		paymentDate: { type: Sequelize.DATE },
-		returnedDate: { type: Sequelize.DATE }
+		returnedDate: { type: Sequelize.DATE },
+		status: { type: Sequelize.BOOLEAN }
 		
 	});
 	return orderItemPayment;
