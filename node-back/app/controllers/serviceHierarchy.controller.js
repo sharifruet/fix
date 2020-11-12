@@ -20,31 +20,33 @@ exports.create = (req, res) => {
     hierarchyPath: req.body.hierarchyPath ? req.body.hierarchyPath : false,
     parentId: req.body.parentId ? req.body.parentId : -1,
     serviceLayer: req.body.serviceLayer ? req.body.serviceLayer : false,
+    overview: req.body.overview,
+    detail: req.body.detail,
+    faq: req.body.faq,
     end: req.body.end ? req.body.end : false,
+    price: req.body.price,
     status: req.body.status ? req.body.status : false
-
   };
-
-
 
   addEntity(ServiceHierarchyModel, serviceHierarchy, (result) => {
 
     if (result.status == 0) {
       serviceHierarchy = result.data;
-      //console.log(serviceHierarchy);
+      console.log("Inserted");
+	  
       getById(ServiceHierarchyModel, serviceHierarchy.parentId, (parent) => {
-        console.log("--parent--");
-        console.log(parent);
 
-        console.log("==parent==");
         let hierarchyPath = '';
         if (parent.status == 0 && parent.data != null) {
           hierarchyPath = parent.data.hierarchyPath + '-' + serviceHierarchy.id + '-';
         } else {
           hierarchyPath = '-' + serviceHierarchy.id + '-';
         }
+		let updateJson = { hierarchyPath: hierarchyPath };
+	
         updateEntity(ServiceHierarchyModel, { hierarchyPath: hierarchyPath }, serviceHierarchy.id, (result) => {
           if (result.status == 0) {
+
             res.send(result);
           } else {
             res.status(500).send(result);

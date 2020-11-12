@@ -41,9 +41,6 @@ db.OrderItemPayment = require("./orderItemPayment.model.js")(sequelize, Sequeliz
 module.exports = db;
 
 addEntity = (model, entity, cb) => {
-
-  console.log(' - role - ');
-
   model.create(entity)
     .then(data => {
       cb({
@@ -82,7 +79,9 @@ updateEntity = (model, entity, id, cb) => {
       }
     })
     .catch(err => {
-      cb( {
+      console.log("Error @ Update");
+      cb({
+        
         status:1,
         message: err.message || "Some error occurred while creating the Service.",
       });

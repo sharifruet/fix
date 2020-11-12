@@ -1,5 +1,9 @@
 
 /* footer */
+ul{
+    padding-left:15px;
+    margin:0;
+}
 footer{
     color: #000000;;
 }
