@@ -5,7 +5,7 @@ module.exports = app => {
   
     // Create a new Service
     router.post("/", order.create);
-  
+  router.post("/filter", order.findByFilter);
     // Retrieve all Services
     router.get("/", order.findAll);
   
@@ -24,5 +24,5 @@ module.exports = app => {
     // Delete all Services
    // router.delete("/", order.deleteAll);
   
-    app.use('/api/orders', router);
+    app.use('/api/order', router);
   };

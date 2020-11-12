@@ -18,9 +18,10 @@ exports.create = (req, res) => {
   let order = {
     orderNumber: req.body.orderNumber,
     userId: req.body.userId,
-    cartOrOrder: req.body.cartOrOrder,
-    orderDate: req.body.orderDate,
-    paymentType: req.body.paymentType
+	cartOrOrder: req.body.cartOrOrder,
+	orderDate: req.body.orderDate,
+    paymentType: req.body.paymentType,
+	status: req.body.status? req.body.status : 0
   };
 
   addEntity(orderModel, order, (result) => {
@@ -82,7 +83,6 @@ exports.update = (req, res) => {
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-
   orderModel.destroy({
     where: { id: id }
   })
@@ -107,7 +107,6 @@ exports.delete = (req, res) => {
 
 // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-
   orderModel.findAll({ where: req.body })
     .then(data => {
       res.send({

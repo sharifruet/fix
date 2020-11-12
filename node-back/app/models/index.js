@@ -67,6 +67,7 @@ updateEntity = (model, entity, id, cb) => {
     where: { id: id }
   })
     .then(num => {
+		console.log(num);
       if (num >= 1) {
         cb({
           status:0,
