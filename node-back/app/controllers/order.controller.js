@@ -20,7 +20,8 @@ exports.create = (req, res) => {
     userId: req.body.userId,
 	cartOrOrder: req.body.cartOrOrder,
 	orderDate: req.body.orderDate,
-    paymentType: req.body.paymentType
+    paymentType: req.body.paymentType,
+	status: req.body.status? req.body.status : 0
   };
   
   addEntity(orderModel, order, (result) => {
@@ -83,44 +84,26 @@ exports.update = (req, res) => {
 
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.id;
+  const id = req.params.id;
   
-    orderModel.destroy({
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Service was deleted successfully!"
-          });
+	updateEntity(orderModel, {status:1}, id, (result)=>{
+		if (result.status == 0) {
+          res.send(result);
         } else {
-          res.send({
-            message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
-          });
+          res.status(500).send(result);
         }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Service with id=" + id
-        });
-      });
-  };
+  });
+ 
+};
 
 
 // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-
-  orderModel.findAll({ where: req.body })
-      .then(data => {
-        res.send({
-          status:0,
-          message:'Fetch successful',
-          data:data});
-      })
-      .catch(err => {
-        res.status(500).send( {
-          status:1,
-          message: err.message || "Some error occurred while creating the Service.",
-        });
-      });
+  getByFilter(orderModel, req.body,(result)=>{
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
 };

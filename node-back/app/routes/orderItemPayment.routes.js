@@ -5,7 +5,7 @@ module.exports = app => {
   
     // Create a new Service
     router.post("/", orderItemPayment.create);
-  
+    router.post("/filter", orderItemPayment.findByFilter);
     // Retrieve all Services
     router.get("/", orderItemPayment.findAll);
   

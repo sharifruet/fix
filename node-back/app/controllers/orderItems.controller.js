@@ -20,10 +20,11 @@ exports.create = (req, res) => {
     serviceHierarchyId: req.body.serviceHierarchyId,
 	quantity: req.body.quantity,
 	orderStatus: req.body.orderStatus,
-   deliveryDate: req.body.deliveryDate,
+    deliveryDate: req.body.deliveryDate,
    	price: req.body.price,
 	serviceProviderId: req.body.serviceProviderId,
-		areaHierarchyId: req.body.areaHierarchyId,
+	areaHierarchyId: req.body.areaHierarchyId,
+	status: req.body.status? req.body.status : 0
   };
     addEntity(orderItemsModel, orderItems, (result) => {
     
@@ -72,53 +73,31 @@ exports.findOne = (req, res) => {
 
 // Update a Service by the id in the request
 exports.update = (req, res) => {
-  const id = req.params.id;
-
-  orderItemsModel.update(req.body, {
-    where: { id: id }
-  })
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "Service was updated successfully."
-        });
+    const id = req.params.id;
+  
+    updateEntity(orderItemsModel, req.body,id, (result)=>{
+      if (result.status == 0) {
+        res.send(result);
       } else {
-        res.send({
-          message: `Cannot update Service with id=${id}. Maybe Service was not found or req.body is empty!`
-        });
+        res.status(500).send(result);
       }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error updating Service with id=" + id
-      });
     });
-};
+     
+  }
 
 // Delete a Service with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.id;
+  const id = req.params.id;
   
-    orderItemsModel.destroy({
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Service was deleted successfully!"
-          });
+	updateEntity(orderItemsModel, {status:1}, id, (result)=>{
+		if (result.status == 0) {
+          res.send(result);
         } else {
-          res.send({
-            message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
-          });
+          res.status(500).send(result);
         }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Service with id=" + id
-        });
-      });
-  };
+  });
+ 
+};
 
 // Delete all Service from the database.
 exports.deleteAll = (req, res) => {
@@ -153,14 +132,11 @@ exports.findAllPublished = (req, res) => {
 
 // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  orderItemsModel.findAll({ where: req.body })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
-      });
-    });
+  getByFilter(orderItemsModel, req.body,(result)=>{
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
 };
