@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '../../../services/user.service';
+import { OrderItemsService } from '../../../services/order-items.service';
 
 @Component({
   selector: 'app-order-item',
@@ -16,7 +16,7 @@ export class OrderItemComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-services: any;
+  services: any;
   currentService = null;
   currentIndex = -1;
   title = '';
@@ -24,10 +24,28 @@ services: any;
   displayedColumns = ['orderId','serviceHierarchyId', 'serviceProviderId','areaHierarchyId','quantity','price','deliveryDate','orderStatus', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
+  constructor(private orders:OrderItemsService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
-    
+    this.getOrderItem();
+  }
+
+  getOrderItem(): void {
+    this.orders.getAll()
+      .subscribe(
+        result => {
+			if(result.status ==0){
+			  this.dataSource = new MatTableDataSource<any>(result.data);
+			  this.dataSource.paginator = this.paginator;
+			  this.dataSource.sort = this.sort;
+			  console.log(result.data);
+			}else{
+				console.log(result.message);
+			}
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   applyFilter(event: Event) {
@@ -39,12 +57,9 @@ services: any;
   }
 
 
-  getAreaName(areaId: number) : string{
-    return "Test "+areaId;
-  }
   
   refreshList(): void {
-    //this.retrieveServices();
+    this.getOrderItem();
     this.currentService = null;
     this.currentIndex = -1;
   }
@@ -57,22 +72,24 @@ services: any;
     });
   }
 
-setActiveService(service, index): void {
-    this.currentService = service;
-    this.currentIndex = index;
+  // view order
+  viewOrderItem(id):void{
+    
   }
 
-deleteService(id): void {
-    this.service.delete(id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('The order item deleted successfully');
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
+  deleteOrderItem(id): void {
+   if(confirm("Are you sure to delete?")){
+    this.orders.delete(id)
+    .subscribe(
+      response => {
+        console.log(response);
+        this.openSnackBar('The order deleted successfully');
+        this.refreshList();
+      },
+      error => {
+        console.log(error);
+      });
+   }
   }
 
   
