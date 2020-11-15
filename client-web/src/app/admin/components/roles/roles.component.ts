@@ -9,6 +9,7 @@ import { RoleService } from '../../../services/role.service';
 import {RoleAddComponent} from './role-add/role-add.component';
 import { RoleDetailComponent } from './role-detail/role-detail.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
+import { PriviligeAddComponent } from './privilige-add/privilige-add.component';
 
 import { AppSettings } from '../../../app.settings';
 
@@ -130,5 +131,12 @@ deleteService(id): void {
         });
   }
   
+  priviligeAss(): void {
+    const dialogRef = this.dialog.open(PriviligeAddComponent, {
+      width: '400px',
+      data: {}
+    });
+  
+}
 }
 
