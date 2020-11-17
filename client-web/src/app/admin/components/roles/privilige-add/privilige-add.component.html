@@ -1,0 +1,16 @@
+<div *ngIf="roles">
+<mat-card>
+<mat-card-content>
+<h2>Privilige Assign</h2>
+ <section class="example-section">
+      
+      <mat-radio-group [(ngModel)]="roles.name">
+        <mat-radio-button  *ngFor="let role of roles"> {{role.name}}</mat-radio-button>
+     
+      </mat-radio-group>
+    </section>
+</mat-card-content>
+</mat-card>
+    <button mat-raised-button (click)="updateService()">Update</button>
+   
+</div>

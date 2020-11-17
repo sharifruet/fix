@@ -12,6 +12,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularEditorModule } from '@kolkov/angular-editor'
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -38,16 +40,18 @@ import { UsersManageComponent } from './admin/components/users-manage/users-mana
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
 import { ServiceComponent } from './components/service/service.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
-import { RolesComponent } from './admin/components/roles/roles.component';
-import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
+
 import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
 import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
 import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
 import { AreaHierarchyComponent } from './admin/components/area-hierarchy/area-hierarchy.component';
 import { MediaUploadComponent } from './admin/components/media-upload/media-upload.component';
 
+import { RolesComponent } from './admin/components/roles/roles.component';
+import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
 import { RoleEditComponent } from './admin/components/roles/role-edit/role-edit.component';
 import { RoleDetailComponent } from './admin/components/roles/role-detail/role-detail.component';
+
 import { ServiceHierarchyAddComponent } from './admin/components/service-hierarchy-add/service-hierarchy-add.component';
 import { ServiceHierarchyEditComponent } from './admin/components/service-hierarchy-edit/service-hierarchy-edit.component';
 import { ServiceHierarchyDetailComponent } from './admin/components/service-hierarchy-detail/service-hierarchy-detail.component';
@@ -59,9 +63,12 @@ import { AreaHierarchyEditComponent } from './admin/components/area-hierarchy-ed
 import { AreaHierarchyDetailComponent } from './admin/components/area-hierarchy-detail/area-hierarchy-detail.component';
 import { MenuItemComponent } from './components/header/menu-item/menu-item.component';
 import { MediaComponent } from './admin/components/media/media.component';
+
 import { OrdersComponent } from './admin/components/orders/orders.component';
 import { OrderItemComponent } from './admin/components/order-item/order-item.component';
 import { OrderItemPaymentComponent } from './admin/components/order-item-payment/order-item-payment.component';
+
+import { PriviligeAddComponent } from './admin/components/roles/privilige-add/privilige-add.component';
 
 
 @NgModule({
@@ -109,6 +116,7 @@ import { OrderItemPaymentComponent } from './admin/components/order-item-payment
     OrdersComponent,
     OrderItemComponent,
     OrderItemPaymentComponent,
+    PriviligeAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,7 +151,8 @@ import { OrderItemPaymentComponent } from './admin/components/order-item-payment
 	  ServiceHierarchyAddComponent,
 	  AreaHierarchyDetailComponent,
 	  AreaHierarchyEditComponent,
-	  AreaHierarchyAddComponent
+	  AreaHierarchyAddComponent,
+	  PriviligeAddComponent
   ]
 })
 export class AppModule { }
