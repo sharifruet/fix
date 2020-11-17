@@ -68,7 +68,7 @@ import { OrdersComponent } from './admin/components/orders/orders.component';
 import { OrderItemComponent } from './admin/components/order-item/order-item.component';
 import { OrderItemPaymentComponent } from './admin/components/order-item-payment/order-item-payment.component';
 
-import { PriviligeAddComponent } from './admin/components/roles/privilige-add/privilige-add.component';
+import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/privilege-add.component';
 
 
 @NgModule({
@@ -116,7 +116,7 @@ import { PriviligeAddComponent } from './admin/components/roles/privilige-add/pr
     OrdersComponent,
     OrderItemComponent,
     OrderItemPaymentComponent,
-    PriviligeAddComponent,
+    PrivilegeAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -152,7 +152,7 @@ import { PriviligeAddComponent } from './admin/components/roles/privilige-add/pr
 	  AreaHierarchyDetailComponent,
 	  AreaHierarchyEditComponent,
 	  AreaHierarchyAddComponent,
-	  PriviligeAddComponent
+	  PrivilegeAddComponent
   ]
 })
 export class AppModule { }

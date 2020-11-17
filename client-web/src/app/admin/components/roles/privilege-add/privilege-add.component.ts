@@ -1,4 +1,3 @@
-//import { Component, OnInit } from '@angular/core';
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RolesComponent } from '../../roles/roles.component';
@@ -7,11 +6,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppSettings } from '../../../../app.settings';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 @Component({
-  selector: 'app-privilige-add',
-  templateUrl: './privilige-add.component.html',
-  styleUrls: ['./privilige-add.component.css']
+  selector: 'app-privilege-add',
+  templateUrl: './privilege-add.component.html',
+  styleUrls: ['./privilege-add.component.css']
 })
-export class PriviligeAddComponent implements OnInit {
+export class PrivilegeAddComponent implements OnInit {
 	roles ;
   constructor(private _snackBar: MatSnackBar,private service:RoleService){ }
 

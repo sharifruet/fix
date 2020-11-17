@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PriviligeAddComponent } from './privilige-add.component';
+import { PrivilegeAddComponent } from './privilege-add.component';
 
-describe('PriviligeAddComponent', () => {
-  let component: PriviligeAddComponent;
-  let fixture: ComponentFixture<PriviligeAddComponent>;
+describe('PrivilegeAddComponent', () => {
+  let component: PrivilegeAddComponent;
+  let fixture: ComponentFixture<PrivilegeAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PriviligeAddComponent ]
+      declarations: [ PrivilegeAddComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PriviligeAddComponent);
+    fixture = TestBed.createComponent(PrivilegeAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
