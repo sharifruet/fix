@@ -13,8 +13,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class ServiceHierarchyAddComponent implements OnInit {
 
-  question = '';
-  answer = '';
+  question:string = '';
+  answer:string = '';
   faqObj;
   faqs = [];
   addToList() {
@@ -179,6 +179,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
       price: '',
       status: ''
     }
+    this.faqs = [];
   }
 
 }

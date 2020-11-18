@@ -15,7 +15,6 @@ import { ServiceHierarchyEditComponent } from '../service-hierarchy-edit/service
   styleUrls: ['./service-hierarchy.component.css']
 })
 export class ServiceHierarchyComponent implements OnInit {
-  //comp = {title:"Service-hierarchy"};
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,6 +34,7 @@ export class ServiceHierarchyComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveServiceHierarchy();
   }
+
 
   getParentName(parentId: number) : string {
     let parent = this.serviceHierarchies.filter(sh=>sh.id==parentId);

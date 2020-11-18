@@ -65,6 +65,13 @@
                 <angular-editor id="editor2" [config]="editorConfig" [placeholder]="'Enter detail...'"
                     [(ngModel)]="serviceHierarchy.detail"></angular-editor>
             </div>
+            
+            <div *ngIf="faqs?.length > 0">
+                <ul class="faq">
+                    <li *ngFor="let faq of faqs"><span>{{faq.question}}</span> : {{faq.answer}}</li>
+                </ul>               
+            </div>
+            
             <div>
                 <mat-label>FAQ</mat-label>
                 <div fxLayout="row" fxLayoutGap="20px">
@@ -90,11 +97,6 @@
                         </button>
                     </div>
                 </div>
-            </div>
-            <div *ngIf="faqs?.length > 0">
-                <ul class="faq">
-                    <li *ngFor="let faq of faqs"><span>{{faq.question}}</span> : {{faq.answer}}</li>
-                </ul>               
             </div>
         </div>
 

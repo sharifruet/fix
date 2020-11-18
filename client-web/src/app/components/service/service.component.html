@@ -1,5 +1,7 @@
 
+{{serviceDetail|json}}
 
+<div *ngIf="serviceDetail">
 <div class="service-area" style="background-image:url('assets/images/laptop-servicing.jpg');">
     <div class="container">
         <div fxLaout="row">
@@ -32,15 +34,14 @@
         <div fxLayout="row" fxLayoutGap="30px">
             <div fxFlex="50">
                 <div class="service-content">
-                    <h2>Laptop Servicing</h2>
+                    <h2>{{serviceDetail.title}}</h2>
                     <div class="ratings">
                         <button mat-raised-button color="accent">
                             <mat-icon>star</mat-icon> 4.5 Out of 5
                         </button>
                         <span>( 100 ratings on 2 services)</span>
                     </div>
-                    <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate
-                        the visual form of a document or a typeface without relying on meaningful content. </p>
+                    <p>{{serviceDetail.description}}</p>
                 </div>
             </div>
             <div fxFlex="50">
@@ -78,26 +79,11 @@
                         </ng-template>
 
                         <div class="description-block">
-                            <h2>Overview of Laptop servicing</h2>
+                            <h2>Overview of {{serviceDetail.title}}</h2>
                             <div class="service-content">
-                                <ul>
-                                    <li>
-                                        <mat-icon>check</mat-icon> In publishing and graphic design
-                                    </li>
-                                    <li>
-                                        <mat-icon>check</mat-icon> Lorem ipsum is a placeholder text commonly
-                                    </li>
-                                    <li>
-                                        <mat-icon>check</mat-icon> A document or a typeface without relying on
-                                        meaningful content
-                                    </li>
-                                    <li>
-                                        <mat-icon>check</mat-icon> In publishing and graphic design
-                                    </li>
-                                </ul>
+                                {{serviceDetail.overview}}
                             </div>
                         </div>
-
                     </mat-tab>
                     <mat-tab label="Tab Two">
                         <ng-template mat-tab-label>
@@ -105,40 +91,17 @@
                             <p>FAQ</p>
                         </ng-template>
                         <div class="description-block">
-                            <mat-accordion>
-                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            {{serviceDetail.faq}}
+                            <!-- <mat-accordion>
+                                <mat-expansion-panel *ngFor="let serviceHFaq of serviceDetail.faq" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                                     <mat-expansion-panel-header>
                                         <mat-panel-title>
-                                            Self aware panel
+                                            {{serviceHFaq.question}}
                                         </mat-panel-title>
                                     </mat-expansion-panel-header>
-                                    <p>I'm visible because I am open</p>
+                                    <p>{{serviceHFaq.answer}}</p>
                                 </mat-expansion-panel>
-                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            Self aware panel
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
-                                    <p>I'm visible because I am open</p>
-                                </mat-expansion-panel>
-                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            Self aware panel
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
-                                    <p>I'm visible because I am open</p>
-                                </mat-expansion-panel>
-                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            Self aware panel
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
-                                    <p>I'm visible because I am open</p>
-                                </mat-expansion-panel>
-                            </mat-accordion>
+                            </mat-accordion> -->
                         </div>
                     </mat-tab>
 
@@ -195,13 +158,7 @@
                         <div class="description-block">
                             <div class="content">
                                 <h2>Details</h2>
-                                <p>Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a
-                                    document or a typeface without relying Lorem ipsum is a placeholder text commonly
-                                    used to demonstrate the visual form of a document or a typeface without relying</p>
-                                <h4>About Fix All's Laptop Repairing Service</h4>
-                                <p>Lorem ipsum is a placeholder text commonly
-                                    used to demonstrate the visual form of a document or a typeface without relying</p>
-
+                                {{serviceDetail.detail}}
                             </div>
                         </div>
                     </mat-tab>
@@ -210,7 +167,7 @@
             </div>
             <div fxFlex="35">
                 <div class="service-sub-category">
-                    <h2>Laptop servicing</h2>
+                    <h2>{{serviceDetail.title}}</h2>
                     <div matRipple class="tab-item" (click)="openAddToCart()">
                         <div>
                             <img src="assets/images/laptop.jpg">
@@ -299,4 +256,6 @@
         </owl-carousel-o>
 
     </div>
+</div>
+
 </div>

@@ -15,23 +15,26 @@ export class ServiceComponent implements OnInit {
   panelOpenState = false;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ServiceHierarchyService, private location: Location) { }
   
-  
-  myParam: number;
+  serviceDetail;
   ngOnInit(): void {
-    this.route.params.subscribe((params) => this.myParam = params['id']);
-    this.retriveService();
+    this.route.paramMap.subscribe(params => { 
+      console.log(params);
+       let id = params.get('id');
+       this.getServiceDetail(id);
+   });
   }
 
-  retriveService(): void{
-    this.service.get(this.myParam).subscribe(
-      data => {
-        this.service = data;
+  getServiceDetail(id): void {
+    this.service.get(id)
+      .subscribe(data => {
+        this.serviceDetail = data.data;
       },
       error => {
         console.log(error);
-      }
-    );
+      });
   }
+  
+  
 
   openAddToCart(){
     const dialogRef = this.dialog.open(AddToCartComponent, {
