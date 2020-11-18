@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import {  AddToCartComponent } from '../add-to-cart/add-to-cart.component'
 
 @Component({
@@ -10,10 +13,24 @@ import {  AddToCartComponent } from '../add-to-cart/add-to-cart.component'
 export class ServiceComponent implements OnInit {
 
   panelOpenState = false;
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ServiceHierarchyService, private location: Location) { }
   
+  
+  myParam: number;
   ngOnInit(): void {
+    this.route.params.subscribe((params) => this.myParam = params['id']);
+    this.retriveService();
+  }
+
+  retriveService(): void{
+    this.service.get(this.myParam).subscribe(
+      data => {
+        this.service = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   openAddToCart(){

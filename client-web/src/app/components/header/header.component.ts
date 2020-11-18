@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
       this.serviceHierarchies.forEach(element => {
         element.children = this.getChildren(element.id);
       });
-
     });
   }
   

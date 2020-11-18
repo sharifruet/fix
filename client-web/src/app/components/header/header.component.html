@@ -40,7 +40,7 @@
       </span>
       <!-- Leaf node buttons here -->
       <span *ngIf="!item.children || item.children.length === 0">
-        <button mat-button [routerLink]="item.route">
+        <button mat-button [routerLink]="['/service', item.id]">
           {{item.title}}
         </button>
       </span>
