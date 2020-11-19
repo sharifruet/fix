@@ -13,8 +13,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class ServiceHierarchyAddComponent implements OnInit {
 
-  question:string = '';
-  answer:string = '';
+  question = '';
+  answer = '';
   faqObj;
   faqs = [];
   addToList() {
@@ -53,7 +53,6 @@ export class ServiceHierarchyAddComponent implements OnInit {
       ]
     ]
   };
-
   serviceHierarchy = {
     title: '',
     description: '',
@@ -64,10 +63,12 @@ export class ServiceHierarchyAddComponent implements OnInit {
     overview: '',
     detail: '',
     faq: '',
-    end: '',
+    end: false,
     price: '',
     status: ''
   };
+
+
 
   endLevel = false;
   isEnd(event) {
@@ -175,11 +176,13 @@ export class ServiceHierarchyAddComponent implements OnInit {
       overview: '',
       detail: '',
       faq: '',
-      end: '',
+      end: false,
       price: '',
       status: ''
     }
     this.faqs = [];
+    this.isEnd(false);
+    this.isServiceLayer(false);
   }
 
 }

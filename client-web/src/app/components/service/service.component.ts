@@ -15,7 +15,9 @@ export class ServiceComponent implements OnInit {
   panelOpenState = false;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ServiceHierarchyService, private location: Location) { }
   
+  serviceHierarchies;
   serviceDetail;
+  serviceChild;
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => { 
       console.log(params);
@@ -25,9 +27,11 @@ export class ServiceComponent implements OnInit {
   }
 
   getServiceDetail(id): void {
-    this.service.get(id)
+    this.service.getAll()
       .subscribe(data => {
-        this.serviceDetail = data.data;
+        this.serviceHierarchies = data;
+        this.serviceDetail = this.serviceHierarchies.filter((sh:any) => sh.id == id);
+        this.serviceChild = this.serviceHierarchies.filter((sh:any) => sh.parentId == id);
       },
       error => {
         console.log(error);
