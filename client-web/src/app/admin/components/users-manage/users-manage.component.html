@@ -91,19 +91,14 @@
                 <button mat-icon-button color="accent" matTooltip="Edit User" (click)="editService(element)">
           <mat-icon>edit</mat-icon>
         </button>
-                 <button mat-icon-button color="warn" (click)="deleteService(element.id)" matTooltip="Delete User">
+                 <button mat-icon-button color="warn" (click)="deleteService(element.id)" matTooltip="Delete USer">
           <mat-icon>delete</mat-icon>
         </button>
 		
-             <button mat-raised-button (click)="openDialog()">
-                RoleAssign
-            </button>
-
             </td>
 			 
         </ng-container>
 		
-
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
