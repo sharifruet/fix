@@ -31,6 +31,9 @@ export class ServiceComponent implements OnInit {
       .subscribe(data => {
         this.serviceHierarchies = data;
         this.serviceDetail = this.serviceHierarchies.filter((sh:any) => sh.id == id);
+        this.serviceDetail[0].faq = JSON.parse(this.serviceDetail[0].faq);
+        console.log(this.serviceDetail[0].faq);
+ //       console.log(JSON.parse(this.serviceDetail[0].faq));
         this.serviceChild = this.serviceHierarchies.filter((sh:any) => sh.parentId == id);
       },
       error => {
