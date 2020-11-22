@@ -1,54 +1,29 @@
+
+
 <div class="add-to-cart-area" *ngIf="isShow">
     <div class="title">
-        <h2>Laptop Servicing</h2>
+        <h2>{{service_data.title}}</h2>
     </div>
     <mat-divider></mat-divider>
 
     <div fxLayout="row" fxLayoutGap="20px">
         <div fxFlex="55">
             <div class="cart-item-area">
-                <h4>Software Related Service</h4>
+                <h4>{{service_data.title}} Related Service</h4>
                 <div class="cart-item-list">
-                    <div class="cart-item">
-                        <div class="head">
-                            <p>OS installation</p>
-                            <span> <span>৳500</span>/unit</span>
-                        </div>
-                        <button mat-button color="black">Add to cart</button>
-                    </div>
 
-                    <mat-divider></mat-divider>
-                    <div class="cart-item">
-                        <div class="head">
-                            <p>Driver installation</p>
-                            <span> <span>৳200</span>/unit</span>
+                    <!-- service item for add to cart -->
+                    <ng-container *ngFor="let service_list of serviceChild_data">
+                        <div class="cart-item">
+                            <div class="head">
+                                <p>{{service_list.title}}</p>
+                                <span> <span>৳{{service_list.price}}</span>/unit</span>
+                            </div>
+                            <button mat-button color="black" (click)="addToCart(service_list)">Add to cart</button>
                         </div>
-                        <button mat-button color="black">Add to cart</button>
-                    </div>
-                    <mat-divider></mat-divider>
-                    <div class="cart-item">
-                        <div class="head">
-                            <p>Driver installation</p>
-                            <span> <span>৳200</span>/unit</span>
-                        </div>
-                        <button mat-button color="black">Add to cart</button>
-                    </div>
-                    <mat-divider></mat-divider>
-                    <div class="cart-item">
-                        <div class="head">
-                            <p>Driver installation</p>
-                            <span> <span>৳200</span>/unit</span>
-                        </div>
-                        <button mat-button color="black">Add to cart</button>
-                    </div>
-                    <mat-divider></mat-divider>
-                    <div class="cart-item">
-                        <div class="head">
-                            <p>Driver installation</p>
-                            <span> <span>৳200</span>/unit</span>
-                        </div>
-                        <button mat-button color="black">Add to cart</button>
-                    </div>
+                        <mat-divider></mat-divider>
+                    </ng-container>
+                    
                 </div>
             </div>
         </div>

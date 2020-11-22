@@ -15,26 +15,22 @@ export class ServiceComponent implements OnInit {
   panelOpenState = false;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ServiceHierarchyService, private location: Location) { }
   
-  serviceHierarchies;
   serviceDetail;
   serviceChild;
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => { 
-      console.log(params);
        let id = params.get('id');
        this.getServiceDetail(id);
    });
   }
+  
 
   getServiceDetail(id): void {
     this.service.getAll()
       .subscribe(data => {
-        this.serviceHierarchies = data;
-        this.serviceDetail = this.serviceHierarchies.filter((sh:any) => sh.id == id);
+        this.serviceDetail = data.filter((sh:any) => sh.id == id);
         this.serviceDetail[0].faq = JSON.parse(this.serviceDetail[0].faq);
-        console.log(this.serviceDetail[0].faq);
- //       console.log(JSON.parse(this.serviceDetail[0].faq));
-        this.serviceChild = this.serviceHierarchies.filter((sh:any) => sh.parentId == id);
+        this.serviceChild = data.filter((sh:any) => sh.parentId == id);
       },
       error => {
         console.log(error);
@@ -43,9 +39,10 @@ export class ServiceComponent implements OnInit {
   
   
 
-  openAddToCart(){
+  openAddToCart(service){
     const dialogRef = this.dialog.open(AddToCartComponent, {
-      width:'900px'
+      width:'900px',
+      data:service
     });
   }
 
