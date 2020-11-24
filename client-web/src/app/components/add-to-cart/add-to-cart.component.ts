@@ -36,7 +36,7 @@ export class AddToCartComponent implements OnInit {
     const value = {
       
     }
-    console.log(value);
+    console.log(data);
   }
 
   isShow:boolean = true;
