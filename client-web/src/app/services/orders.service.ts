@@ -8,7 +8,7 @@ import { BaseService } from './base.service';
 export class OrdersService extends BaseService implements OnInit{
 
   constructor(http:HttpClient) { 
-	  super(http, "/orders");
+	  super(http, "/order");
   }
 
   ngOnInit(){
