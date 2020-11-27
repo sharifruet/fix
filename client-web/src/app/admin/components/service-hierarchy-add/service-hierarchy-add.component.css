@@ -2,6 +2,18 @@
     width: 100%;
 }
 
+.img{
+    height: 100px;
+    width: 100px;
+    border:2px dashed #ddd;
+    margin-bottom:15px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5px;
+    cursor: pointer;
+}
+
 .mat-slide-toggle{
     height:50px;
     margin-bottom: 10px;

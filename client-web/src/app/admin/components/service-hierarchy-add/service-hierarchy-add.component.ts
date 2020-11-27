@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { MediaPopupComponent } from '../media-popup/media-popup.component';
 
 @Component({
   selector: 'app-service-hierarchy-add',
@@ -103,9 +105,15 @@ export class ServiceHierarchyAddComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private service: ServiceHierarchyService, private _snackBar: MatSnackBar) { }
+  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
   ngOnInit(): void {
     this.getAllServiceHierarchy();
+  }
+
+  addImage(){
+    const dialogRef = this.dialog.open(MediaPopupComponent, {
+      width:'600px'
+    });
   }
 
   private _filterTour(value: string): any[] {
@@ -116,7 +124,8 @@ export class ServiceHierarchyAddComponent implements OnInit {
   displayFn(parent) {
     return this.serviceHParent.find(item => item.id === parent).title;
   }
-
+  
+  
   getAllServiceHierarchy() {
     this.service.getAll().subscribe(
       data => {
