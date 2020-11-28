@@ -1,10 +1,9 @@
-
-
 <ul>
-    <li *ngFor="let media of medias" (click)="selectImage(media)" >
-        <img src="assets/images/logo.png" alt="">
+    <li *ngFor="let media of medias;  let i = index" [ngClass]="{'active': selected === i}" (click)='selectImage(media, i)'>
+        <img src="http://localhost:8080/uploads/{{media.name}}" alt="">
     </li>
+
 </ul>
 <div style="margin:5px 5px 0 5px;text-align: right;">
-    <button mat-raised-button color="primary">Add</button>
+    <button mat-button color="black" (click)="selectedImage()">Add</button>
 </div>

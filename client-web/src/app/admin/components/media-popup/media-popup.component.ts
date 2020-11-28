@@ -15,7 +15,6 @@ export class MediaPopupComponent implements OnInit {
   }
 
   medias;
-
   retrieveMedia(): void {
     this.mediaservice.getAll()
       .subscribe(
@@ -28,8 +27,17 @@ export class MediaPopupComponent implements OnInit {
         });
   }
   
-  selectImage(data){
-    console.log(data);
+
+  selected;
+  image;
+  selectedImg;
+  selectImage(data, i){
+    this.selected=i;
+    this.image=data;
+  }
+  selectedImage(){
+    this.selectedImg = this.image;
+    console.log(this.selectedImg);
   }
 
 }

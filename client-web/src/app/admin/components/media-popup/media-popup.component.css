@@ -16,8 +16,23 @@ ul li{
     margin:5px;
     padding:5px;
     cursor: pointer;
+    position: relative;
+}
+ul li.active:after{
+    content:"+";
+    position: absolute;
+    top:-5px;
+    right:-5px;
+    background-color:#000;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    color:#fff;
+    line-height: 15px;
+    text-align: center;
 }
 ul li img{
     width: 100%;
     object-fit: cover;
+    height: 100%;
 }
