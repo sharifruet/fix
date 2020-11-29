@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaService } from '../../../services/media.service';
+import { ShareService } from '../../../services/share.service'
 
 @Component({
   selector: 'app-media-popup',
@@ -8,7 +9,9 @@ import { MediaService } from '../../../services/media.service';
 })
 export class MediaPopupComponent implements OnInit {
 
-  constructor(private mediaservice:MediaService) { }
+  selected;
+  image;
+  constructor(private mediaservice:MediaService, private share:ShareService) { }
 
   ngOnInit(): void {
     this.retrieveMedia();
@@ -20,24 +23,19 @@ export class MediaPopupComponent implements OnInit {
       .subscribe(
         data => {
           this.medias = data;
-          console.log(data);
         },
         error => {
           console.log(error);
         });
   }
-  
 
-  selected;
-  image;
-  selectedImg;
   selectImage(data, i){
     this.selected=i;
     this.image=data;
   }
+
   selectedImage(){
-    this.selectedImg = this.image;
-    console.log(this.selectedImg);
+    // this.share.setData(this.image);
   }
 
 }

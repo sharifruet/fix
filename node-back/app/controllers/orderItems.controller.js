@@ -5,43 +5,61 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Order Item
 exports.create = (req, res) => {
-  console.log();
   // Validate request
-  if (!req.body.orderId) {
-    res.status(400).send({
-      status: 1,
-      message: "Order Id can not be empty!",
-      data: []
-    });
-    return;
-  }
-  let isCart = req.body.cartOrOrder;
-  let userCart = null;
-  if(isCart){
-    let userCart = this.orderModel.getByFilter({"userId":1, "cartOrOrder":true});
-    if(!userCart){
-      userCart = this.orderModel.addEntity({"userId":1, "cartOrOrder":true});
+  // if (!req.body.orderId) {
+  //   res.status(400).send({
+  //     status: 1,
+  //     message: "Order Id can not be empty!",
+  //     data: []
+  //   });
+  //   return;
+  // }
+
+  const isCart = req.body.cartOrOrder;
+  let userCart;
+    if(isCart){
+      const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
+      getByFilter(orderModel, cartData, (result) => {
+        if(result.data.length){
+          userCart = result.data;
+          res.send(result);
+        }else if (!result.data.length) {
+          addEntity(orderModel, cartData, (result2) => {
+            if (result2.status == 0) {
+              userCart = result2.data;
+              res.send(result2);
+            } else {
+              res.status(500).send(result2);
+            }
+          });
+        } else {
+          res.status(500).send(result);
+        }
+      });
     }
-  }
+
+    console.log(userCart);
+
+  
   // Create a order items
-  let orderItems = {
-    orderId: userCart.orderId,
-    serviceHierarchyId: req.body.serviceHierarchyId,
-    quantity: req.body.quantity,
-    orderStatus: req.body.orderStatus,
-    deliveryDate: req.body.deliveryDate,
-    price: req.body.price,
-    serviceProviderId: req.body.serviceProviderId,
-    areaHierarchyId: req.body.areaHierarchyId,
-    status: req.body.status ? req.body.status : 0
-  };
-  addEntity(orderItemsModel, orderItems, (result) => {
-    if (result.status == 0) {
-      res.send(result);
-    } else {
-      res.status(500).send(result);
-    }
-  });
+  // let orderItems = {
+  //   orderId: userCart.id,
+  //   serviceHierarchyId: req.body.serviceHierarchyId,
+  //   quantity: req.body.quantity,
+  //   orderStatus: req.body.orderStatus,
+  //   deliveryDate: req.body.deliveryDate,
+  //   price: req.body.price,
+  //   serviceProviderId: req.body.serviceProviderId,
+  //   areaHierarchyId: req.body.areaHierarchyId,
+  //   status: req.body.status ? req.body.status : 0
+  // };
+  // addEntity(orderItemsModel, orderItems, (result) => {
+  //   if (result.status == 0) {
+  //     res.send(result);
+  //   } else {
+  //     res.status(500).send(result);
+  //   }
+  // });
 }
 
 // Retrieve all Order Item from the database.

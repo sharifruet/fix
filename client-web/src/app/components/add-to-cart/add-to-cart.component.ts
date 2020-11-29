@@ -35,10 +35,12 @@ export class AddToCartComponent implements OnInit {
       );
   }
 
+
   // service item add to cart
   addToCart(data) {
     const cartItem = {
-      orderId: 1,
+      userId:1,
+      cartOrOrder : true,
       serviceHierarchyId: data.id,
       quantity: 1,
       price: data.price
