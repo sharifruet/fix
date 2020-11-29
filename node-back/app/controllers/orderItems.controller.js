@@ -1,5 +1,6 @@
 const db = require("../models");
 const orderItemsModel = db.OrderItems;
+const orderModel = db.Order;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Order Item
@@ -14,9 +15,17 @@ exports.create = (req, res) => {
     });
     return;
   }
+  let isCart = req.body.cartOrOrder;
+  let userCart = null;
+  if(isCart){
+    let userCart = this.orderModel.getByFilter({"userId":1, "cartOrOrder":true});
+    if(!userCart){
+      userCart = this.orderModel.addEntity({"userId":1, "cartOrOrder":true});
+    }
+  }
   // Create a order items
   let orderItems = {
-    orderId: req.body.orderId,
+    orderId: userCart.orderId,
     serviceHierarchyId: req.body.serviceHierarchyId,
     quantity: req.body.quantity,
     orderStatus: req.body.orderStatus,
