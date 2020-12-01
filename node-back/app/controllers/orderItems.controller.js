@@ -21,11 +21,11 @@ exports.create = (req, res) => {
       const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
       getByFilter(orderModel, cartData, (result) => {
         if(result.data.length){
-          console.log(result);
+          addCart(result.data);
         }else if (!result.data.length) {
           addEntity(orderModel, cartData, (result2) => {
             if (result2.status == 0) {
-              console.log(result2);
+              addCart(result2.data);
             } else {
               res.status(500).send(result2);
             }
@@ -38,24 +38,27 @@ exports.create = (req, res) => {
 
   
   // Create a order items
-  let orderItems = {
-    orderId: userCart.id,
-    serviceHierarchyId: req.body.serviceHierarchyId,
-    quantity: req.body.quantity,
-    orderStatus: req.body.orderStatus,
-    deliveryDate: req.body.deliveryDate,
-    price: req.body.price,
-    serviceProviderId: req.body.serviceProviderId,
-    areaHierarchyId: req.body.areaHierarchyId,
-    status: req.body.status ? req.body.status : 0
-  };
-  addEntity(orderItemsModel, orderItems, (result) => {
-    if (result.status == 0) {
-      res.send(result);
-    } else {
-      res.status(500).send(result);
-    }
-  });
+  function addCart(result){
+    let orderItems = {
+      orderId: result.id,
+      serviceHierarchyId: req.body.serviceHierarchyId,
+      quantity: req.body.quantity,
+      orderStatus: req.body.orderStatus,
+      deliveryDate: req.body.deliveryDate,
+      price: req.body.price,
+      serviceProviderId: req.body.serviceProviderId,
+      areaHierarchyId: req.body.areaHierarchyId,
+      status: req.body.status ? req.body.status : 0
+    };
+    addEntity(orderItemsModel, orderItems, (result) => {
+      if (result.status == 0) {
+        res.send(result);
+      } else {
+        res.status(500).send(result);
+      }
+    });
+  }
+  
 }
 
 // Retrieve all Order Item from the database.
@@ -108,12 +111,24 @@ exports.update = (req, res) => {
 // Delete a order with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  updateEntity(orderItemsModel, { status: 1 }, id, (result) => {
-    if (result.status == 0) {
-      res.send(result);
+  orderItemsModel.destroy({
+    where: { id: id }
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Cart item deleted successfully!"
+      });
     } else {
-      res.status(500).send(result);
+      res.send({
+        message: `Cannot delete cart with id=${id}. Maybe cart was not found!`
+      });
     }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Could not delete cart with id=" + id
+    });
   });
 };
 

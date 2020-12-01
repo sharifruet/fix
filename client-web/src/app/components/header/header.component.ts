@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { LoginSignupComponent } from '../login-signup/login-signup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
+import { AddToCartComponent } from '../add-to-cart/add-to-cart.component'
 
 @Component({
   selector: 'app-header',

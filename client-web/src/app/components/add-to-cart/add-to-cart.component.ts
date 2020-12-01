@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { OrdersService } from '../../services/orders.service';
 import { OrderItemsService } from '../../services/order-items.service';
+import {ConfirmDialogService} from '../../services/confirm-dialog.service'
 
 @Component({
   selector: 'app-add-to-cart',
@@ -13,7 +14,7 @@ export class AddToCartComponent implements OnInit {
 
   service_data;
   serviceChild_data;
-  constructor(public dialogRef: MatDialogRef<ServiceHierarchyService>, public service: ServiceHierarchyService, public order: OrdersService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<ServiceHierarchyService>, public service: ServiceHierarchyService, public order: OrdersService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any, private confirmDialog:ConfirmDialogService) {
     this.service_data = data;
   }
 
@@ -21,6 +22,16 @@ export class AddToCartComponent implements OnInit {
     this.getServiceById();
     this.getCart();
   }
+
+  
+
+  getServiceName(id){
+      let name = this.serviceChild_data.filter(sh=>sh.id==id);
+      if(name.length > 0)
+      return name[0].title;
+      return "";
+  }
+
 
   // get service items
   getServiceById(): void {
@@ -35,7 +46,6 @@ export class AddToCartComponent implements OnInit {
       );
   }
 
-
   // service item add to cart
   addToCart(data) {
     const cartItem = {
@@ -48,12 +58,10 @@ export class AddToCartComponent implements OnInit {
     this.orderItem.create(cartItem)
       .subscribe(
         response => {
-          console.log("1");
           this.getCart();
           console.log(response);
         },
         error => {
-          console.log("2");
           console.log(error);
         }
       );
@@ -77,17 +85,20 @@ export class AddToCartComponent implements OnInit {
 
   // remove cart item
   removeCart(id): void {
-    if (confirm('Are you sure to remove?')) {
-      this.orderItem.delete(id)
+    this.confirmDialog.openConfirmDialog('Are you sure to remove this?').afterClosed().subscribe(res => {
+      if(res){
+        this.orderItem.delete(id)
         .subscribe(
           response => {
+            this.getCart();
             console.log(response);
           },
           error => {
             console.log(error);
           }
         );
-    }
+      }
+    })
   }
 
   isShow: boolean = true;

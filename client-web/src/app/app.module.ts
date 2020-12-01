@@ -63,6 +63,7 @@ import { OrdersComponent } from './admin/components/orders/orders.component';
 import { OrderItemComponent } from './admin/components/order-item/order-item.component';
 import { OrderItemPaymentComponent } from './admin/components/order-item-payment/order-item-payment.component';
 import { MediaPopupComponent } from './admin/components/media-popup/media-popup.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { MediaPopupComponent } from './admin/components/media-popup/media-popup.
     OrderItemComponent,
     OrderItemPaymentComponent,
     MediaPopupComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -146,7 +148,8 @@ import { MediaPopupComponent } from './admin/components/media-popup/media-popup.
 	  AreaHierarchyDetailComponent,
 	  AreaHierarchyEditComponent,
     AreaHierarchyAddComponent,
-    MediaPopupComponent
+    MediaPopupComponent,
+    ConfirmDialogComponent
   ]
 })
 export class AppModule { }
