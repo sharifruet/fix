@@ -21,13 +21,11 @@ exports.create = (req, res) => {
       const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
       getByFilter(orderModel, cartData, (result) => {
         if(result.data.length){
-          userCart = result.data;
-          res.send(result);
+          console.log(result);
         }else if (!result.data.length) {
           addEntity(orderModel, cartData, (result2) => {
             if (result2.status == 0) {
-              userCart = result2.data;
-              res.send(result2);
+              console.log(result2);
             } else {
               res.status(500).send(result2);
             }
@@ -38,28 +36,26 @@ exports.create = (req, res) => {
       });
     }
 
-    console.log(userCart);
-
   
   // Create a order items
-  // let orderItems = {
-  //   orderId: userCart.id,
-  //   serviceHierarchyId: req.body.serviceHierarchyId,
-  //   quantity: req.body.quantity,
-  //   orderStatus: req.body.orderStatus,
-  //   deliveryDate: req.body.deliveryDate,
-  //   price: req.body.price,
-  //   serviceProviderId: req.body.serviceProviderId,
-  //   areaHierarchyId: req.body.areaHierarchyId,
-  //   status: req.body.status ? req.body.status : 0
-  // };
-  // addEntity(orderItemsModel, orderItems, (result) => {
-  //   if (result.status == 0) {
-  //     res.send(result);
-  //   } else {
-  //     res.status(500).send(result);
-  //   }
-  // });
+  let orderItems = {
+    orderId: userCart.id,
+    serviceHierarchyId: req.body.serviceHierarchyId,
+    quantity: req.body.quantity,
+    orderStatus: req.body.orderStatus,
+    deliveryDate: req.body.deliveryDate,
+    price: req.body.price,
+    serviceProviderId: req.body.serviceProviderId,
+    areaHierarchyId: req.body.areaHierarchyId,
+    status: req.body.status ? req.body.status : 0
+  };
+  addEntity(orderItemsModel, orderItems, (result) => {
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
 }
 
 // Retrieve all Order Item from the database.
