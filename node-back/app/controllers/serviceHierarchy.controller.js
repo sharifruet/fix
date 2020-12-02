@@ -16,6 +16,7 @@ exports.create = (req, res) => {
   let serviceHierarchy = {
     title: req.body.title,
     description: req.body.description,
+    photo: req.body.photo,
     published: req.body.published ? req.body.published : false,
     hierarchyPath: req.body.hierarchyPath ? req.body.hierarchyPath : false,
     parentId: req.body.parentId ? req.body.parentId : -1,

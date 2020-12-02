@@ -58,6 +58,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   serviceHierarchy = {
     title: '',
     description: '',
+    photo:'',
     published: true,
     parentId: '',
     hierarchyPath: '',
@@ -111,14 +112,13 @@ export class ServiceHierarchyAddComponent implements OnInit {
     this.getAllServiceHierarchy();
   }
   
+  selectedImage;
   addImage(){
     const dialogRef = this.dialog.open(MediaPopupComponent, {
       width:'600px'
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);//returns undefined
+      this.selectedImage = result;
     });
 
   }
@@ -155,6 +155,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     const data = {
       title: this.serviceHierarchy.title,
       description: this.serviceHierarchy.description,
+      photo: this.serviceHierarchy.photo,
       published: this.serviceHierarchy.published,
       parentId: this.serviceHierarchy.parentId,
       hierarchyPath: this.serviceHierarchy.hierarchyPath,
@@ -185,6 +186,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     this.serviceHierarchy = {
       title: '',
       description: '',
+      photo:'',
       published: true,
       parentId: '',
       hierarchyPath: '',

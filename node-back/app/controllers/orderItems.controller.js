@@ -21,21 +21,16 @@ exports.create = (req, res) => {
       const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
       getByFilter(orderModel, cartData, (result) => {
         if(result.data.length){
-          addCart(result.data);
-        }else if (!result.data.length) {
-          addEntity(orderModel, cartData, (result2) => {
-            if (result2.status == 0) {
-              addCart(result2.data);
-            } else {
-              res.status(500).send(result2);
+          addCart(result.data[0]);
+        }else{
+          addEntity(orderModel, cartData, (result) => {
+            if (result.status == 0) {
+              addCart(result.data);
             }
           });
-        } else {
-          res.status(500).send(result);
         }
       });
     }
-
   
   // Create a order items
   function addCart(result){

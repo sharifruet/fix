@@ -1,12 +1,15 @@
 <div>
     <h3 mat-dialog-title>Add Service</h3>
     
-    
     <div mat-dialog-content>
         <div>
             <label for="">Photo</label>
             <div class="img" (click)="addImage()">
-                <mat-icon>insert_photo</mat-icon>
+                <ng-container *ngIf="selectedImage; else icon">
+                    <img src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
+                </ng-container>
+                <ng-template #icon>
+                    <mat-icon >insert_photo</mat-icon></ng-template>
             </div>
         </div>
         <div>

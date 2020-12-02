@@ -14,12 +14,9 @@ export class MediaPopupComponent implements OnInit {
 
   constructor(private mediaservice:MediaService,  private dialogRef: MatDialogRef<MediaPopupComponent>) { }
 
-  
-
   ngOnInit(): void {
     this.retrieveMedia();
   }
-
 
   medias;
   retrieveMedia(): void {
@@ -39,7 +36,7 @@ export class MediaPopupComponent implements OnInit {
   }
 
   selectedImage(){
-    this.dialogRef.close({"image":"This is a sampple image"})
+    this.dialogRef.close(this.image)
   }
 
 }
