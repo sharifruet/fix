@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaService } from '../../../services/media.service';
-import { ShareService } from '../../../services/share.service'
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-media-popup',
@@ -11,11 +11,15 @@ export class MediaPopupComponent implements OnInit {
 
   selected;
   image;
-  constructor(private mediaservice:MediaService, private share:ShareService) { }
+
+  constructor(private mediaservice:MediaService,  private dialogRef: MatDialogRef<MediaPopupComponent>) { }
+
+  
 
   ngOnInit(): void {
     this.retrieveMedia();
   }
+
 
   medias;
   retrieveMedia(): void {
@@ -35,7 +39,7 @@ export class MediaPopupComponent implements OnInit {
   }
 
   selectedImage(){
-    // this.share.setData(this.image);
+    this.dialogRef.close({"image":"This is a sampple image"})
   }
 
 }

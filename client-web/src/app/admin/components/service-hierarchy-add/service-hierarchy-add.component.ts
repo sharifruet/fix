@@ -7,7 +7,6 @@ import { ServiceHierarchyService } from '../../../services/service-hierarchy.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MediaPopupComponent } from '../media-popup/media-popup.component';
-import { ShareService } from '../../../services/share.service'
 
 @Component({
   selector: 'app-service-hierarchy-add',
@@ -106,7 +105,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar, private share:ShareService) { }
+  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
   
   ngOnInit(): void {
     this.getAllServiceHierarchy();
@@ -116,6 +115,12 @@ export class ServiceHierarchyAddComponent implements OnInit {
     const dialogRef = this.dialog.open(MediaPopupComponent, {
       width:'600px'
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);//returns undefined
+    });
+
   }
 
   private _filterTour(value: string): any[] {
