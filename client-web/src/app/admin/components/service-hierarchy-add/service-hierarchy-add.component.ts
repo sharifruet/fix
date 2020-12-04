@@ -129,7 +129,11 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   displayFn(parent) {
-    return this.serviceHParent.find(item => item.id === parent).title;
+	if(this.serviceHParent.length > 0){
+		return this.serviceHParent.find(item => item.id === parent).title;
+	}else{
+		return [];
+	}
   }
   
   

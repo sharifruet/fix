@@ -9,6 +9,7 @@ import { RoleService } from '../../../services/role.service';
 import {RoleAddComponent} from './role-add/role-add.component';
 import { RoleDetailComponent } from './role-detail/role-detail.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
+import { PrivilegeAddComponent } from './privilege-add/privilege-add.component';
 
 import { AppSettings } from '../../../app.settings';
 
@@ -130,5 +131,12 @@ deleteService(id): void {
         });
   }
   
+  privilegeAdd(): void {
+    const dialogRef = this.dialog.open(PrivilegeAddComponent, {
+      width: '400px',
+      data: {}
+    });
+  
+}
 }
 
