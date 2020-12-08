@@ -74,7 +74,7 @@ services: any;
   }
 
   getAreaName(areaId: number) : string{
-    return "Test "+areaId;
+    return " "+areaId;
   }
   
   refreshList(): void {
@@ -112,6 +112,7 @@ setActiveService(service, index): void {
   }
 
 deleteService(id): void {
+	if(confirm('Are you sure to delete')){
     this.service.delete(id)
       .subscribe(
         response => {
@@ -124,15 +125,6 @@ deleteService(id): void {
         });
   }
   
-  openDialog(): void {
-    const dialogRef = this.dialog.open(UserAddComponent, {
-      width: '300px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.openSnackBar = result;
-    });
-  }
-  
 }
+}
+
