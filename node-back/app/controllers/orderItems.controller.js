@@ -16,7 +16,6 @@ exports.create = (req, res) => {
   // }
 
   const isCart = req.body.cartOrOrder;
-  let userCart;
     if(isCart){
       const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
       getByFilter(orderModel, cartData, (result) => {

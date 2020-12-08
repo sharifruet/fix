@@ -69,13 +69,17 @@ export class AddToCartComponent implements OnInit {
 
   // get cart
   cartItems;
-  cartTotal = 0;
+  cartTotal;
 
   getCart() {
     this.orderItem.getAll()
       .subscribe(
         data => {
           this.cartItems = data.data;
+          this.cartTotal = 0;
+          this.cartItems.forEach(element => {
+            this.cartTotal += (element.price * element.quantity);
+          });
         },
         error => {
           console.log(error);
@@ -106,19 +110,31 @@ export class AddToCartComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  quantity: number = 1;
-  i = 1;
-  plus() {
-    if (this.i != 100) {
-      this.i++;
-      this.quantity = this.i;
-    }
+  plus(quantity:number, id:number) {
+    quantity++;
+    this.orderItem.update(id, quantity)
+    .subscribe(
+      response => {
+        this.getCart();
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
-  minus() {
-    if (this.i != 0) {
-      this.i--;
-      this.quantity = this.i;
-    }
+  minus(quantity:number, id:number) {
+    quantity--;
+    this.orderItem.update(id, quantity)
+    .subscribe(
+      response => {
+        this.getCart();
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 

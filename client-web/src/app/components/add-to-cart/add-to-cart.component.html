@@ -37,15 +37,15 @@
                         <button mat-icon-button class="cart-remove" (click)="removeCart(cartItem.id)"><mat-icon>clear</mat-icon></button>
                         <div>
                             <h4> {{getServiceName(cartItem.serviceHierarchyId)}}</h4> 
-                            <div>
+                            <div style="text-align:right">
                                 <div>
                                     <div class="quantity-area">
-                                        <button (click)="minus()"><mat-icon>remove</mat-icon></button>
-                                        <input type="text" [value]="cartItem.quantity">
-                                        <button (click)="plus()"><mat-icon>add</mat-icon></button>
+                                        <button (click)="minus(cartItem.quantity, cartItem.id)"><mat-icon>remove</mat-icon></button>
+                                        <span>{{cartItem.quantity}}</span>
+                                        <button (click)="plus(cartItem.quantity, cartItem.id)"><mat-icon>add</mat-icon></button>
                                     </div>
                                 </div>
-                                <span> <span>৳{{(cartItem.quantity * cartItem.price)}}</span>/unit</span>
+                                <span>৳{{(cartItem.quantity * cartItem.price)}}</span>
                             </div>
                         </div>
                         
