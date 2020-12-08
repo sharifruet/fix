@@ -7,7 +7,6 @@ import { ServiceHierarchyService } from '../../../services/service-hierarchy.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MediaPopupComponent } from '../media-popup/media-popup.component';
-import { ShareService } from '../../../services/share.service'
 
 @Component({
   selector: 'app-service-hierarchy-add',
@@ -59,6 +58,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   serviceHierarchy = {
     title: '',
     description: '',
+    photo:'',
     published: true,
     parentId: '',
     hierarchyPath: '',
@@ -106,16 +106,21 @@ export class ServiceHierarchyAddComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar, private share:ShareService) { }
+  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
   
   ngOnInit(): void {
     this.getAllServiceHierarchy();
   }
   
+  selectedImage;
   addImage(){
     const dialogRef = this.dialog.open(MediaPopupComponent, {
       width:'600px'
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedImage = result;
+    });
+
   }
 
   private _filterTour(value: string): any[] {
@@ -124,7 +129,11 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   displayFn(parent) {
-    return this.serviceHParent.find(item => item.id === parent).title;
+	if(this.serviceHParent.length > 0){
+		return this.serviceHParent.find(item => item.id === parent).title;
+	}else{
+		return [];
+	}
   }
   
   
@@ -150,6 +159,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     const data = {
       title: this.serviceHierarchy.title,
       description: this.serviceHierarchy.description,
+      photo: this.serviceHierarchy.photo,
       published: this.serviceHierarchy.published,
       parentId: this.serviceHierarchy.parentId,
       hierarchyPath: this.serviceHierarchy.hierarchyPath,
@@ -180,6 +190,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     this.serviceHierarchy = {
       title: '',
       description: '',
+      photo:'',
       published: true,
       parentId: '',
       hierarchyPath: '',
