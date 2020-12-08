@@ -67,6 +67,8 @@ import { MediaComponent } from './admin/components/media/media.component';
 import { OrdersComponent } from './admin/components/orders/orders.component';
 import { OrderItemComponent } from './admin/components/order-item/order-item.component';
 import { OrderItemPaymentComponent } from './admin/components/order-item-payment/order-item-payment.component';
+import { MediaPopupComponent } from './admin/components/media-popup/media-popup.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/privilege-add.component';
 
@@ -116,6 +118,8 @@ import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/pr
     OrdersComponent,
     OrderItemComponent,
     OrderItemPaymentComponent,
+    MediaPopupComponent,
+    ConfirmDialogComponent,
     PrivilegeAddComponent,
   ],
   imports: [
@@ -151,6 +155,9 @@ import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/pr
 	  ServiceHierarchyAddComponent,
 	  AreaHierarchyDetailComponent,
 	  AreaHierarchyEditComponent,
+    AreaHierarchyAddComponent,
+    MediaPopupComponent,
+    ConfirmDialogComponent,
 	  AreaHierarchyAddComponent,
 	  PrivilegeAddComponent
   ]

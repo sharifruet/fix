@@ -9,7 +9,6 @@ module.exports = (sequelize, Sequelize) => {
 		serviceProviderId: { type: Sequelize.INTEGER },
 		areaHierarchyId: { type: Sequelize.INTEGER },
 		status: { type: Sequelize.BOOLEAN }
-		
 	});
 	return orderItems;
 };

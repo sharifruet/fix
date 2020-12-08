@@ -17,7 +17,7 @@
     max-width: 380px;
     width: 100%;
     padding:40px 50px;
-    box-shadow: 0 1px 15px -1px rgba(0,0,0,.08);
+    box-shadow: 0 1px 15px -1px rgba(0,0,0,.2);
 }
 .input-width{
     width: 100%;

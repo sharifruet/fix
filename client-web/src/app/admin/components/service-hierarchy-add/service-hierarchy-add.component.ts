@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { MediaPopupComponent } from '../media-popup/media-popup.component';
 
 @Component({
   selector: 'app-service-hierarchy-add',
@@ -53,10 +55,10 @@ export class ServiceHierarchyAddComponent implements OnInit {
       ]
     ]
   };
-
   serviceHierarchy = {
     title: '',
     description: '',
+    photo:'',
     published: true,
     parentId: '',
     hierarchyPath: '',
@@ -64,10 +66,12 @@ export class ServiceHierarchyAddComponent implements OnInit {
     overview: '',
     detail: '',
     faq: '',
-    end: '',
+    end: false,
     price: '',
     status: ''
   };
+
+
 
   endLevel = false;
   isEnd(event) {
@@ -102,9 +106,21 @@ export class ServiceHierarchyAddComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private service: ServiceHierarchyService, private _snackBar: MatSnackBar) { }
+  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  
   ngOnInit(): void {
     this.getAllServiceHierarchy();
+  }
+  
+  selectedImage;
+  addImage(){
+    const dialogRef = this.dialog.open(MediaPopupComponent, {
+      width:'600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedImage = result;
+    });
+
   }
 
   private _filterTour(value: string): any[] {
@@ -119,7 +135,8 @@ export class ServiceHierarchyAddComponent implements OnInit {
 		return [];
 	}
   }
-
+  
+  
   getAllServiceHierarchy() {
     this.service.getAll().subscribe(
       data => {
@@ -142,6 +159,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     const data = {
       title: this.serviceHierarchy.title,
       description: this.serviceHierarchy.description,
+      photo: this.serviceHierarchy.photo,
       published: this.serviceHierarchy.published,
       parentId: this.serviceHierarchy.parentId,
       hierarchyPath: this.serviceHierarchy.hierarchyPath,
@@ -172,6 +190,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     this.serviceHierarchy = {
       title: '',
       description: '',
+      photo:'',
       published: true,
       parentId: '',
       hierarchyPath: '',
@@ -179,10 +198,13 @@ export class ServiceHierarchyAddComponent implements OnInit {
       overview: '',
       detail: '',
       faq: '',
-      end: '',
+      end: false,
       price: '',
       status: ''
     }
+    this.faqs = [];
+    this.isEnd(false);
+    this.isServiceLayer(false);
   }
 
 }

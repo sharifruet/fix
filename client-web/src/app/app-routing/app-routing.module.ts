@@ -37,12 +37,10 @@ const routes: Routes = [
     {
       path:'service-category',
       component:ServiceCategoryComponent
-
     },
     {
-      path:'service',
+      path:'service/:id',
       component:ServiceComponent
-
     },
     {
       path: 'service-categories',

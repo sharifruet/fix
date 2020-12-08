@@ -1,40 +1,59 @@
 const db = require("../models");
 const orderItemsModel = db.OrderItems;
+const orderModel = db.Order;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Order Item
 exports.create = (req, res) => {
-  console.log();
   // Validate request
-  if (!req.body.orderId) {
-    res.status(400).send({
-      status: 1,
-      message: "Order Item number can not be empty!",
-      data: []
-    });
-    return;
-  }
-  // Create a Service
-  let orderItems = {
-    orderId: req.body.orderId,
-    serviceHierarchyId: req.body.serviceHierarchyId,
-	quantity: req.body.quantity,
-	orderStatus: req.body.orderStatus,
-    deliveryDate: req.body.deliveryDate,
-   	price: req.body.price,
-	serviceProviderId: req.body.serviceProviderId,
-	areaHierarchyId: req.body.areaHierarchyId,
-	status: req.body.status? req.body.status : 0
-  };
-  addEntity(orderItemsModel, orderItems, (result) => {
+  // if (!req.body.orderId) {
+  //   res.status(400).send({
+  //     status: 1,
+  //     message: "Order Id can not be empty!",
+  //     data: []
+  //   });
+  //   return;
+  // }
 
-    if (result.status == 0) {
-      res.send(result);
-    } else {
-      res.status(500).send(result);
+  const isCart = req.body.cartOrOrder;
+  let userCart;
+    if(isCart){
+      const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
+      getByFilter(orderModel, cartData, (result) => {
+        if(result.data.length){
+          addCart(result.data[0]);
+        }else{
+          addEntity(orderModel, cartData, (result) => {
+            if (result.status == 0) {
+              addCart(result.data);
+            }
+          });
+        }
+      });
     }
-
-  });
+  
+  // Create a order items
+  function addCart(result){
+    let orderItems = {
+      orderId: result.id,
+      serviceHierarchyId: req.body.serviceHierarchyId,
+      quantity: req.body.quantity,
+      orderStatus: req.body.orderStatus,
+      deliveryDate: req.body.deliveryDate,
+      price: req.body.price,
+      serviceProviderId: req.body.serviceProviderId,
+      areaHierarchyId: req.body.areaHierarchyId,
+      status: req.body.status ? req.body.status : 0
+    };
+    addEntity(orderItemsModel, orderItems, (result) => {
+      if (result.status == 0) {
+        res.send(result);
+      } else {
+        res.status(500).send(result);
+      }
+    });
+  }
+  
 }
 
 // Retrieve all Order Item from the database.
@@ -58,11 +77,9 @@ exports.findAll = (req, res) => {
 };
 
 
-
-// Find a single Service with an id
+// Find a single order item with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
   getById(orderItemsModel, id, (result) => {
     if (result.status == 0) {
       res.send(result);
@@ -70,34 +87,43 @@ exports.findOne = (req, res) => {
       res.status(500).send(result);
     }
   });
+}
 
+// Update a order item by the id in the request
+exports.update = (req, res) => {
+  const id = req.params.id;
+
+  updateEntity(orderItemsModel, req.body, id, (result) => {
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
 
 }
 
-// Update a Service by the id in the request
-exports.update = (req, res) => {
-    const id = req.params.id;
-  
-    updateEntity(orderItemsModel, req.body,id, (result)=>{
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
-      }
-    });
-     
-  }
-
-// Delete a Service with the specified id in the request
+// Delete a order with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  
-	updateEntity(orderItemsModel, {status:1}, id, (result)=>{
-		if (result.status == 0) {
-          res.send(result);
-        } else {
-          res.status(500).send(result);
-        }
+  orderItemsModel.destroy({
+    where: { id: id }
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Cart item deleted successfully!"
+      });
+    } else {
+      res.send({
+        message: `Cannot delete cart with id=${id}. Maybe cart was not found!`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Could not delete cart with id=" + id
+    });
   });
 };
 
@@ -142,7 +168,7 @@ exports.findAllPublished = (req, res) => {
 
 // Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  getByFilter(orderItemsModel, req.body,(result)=>{
+  getByFilter(orderItemsModel, req.body, (result) => {
     if (result.status == 0) {
       res.send(result);
     } else {

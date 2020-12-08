@@ -8,6 +8,7 @@ import { ServiceHierarchyAddComponent } from '../service-hierarchy-add/service-h
 import { ServiceHierarchyDetailComponent } from '../service-hierarchy-detail/service-hierarchy-detail.component';
 import { ServiceHierarchyService } from '../../../services/service-hierarchy.service';
 import { ServiceHierarchyEditComponent } from '../service-hierarchy-edit/service-hierarchy-edit.component';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service'
 
 @Component({
   selector: 'app-service-hierarchy',
@@ -15,7 +16,6 @@ import { ServiceHierarchyEditComponent } from '../service-hierarchy-edit/service
   styleUrls: ['./service-hierarchy.component.css']
 })
 export class ServiceHierarchyComponent implements OnInit {
-  //comp = {title:"Service-hierarchy"};
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,33 +29,35 @@ export class ServiceHierarchyComponent implements OnInit {
   displayedColumns = ['title', 'description', 'published','parent','serviceLayer','end','status','action'];
   dataSource = new MatTableDataSource();
   
- constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private serviceHierarchyService:ServiceHierarchyService) {
+ constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private serviceHierarchyService:ServiceHierarchyService, private confirmDialog:ConfirmDialogService) {
   }
 
   ngOnInit(): void {
     this.retrieveServiceHierarchy();
   }
 
+
   getParentName(parentId: number) : string {
     let parent = this.serviceHierarchies.filter(sh=>sh.id==parentId);
     if(parent.length > 0)
       return parent[0].title;
-    return "";
+      return "";
   }
 
   retrieveServiceHierarchy(): void {
     this.serviceHierarchyService.getAll()
-      .subscribe(
-        data => {
-          this.serviceHierarchies = data;
-          this.dataSource = new MatTableDataSource<any>(data);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
+    .subscribe(
+      data => {
+        this.serviceHierarchies = data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   applyFilter(event: Event) {
@@ -111,18 +113,21 @@ export class ServiceHierarchyComponent implements OnInit {
   }
 
   deleteService(id): void {
-    if(confirm('Are you sure to delete')){
-      this.serviceHierarchyService.delete(id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('The service deleted successfully');
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
-    }
+    this.confirmDialog.openConfirmDialog('Are you sure to delete this?').afterClosed().subscribe(res => {
+      if(res){
+        this.serviceHierarchyService.delete(id)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.openSnackBar('The service deleted successfully');
+            this.refreshList();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    })
   }
 
 

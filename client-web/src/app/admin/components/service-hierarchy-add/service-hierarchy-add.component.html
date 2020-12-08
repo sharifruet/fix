@@ -1,7 +1,17 @@
 <div>
     <h3 mat-dialog-title>Add Service</h3>
-
+    
     <div mat-dialog-content>
+        <div>
+            <label for="">Photo</label>
+            <div class="img" (click)="addImage()">
+                <ng-container *ngIf="selectedImage; else icon">
+                    <img src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
+                </ng-container>
+                <ng-template #icon>
+                    <mat-icon >insert_photo</mat-icon></ng-template>
+            </div>
+        </div>
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Title</mat-label>
@@ -30,7 +40,7 @@
             <div fxFlex="50">
                 <mat-form-field class="input-width">
                     <mat-label>Status</mat-label>
-                    <mat-select required [(ngModel)]="serviceHierarchy.status" name="status">
+                    <mat-select [(ngModel)]="serviceHierarchy.status" name="status">
                         <mat-option>None</mat-option>
                         <mat-option value="0">Active</mat-option>
                         <mat-option value="1">Inactive</mat-option>
@@ -65,6 +75,13 @@
                 <angular-editor id="editor2" [config]="editorConfig" [placeholder]="'Enter detail...'"
                     [(ngModel)]="serviceHierarchy.detail"></angular-editor>
             </div>
+
+            <div *ngIf="faqs?.length > 0">
+                <ul class="faq">
+                    <li *ngFor="let faq of faqs"><span>{{faq.question}}</span> : {{faq.answer}}</li>
+                </ul>
+            </div>
+
             <div>
                 <mat-label>FAQ</mat-label>
                 <div fxLayout="row" fxLayoutGap="20px">
@@ -90,11 +107,6 @@
                         </button>
                     </div>
                 </div>
-            </div>
-            <div *ngIf="faqs?.length > 0">
-                <ul class="faq">
-                    <li *ngFor="let faq of faqs"><span>{{faq.question}}</span> : {{faq.answer}}</li>
-                </ul>               
             </div>
         </div>
 
