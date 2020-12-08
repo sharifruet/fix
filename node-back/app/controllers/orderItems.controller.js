@@ -44,11 +44,25 @@ exports.create = (req, res) => {
       areaHierarchyId: req.body.areaHierarchyId,
       status: req.body.status ? req.body.status : 0
     };
-    addEntity(orderItemsModel, orderItems, (result) => {
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
+    const itemService = {"orderId":result.id, "serviceHierarchyId":req.body.serviceHierarchyId};
+    getByFilter(orderItemsModel, itemService, (result) => {
+      if(result.data.length){
+        const upQty = result.data[0].quantity+1;
+        updateEntity(orderItemsModel, upQty, result.data[0].id, (result) => {
+          if (result.status == 0) {
+            res.send(result);
+          } else {
+            res.status(500).send(result);
+          }
+        });
+      }else{
+        addEntity(orderItemsModel, orderItems, (result) => {
+          if (result.status == 0) {
+            res.send(result);
+          } else {
+            res.status(500).send(result);
+          }
+        });
       }
     });
   }
