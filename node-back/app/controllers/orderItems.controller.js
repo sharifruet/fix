@@ -47,7 +47,7 @@ exports.create = (req, res) => {
     const itemService = {"orderId":result.id, "serviceHierarchyId":req.body.serviceHierarchyId};
     getByFilter(orderItemsModel, itemService, (result) => {
       if(result.data.length){
-        const upQty = result.data[0].quantity+1;
+        const upQty = {"quantity":result.data[0].quantity+1};
         updateEntity(orderItemsModel, upQty, result.data[0].id, (result) => {
           if (result.status == 0) {
             res.send(result);

@@ -31,7 +31,7 @@
 
         <div fxFlex="45">
             <div class="added-item-area">
-                <div class="added-item-list">
+                <div class="added-item-list" *ngIf="cartItems.length>0; else emptyCart">
 
                     <div class="added-item" *ngFor="let cartItem of cartItems">
                         <button mat-icon-button class="cart-remove" (click)="removeCart(cartItem.id)"><mat-icon>clear</mat-icon></button>
@@ -40,9 +40,9 @@
                             <div style="text-align:right">
                                 <div>
                                     <div class="quantity-area">
-                                        <button (click)="plus(-1, cartItem.id)"><mat-icon>remove</mat-icon></button>
+                                        <button (click)="quantity(-1, cartItem.id)"><mat-icon>remove</mat-icon></button>
                                         <span>{{cartItem.quantity}}</span>
-                                        <button (click)="plus(1, cartItem.id)"><mat-icon>add</mat-icon></button>
+                                        <button (click)="quantity(1, cartItem.id)"><mat-icon>add</mat-icon></button>
                                     </div>
                                 </div>
                                 <span>৳{{(cartItem.quantity * cartItem.price)}}</span>
@@ -58,6 +58,9 @@
                         </div>
                     </div>
                 </div>
+                <ng-template #emptyCart>
+                    <h4 style="text-align: center;">Empty Cart</h4>
+                </ng-template>
                 <button class="checkout-btn" (click)="toggleShow()" mat-button color="black">Proceed To Checkout</button>
             </div>
             

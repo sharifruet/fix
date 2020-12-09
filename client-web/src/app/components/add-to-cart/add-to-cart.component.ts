@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { OrdersService } from '../../services/orders.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { OrderItemsService } from '../../services/order-items.service';
 import {ConfirmDialogService} from '../../services/confirm-dialog.service'
 
@@ -14,8 +15,14 @@ export class AddToCartComponent implements OnInit {
 
   service_data;
   serviceChild_data;
-  constructor(public dialogRef: MatDialogRef<ServiceHierarchyService>, public service: ServiceHierarchyService, public order: OrdersService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any, private confirmDialog:ConfirmDialogService) {
+  constructor(private _snackBar: MatSnackBar, public dialogRef: MatDialogRef<ServiceHierarchyService>, public service: ServiceHierarchyService, public order: OrdersService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any, private confirmDialog:ConfirmDialogService) {
     this.service_data = data;
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
+    });
   }
 
   ngOnInit(): void {
@@ -23,15 +30,12 @@ export class AddToCartComponent implements OnInit {
     this.getCart();
   }
 
-  
-
   getServiceName(id){
       let name = this.serviceChild_data.filter(sh=>sh.id==id);
       if(name.length > 0)
       return name[0].title;
       return "";
   }
-
 
   // get service items
   getServiceById(): void {
@@ -68,8 +72,7 @@ export class AddToCartComponent implements OnInit {
   }
 
   // get cart
-  cartItems;
-
+  cartItems = [];
   getCart() {
     this.orderItem.getAll()
       .subscribe(
@@ -87,7 +90,6 @@ export class AddToCartComponent implements OnInit {
     this.cartItems.forEach(element => {
       total += (element.price * element.quantity);
     });
-
     return total;
   }
 
@@ -114,19 +116,23 @@ export class AddToCartComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  plus(addQty:number, id:number) {
+  quantity(addQty:number, id:number) {
     let items = this.cartItems.filter(itm=> itm.id ==id);
     if(items.length>0){
-      items[0].quantity = items[0].quantity + addQty;
-      this.orderItem.update(id, {"quantity":items[0].quantity})
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      if((items[0].quantity + addQty) > 0){
+        items[0].quantity = items[0].quantity + addQty;
+        this.orderItem.update(id, {"quantity":items[0].quantity})
+        .subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }else{
+        this.openSnackBar('Quantity must not less than 1');
+      }
     }
   }
 
