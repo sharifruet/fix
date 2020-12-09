@@ -40,9 +40,9 @@
                             <div style="text-align:right">
                                 <div>
                                     <div class="quantity-area">
-                                        <button (click)="minus(cartItem.quantity, cartItem.id)"><mat-icon>remove</mat-icon></button>
+                                        <button (click)="plus(-1, cartItem.id)"><mat-icon>remove</mat-icon></button>
                                         <span>{{cartItem.quantity}}</span>
-                                        <button (click)="plus(cartItem.quantity, cartItem.id)"><mat-icon>add</mat-icon></button>
+                                        <button (click)="plus(1, cartItem.id)"><mat-icon>add</mat-icon></button>
                                     </div>
                                 </div>
                                 <span>৳{{(cartItem.quantity * cartItem.price)}}</span>
@@ -54,7 +54,7 @@
                     <div class="added-item">
                         <div>
                             <h4>Subtotal</h4>
-                            <h4>৳{{cartTotal}}</h4>
+                            <h4>৳{{getTotal()}}</h4>
                         </div>
                     </div>
                 </div>

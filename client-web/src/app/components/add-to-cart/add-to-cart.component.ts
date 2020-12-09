@@ -69,22 +69,26 @@ export class AddToCartComponent implements OnInit {
 
   // get cart
   cartItems;
-  cartTotal;
 
   getCart() {
     this.orderItem.getAll()
       .subscribe(
         data => {
           this.cartItems = data.data;
-          this.cartTotal = 0;
-          this.cartItems.forEach(element => {
-            this.cartTotal += (element.price * element.quantity);
-          });
         },
         error => {
           console.log(error);
         }
       );
+  }
+
+  getTotal() : number{
+    let total = 0;
+    this.cartItems.forEach(element => {
+      total += (element.price * element.quantity);
+    });
+
+    return total;
   }
 
   // remove cart item
@@ -110,31 +114,20 @@ export class AddToCartComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  plus(quantity:number, id:number) {
-    quantity++;
-    this.orderItem.update(id, quantity)
-    .subscribe(
-      response => {
-        this.getCart();
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  minus(quantity:number, id:number) {
-    quantity--;
-    this.orderItem.update(id, quantity)
-    .subscribe(
-      response => {
-        this.getCart();
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  plus(addQty:number, id:number) {
+    let items = this.cartItems.filter(itm=> itm.id ==id);
+    if(items.length>0){
+      items[0].quantity = items[0].quantity + addQty;
+      this.orderItem.update(id, {"quantity":items[0].quantity})
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
 
