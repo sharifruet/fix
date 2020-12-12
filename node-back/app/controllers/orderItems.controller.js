@@ -16,7 +16,6 @@ exports.create = (req, res) => {
   // }
 
   const isCart = req.body.cartOrOrder;
-  let userCart;
     if(isCart){
       const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
       getByFilter(orderModel, cartData, (result) => {
@@ -45,11 +44,25 @@ exports.create = (req, res) => {
       areaHierarchyId: req.body.areaHierarchyId,
       status: req.body.status ? req.body.status : 0
     };
-    addEntity(orderItemsModel, orderItems, (result) => {
-      if (result.status == 0) {
-        res.send(result);
-      } else {
-        res.status(500).send(result);
+    const itemService = {"orderId":result.id, "serviceHierarchyId":req.body.serviceHierarchyId};
+    getByFilter(orderItemsModel, itemService, (result) => {
+      if(result.data.length){
+        const upQty = {"quantity":result.data[0].quantity+1};
+        updateEntity(orderItemsModel, upQty, result.data[0].id, (result) => {
+          if (result.status == 0) {
+            res.send(result);
+          } else {
+            res.status(500).send(result);
+          }
+        });
+      }else{
+        addEntity(orderItemsModel, orderItems, (result) => {
+          if (result.status == 0) {
+            res.send(result);
+          } else {
+            res.status(500).send(result);
+          }
+        });
       }
     });
   }

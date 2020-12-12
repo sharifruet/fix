@@ -89,13 +89,16 @@
     position: relative;
     margin-bottom: 10px;
 }
-.quantity-area input{
-    border:0;
+.quantity-area span{
+    border: 0;
     position: absolute;
+    left: 0;
     width: 100%;
     height: 100%;
-    padding:0 30px;
-    background-color:transparent;
+    padding: 0 25px;
+    background-color: transparent;
+    line-height: 23px;
+    text-align: center;
 }
 .quantity-area button{
     height: 22px;
