@@ -58,9 +58,11 @@
                         </div>
                     </div>
                 </div>
-                <ng-template #emptyCart>
-                    <h4 style="text-align: center;">Empty Cart</h4>
-                </ng-template>
+                <div>
+                    <ng-template #emptyCart>
+                        <h4 style="text-align: center;margin:0;padding:50px 0;">Empty Cart</h4>
+                    </ng-template>
+                </div>
                 <button class="checkout-btn" (click)="toggleShow()" mat-button color="black">Proceed To Checkout</button>
             </div>
             
@@ -79,15 +81,37 @@
     <div fxLayout="row">
         <div fxFlex="55">
             <div class="checkout-text">
-                <h4>Dear X, Your order has been placed successfully</h4>
-                <p>Your order ID: 5412B1C</p>
-                <div>
-                    <h4>Some text</h4>
-                    <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. </p>
+                <h4>Your order ID: 5412B1C</h4>
+                <div class="added-item" *ngFor="let cartItem of cartItems">
+                    <mat-checkbox class="checkbox" [checked]="isChecked"></mat-checkbox>
+                    <div>
+                        <h4> {{getServiceName(cartItem.serviceHierarchyId)}}</h4>
+                        <div style="text-align:right">
+                            <div>
+                                <div class="quantity-area">
+                                    <button (click)="quantity(-1, cartItem.id)">
+                                        <mat-icon>remove</mat-icon>
+                                    </button>
+                                    <span>{{cartItem.quantity}}</span>
+                                    <button (click)="quantity(1, cartItem.id)">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <span>৳{{(cartItem.quantity * cartItem.price)}}</span>
+                        </div>
+                    </div>
+                
                 </div>
-                <div class="order-btn">
-                    <button mat-button color="black" (click)="toggleShow()">Order Detail</button>
-                    <button mat-flat-button (click)="toggleShow()">More Order</button>
+                <mat-divider></mat-divider>
+                <div class="added-item">
+                    <div>
+                        <h4>Subtotal</h4>
+                        <h4>৳{{getTotal()}}</h4>
+                    </div>
+                </div>
+                <div class="order-btn" style="margin-top: 20px;">
+                    <button mat-button color="black" (click)="toggleShow()">Back to Cart</button>
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@
     padding-left:46px;
     border-bottom: 1px solid #eee;
 }
-.added-item .cart-remove{
+.added-item .cart-remove, .checkbox{
     position: absolute;
     left:0;
     top:50%;

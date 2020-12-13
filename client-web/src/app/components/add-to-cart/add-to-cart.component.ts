@@ -115,6 +115,7 @@ export class AddToCartComponent implements OnInit {
   toggleShow() {
     this.isShow = !this.isShow;
   }
+  isChecked=true;
 
   quantity(addQty:number, id:number) {
     let items = this.cartItems.filter(itm=> itm.id ==id);

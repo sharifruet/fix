@@ -132,7 +132,8 @@ import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/pr
     MaterialModule,
     CarouselModule,
     FlexLayoutModule,
-    AngularEditorModule
+    AngularEditorModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
