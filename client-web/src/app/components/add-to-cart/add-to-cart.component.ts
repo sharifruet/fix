@@ -78,6 +78,7 @@ export class AddToCartComponent implements OnInit {
       .subscribe(
         data => {
           this.cartItems = data.data;
+          this.cartItems.forEach(item=>{item.checked = true;});
         },
         error => {
           console.log(error);
@@ -88,7 +89,8 @@ export class AddToCartComponent implements OnInit {
   getTotal() : number{
     let total = 0;
     this.cartItems.forEach(element => {
-      total += (element.price * element.quantity);
+      if(element.checked)
+       total += (element.price * element.quantity);
     });
     return total;
   }
