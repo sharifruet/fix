@@ -57,6 +57,7 @@ export class AddToCartComponent implements OnInit {
       cartOrOrder : true,
       serviceHierarchyId: data.id,
       quantity: 1,
+      paymentType:'',
       price: data.price
     }
     this.orderItem.create(cartItem)
@@ -71,6 +72,38 @@ export class AddToCartComponent implements OnInit {
       );
   }
 
+  paymentType:string ='';
+  // order submit
+  orderSubmit(){
+    if(this.paymentType == ''){
+      this.openSnackBar('Please select a payment method');
+    }else{
+      this.cartItems.forEach(item=>{
+        if(item.checked == true){
+          const orderItem = {
+            userId:1,
+            itemId:item.id,
+            cartOrOrder : false,
+            paymentType: this.paymentType
+          }
+          this.orderItem.create(orderItem)
+          .subscribe(
+            response => {
+              console.log(response);
+              this.openSnackBar('Your order successfully placed');
+            },
+            error => {
+              console.log(error);
+            }
+          );
+        }else{
+          this.openSnackBar('Please select a service');
+        }
+      });
+    }
+  }
+
+
   // checked or not cart
   checkedCart(event, id){    
     this.cartItems.forEach(item=>{
@@ -79,6 +112,7 @@ export class AddToCartComponent implements OnInit {
       }
     });
   }
+
   // get cart
   cartItems = [];
   getCart() {

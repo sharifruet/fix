@@ -127,13 +127,13 @@
             <h4>Total payable ৳{{getTotal()}}</h4>
             <div class="payment-list">
                 <label id="payment-radio-group-label">Pick your payment system</label>
-                <mat-radio-group aria-labelledby="payment-radio-group-label" class="payment-radio-group">
+                <mat-radio-group aria-labelledby="payment-radio-group-label" class="payment-radio-group" [(ngModel)]="paymentType">
                     <mat-radio-button class="payment-radio-button" *ngFor="let payment of payments" [value]="payment">
                         {{payment}}
                     </mat-radio-button>
                 </mat-radio-group>
             </div>
-            <button class="payment-btn" mat-button color="black">Proceed To Payment</button>
+            <button class="payment-btn" (click)="orderSubmit()" mat-button color="black">Proceed To Payment</button>
         </div>
     </div>
 </div>
