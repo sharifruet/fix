@@ -71,6 +71,14 @@ export class AddToCartComponent implements OnInit {
       );
   }
 
+  // checked or not cart
+  checkedCart(event, id){    
+    this.cartItems.forEach(item=>{
+      if(item.id == id){
+        item.checked = event.checked;
+      }
+    });
+  }
   // get cart
   cartItems = [];
   getCart() {
@@ -138,6 +146,9 @@ export class AddToCartComponent implements OnInit {
       }
     }
   }
+
+
+  payments:string[] = ["Bkash", "Bank", "Debit/Credit Card", "Cash on delivery"]
 
 
 
