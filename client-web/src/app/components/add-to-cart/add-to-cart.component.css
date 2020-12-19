@@ -74,7 +74,7 @@
     padding-left:46px;
     border-bottom: 1px solid #eee;
 }
-.added-item .cart-remove{
+.added-item .cart-remove, .checkbox{
     position: absolute;
     left:0;
     top:50%;
@@ -128,11 +128,19 @@
 .payment h4{
     margin-top:0;
 }
-.payment-list>div{
-    padding:10px 0;
-}
 .payment-btn{
     width: 100%;
     margin-top: 15px;
     line-height: 44px;
+}
+
+
+.payment-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.payment-radio-button {
+margin: 5px;
 }

@@ -15,57 +15,74 @@ exports.create = (req, res) => {
   //   return;
   // }
 
-  const isCart = req.body.cartOrOrder;
-    if(isCart){
-      const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder};
-      getByFilter(orderModel, cartData, (result) => {
-        if(result.data.length){
-          addCart(result.data[0]);
-        }else{
-          addEntity(orderModel, cartData, (result) => {
-            if (result.status == 0) {
-              addCart(result.data);
-            }
-          });
-        }
-      });
-    }
-  
-  // Create a order items
-  function addCart(result){
-    let orderItems = {
-      orderId: result.id,
-      serviceHierarchyId: req.body.serviceHierarchyId,
-      quantity: req.body.quantity,
-      orderStatus: req.body.orderStatus,
-      deliveryDate: req.body.deliveryDate,
-      price: req.body.price,
-      serviceProviderId: req.body.serviceProviderId,
-      areaHierarchyId: req.body.areaHierarchyId,
-      status: req.body.status ? req.body.status : 0
-    };
-    const itemService = {"orderId":result.id, "serviceHierarchyId":req.body.serviceHierarchyId};
-    getByFilter(orderItemsModel, itemService, (result) => {
+    const cartData = {"userId":req.body.userId, "cartOrOrder":req.body.cartOrOrder, "paymentType":req.body.paymentType};
+    getByFilter(orderModel, cartData, (result) => {
       if(result.data.length){
-        const upQty = {"quantity":result.data[0].quantity+1};
-        updateEntity(orderItemsModel, upQty, result.data[0].id, (result) => {
-          if (result.status == 0) {
-            res.send(result);
-          } else {
-            res.status(500).send(result);
-          }
-        });
+        addItem(result.data[0]);
       }else{
-        addEntity(orderItemsModel, orderItems, (result) => {
+        addEntity(orderModel, cartData, (result) => {
           if (result.status == 0) {
-            res.send(result);
-          } else {
-            res.status(500).send(result);
+            addItem(result.data);
           }
         });
       }
     });
+  
+  // Create a order items
+  function addItem(result){
+    if(result.cartOrOrder == true){
+      let orderItems = {
+        orderId: result.id,
+        serviceHierarchyId: req.body.serviceHierarchyId,
+        quantity: req.body.quantity,
+        orderStatus: req.body.orderStatus,
+        deliveryDate: req.body.deliveryDate,
+        price: req.body.price,
+        serviceProviderId: req.body.serviceProviderId,
+        areaHierarchyId: req.body.areaHierarchyId,
+        status: req.body.status ? req.body.status : 0
+      };
+      const itemService = {"orderId":result.id, "serviceHierarchyId":req.body.serviceHierarchyId};
+      getByFilter(orderItemsModel, itemService, (result) => {
+        if(result.data.length){
+          const upQty = {"quantity":result.data[0].quantity+1};
+          updateEntity(orderItemsModel, upQty, result.data[0].id, (result) => {
+            if (result.status == 0) {
+              res.send(result);
+            } else {
+              res.status(500).send(result);
+            }
+          });
+        }else{
+          addEntity(orderItemsModel, orderItems, (result) => {
+            if (result.status == 0) {
+              res.send(result);
+            } else {
+              res.status(500).send(result);
+            }
+          });
+        }
+      });
+    }else{
+      let orderItems = {
+        orderId: result.id,
+        deliveryDate: req.body.deliveryDate,
+        serviceProviderId: req.body.serviceProviderId,
+        areaHierarchyId: req.body.areaHierarchyId,
+        status: req.body.status ? req.body.status : 0
+      };
+      updateEntity(orderItemsModel, orderItems, req.body.itemId, (result) => {
+        if (result.status == 0) {
+          res.send(result);
+        } else {
+          res.status(500).send(result);
+        }
+      });
+    }
+    
   }
+
+
   
 }
 

@@ -57,6 +57,7 @@ export class AddToCartComponent implements OnInit {
       cartOrOrder : true,
       serviceHierarchyId: data.id,
       quantity: 1,
+      paymentType:'',
       price: data.price
     }
     this.orderItem.create(cartItem)
@@ -71,6 +72,47 @@ export class AddToCartComponent implements OnInit {
       );
   }
 
+  paymentType:string ='';
+  // order submit
+  orderSubmit(){
+    if(this.paymentType == ''){
+      this.openSnackBar('Please select a payment method');
+    }else{
+      this.cartItems.forEach(item=>{
+        if(item.checked == true){
+          const orderItem = {
+            userId:1,
+            itemId:item.id,
+            cartOrOrder : false,
+            paymentType: this.paymentType
+          }
+          this.orderItem.create(orderItem)
+          .subscribe(
+            response => {
+              console.log(response);
+              this.openSnackBar('Your order successfully placed');
+            },
+            error => {
+              console.log(error);
+            }
+          );
+        }else{
+          this.openSnackBar('Please select a service');
+        }
+      });
+    }
+  }
+
+
+  // checked or not cart
+  checkedCart(event, id){    
+    this.cartItems.forEach(item=>{
+      if(item.id == id){
+        item.checked = event.checked;
+      }
+    });
+  }
+
   // get cart
   cartItems = [];
   getCart() {
@@ -78,6 +120,7 @@ export class AddToCartComponent implements OnInit {
       .subscribe(
         data => {
           this.cartItems = data.data;
+          this.cartItems.forEach(item=>{item.checked = true;});
         },
         error => {
           console.log(error);
@@ -88,7 +131,8 @@ export class AddToCartComponent implements OnInit {
   getTotal() : number{
     let total = 0;
     this.cartItems.forEach(element => {
-      total += (element.price * element.quantity);
+      if(element.checked)
+       total += (element.price * element.quantity);
     });
     return total;
   }
@@ -115,6 +159,7 @@ export class AddToCartComponent implements OnInit {
   toggleShow() {
     this.isShow = !this.isShow;
   }
+  isChecked=true;
 
   quantity(addQty:number, id:number) {
     let items = this.cartItems.filter(itm=> itm.id ==id);
@@ -135,6 +180,9 @@ export class AddToCartComponent implements OnInit {
       }
     }
   }
+
+
+  payments:string[] = ["Bkash", "Bank", "Debit/Credit Card", "Cash on delivery"]
 
 
 
