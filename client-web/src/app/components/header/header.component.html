@@ -19,7 +19,7 @@
                 <button *ngFor="let menuItem of topLevelMenu" mat-button
                     (click)="changeTopLevelMenu(menuItem.id)"
                     [class.selected]="initalParent===menuItem.id">{{menuItem.title}}</button>
-                <button mat-icon-button class="cart">
+                <button mat-icon-button class="cart" (click)="openCart()">
                     <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
                 <button mat-button color="black" (click)="openLogin()">Login</button>

@@ -71,6 +71,8 @@ import { MediaPopupComponent } from './admin/components/media-popup/media-popup.
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/privilege-add.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 @NgModule({
@@ -121,6 +123,8 @@ import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/pr
     MediaPopupComponent,
     ConfirmDialogComponent,
     PrivilegeAddComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -160,7 +164,8 @@ import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/pr
     MediaPopupComponent,
     ConfirmDialogComponent,
 	  AreaHierarchyAddComponent,
-	  PrivilegeAddComponent
+    PrivilegeAddComponent,
+    CartComponent
   ]
 })
 export class AppModule { }

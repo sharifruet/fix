@@ -104,21 +104,12 @@ exports.delete = (req, res) => {
     });
 };
 
-
-// Find all isEnd Service
 exports.findByFilter = (req, res) => {
-  orderModel.findAll({ where: req.body })
-    .then(data => {
-      res.send({
-        status: 0,
-        message: 'Fetch successful',
-        data: data
-      });
-    })
-    .catch(err => {
-      res.status(500).send({
-        status: 1,
-        message: err.message || "Some error occurred while creating the Service.",
-      });
-    });
+  getByFilter(orderModel, req.body, (result) => {
+    if (result.status == 0) {
+      res.send(result);
+    } else {
+      res.status(500).send(result);
+    }
+  });
 };
