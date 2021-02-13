@@ -1,24 +1,24 @@
-<div class="container">
-    <div class="login-area">
-        <div class="login-form">
-            <h3>Welcome to</h3>
-            <img src="assets/images/logo.png" alt="">
-            <div>
-                <mat-form-field appearance="fill" class="input-width">
-                    <mat-label>Email</mat-label>
-                    <input matInput type="text" required>
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="fill" class="input-width">
-                    <mat-label>Password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                  </mat-form-field>
-            </div>
-            <button mat-button routerLink="/admin/dashboard" color="black" class="input-button">Login</button>
-        </div>
-    </div>
-</div>
+<mat-card>
+    <mat-card-content>
+      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h3>Welcome to</h3>
+        <img src="assets/images/logo.png" alt="">
+        <mat-error *ngIf="loginInvalid">
+          The username and password were not recognised
+        </mat-error>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Email" formControlName="username" required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Password" formControlName="password" required>
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
