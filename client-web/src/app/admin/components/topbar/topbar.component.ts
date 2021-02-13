@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthenticationService } from '../../../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -8,13 +10,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class TopbarComponent implements OnInit {
 
   @Output() toggleNav:EventEmitter<any> = new EventEmitter();
-  constructor() { }
+  constructor(private router: Router, private service: AuthenticationService) { 
+
+  }
 
   ngOnInit(): void {
   }
 
   slideNav(){
     this.toggleNav.emit();
+  }
+
+  signout(): void{
+    this.service.logout();
+    this.router.navigate(['admin/login']);
   }
 
 }

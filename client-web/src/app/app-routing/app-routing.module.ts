@@ -23,7 +23,7 @@ import { MediaComponent } from '../admin/components/media/media.component';
 import { OrdersComponent } from '../admin/components/orders/orders.component';
 import { OrderItemComponent } from '../admin/components/order-item/order-item.component';
 import { OrderItemPaymentComponent } from '../admin/components/order-item-payment/order-item-payment.component';
-
+import { AuthGuard } from '../helpers/auth.guard';
 
 
 const routes: Routes = [
@@ -51,9 +51,10 @@ const routes: Routes = [
       component:UserProfileComponent
     }
   ]},  
+
   { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
   { path:'admin/login', component:AdminLoginComponent },
-  { path: 'admin', component:AdminDefaultComponent, children:[
+  { path: 'admin', component:AdminDefaultComponent, canActivate: [AuthGuard], children:[
     {
       path:'dashboard',
       component:DashboardComponent

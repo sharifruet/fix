@@ -19,11 +19,11 @@ exports.login = (req, res) => {
   const password = req.body.password;
   const user = {name:username};
   
-  userModel.findAll({ where: {username} })
+  userModel.findAll({ where: {email:username} })
       .then(data => {
         if(data.length == 0){
-			res.status(404).send({status:1, message:"User not found"});
-		}else{
+			res.status(400).send({status:1, message:"User not found"});
+		}else{ 
 			const usr = data[0];
 			
 			if(stringUtil.compareHash(password, usr.password)){
