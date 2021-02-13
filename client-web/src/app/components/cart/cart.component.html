@@ -1,0 +1,47 @@
+
+<div class="added-item-area" *ngIf="!isShow">
+    <div class="added-item-list" *ngIf="cartItems.length>0; else emptyCart">
+
+        <div class="added-item" *ngFor="let cartItem of cartItems">
+            <button mat-icon-button class="cart-remove" (click)="removeCart(cartItem.id)">
+                <mat-icon>clear</mat-icon>
+            </button>
+            <div>
+                <div>
+                    <h4> {{cartItem.name}}</h4>
+                    <span> <span>৳{{cartItem.price}}</span>/unit</span>
+                </div>
+                <div style="text-align:right">
+                    <div>
+                        <div class="quantity-area">
+                            <button (click)="quantity(-1, cartItem.id)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                            <span>{{cartItem.quantity}}</span>
+                            <button (click)="quantity(1, cartItem.id)">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <span>৳{{(cartItem.quantity * cartItem.price)}}</span>
+                </div>
+            </div>
+
+        </div>
+        <mat-divider></mat-divider>
+        <div class="added-item">
+            <div>
+                <h4>Subtotal</h4>
+                <h4>৳{{getTotal()}}</h4>
+            </div>
+        </div>
+        <button class="checkout-btn" (click)="toggleShow()" mat-button color="black">Proceed To Checkout</button>
+    </div>
+    <ng-template #emptyCart>
+        <h4 style="text-align: center;margin:0;padding:50px 0;">Empty Cart</h4>
+    </ng-template>
+</div>
+
+<div *ngIf="isShow">
+    <app-checkout [cartItems] = "cartItems"></app-checkout>
+</div>

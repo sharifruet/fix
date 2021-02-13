@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { LoginSignupComponent } from '../login-signup/login-signup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
-import { AddToCartComponent } from '../add-to-cart/add-to-cart.component'
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getServiceHierarchyParent();
   }
+  
 
   getServiceHierarchyParent(){
     this.servicehierarchy.getAll().subscribe(data=>{
@@ -65,6 +66,12 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:scroll')
   checkScroll() {
     this.isSticky = window.pageYOffset >= 64;
+  }
+
+  openCart(){
+    const dialogRef = this.dialog.open(CartComponent, {
+      width:'600px'
+    });
   }
 
   openLogin(){

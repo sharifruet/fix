@@ -1,0 +1,60 @@
+<div class="checkout-area">
+    <div class="title">
+        <h2>Checkout</h2>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" fxLayoutGap="30px">
+        <div fxFlex="50">
+            <div class="checkout-text">
+                <h4>Your order ID: 5412B1C</h4>
+                <div class="added-item" *ngFor="let cartItem of cartItems">
+                    <mat-checkbox class="checkbox" (change)="checkedCart($event, cartItem.id)" [checked]="cartItem.checked"></mat-checkbox>
+                    <div>
+                        <div>
+                            <h4> {{cartItem.name}}</h4>
+                            <span> <span>৳{{cartItem.price}}</span>/unit</span>
+                        </div>
+                        <div style="text-align:right">
+                            <div>
+                                <div class="quantity-area">
+                                    <button (click)="quantity(-1, cartItem.id)">
+                                        <mat-icon>remove</mat-icon>
+                                    </button>
+                                    <span>{{cartItem.quantity}}</span>
+                                    <button (click)="quantity(1, cartItem.id)">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <span>৳{{(cartItem.quantity * cartItem.price)}}</span>
+                        </div>
+                    </div>
+                
+                </div>
+                <mat-divider></mat-divider>
+                <div class="added-item">
+                    <div>
+                        <h4>Subtotal</h4>
+                        <h4>৳{{getTotal()}}</h4>
+                    </div>
+                </div>
+                <div class="order-btn" style="margin-top: 20px;">
+                    <button mat-button color="black">Back to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="50" class="payment">
+            <h4>Total payable ৳{{getTotal()}}</h4>
+            <div class="payment-list">
+                <label id="payment-radio-group-label">Pick your payment system</label>
+                <mat-radio-group aria-labelledby="payment-radio-group-label" class="payment-radio-group" [(ngModel)]="paymentType">
+                    <mat-radio-button class="payment-radio-button" *ngFor="let payment of payments" [value]="payment">
+                        {{payment}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <button class="payment-btn" (click)="orderSubmit()" mat-button color="black">Proceed To Payment</button>
+        </div>
+    </div>
+</div>

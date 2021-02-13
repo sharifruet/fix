@@ -196,7 +196,7 @@ exports.findAllPublished = (req, res) => {
     });
 };
 
-// Find all isEnd Service
+
 exports.findByFilter = (req, res) => {
   getByFilter(orderItemsModel, req.body, (result) => {
     if (result.status == 0) {

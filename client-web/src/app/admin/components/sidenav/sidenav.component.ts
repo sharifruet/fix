@@ -9,25 +9,12 @@ const TREE_DATA = [
     link:'/admin/dashboard'
   },
   {
-    name: 'Pages',
-    icon:'pages',
-    children: [
-      {name: 'Add New', link:'/admin/service-manage'},
-      {name: 'All Pages', link:'/admin/service-list'},
-    ]
-  },
-  {
     name: 'Media',
     icon:'perm_media',
     children: [
       {name: 'Add New', link:'/admin/media-upload'},
       {name: 'All Media', link:'/admin/media'},
     ]
-  },
-  {
-    name: 'Menus',
-    icon:'menu',
-    link:'/admin/dashboard'
   },
   {
     name: 'Services',
