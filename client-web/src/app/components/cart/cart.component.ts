@@ -1,10 +1,12 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrderItemsService } from '../../services/order-items.service';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { OrdersService } from '../../services/orders.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ConfirmDialogService} from '../../services/confirm-dialog.service';
+import { CallToActionService } from '../../services/call-to-action.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -12,20 +14,34 @@ import {ConfirmDialogService} from '../../services/confirm-dialog.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  actionSubscription:Subscription;
+
+  @Output() event = new EventEmitter<boolean>();
   
   service_data;
   serviceChild_data;
-  constructor(private _snackBar: MatSnackBar, public service: ServiceHierarchyService, public order: OrdersService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any, private confirmDialog:ConfirmDialogService) {
+  constructor(
+      private _snackBar: MatSnackBar, 
+      public service: ServiceHierarchyService, 
+      public order: OrdersService, 
+      public orderItem: OrderItemsService, 
+      @Inject(MAT_DIALOG_DATA) public data: any, 
+      private confirmDialog:ConfirmDialogService, 
+      private callAction:CallToActionService
+    ){
     this.service_data = data;
+    this.actionSubscription = this.callAction.getAction().subscribe(() => {
+      this.getCartId();
+    })
+
   }
   
-  @Output() event = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.getCartId();
     this.getServiceById();
   }
-
+  
   isShow= false;
   toggleShow() {
     this.event.emit(this.isShow);
@@ -38,6 +54,7 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // service data fetched for cart
   getServiceById(): void {
     this.service.getAll()
       .subscribe(
@@ -50,6 +67,7 @@ export class CartComponent implements OnInit {
       );
   }
   
+  // get cart id
   getCartId(){
     const cart = {
       userId:1,
@@ -59,7 +77,9 @@ export class CartComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          this.getCartItem(res.data[0].id);
+          if(res.data.length > 0){
+            this.getCartItem(res.data[0].id);
+          }
         },
         error => {
           console.log(error);
@@ -67,6 +87,7 @@ export class CartComponent implements OnInit {
       );
   }
   
+  // cart items fetch
   cartItems = [];
   getCartItem(id) {
     const cartItems = {

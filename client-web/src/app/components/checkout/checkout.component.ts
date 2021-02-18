@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrderItemsService } from '../../services/order-items.service';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ConfirmDialogService} from '../../services/confirm-dialog.service'
+import {ConfirmDialogService} from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-checkout',
@@ -77,8 +77,8 @@ export class CheckoutComponent implements OnInit {
     }
   }
   
-  isChecked=true;
 
+  isChecked=true;
   quantity(addQty:number, id:number) {
     let items = this.cartItems.filter(itm=> itm.id ==id);
     if(items.length>0){
@@ -99,5 +99,11 @@ export class CheckoutComponent implements OnInit {
     }
   }
   
-  payments:string[] = ["Bkash", "Bank", "Debit/Credit Card", "Cash on delivery"]
+  payments:string[] = ["Bkash", "Bank", "Debit/Credit Card", "Cash on delivery"];
+
+
+
+  backToCart(){
+    alert("Back to cart clicked");
+  }
 }

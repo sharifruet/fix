@@ -1,4 +1,8 @@
 
+<pre>
+    {{service_data | json}}
+</pre>
+
 <div class="added-item-area" *ngIf="!isShow">
     <div class="added-item-list" *ngIf="cartItems.length>0; else emptyCart">
 
@@ -8,7 +12,7 @@
             </button>
             <div>
                 <div>
-                    <h4> {{cartItem.name}}</h4>
+                    <h4> {{cartItem.name}} </h4>
                     <span> <span>৳{{cartItem.price}}</span>/unit</span>
                 </div>
                 <div style="text-align:right">
