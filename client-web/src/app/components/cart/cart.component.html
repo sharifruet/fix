@@ -1,8 +1,4 @@
 
-<pre>
-    {{service_data | json}}
-</pre>
-
 <div class="added-item-area" *ngIf="!isShow">
     <div class="added-item-list" *ngIf="cartItems.length>0; else emptyCart">
 
@@ -47,5 +43,5 @@
 </div>
 
 <div *ngIf="isShow">
-    <app-checkout [cartItems] = "cartItems"></app-checkout>
+    <app-checkout [cartItems] = "cartItems" (event)="toggleShow()"></app-checkout>
 </div>

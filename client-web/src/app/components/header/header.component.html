@@ -20,7 +20,7 @@
                     (click)="changeTopLevelMenu(menuItem.id)"
                     [class.selected]="initalParent===menuItem.id">{{menuItem.title}}</button>
                 <button mat-icon-button class="cart" (click)="openCart()">
-                    <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
+                    <mat-icon [matBadge]="cartItems?.length || null" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
                 <button mat-button color="black" (click)="openLogin()">Login</button>
             </div>
@@ -30,9 +30,6 @@
 
 <mat-toolbar class="menu-bar mat-elevation-z1">
     <span *ngFor="let item of getSecondLevelMenu()">
-        <!-- <pre>
-            {{item | json}}
-        </pre> -->
       <!-- Handle branch node buttons here -->
       <span *ngIf="item.children && item.children.length > 0 && item.serviceLayer == false">
         <button mat-button [matMenuTriggerFor]="menu.childMenu"

@@ -13,7 +13,13 @@ export class AddToCartComponent implements OnInit {
 
   service_data;
   serviceChild_data: any = '';
-  constructor(public dialogRef: MatDialogRef<ServiceHierarchyService>, public service: ServiceHierarchyService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any, private callAction:CallToActionService) {
+  constructor(
+      public dialogRef: MatDialogRef<ServiceHierarchyService>, 
+      public service: ServiceHierarchyService, 
+      public orderItem: OrderItemsService, 
+      @Inject(MAT_DIALOG_DATA) public data: any, 
+      private callAction:CallToActionService
+    ) {
     this.service_data = data;
   }
 
@@ -39,7 +45,6 @@ export class AddToCartComponent implements OnInit {
         }
       );
   }
-  
 
   //service add to cart
   addToCart(data) {

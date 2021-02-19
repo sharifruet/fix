@@ -3,6 +3,10 @@ import { LoginSignupComponent } from '../login-signup/login-signup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { CartComponent } from '../cart/cart.component';
+import { OrdersService } from '../../services/orders.service';
+import { OrderItemsService } from '../../services/order-items.service';
+import { CallToActionService } from '../../services/call-to-action.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +14,65 @@ import { CartComponent } from '../cart/cart.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  actionSubscription:Subscription;
   serviceHierarchies:any = [];
   initalParent:number = 1;
   topLevelMenu : any;
 
-  constructor(public dialog: MatDialog, private servicehierarchy:ServiceHierarchyService) { }
+  constructor(
+    public dialog: MatDialog, 
+    private servicehierarchy:ServiceHierarchyService,
+    private order:OrdersService,
+    private orderItem:OrderItemsService,
+    private callAction:CallToActionService
+    ) { 
+      this.actionSubscription = this.callAction.getAction().subscribe(() => {
+        this.getCartId();
+      })
+     }
 
   ngOnInit(): void {
     this.getServiceHierarchyParent();
+    this.getCartId();
+  }
+
+
+  // get cart id
+  getCartId(){
+    const cart = {
+      userId:1,
+      cartOrOrder : true
+    }
+    this.order.filter(cart)
+      .subscribe(
+        res => {
+          console.log(res);
+          if(res.data.length > 0){
+            this.getCartItem(res.data[0].id);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+  
+  // cart items fetch
+  cartItems = [];
+  getCartItem(id) {
+    const cartItems = {
+      orderId:id
+    }
+    this.orderItem.filter(cartItems)
+    .subscribe(
+      data => {
+        this.cartItems = data.data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   
 

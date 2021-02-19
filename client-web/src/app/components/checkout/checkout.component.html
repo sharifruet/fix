@@ -1,4 +1,4 @@
-<div class="checkout-area">
+<div class="checkout-area" *ngIf="isShow">
     <div class="title">
         <h2>Checkout</h2>
     </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="order-btn" style="margin-top: 20px;">
-                    <button mat-button color="black" (click)="backToCart()">Back to Cart</button>
+                    <button mat-button color="black" (click)="toggleShow()">Back to Cart</button>
                 </div>
             </div>
         </div>

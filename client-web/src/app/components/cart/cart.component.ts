@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { OrderItemsService } from '../../services/order-items.service';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { OrdersService } from '../../services/orders.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ConfirmDialogService} from '../../services/confirm-dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { CallToActionService } from '../../services/call-to-action.service';
 import { Subscription } from 'rxjs';
 
@@ -15,33 +14,26 @@ import { Subscription } from 'rxjs';
 })
 export class CartComponent implements OnInit {
   actionSubscription:Subscription;
-
-  @Output() event = new EventEmitter<boolean>();
   
-  service_data;
-  serviceChild_data;
   constructor(
       private _snackBar: MatSnackBar, 
       public service: ServiceHierarchyService, 
       public order: OrdersService, 
       public orderItem: OrderItemsService, 
-      @Inject(MAT_DIALOG_DATA) public data: any, 
       private confirmDialog:ConfirmDialogService, 
       private callAction:CallToActionService
     ){
-    this.service_data = data;
     this.actionSubscription = this.callAction.getAction().subscribe(() => {
       this.getCartId();
     })
-
   }
   
-
   ngOnInit(): void {
     this.getCartId();
     this.getServiceById();
   }
   
+  @Output() event = new EventEmitter<boolean>();
   isShow= false;
   toggleShow() {
     this.event.emit(this.isShow);
@@ -54,12 +46,14 @@ export class CartComponent implements OnInit {
     });
   }
 
+
+  serviceDetail;
   // service data fetched for cart
   getServiceById(): void {
     this.service.getAll()
       .subscribe(
         data => {
-          this.serviceChild_data = data.filter((sh: any) => sh.parentId == this.service_data.id);
+          this.serviceDetail = data;
         },
         error => {
           console.log(error);
@@ -98,7 +92,7 @@ export class CartComponent implements OnInit {
       data => {
         this.cartItems = data.data;
         this.cartItems.forEach(item=>{
-          let name = this.serviceChild_data.filter((sh: any)=>sh.id==item.serviceHierarchyId);
+          let name = this.serviceDetail.filter((sh: any)=>sh.id==item.serviceHierarchyId);
           if(name.length > 0){
             item.name = name[0].title;
           }
@@ -127,6 +121,7 @@ export class CartComponent implements OnInit {
         .subscribe(
           response => {
             this.getCartId();
+            this.callAction.sendAction();
             console.log(response);
           },
           error => {
