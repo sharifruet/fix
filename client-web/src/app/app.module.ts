@@ -23,8 +23,6 @@ import { DefaultComponent } from './components/default/default.component';
 import { HomeComponent } from './components/home/home.component';
 import { HowItWorkVideoComponent } from './components/how-it-work-video/how-it-work-video.component';
 import { LoginSignupComponent } from './components/login-signup/login-signup.component';
-import { ServiceCategoriesComponent } from './components/service-categories/service-categories.component';
-import { ServiceCategoryComponent } from './components/service-category/service-category.component';
 
 import { SidenavComponent } from './admin/components/sidenav/sidenav.component';
 import { TopbarComponent } from './admin/components/topbar/topbar.component';
@@ -73,6 +71,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
 import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/privilege-add.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -90,8 +89,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     DefaultComponent,
     ServiceAddComponent,
     ServiceDetailComponent,
-    ServiceCategoriesComponent,
-    ServiceCategoryComponent,
     ServiceEditComponent,
     UsersManageComponent,
     AdminLoginComponent,
@@ -125,6 +122,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     PrivilegeAddComponent,
     CartComponent,
     CheckoutComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

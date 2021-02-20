@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { OrderItemsService } from '../../services/order-items.service';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { CallToActionService } from '../../services/call-to-action.service';
 
 @Component({
   selector: 'app-checkout',
@@ -17,7 +18,8 @@ export class CheckoutComponent implements OnInit {
       private _snackBar: MatSnackBar, 
       public service: ServiceHierarchyService, 
       public orderItem: OrderItemsService, 
-      public dialog:MatDialog
+      public dialog:MatDialog,
+      public callAction:CallToActionService
     ) {
   }
   
@@ -66,6 +68,7 @@ export class CheckoutComponent implements OnInit {
           .subscribe(
             response => {
               console.log(response);
+              this.callAction.sendAction();
               this.dialog.closeAll();
               this.openSnackBar('Your order successfully placed');
             },
