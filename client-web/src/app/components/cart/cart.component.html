@@ -8,7 +8,7 @@
             </button>
             <div>
                 <div>
-                    <h4> {{cartItem.name}}</h4>
+                    <h4> {{cartItem.name}} </h4>
                     <span> <span>৳{{cartItem.price}}</span>/unit</span>
                 </div>
                 <div style="text-align:right">
@@ -43,5 +43,5 @@
 </div>
 
 <div *ngIf="isShow">
-    <app-checkout [cartItems] = "cartItems"></app-checkout>
+    <app-checkout [cartItems] = "cartItems" (event)="toggleShow()"></app-checkout>
 </div>

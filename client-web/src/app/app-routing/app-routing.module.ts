@@ -5,9 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DefaultComponent } from '../components/default/default.component';
 import { HomeComponent } from '../components/home/home.component';
-import { ServiceCategoryComponent } from '../components/service-category/service-category.component';
 import { ServiceComponent } from '../components/service/service.component';
-import { ServiceCategoriesComponent } from '../components/service-categories/service-categories.component';
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { AdminLoginComponent } from '../admin/components/admin-login/admin-login.component'
@@ -23,6 +21,7 @@ import { MediaComponent } from '../admin/components/media/media.component';
 import { OrdersComponent } from '../admin/components/orders/orders.component';
 import { OrderItemComponent } from '../admin/components/order-item/order-item.component';
 import { OrderItemPaymentComponent } from '../admin/components/order-item-payment/order-item-payment.component';
+import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { AuthGuard } from '../helpers/auth.guard';
 
 
@@ -35,22 +34,14 @@ const routes: Routes = [
       component:HomeComponent
     },
     {
-      path:'service-category',
-      component:ServiceCategoryComponent
-    },
-    {
       path:'service/:id',
       component:ServiceComponent
-    },
-    {
-      path: 'service-categories',
-      component:ServiceCategoriesComponent
     },
     {
       path: 'profile',
       component:UserProfileComponent
     }
-  ]},  
+  ]}, 
 
   { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
   { path:'admin/login', component:AdminLoginComponent },
@@ -83,7 +74,7 @@ const routes: Routes = [
       path:'service-hierarchy',
       component:ServiceHierarchyComponent
     },
-	{
+	  {
       path:'area-hierarchy',
       component:AreaHierarchyComponent
     },
@@ -100,6 +91,8 @@ const routes: Routes = [
       component:OrderItemPaymentComponent
     }
   ] },
+  
+  {path:'**', component:NotFoundComponent}
 
 ];
 

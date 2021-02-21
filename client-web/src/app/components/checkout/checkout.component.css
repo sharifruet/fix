@@ -11,8 +11,12 @@
 }
 .added-item{
     position: relative;
-    padding-left:46px;
     border-bottom: 1px solid #eee;
+    padding: 10px;
+    padding-left:46px;
+}
+.added-item h4{
+    margin:0;
 }
 .added-item .cart-remove, .checkbox{
     position: absolute;

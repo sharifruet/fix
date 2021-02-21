@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Inject} from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { OrderItemsService } from '../../services/order-items.service';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ConfirmDialogService} from '../../services/confirm-dialog.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { CallToActionService } from '../../services/call-to-action.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,10 +13,14 @@ import {ConfirmDialogService} from '../../services/confirm-dialog.service'
 export class CheckoutComponent implements OnInit {
 
   @Input() cartItems;
-
-  service_data;
-  serviceChild_data;
-  constructor(private _snackBar: MatSnackBar, public service: ServiceHierarchyService, public orderItem: OrderItemsService, @Inject(MAT_DIALOG_DATA) public data: any, private confirmDialog:ConfirmDialogService) {
+  
+  constructor(
+      private _snackBar: MatSnackBar, 
+      public service: ServiceHierarchyService, 
+      public orderItem: OrderItemsService, 
+      public dialog:MatDialog,
+      public callAction:CallToActionService
+    ) {
   }
   
   ngOnInit(): void {
@@ -64,6 +68,8 @@ export class CheckoutComponent implements OnInit {
           .subscribe(
             response => {
               console.log(response);
+              this.callAction.sendAction();
+              this.dialog.closeAll();
               this.openSnackBar('Your order successfully placed');
             },
             error => {
@@ -77,8 +83,8 @@ export class CheckoutComponent implements OnInit {
     }
   }
   
-  isChecked=true;
 
+  isChecked=true;
   quantity(addQty:number, id:number) {
     let items = this.cartItems.filter(itm=> itm.id ==id);
     if(items.length>0){
@@ -99,5 +105,13 @@ export class CheckoutComponent implements OnInit {
     }
   }
   
-  payments:string[] = ["Bkash", "Bank", "Debit/Credit Card", "Cash on delivery"]
+  payments:string[] = ["Bkash", "Bank", "Debit/Credit Card", "Cash on delivery"];
+
+  @Output() event = new EventEmitter<boolean>();
+  isShow= true;
+  toggleShow() {
+    this.event.emit(this.isShow);
+    this.isShow = !this.isShow;
+  }
+
 }
