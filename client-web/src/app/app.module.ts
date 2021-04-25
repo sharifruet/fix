@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AngularEditorModule } from '@kolkov/angular-editor'
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
@@ -29,11 +29,7 @@ import { TopbarComponent } from './admin/components/topbar/topbar.component';
 import { AdminDefaultComponent } from './admin/components/admin-default/admin-default.component';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 
-import { ServiceAddComponent } from './admin/components/service-add/service-add.component';
-import { ServiceManageComponent } from './admin/components/service-manage/service-manage.component';
-import { ServiceDetailComponent } from './admin/components/service-detail/service-detail.component';
 import { ServiceHierarchyComponent } from './admin/components/service-hierarchy/service-hierarchy.component';
-import { ServiceEditComponent } from './admin/components/service-edit/service-edit.component';
 import { UsersManageComponent } from './admin/components/users-manage/users-manage.component';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
 import { ServiceComponent } from './components/service/service.component';
@@ -84,12 +80,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     DashboardComponent,
     SidenavComponent,
     TopbarComponent,
-    ServiceManageComponent,
     AdminDefaultComponent,
     DefaultComponent,
-    ServiceAddComponent,
-    ServiceDetailComponent,
-    ServiceEditComponent,
     UsersManageComponent,
     AdminLoginComponent,
     LoginSignupComponent,
@@ -141,9 +133,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   bootstrap: [AppComponent],
   entryComponents:[
     HowItWorkVideoComponent, 
-    ServiceAddComponent, 
-    ServiceDetailComponent,
-    ServiceEditComponent,
     LoginSignupComponent,
     AddToCartComponent,
 	  UserAddComponent,

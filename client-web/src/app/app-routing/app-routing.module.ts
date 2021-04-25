@@ -10,7 +10,6 @@ import { ServiceComponent } from '../components/service/service.component';
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { AdminLoginComponent } from '../admin/components/admin-login/admin-login.component'
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
-import { ServiceManageComponent } from '../admin/components/service-manage/service-manage.component';
 import { UsersManageComponent } from '../admin/components/users-manage/users-manage.component'; 
 import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
@@ -23,7 +22,6 @@ import { OrderItemComponent } from '../admin/components/order-item/order-item.co
 import { OrderItemPaymentComponent } from '../admin/components/order-item-payment/order-item-payment.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { AuthGuard } from '../helpers/auth.guard';
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -57,10 +55,6 @@ const routes: Routes = [
     {
       path:'media-upload',
       component:MediaUploadComponent
-    },
-    {
-      path:'service-manage',
-      component:ServiceManageComponent
     },
     {
       path:'users-manage',
