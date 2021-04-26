@@ -4,12 +4,11 @@
     <div mat-dialog-content>
         <div>
             <label for="">Photo</label>
-            <div class="img" (click)="addImage()">
+            <div class="img" (click)="addImage()">                
                 <ng-container *ngIf="selectedImage; else icon">
-                    <img src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
+                    <img [(ngModel)]="serviceHierarchy.photo" src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
                 </ng-container>
-                <ng-template #icon>
-                    <mat-icon >insert_photo</mat-icon></ng-template>
+                <ng-template #icon> <mat-icon >insert_photo</mat-icon></ng-template>
             </div>
         </div>
         <div>

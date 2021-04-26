@@ -172,6 +172,8 @@ export class ServiceHierarchyAddComponent implements OnInit {
       status: this.serviceHierarchy.status
     };
 
+    console.log(data);
+
     this.service.create(data)
       .subscribe(
         response => {

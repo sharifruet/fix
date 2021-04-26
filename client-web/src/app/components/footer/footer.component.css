@@ -4,14 +4,11 @@ ul{
     padding-left:15px;
     margin:0;
 }
-footer{
-    color: #000000;;
-}
 .single-footer h4{
     text-transform: uppercase;
 }
 .single-footer a{
-    color:#000000;
+    color:#444;
 }
 .single-footer ul li a{
     display: inline-block;
@@ -46,9 +43,8 @@ footer{
 
 .copyright{
     border-top:1px solid #ddd;
-    margin-top:40px;
-    padding-top:40px;
-    text-align: center;
+    margin-top:30px;
+    padding-top:20px;
 }
 
 

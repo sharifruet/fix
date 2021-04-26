@@ -68,6 +68,7 @@ import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/pr
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SingleServiceComponent } from './components/single-service/single-service.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CartComponent,
     CheckoutComponent,
     NotFoundComponent,
+    SingleServiceComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,7 @@
 
-
 .banner img{
    width: 100%;
 }
-
-
-
 
 /* service category */
 .category-area{
@@ -42,8 +38,8 @@
 
  /* service item */
  .single-service>a{
-     color:#000;
-     text-decoration: none;
+    color:#000;
+    text-decoration: none;
  }
  .single-service img{
     width: 100%;
@@ -118,8 +114,8 @@
 .testmonial-img:before{
     content:"";
     position: absolute;
-    left: 0;
-    bottom:0;
+    top: 0;
+    left:0;
     width: 300px;
     height: 300px;
     background-color:#fff;
@@ -136,8 +132,7 @@
     left: 45px;
 }
 .testmonial-img img{
-    width: 100%;
-    padding:0 50px;
+    max-width: 350px;
 }
 .testmonial-content span{
     font-weight: 500;
@@ -147,9 +142,10 @@
 
 /* download app */
 .download-app-photo{
-    text-align: center;
     position: relative;
     z-index: 1;
+    max-width: 280px;
+    margin:auto;
 }
 .download-app-photo::before{
     content:"";
@@ -163,7 +159,7 @@
     z-index: -1;
 }
 .download-app-photo img{
-    max-width: 300px;
+    max-width: 100%;
 }
 
 .get-app-form{
