@@ -40,16 +40,20 @@ export class HomeComponent implements OnInit {
 
   sevicesList;
   serviceGroup;
+  serviceLayer;
   services():void{
     this.serviceHierarchies.getAll()
     .subscribe(
       data => {
         this.sevicesList= data;
         this.serviceGroup = this.sevicesList.filter((sh:any) => sh.serviceGroup == 1);
+        this.serviceLayer = this.sevicesList.filter((sh:any) => sh.serviceLayer == 1);
         this.serviceGroup.forEach(element => {
           element.photoName = this.getImage(element.photo);
         });
-        console.log(this.serviceGroup);
+        this.serviceLayer.forEach(element => {
+          element.photoName = this.getImage(element.photo);
+        });
       },
       error => {
         console.log(error);

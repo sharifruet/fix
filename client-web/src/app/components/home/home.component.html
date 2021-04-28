@@ -51,15 +51,15 @@
         </div>
         <div class="recomended-slider">
             <owl-carousel-o [options]="recommendOptions" class="categoryCarousel">
-                <ng-template carouselSlide *ngFor="let count of [1,2,3,4,5,6,7,8]">
+                <ng-template carouselSlide *ngFor="let service of serviceLayer">
                     <div class="single-service">
-                        <a routerLink="/service-category">
+                        <a routerLink="/service/{{service.id}}">
                             <div class="body">
                                 <div class="img">
-                                    <img src="assets/images/laptop.jpg" alt="">
+                                    <img src="http://localhost:8080/uploads/{{service.photoName}}" alt="">
                                 </div>
                                 <div class="body">
-                                    <h3>Service {{count}}</h3>
+                                    <h3>{{service.title}}</h3>
                                 </div>
                             </div>
                         </a>

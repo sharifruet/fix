@@ -10,6 +10,7 @@ import {RoleAddComponent} from './role-add/role-add.component';
 import { RoleDetailComponent } from './role-detail/role-detail.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
 import { PrivilegeAddComponent } from './privilege-add/privilege-add.component';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service'
 
 import { AppSettings } from '../../../app.settings';
 
@@ -25,7 +26,7 @@ export class RolesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-services: any;
+  services: any;
   currentService = null;
   currentIndex = -1;
   title = '';
@@ -34,7 +35,7 @@ services: any;
   displayedColumns = ['name','description', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:RoleService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
+  constructor(private roleService:RoleService, public dialog: MatDialog, private _snackBar: MatSnackBar, private confirmDialog:ConfirmDialogService) { }
 
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ services: any;
   }
 
   getRoles(): void {
-    this.service.getAll()
+    this.roleService.getAll()
       .subscribe(
         result => {
 			if(result.status ==0){
@@ -85,7 +86,7 @@ services: any;
   }
   
   refreshList(): void {
-    //this.retrieveServices();
+    this.getRoles();
     this.currentService = null;
     this.currentIndex = -1;
   }
@@ -118,17 +119,22 @@ setActiveService(service, index): void {
     this.currentIndex = index;
   }
 
-deleteService(id): void {
-    this.service.delete(id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('The service deleted successfully');
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
+  deleteRole(id): void {
+      this.confirmDialog.openConfirmDialog('Are you sure to delete this?').afterClosed().subscribe(res => {
+        if(res){
+          this.roleService.delete(id)
+          .subscribe(
+            response => {
+              console.log(response);
+              this.openSnackBar('The role deleted successfully');
+              this.refreshList();
+            },
+            error => {
+              console.log(error);
+            }
+          );
+        }
+      })
   }
   
   privilegeAdd(): void {
