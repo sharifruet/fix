@@ -37,7 +37,7 @@ const routes: Routes = [
       component:ServiceComponent
     },
     {
-      path:'single-service',
+      path:'services/:id',
       component:SingleServiceComponent
     },
     {

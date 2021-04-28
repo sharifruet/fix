@@ -53,7 +53,7 @@
             <owl-carousel-o [options]="recommendOptions" class="categoryCarousel">
                 <ng-template carouselSlide *ngFor="let service of serviceLayer">
                     <div class="single-service">
-                        <a routerLink="/service/{{service.id}}">
+                        <a routerLink="/services/{{service.id}}">
                             <div class="body">
                                 <div class="img">
                                     <img src="http://localhost:8080/uploads/{{service.photoName}}" alt="">
