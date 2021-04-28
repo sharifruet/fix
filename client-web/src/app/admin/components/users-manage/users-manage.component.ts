@@ -8,6 +8,7 @@ import { UserService } from '../../../services/user.service';
 import {UserAddComponent} from './user-add/user-add.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {UserDetailComponent} from './user-detail/user-detail.component';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
 
 @Component({
@@ -30,15 +31,14 @@ services: any;
   displayedColumns = ['name','username', 'email','phone','address','district','upazila', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private service:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar,) { }
+  constructor(private userService:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar, private confirmDialog:ConfirmDialogService) { }
 
   ngOnInit(): void {
     this.getUsersManage();
-	//this.getRoles();
   }
 
   getUsersManage(): void {
-    this.service.getAll()
+    this.userService.getAll()
       .subscribe(
         result => {
 			if(result.status ==0){
@@ -67,7 +67,6 @@ services: any;
     const dialogRef = this.dialog.open(UserAddComponent, {
       width:'300px'
     });
-    
     dialogRef.afterClosed().subscribe(result=>{
       this.refreshList();
     })
@@ -78,7 +77,7 @@ services: any;
   }
   
   refreshList(): void {
-    //this.retrieveServices();
+    this.getUsersManage();
     this.currentService = null;
     this.currentIndex = -1;
   }
@@ -111,20 +110,24 @@ setActiveService(service, index): void {
     this.currentIndex = index;
   }
 
-deleteService(id): void {
-	if(confirm('Are you sure to delete')){
-    this.service.delete(id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('The service deleted successfully');
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
+  deleteService(id): void {
+    this.confirmDialog.openConfirmDialog('Are you sure to delete this?').afterClosed().subscribe(res => {
+      if(res){
+        this.userService.delete(id)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.openSnackBar('The user deleted successfully');
+            this.refreshList();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    })
   }
-  
-}
+
+
 }
 

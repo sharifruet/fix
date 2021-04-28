@@ -36,6 +36,7 @@ export class MediaPopupComponent implements OnInit {
   }
 
   selectedImage(){
+    console.log(this.image);
     this.dialogRef.close(this.image)
   }
 

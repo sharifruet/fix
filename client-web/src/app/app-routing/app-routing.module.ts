@@ -6,11 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from '../components/default/default.component';
 import { HomeComponent } from '../components/home/home.component';
 import { ServiceComponent } from '../components/service/service.component';
+import { SingleServiceComponent } from '../components/single-service/single-service.component';
 
 import { AdminDefaultComponent } from '../admin/components/admin-default/admin-default.component';
 import { AdminLoginComponent } from '../admin/components/admin-login/admin-login.component'
 import { DashboardComponent } from '../admin/components/dashboard/dashboard.component';
-import { ServiceManageComponent } from '../admin/components/service-manage/service-manage.component';
 import { UsersManageComponent } from '../admin/components/users-manage/users-manage.component'; 
 import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
@@ -24,7 +24,6 @@ import { OrderItemPaymentComponent } from '../admin/components/order-item-paymen
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { AuthGuard } from '../helpers/auth.guard';
 
-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -36,6 +35,10 @@ const routes: Routes = [
     {
       path:'service/:id',
       component:ServiceComponent
+    },
+    {
+      path:'services/:id',
+      component:SingleServiceComponent
     },
     {
       path: 'profile',
@@ -57,10 +60,6 @@ const routes: Routes = [
     {
       path:'media-upload',
       component:MediaUploadComponent
-    },
-    {
-      path:'service-manage',
-      component:ServiceManageComponent
     },
     {
       path:'users-manage',

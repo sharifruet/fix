@@ -1,8 +1,8 @@
 <div *ngFor="let serviceH of serviceDetail">
     <div class="service-area" style="background-image:url('assets/images/laptop-servicing.jpg');">
         <div class="container">
-            <div fxLaout="row">
-                <div fxFlex="80">
+            <div fxLayout="row wrap">
+                <div fxFlex="80%" fxFlex.sm="70%" fxFlex.xs="100%">
                     <div class="breadcrumb pb-5">
                         <ul>
                             <li> <a href="#">Home</a> </li>
@@ -12,7 +12,7 @@
                         </ul>
                     </div>
                 </div>
-                <div fxFlex="20">
+                <div fxFlex="20%" fxFlex.sm="30%" fxFlex.xs="100%">
                     <div class="social-share">
                         <span>Share on</span>
                         <ul>
@@ -28,8 +28,8 @@
                     </div>
                 </div>
             </div>
-            <div fxLayout="row" fxLayoutGap="30px">
-                <div fxFlex="50">
+            <div fxLayout="row wrap" fxLayoutGap="30px grid">
+                <div fxFlex="50%" fxFlex.xs="100%">
                     <div class="service-content">
                         <h2>{{serviceH.title}}</h2>
                         <div class="ratings">
@@ -41,7 +41,7 @@
                         <p>{{serviceH.description}}</p>
                     </div>
                 </div>
-                <div fxFlex="50">
+                <div fxFlex="50%" fxFlex.xs="100%">
                     <div class="service-content">
                         <ul>
                             <li>
@@ -67,9 +67,9 @@
 
     <div class="service-tab" style="background-color: #fdfdfd;">
         <div class="container">
-            <div fxLayout="row" fxLayoutGap="30px">
-                <div fxFlex="65" class="pt-5">
-                    <mat-tab-group>
+            <div fxLayout="row wrap">
+                <div fxFlex="65%" fxFlex.xs="100%" fxFlexOrder.xs="2">
+                    <mat-tab-group style="padding-top:30px">
                         <mat-tab>
                             <ng-template mat-tab-label>
                                 <mat-icon>description</mat-icon>
@@ -165,7 +165,7 @@
 
                     </mat-tab-group>
                 </div>
-                <div fxFlex="35" *ngIf="serviceChild.length > 0">
+                <div fxFlex="35%" fxFlex.xs="100%" *ngIf="serviceChild.length > 0">
                     <div class="service-sub-category">
                         <h2>{{serviceH.title}}</h2>
 
@@ -193,45 +193,12 @@
             </div>
 
             <owl-carousel-o [options]="relatedService" class="categoryCarousel">
-                <ng-template carouselSlide>
+                <ng-template carouselSlide *ngFor="let count of [1,2,3]">
                     <div matRipple class="tab-item">
                         <div>
                             <img src="assets/images/laptop2.jpg">
                             <div>
-                                Laptop Service
-                            </div>
-                        </div>
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div matRipple class="tab-item">
-                        <div>
-                            <img src="assets/images/laptop.jpg">
-                            <div>
-                                Desktop Service
-                            </div>
-                        </div>
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div matRipple class="tab-item">
-                        <div>
-                            <img src="assets/images/laptop2.jpg">
-                            <div>
-                                Laptop Service
-                            </div>
-                        </div>
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div matRipple class="tab-item">
-                        <div>
-                            <img src="assets/images/laptop.jpg">
-                            <div>
-                                Desktop Service
+                                Laptop Service {{count}}
                             </div>
                         </div>
                         <mat-icon>keyboard_arrow_right</mat-icon>

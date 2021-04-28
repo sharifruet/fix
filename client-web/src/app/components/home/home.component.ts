@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.component';
+import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
+import { MediaService } from '../../services/media.service';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +11,19 @@ import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  mediaAll:any = [];
+
+  constructor(public dialog: MatDialog, private serviceHierarchies:ServiceHierarchyService, private mediaService:MediaService) {}
   
   openDialog() {
     this.dialog.open(HowItWorkVideoComponent);
   }
   
   ngOnInit(): void {
+    this.getImages();
+    this.services();
   }
-
- 
-
+  
   // owl-carousel for hero slider
   sliderOptions:any = {
     items:1,
@@ -32,6 +36,45 @@ export class HomeComponent implements OnInit {
     navSpeed: 700,
     nav: false,
     navText: ['<span class="material-icons">chevron_left</span>', '<span class="material-icons">chevron_right</span>'],
+  }
+
+  sevicesList;
+  serviceGroup;
+  serviceLayer;
+  services():void{
+    this.serviceHierarchies.getAll()
+    .subscribe(
+      data => {
+        this.sevicesList= data;
+        this.serviceGroup = this.sevicesList.filter((sh:any) => sh.serviceGroup == 1);
+        this.serviceLayer = this.sevicesList.filter((sh:any) => sh.serviceLayer == 1);
+        this.serviceGroup.forEach(element => {
+          element.photoName = this.getImage(element.photo);
+        });
+        this.serviceLayer.forEach(element => {
+          element.photoName = this.getImage(element.photo);
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getImages(){
+    this.mediaService.getAll().subscribe(
+      data => {
+        this.mediaAll = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  
+  getImage(id:number){
+    let c = this.mediaAll.find((sh:any) => sh.id == id);
+    return c.name;
   }
 
   // owl-carousel for service category

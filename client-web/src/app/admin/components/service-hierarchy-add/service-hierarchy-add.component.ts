@@ -63,6 +63,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     parentId: '',
     hierarchyPath: '',
     serviceLayer: '',
+    serviceGroup: false,
     overview: '',
     detail: '',
     faq: '',
@@ -118,7 +119,10 @@ export class ServiceHierarchyAddComponent implements OnInit {
       width:'600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedImage = result;
+      if(result !== undefined){
+        this.selectedImage = result;
+        this.serviceHierarchy.photo = result.id;
+      }
     });
 
   }
@@ -129,11 +133,11 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   displayFn(parent) {
-	if(this.serviceHParent.length > 0){
-		return this.serviceHParent.find(item => item.id === parent).title;
-	}else{
-		return [];
-	}
+    if(this.serviceHParent.length > 0){
+      return this.serviceHParent.find(item => item.id === parent).title;
+    }else{
+      return [];
+    }
   }
   
   
@@ -164,6 +168,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
       parentId: this.serviceHierarchy.parentId,
       hierarchyPath: this.serviceHierarchy.hierarchyPath,
       serviceLayer: this.serviceHierarchy.serviceLayer,
+      serviceGroup: this.serviceHierarchy.serviceGroup,
       overview: this.serviceHierarchy.overview,
       detail: this.serviceHierarchy.detail,
       faq: JSON.stringify(this.faqs),
@@ -171,7 +176,6 @@ export class ServiceHierarchyAddComponent implements OnInit {
       price: this.serviceHierarchy.price,
       status: this.serviceHierarchy.status
     };
-
     this.service.create(data)
       .subscribe(
         response => {
@@ -195,6 +199,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
       parentId: '',
       hierarchyPath: '',
       serviceLayer: '',
+      serviceGroup: false,
       overview: '',
       detail: '',
       faq: '',

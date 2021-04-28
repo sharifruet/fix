@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
 		hierarchyPath: { type: Sequelize.STRING },
 		parentId: { type: Sequelize.INTEGER },
 		serviceLayer: { type: Sequelize.BOOLEAN },
+		serviceGroup: { type: Sequelize.BOOLEAN },
 		overview: { type: Sequelize.STRING },
 		detail: { type: Sequelize.STRING },
 		faq: { type: Sequelize.STRING  },

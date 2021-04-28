@@ -21,9 +21,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.service = require("./service.model.js")(sequelize, Sequelize);
+
 db.product = require("./product.model.js")(sequelize, Sequelize);
-db.serviceCategory = require("./serviceCategory.model.js")(sequelize, Sequelize);
 db.ServiceHierarchy = require("./serviceHierarchy.model.js")(sequelize, Sequelize);
 db.AreaHierarchy = require("./areaHierarchy.model.js")(sequelize, Sequelize);
 db.User = require("./user.model.js")(sequelize, Sequelize);
