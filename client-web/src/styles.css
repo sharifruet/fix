@@ -53,6 +53,7 @@ input{
     padding-left:0!important;
     padding-right: 0!important;
     margin-bottom: 15px!important;
+    outline:0;
 }
 .angular-editor-placeholder{
     padding-left:0!important;

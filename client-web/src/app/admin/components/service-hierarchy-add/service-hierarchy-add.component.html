@@ -24,9 +24,9 @@
                 <textarea matInput [(ngModel)]="serviceHierarchy.description" name="description"></textarea>
             </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="row wrap" fxLayoutGap="20px grid">
 
-            <div fxFlex="50">
+            <div fxFlex="50%" fxFlex.xs="100%">
                 <mat-form-field class="input-width">
                     <input matInput [(ngModel)]="serviceHierarchy.parentId" name="parentId" type="text"
                         [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
@@ -37,7 +37,7 @@
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
-            <div fxFlex="50">
+            <div fxFlex="50" fxFlex.xs="100">
                 <mat-form-field class="input-width">
                     <mat-label>Status</mat-label>
                     <mat-select [(ngModel)]="serviceHierarchy.status" name="status">
@@ -49,17 +49,26 @@
             </div>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
-            <div fxFlex="auto">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px grid">
+            <div fxFlex="50">
                 <mat-slide-toggle (change)="isServiceLayer($event)" [(ngModel)]="serviceHierarchy.serviceLayer"
                     name="serviceLayer">ServiceLayer
                 </mat-slide-toggle>
             </div>
-            <div fxFlex="auto">
+            <div fxFlex="50">
+                <mat-slide-toggle (change)="isServiceGroup($event)" [(ngModel)]="serviceHierarchy.serviceGroup"
+                    name="serviceGroup">ServiceGroup
+                </mat-slide-toggle>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px grid">
+            <div fxFlex="50">
                 <mat-slide-toggle [(ngModel)]="serviceHierarchy.published" name="published">
                     Published</mat-slide-toggle>
             </div>
-            <div fxFlex="auto">
+            <div fxFlex="50">
                 <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="serviceHierarchy.end" name="end">End
                 </mat-slide-toggle>
             </div>

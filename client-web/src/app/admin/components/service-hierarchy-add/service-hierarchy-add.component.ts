@@ -63,6 +63,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     parentId: '',
     hierarchyPath: '',
     serviceLayer: '',
+    serviceGroup: '',
     overview: '',
     detail: '',
     faq: '',
@@ -118,7 +119,10 @@ export class ServiceHierarchyAddComponent implements OnInit {
       width:'600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedImage = result;
+      if(result !== undefined){
+        this.selectedImage = result;
+        this.serviceHierarchy.photo = result.id;
+      }
     });
 
   }
@@ -164,6 +168,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
       parentId: this.serviceHierarchy.parentId,
       hierarchyPath: this.serviceHierarchy.hierarchyPath,
       serviceLayer: this.serviceHierarchy.serviceLayer,
+      serviceGroup: this.serviceHierarchy.serviceGroup,
       overview: this.serviceHierarchy.overview,
       detail: this.serviceHierarchy.detail,
       faq: JSON.stringify(this.faqs),
@@ -197,6 +202,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
       parentId: '',
       hierarchyPath: '',
       serviceLayer: '',
+      serviceGroup: '',
       overview: '',
       detail: '',
       faq: '',
