@@ -25,7 +25,8 @@
 }
 .single-category img{
     height: 40px;
-    margin-bottom:10px;
+    width: auto;
+    margin:0 auto 10px;
 }
 .single-category h4{
     margin:0;

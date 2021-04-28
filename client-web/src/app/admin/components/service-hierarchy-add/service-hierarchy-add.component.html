@@ -6,7 +6,7 @@
             <label for="">Photo</label>
             <div class="img" (click)="addImage()">                
                 <ng-container *ngIf="selectedImage; else icon">
-                    <img [(ngModel)]="serviceHierarchy.photo" src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
+                    <img src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
                 </ng-container>
                 <ng-template #icon> <mat-icon >insert_photo</mat-icon></ng-template>
             </div>
@@ -56,17 +56,15 @@
                 </mat-slide-toggle>
             </div>
             <div fxFlex="50">
-                <mat-slide-toggle (change)="isServiceGroup($event)" [(ngModel)]="serviceHierarchy.serviceGroup"
-                    name="serviceGroup">ServiceGroup
-                </mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="serviceHierarchy.serviceGroup" name="serviceGroup">
+                    ServiceGroup</mat-slide-toggle>
             </div>
         </div>
 
 
-        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px grid">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="20px grid">
             <div fxFlex="50">
-                <mat-slide-toggle [(ngModel)]="serviceHierarchy.published" name="published">
-                    Published</mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="serviceHierarchy.published" name="published"> Published</mat-slide-toggle>
             </div>
             <div fxFlex="50">
                 <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="serviceHierarchy.end" name="end">End

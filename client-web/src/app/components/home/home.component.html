@@ -28,12 +28,12 @@
     <div class="container">
         <div class="category-area">
             <owl-carousel-o [options]="categoryOptions" class="categoryCarousel">
-                <ng-template carouselSlide *ngFor="let num of [1,2,3,4,5,6,7,8]">
+                <ng-template carouselSlide *ngFor="let service of serviceGroup">
                     <div class="single-category">
-                        <a routerLink="/service">
+                        <a routerLink="/service/{{service.id}}">
                             <div class="body">
-                                <img src="https://www.flaticon.com/svg/static/icons/svg/1664/1664651.svg" alt="">
-                                <h4>Service {{num}}</h4>
+                                <img src="http://localhost:8080/uploads/{{service.photoName}}" alt=""> 
+                                <h4>{{service.title}}</h4>
                             </div>
                         </a>
                     </div>

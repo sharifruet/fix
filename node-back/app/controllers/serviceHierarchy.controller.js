@@ -18,6 +18,7 @@ exports.create = (req, res) => {
     description: req.body.description,
     photo: req.body.photo,
     published: req.body.published ? req.body.published : false,
+    serviceGroup: req.body.serviceGroup ? req.body.serviceGroup : false,
     hierarchyPath: req.body.hierarchyPath ? req.body.hierarchyPath : false,
     parentId: req.body.parentId ? req.body.parentId : -1,
     serviceLayer: req.body.serviceLayer ? req.body.serviceLayer : false,

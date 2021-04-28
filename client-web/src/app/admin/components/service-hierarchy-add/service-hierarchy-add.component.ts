@@ -63,7 +63,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     parentId: '',
     hierarchyPath: '',
     serviceLayer: '',
-    serviceGroup: '',
+    serviceGroup: false,
     overview: '',
     detail: '',
     faq: '',
@@ -133,11 +133,11 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   displayFn(parent) {
-	if(this.serviceHParent.length > 0){
-		return this.serviceHParent.find(item => item.id === parent).title;
-	}else{
-		return [];
-	}
+    if(this.serviceHParent.length > 0){
+      return this.serviceHParent.find(item => item.id === parent).title;
+    }else{
+      return [];
+    }
   }
   
   
@@ -176,9 +176,6 @@ export class ServiceHierarchyAddComponent implements OnInit {
       price: this.serviceHierarchy.price,
       status: this.serviceHierarchy.status
     };
-
-    console.log(data);
-
     this.service.create(data)
       .subscribe(
         response => {
@@ -202,7 +199,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
       parentId: '',
       hierarchyPath: '',
       serviceLayer: '',
-      serviceGroup: '',
+      serviceGroup: false,
       overview: '',
       detail: '',
       faq: '',
