@@ -15,6 +15,7 @@ import { UsersManageComponent } from '../admin/components/users-manage/users-man
 import { RolesComponent } from '../admin/components/roles/roles.component';
 import { ServiceHierarchyComponent } from '../admin/components/service-hierarchy/service-hierarchy.component';
 import { MediaUploadComponent } from '../admin/components/media-upload/media-upload.component';
+import { SlidersComponent } from '../admin/components/sliders/sliders.component';
 import { UserProfileComponent } from '../components/user-profile/user-profile.component';
 import { AreaHierarchyComponent } from '../admin/components/area-hierarchy/area-hierarchy.component';
 import { MediaComponent } from '../admin/components/media/media.component';
@@ -60,6 +61,10 @@ const routes: Routes = [
     {
       path:'media-upload',
       component:MediaUploadComponent
+    },
+    {
+      path:'sliders',
+      component:SlidersComponent
     },
     {
       path:'users-manage',

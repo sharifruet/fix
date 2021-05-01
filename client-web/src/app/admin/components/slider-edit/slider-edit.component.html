@@ -1,0 +1,29 @@
+<div>
+    <h3 mat-dialog-title>{{currentSlider.title}} Edit</h3>
+
+    <div mat-dialog-content>
+        <div>
+            <label for="">Photo</label>
+            <div class="img" (click)="addImage()">                
+                <ng-container *ngIf="selectedImage; else icon">
+                    <img src="{{selectedImage}}" alt="">
+                </ng-container>
+                <ng-template #icon> <mat-icon >insert_photo</mat-icon></ng-template>
+            </div>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Title</mat-label>
+                <input matInput id="title" [(ngModel)]="currentSlider.title" name="title">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-slide-toggle [(ngModel)]="currentSlider.published" name="published"> Published</mat-slide-toggle>
+        </div>
+
+    </div>
+    <button mat-raised-button style="margin-right:10px;" (click)="updateSlider()">Update</button>
+    <button mat-button [mat-dialog-close]>Close</button>
+    
+</div>

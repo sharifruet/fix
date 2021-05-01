@@ -38,6 +38,9 @@
 }
 
  /* service item */
+ .single-service{
+	max-width: 263px;
+}
  .single-service>a{
     color:#000;
     text-decoration: none;

@@ -3,6 +3,16 @@
 
     <div mat-dialog-content>
         <div>
+            <label for="">Photo</label>
+            <div class="img" (click)="addImage()">                
+                <ng-container *ngIf="selectedImage; else icon">
+                    <img src="{{selectedImage}}" alt="">
+                </ng-container>
+                <ng-template #icon> <mat-icon >insert_photo</mat-icon></ng-template>
+            </div>
+        </div>
+        
+        <div>
             <mat-form-field class="input-width">
                 <mat-label>Title</mat-label>
                 <input matInput id="title" required [(ngModel)]="currentService.title" name="title">
@@ -39,22 +49,28 @@
             </div>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
-            <div fxFlex="auto">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px grid">
+            <div fxFlex="50">
                 <mat-slide-toggle (change)="isServiceLayer($event)" [(ngModel)]="currentService.serviceLayer"
                     name="serviceLayer">ServiceLayer
                 </mat-slide-toggle>
             </div>
-            <div fxFlex="auto">
-                <mat-slide-toggle [(ngModel)]="currentService.published" name="published">
-                    Published</mat-slide-toggle>
+            <div fxFlex="50">
+                <mat-slide-toggle [(ngModel)]="currentService.serviceGroup" name="serviceGroup">
+                    ServiceGroup</mat-slide-toggle>
             </div>
-            <div fxFlex="auto">
+        </div>
+
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="20px grid">
+            <div fxFlex="50">
+                <mat-slide-toggle [(ngModel)]="currentService.published" name="published"> Published</mat-slide-toggle>
+            </div>
+            <div fxFlex="50">
                 <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="currentService.end" name="end">End
                 </mat-slide-toggle>
             </div>
         </div>
-
 
         <div *ngIf="serviceLayer">
             <div>
@@ -111,6 +127,7 @@
 
     </div>
 
-    <button mat-raised-button (click)="updateService()">Update</button>
+    <button mat-raised-button (click)="updateService()" style="margin-right: 10px;">Update</button>
+    <button mat-button [mat-dialog-close]>Close</button>
     
 </div>

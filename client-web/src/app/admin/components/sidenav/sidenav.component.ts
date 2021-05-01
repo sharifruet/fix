@@ -17,6 +17,11 @@ const TREE_DATA = [
     ]
   },
   {
+    name: 'Sliders',
+    icon:'add_photo_alternate',
+    link:'/admin/sliders'
+  },
+  {
     name: 'Services',
     icon:'assignment',
     children: [

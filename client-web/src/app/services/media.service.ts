@@ -18,6 +18,8 @@ export class MediaService extends BaseService implements OnInit {
     console.log("Media Init called :)");
   }
 
+  mediaPath = "http://localhost:8080/uploads/";
+
   upload(data):Observable<any>{
     return this.http.post(this.apiBaseUrl, data, {
       reportProgress:true,

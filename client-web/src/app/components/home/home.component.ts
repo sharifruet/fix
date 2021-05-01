@@ -12,7 +12,8 @@ import { MediaService } from '../../services/media.service';
 export class HomeComponent implements OnInit {
 
   mediaAll:any = [];
-
+  origin = 'http://localhost:8080/uploads/';
+  
   constructor(public dialog: MatDialog, private serviceHierarchies:ServiceHierarchyService, private mediaService:MediaService) {}
   
   openDialog() {
@@ -49,10 +50,14 @@ export class HomeComponent implements OnInit {
         this.serviceGroup = this.sevicesList.filter((sh:any) => sh.serviceGroup == 1);
         this.serviceLayer = this.sevicesList.filter((sh:any) => sh.serviceLayer == 1);
         this.serviceGroup.forEach(element => {
-          element.photoName = this.getImage(element.photo);
+          if(element.photo !== null){
+            element.photoPath = this.origin+this.getImage(element.photo);
+          }
         });
         this.serviceLayer.forEach(element => {
-          element.photoName = this.getImage(element.photo);
+          if(element.photo !== null){
+            element.photoPath = this.origin+this.getImage(element.photo);
+          }
         });
       },
       error => {

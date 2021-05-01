@@ -69,6 +69,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SingleServiceComponent } from './components/single-service/single-service.component';
+import { SlidersComponent } from './admin/components/sliders/sliders.component';
+import { SliderAddComponent } from './admin/components/slider-add/slider-add.component';
+import { SliderEditComponent } from './admin/components/slider-edit/slider-edit.component';
 
 
 @NgModule({
@@ -117,6 +120,9 @@ import { SingleServiceComponent } from './components/single-service/single-servi
     CheckoutComponent,
     NotFoundComponent,
     SingleServiceComponent,
+    SlidersComponent,
+    SliderAddComponent,
+    SliderEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -154,7 +160,9 @@ import { SingleServiceComponent } from './components/single-service/single-servi
     ConfirmDialogComponent,
 	  AreaHierarchyAddComponent,
     PrivilegeAddComponent,
-    CartComponent
+    CartComponent,
+    SliderAddComponent,
+    SliderEditComponent
   ]
 })
 export class AppModule { }

@@ -176,3 +176,6 @@ input{
 .cdk-column-action {
 	width:200px;
 }
+table{
+    width: 100%;
+}
