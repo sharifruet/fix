@@ -46,17 +46,20 @@
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Phone No:</mat-label>
                                     <span matPrefix>+880 &nbsp;</span>
-                                    <input type="tel" matInput placeholder="555-555-1234">
+                                    <input type="tel" matInput placeholder="1712122501">
                                 </mat-form-field>
 
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Email</mat-label>
-                                    <input matInput placeholder="Ex. pat@example.com">
+                                    <input matInput placeholder="demo@example.com">
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <mat-label>Date Of Birth:</mat-label>
-                                    <input matInput type="text">
+                                    <mat-label>Date of Birth</mat-label>
+                                    <input matInput [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
+
                                 <mat-radio-group>
                                     <mat-label>Gender:</mat-label>
                                     <mat-radio-button value="1">Male</mat-radio-button>

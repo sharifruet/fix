@@ -25,6 +25,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 const Material = [
   MatMenuModule,
@@ -51,7 +53,9 @@ const Material = [
   MatProgressBarModule,
   MatSlideToggleModule,
   MatAutocompleteModule,
-  MatRadioModule
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ]
 
 @NgModule({
