@@ -14,17 +14,15 @@
                 <input matInput required [(ngModel)]="role.description" name="description">
             </mat-form-field>
         </div>
-		<div fxLayout="row" fxLayoutGap="20px">
-            <div fxFlex="50">
-                <mat-form-field>
-                    <mat-label>Status</mat-label>
-                    <mat-select required [(ngModel)]="role.status" name="status">
-                        <mat-option *ngFor="let status of statusList" value="{{status.id}}">{{status.value}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Status</mat-label>
+                <mat-select required [(ngModel)]="role.status" name="status">
+                    <mat-option *ngFor="let status of statusList" value="{{status.id}}">{{status.value}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
-    <button mat-raised-button (click)="save()">Submit</button>
+    <button mat-raised-button (click)="save()" style="margin-right: 10px;">Submit</button>
     <button mat-button [mat-dialog-close]>Close</button>
 </div>

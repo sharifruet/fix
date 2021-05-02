@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../../services/role.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AppSettings } from '../../../app.settings';
 
@@ -17,14 +17,14 @@ export class RoleAddComponent implements OnInit {
     status: 0
   };
   statusList = AppSettings.STATUS;
-  
-  errorMessage="test 123";
 
-  constructor(private service: RoleService, private _snackBar: MatSnackBar) { }
+  errorMessage = "test 123";
+
+  constructor(private roleService: RoleService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
-  
+
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: 2000,
@@ -33,30 +33,29 @@ export class RoleAddComponent implements OnInit {
 
   save(): void {
     const data = this.role;
-
-    this.service.create(data)
+    this.roleService.create(data)
       .subscribe(
         response => {
-			console.log(1);
+          console.log(1);
           console.log(response);
-		  if (response.status==0){
-			this.openSnackBar('The service added successfully!');
-			this.newService();
-		  }
-		  else {
-			 this.errorMessage=response.message;
-		  }
+          if (response.status == 0) {
+            this.openSnackBar('The service added successfully!');
+            this.newRole();
+          }
+          else {
+            this.errorMessage = response.message;
+          }
         },
         error => {
-			console.log(2);
-			this.errorMessage=error.error.message;
-			
-			console.log(this.errorMessage);
+          console.log(2);
+          this.errorMessage = error.error.message;
+
+          console.log(this.errorMessage);
           console.log(error);
-      });
+        });
   }
 
-  newService(): void {
+  newRole(): void {
     this.role = {
       name: '',
       description: '',

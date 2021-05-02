@@ -29,7 +29,7 @@ export class RoleEditComponent implements OnInit {
     });
   }
 
-  updateService(): void {
+  updateRole(): void {
     this.roleService.update(this.currentRole.id, this.currentRole)
       .subscribe(
         response => {

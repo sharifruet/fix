@@ -4,7 +4,7 @@ import { RolesComponent } from '../roles/roles.component';
 import { RoleService } from '../../../services/role.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppSettings } from '../../../app.settings';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-privilege-add',
@@ -42,12 +42,12 @@ export class PrivilegeAddComponent implements OnInit {
     });
   }
   
-   updateService(): void {
+  updatePrivilege(): void {
     this.service.update(this.roles.id, this.roles)
       .subscribe(
         response => {
           console.log(response);
-          this.openSnackBar('The service updated successfully!');
+          this.openSnackBar('The privilege updated successfully!');
         },
         error => {
           console.log(error);
