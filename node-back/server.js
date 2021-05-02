@@ -43,10 +43,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Fix api" });
 });
 
-require("./app/routes/service.routes")(app);
-require("./app/routes/service-subcategory.routes")(app);
+
 require("./app/routes/product.routes")(app);
-require("./app/routes/serviceCategory.routes")(app);
 require("./app/routes/serviceHierarchy.routes")(app);
 require("./app/routes/areaHierarchy.routes")(app);
 require("./app/routes/login.routes")(app);
@@ -54,6 +52,7 @@ require("./app/routes/user.routes")(app);
 require("./app/routes/role.routes")(app);
 
 require("./app/routes/fileUpload.routes")(app);
+require("./app/routes/sliders.routes")(app);
 require("./app/routes/privilege.routes")(app);
 require("./app/routes/order.routes")(app);
 require("./app/routes/orderItems.routes")(app);
