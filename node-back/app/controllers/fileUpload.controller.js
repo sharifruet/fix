@@ -1,4 +1,5 @@
 const db = require("../models");
+const fs = require('fs');
 const FileUplaodModel = db.Fileupload;
 const Op = db.Sequelize.Op;
 
@@ -6,7 +7,9 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb){
-    cb(null, 'uploads/');
+    const path = `./uploads/`
+    fs.mkdirSync(path, { recursive: true })
+    return cb(null, path)
   },
   filename: function(req, file, cb){
     cb(null, Date.now()+'_'+file.originalname)
@@ -76,7 +79,7 @@ exports.findAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Service."
+          err.message || "Some error occurred while retrieving media."
       });
     });
 };
@@ -106,17 +109,17 @@ exports.delete = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Service was deleted successfully!"
+          message: "Media was deleted successfully!"
         });
       } else {
         res.send({
-          message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
+          message: `Cannot delete media with id=${id}. Maybe media was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Service with id=" + id
+        message: "Could not delete media with id=" + id
       });
     });
 };
