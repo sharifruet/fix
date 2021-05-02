@@ -10,13 +10,13 @@
         </div>
         <div>
             <mat-form-field class="input-width">
-                <mat-label>AreaType</mat-label>
+                <mat-label>Area Type</mat-label>
                 <input matInput required [(ngModel)]="areaHierarchy.areaType" name="areaType">
             </mat-form-field>
         </div>
-		
-			<div fxLayout="row" fxLayoutGap="20px">
-			            <div fxFlex="50">
+
+        <div fxLayout="row wrap" fxLayoutGap="10px grid">
+            <div fxFlex="50%" fxFlex.xs="100%">
                 <mat-form-field class="input-width">
                     <input matInput [(ngModel)]="areaHierarchy.parentId" name="parentId" type="text"
                         [formControl]="myControl" [matAutocomplete]="serviceHPList" placeholder="Parent">
@@ -27,8 +27,8 @@
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
-            <div fxFlex="50">
-                <mat-form-field>
+            <div fxFlex="50%" fxFlex.xs="100%">
+                <mat-form-field  class="input-width">
                     <mat-label>Status</mat-label>
                     <mat-select required [(ngModel)]="areaHierarchy.status" name="status">
                         <mat-option>None</mat-option>
@@ -37,13 +37,13 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div fxFlex="auto">
-                <mat-slide-toggle (change)="isEnd($event)" [(ngModel)]="areaHierarchy.end" name="end">End
+            <div fxFlex="100%">
+                <mat-slide-toggle [(ngModel)]="areaHierarchy.end" name="end">End
                 </mat-slide-toggle>
             </div>
         </div>
 
     </div>
-    <button mat-raised-button (click)="save()">Submit</button>
+    <button mat-raised-button (click)="createArea()" style="margin-right:10px;">Submit</button>
     <button mat-button [mat-dialog-close]>Close</button>
 </div>

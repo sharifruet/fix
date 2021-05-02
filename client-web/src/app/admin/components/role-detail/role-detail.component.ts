@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { RolesComponent } from '../../roles/roles.component';
+import { RolesComponent } from '../roles/roles.component';
 @Component({
   selector: 'app-role-detail',
   templateUrl: './role-detail.component.html',

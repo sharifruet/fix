@@ -35,16 +35,16 @@ import { AdminLoginComponent } from './admin/components/admin-login/admin-login.
 import { ServiceComponent } from './components/service/service.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
-import { UserAddComponent } from './admin/components/users-manage/user-add/user-add.component';
-import { UserEditComponent } from './admin/components/users-manage/user-edit/user-edit.component';
-import { UserDetailComponent } from './admin/components/users-manage/user-detail/user-detail.component';
+import { UserAddComponent } from './admin/components/user-add/user-add.component';
+import { UserEditComponent } from './admin/components/user-edit/user-edit.component';
+import { UserDetailComponent } from './admin/components/user-detail/user-detail.component';
 import { AreaHierarchyComponent } from './admin/components/area-hierarchy/area-hierarchy.component';
 import { MediaUploadComponent } from './admin/components/media-upload/media-upload.component';
 
 import { RolesComponent } from './admin/components/roles/roles.component';
-import { RoleAddComponent } from './admin/components/roles/role-add/role-add.component';
-import { RoleEditComponent } from './admin/components/roles/role-edit/role-edit.component';
-import { RoleDetailComponent } from './admin/components/roles/role-detail/role-detail.component';
+import { RoleAddComponent } from './admin/components/role-add/role-add.component';
+import { RoleEditComponent } from './admin/components/role-edit/role-edit.component';
+import { RoleDetailComponent } from './admin/components/role-detail/role-detail.component';
 
 import { ServiceHierarchyAddComponent } from './admin/components/service-hierarchy-add/service-hierarchy-add.component';
 import { ServiceHierarchyEditComponent } from './admin/components/service-hierarchy-edit/service-hierarchy-edit.component';
@@ -64,7 +64,7 @@ import { OrderItemPaymentComponent } from './admin/components/order-item-payment
 import { MediaPopupComponent } from './admin/components/media-popup/media-popup.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
-import { PrivilegeAddComponent } from './admin/components/roles/privilege-add/privilege-add.component';
+import { PrivilegeAddComponent } from './admin/components/privilege-add/privilege-add.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';

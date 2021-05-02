@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from '../../../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { UsersManageComponent } from '../../users-manage/users-manage.component';
+import { UsersManageComponent } from '../users-manage/users-manage.component';
 
 @Component({
   selector: 'app-user-edit',
@@ -11,11 +11,11 @@ import { UsersManageComponent } from '../../users-manage/users-manage.component'
 })
 export class UserEditComponent implements OnInit {
 
-  currentService;
+  currentUser;
   
   constructor(private _snackBar: MatSnackBar, private userService:UserService, public dialogRef:MatDialogRef<UsersManageComponent>, 
     @Inject(MAT_DIALOG_DATA) public data:any) { 
-      this.currentService=data;
+      this.currentUser=data;
      }
   
   ngOnInit(): void {
@@ -27,8 +27,8 @@ export class UserEditComponent implements OnInit {
     });
   }
 
-  updateService(): void {
-    this.userService.update(this.currentService.id, this.currentService)
+  updateUser(): void {
+    this.userService.update(this.currentUser.id, this.currentUser)
       .subscribe(
         response => {
           console.log(response);
@@ -38,26 +38,6 @@ export class UserEditComponent implements OnInit {
           console.log(error);
         });
   }
-  /*
-  updatePublished(status): void {
-    const data = {
-      name: this.currentService.name,
-      email: this.currentService.email,
-      published: status
-    };
-
-    this.serviceService.update(this.currentService.id, data)
-      .subscribe(
-        response => {
-          this.currentService.published = status;
-          console.log(response)
-          this.openSnackBar('The service updated successfully!');
-        },
-        error => {
-          console.log(error);
-        });
-  }
-  */
 
  
 }

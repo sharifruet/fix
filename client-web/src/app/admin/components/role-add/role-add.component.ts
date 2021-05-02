@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleService } from '../../../../services/role.service';
+import { RoleService } from '../../../services/role.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
-import { AppSettings } from '../../../../app.settings';
+import { AppSettings } from '../../../app.settings';
 
 @Component({
   selector: 'app-role-add',

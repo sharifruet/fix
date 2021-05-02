@@ -5,9 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../../services/user.service';
-import {UserAddComponent} from './user-add/user-add.component';
-import {UserEditComponent} from './user-edit/user-edit.component';
-import {UserDetailComponent} from './user-detail/user-detail.component';
+import { UserAddComponent } from '../user-add/user-add.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
 
@@ -18,20 +18,19 @@ import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 })
 
 export class UsersManageComponent implements OnInit {
-//selectedValue: string;
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-services: any;
+  services: any;
   currentService = null;
   currentIndex = -1;
   title = '';
 
-  displayedColumns = ['name','username', 'email','phone','address','district','upazila', 'status', 'action'];
+  displayedColumns = ['name', 'username', 'email', 'phone', 'address', 'district', 'upazila', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  constructor(private userService:UserService, public dialog: MatDialog, private _snackBar: MatSnackBar, private confirmDialog:ConfirmDialogService) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private _snackBar: MatSnackBar, private confirmDialog: ConfirmDialogService) { }
 
   ngOnInit(): void {
     this.getUsersManage();
@@ -41,14 +40,14 @@ services: any;
     this.userService.getAll()
       .subscribe(
         result => {
-			if(result.status ==0){
-			  this.dataSource = new MatTableDataSource<any>(result.data);
-			  this.dataSource.paginator = this.paginator;
-			  this.dataSource.sort = this.sort;
-			  console.log(result.data);
-			}else{
-				console.log(result.message);
-			}
+          if (result.status == 0) {
+            this.dataSource = new MatTableDataSource<any>(result.data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+            console.log(result.data);
+          } else {
+            console.log(result.message);
+          }
         },
         error => {
           console.log(error);
@@ -63,67 +62,67 @@ services: any;
     }
   }
 
-  addUserDialog = ()=>{
+  addUserDialog = () => {
     const dialogRef = this.dialog.open(UserAddComponent, {
-      width:'300px'
+      width: '500px'
     });
-    dialogRef.afterClosed().subscribe(result=>{
+    dialogRef.afterClosed().subscribe(result => {
       this.refreshList();
     })
   }
 
-  getAreaName(areaId: number) : string{
-    return " "+areaId;
+  getAreaName(areaId: number): string {
+    return " " + areaId;
   }
-  
+
   refreshList(): void {
     this.getUsersManage();
     this.currentService = null;
     this.currentIndex = -1;
   }
-  
-  viewService(service) {
+
+  viewUser(user) {
     this.dialog.open(UserDetailComponent, {
-      width:'300px',
-      data:service
+      width: '500px',
+      data: user
     });
   }
 
-  editService(service) {
+  editUser(user) {
     const dialogRef = this.dialog.open(UserEditComponent, {
-      width:'300px',
-      data:service
+      width: '500px',
+      data: user
     });
-    dialogRef.afterClosed().subscribe(result=>{
+    dialogRef.afterClosed().subscribe(result => {
       this.refreshList();
     })
   }
-  
-    openSnackBar(message: string) {
+
+  openSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: 2000,
     });
   }
 
-setActiveService(service, index): void {
+  setActiveService(service, index): void {
     this.currentService = service;
     this.currentIndex = index;
   }
 
-  deleteService(id): void {
+  deleteUser(id): void {
     this.confirmDialog.openConfirmDialog('Are you sure to delete this?').afterClosed().subscribe(res => {
-      if(res){
+      if (res) {
         this.userService.delete(id)
-        .subscribe(
-          response => {
-            console.log(response);
-            this.openSnackBar('The user deleted successfully');
-            this.refreshList();
-          },
-          error => {
-            console.log(error);
-          }
-        );
+          .subscribe(
+            response => {
+              console.log(response);
+              this.openSnackBar('The user deleted successfully');
+              this.refreshList();
+            },
+            error => {
+              console.log(error);
+            }
+          );
       }
     })
   }

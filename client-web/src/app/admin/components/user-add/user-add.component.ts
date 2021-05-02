@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -21,7 +21,7 @@ export class UserAddComponent implements OnInit {
     status: ''
   };
 
-  constructor(private service: UserService, private _snackBar: MatSnackBar) { }
+  constructor(private userService: UserService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -32,8 +32,7 @@ export class UserAddComponent implements OnInit {
     });
   }
 
-  save(): void {
-    console.log(this.service);
+  createUser(): void {
     const data = {
       name: this.user.name,
       username: this.user.username,
@@ -46,21 +45,19 @@ export class UserAddComponent implements OnInit {
       status: this.user.status
     };
 
-    this.service.create(data)
+    this.userService.create(data)
       .subscribe(
         response => {
-          console.log("1");
           console.log(response);
           this.openSnackBar('The service added successfully!');
-          this.newService();
+          this.newUser();
         },
         error => {
-          console.log("2");
           console.log(error);
         });
   }
 
-  newService(): void {
+  newUser(): void {
     this.user = {
       name: '',
       username: '',

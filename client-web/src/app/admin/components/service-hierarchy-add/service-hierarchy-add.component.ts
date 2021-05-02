@@ -191,6 +191,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   newService(): void {
+    this.selectedImage='';
     this.serviceHierarchy = {
       title: '',
       description: '',

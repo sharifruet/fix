@@ -1,13 +1,14 @@
-import {OnInit, Component, ViewChild, AfterViewInit} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { OnInit, Component, ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AreaHierarchyAddComponent } from '../area-hierarchy-add/area-hierarchy-add.component';
 import { AreaHierarchyDetailComponent } from '../area-hierarchy-detail/area-hierarchy-detail.component';
 import { AreaHierarchyService } from '../../../services/area-hierarchy.service';
 import { AreaHierarchyEditComponent } from '../area-hierarchy-edit/area-hierarchy-edit.component';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-area-hierarchy',
@@ -15,31 +16,30 @@ import { AreaHierarchyEditComponent } from '../area-hierarchy-edit/area-hierarch
   styleUrls: ['./area-hierarchy.component.css']
 })
 export class AreaHierarchyComponent implements OnInit {
- 
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
+
   services: any;
   currentService = null;
   currentIndex = -1;
   title = '';
 
-  
-  displayedColumns = ['title', 'areaType', 'parent','hierarchyPath','status','end','action'];
+
+  displayedColumns = ['title', 'areaType', 'parent', 'hierarchyPath', 'status', 'end', 'action'];
   dataSource = new MatTableDataSource();
 
-  
- constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private areaHierarchyService:AreaHierarchyService) {
+
+  constructor(private confirmDialog:ConfirmDialogService, private _snackBar: MatSnackBar, public dialog: MatDialog, private areaService: AreaHierarchyService) {
   }
 
   ngOnInit(): void {
-   
     this.retrieveAreaHierarchy();
   }
 
   retrieveAreaHierarchy(): void {
-    this.areaHierarchyService.getAll()
+    this.areaService.getAll()
       .subscribe(
         data => {
           this.dataSource = new MatTableDataSource<any>(data);
@@ -61,11 +61,10 @@ export class AreaHierarchyComponent implements OnInit {
 
   // add service dialog
   addItemDialog() {
-   
     const dialogRef = this.dialog.open(AreaHierarchyAddComponent, {
-      width:'400px'
+      width: '500px'
     });
-    dialogRef.afterClosed().subscribe(result=>{
+    dialogRef.afterClosed().subscribe(result => {
       this.refreshList();
     })
   }
@@ -76,26 +75,24 @@ export class AreaHierarchyComponent implements OnInit {
   }
 
 
-  viewService(service) {
-   
+  viewArea(area) {
     this.dialog.open(AreaHierarchyDetailComponent, {
-      width:'500px',
-      data:service
+      width: '500px',
+      data: area
     });
   }
 
-  editService(service) {
-    
+  editArea(area) {
     const dialogRef = this.dialog.open(AreaHierarchyEditComponent, {
-      width:'500px',
-      data:service
+      width: '500px',
+      data: area
     });
-    dialogRef.afterClosed().subscribe(result=>{
+    dialogRef.afterClosed().subscribe(result => {
       this.refreshList();
     })
   }
 
-openSnackBar(message: string) {
+  openSnackBar(message: string) {
     this._snackBar.open(message, '', {
       duration: 2000,
     });
@@ -105,19 +102,22 @@ openSnackBar(message: string) {
     this.currentService = service;
     this.currentIndex = index;
   }
-  
-  deleteService(id): void {
-	   if(confirm('Are you sure to delete')){
-    this.areaHierarchyService.delete(id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('The service deleted successfully');
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
+
+  deleteArea(id): void {
+    this.confirmDialog.openConfirmDialog('Are you sure to delete this?').afterClosed().subscribe(res => {
+      if(res){
+        this.areaService.delete(id)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.openSnackBar('The service deleted successfully');
+            this.refreshList();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    })
   }
-}
 }
