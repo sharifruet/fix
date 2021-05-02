@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HowItWorkVideoComponent } from '../how-it-work-video/how-it-work-video.component';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { MediaService } from '../../services/media.service';
+import { SlidersService } from '../../services/sliders.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ import { MediaService } from '../../services/media.service';
 export class HomeComponent implements OnInit {
 
   mediaAll:any = [];
-
-  constructor(public dialog: MatDialog, private serviceHierarchies:ServiceHierarchyService, private mediaService:MediaService) {}
+  sliders:any = [];
+  
+  constructor(private sliderService:SlidersService, public dialog: MatDialog, private serviceHierarchies:ServiceHierarchyService, private mediaService:MediaService) {}
   
   openDialog() {
     this.dialog.open(HowItWorkVideoComponent);
@@ -22,6 +24,23 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getImages();
     this.services();
+    this.getSliders();
+  }
+
+  getSliders():void{
+    this.sliderService.getAll()
+    .subscribe(
+      data => {
+        this.sliders = data;
+        console.log(data);
+        this.sliders.forEach(element => {
+            element.photoPath = this.getImage(element.photo);
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
   
   // owl-carousel for hero slider
@@ -38,9 +57,9 @@ export class HomeComponent implements OnInit {
     navText: ['<span class="material-icons">chevron_left</span>', '<span class="material-icons">chevron_right</span>'],
   }
 
-  sevicesList;
-  serviceGroup;
-  serviceLayer;
+  sevicesList:any=[];
+  serviceGroup:any=[];
+  serviceLayer:any=[];
   services():void{
     this.serviceHierarchies.getAll()
     .subscribe(
@@ -49,11 +68,17 @@ export class HomeComponent implements OnInit {
         this.serviceGroup = this.sevicesList.filter((sh:any) => sh.serviceGroup == 1);
         this.serviceLayer = this.sevicesList.filter((sh:any) => sh.serviceLayer == 1);
         this.serviceGroup.forEach(element => {
-          element.photoName = this.getImage(element.photo);
+          if(element.photo !== null){
+            element.photoPath = this.getImage(element.photo);
+          }
         });
         this.serviceLayer.forEach(element => {
-          element.photoName = this.getImage(element.photo);
+          if(element.photo !== null){
+            element.photoPath =this.getImage(element.photo);
+          }
         });
+
+        console.log(this.serviceGroup);
       },
       error => {
         console.log(error);
@@ -73,8 +98,8 @@ export class HomeComponent implements OnInit {
   }
   
   getImage(id:number){
-    let c = this.mediaAll.find((sh:any) => sh.id == id);
-    return c.name;
+      let c = this.mediaAll.find((sh:any) => sh.id == id);
+      return this.mediaService.mediaPath + c.name;
   }
 
   // owl-carousel for service category

@@ -7,6 +7,7 @@ import { ServiceHierarchyService } from '../../../services/service-hierarchy.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MediaPopupComponent } from '../media-popup/media-popup.component';
+import { MediaService } from '../../../services/media.service';
 
 @Component({
   selector: 'app-service-hierarchy-add',
@@ -107,7 +108,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(private mediaService:MediaService, private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
   
   ngOnInit(): void {
     this.getAllServiceHierarchy();
@@ -120,11 +121,10 @@ export class ServiceHierarchyAddComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result !== undefined){
-        this.selectedImage = result;
+        this.selectedImage = this.mediaService.mediaPath+result.name;
         this.serviceHierarchy.photo = result.id;
       }
     });
-
   }
 
   private _filterTour(value: string): any[] {
@@ -159,7 +159,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
     });
   }
 
-  save(): void {
+  createService(): void {
     const data = {
       title: this.serviceHierarchy.title,
       description: this.serviceHierarchy.description,
@@ -191,6 +191,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   newService(): void {
+    this.selectedImage='';
     this.serviceHierarchy = {
       title: '',
       description: '',

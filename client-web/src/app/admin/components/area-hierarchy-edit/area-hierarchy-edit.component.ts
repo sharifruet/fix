@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AreaHierarchyComponent } from '../area-hierarchy/area-hierarchy.component';
 import { AreaHierarchyService } from '../../../services/area-hierarchy.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs'
@@ -15,44 +15,40 @@ import { Observable } from 'rxjs'
 })
 export class AreaHierarchyEditComponent implements OnInit {
 
-  currentService;
-    serviceHParent: any[] = [];
+  currentArea;
+  areaHParent: any[] = [];
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private _snackBar: MatSnackBar, private areaHierarchyService:AreaHierarchyService, public dialogRef:MatDialogRef<AreaHierarchyComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data:any) { 
-      this.currentService=data;
-     }
+  constructor(private _snackBar: MatSnackBar, private areaService: AreaHierarchyService, public dialogRef: MatDialogRef<AreaHierarchyComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.currentArea = data;
+  }
 
   ngOnInit(): void {
-	  this.getAllAreaHierarchy();
+    this.getAllAreaHierarchy();
+  }
+
+  private _filterTour(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.areaHParent.filter(option => option.title.toLowerCase().includes(filterValue));
   }
   
-    private _filterTour(value: string): any[] {
-    const filterValue = value.toLowerCase();
-    return this.serviceHParent.filter(option => option.title.toLowerCase().includes(filterValue));
-  }
-
-
-
-  getAllAreaHierarchy(){
-     this.areaHierarchyService.getAll().subscribe(
+  getAllAreaHierarchy() {
+    this.areaService.getAll().subscribe(
       data => {
-        this.serviceHParent = data;
+        this.areaHParent = data;
         this.filteredOptions = this.myControl.valueChanges.pipe(
           startWith(''),
           map(value => typeof value === 'string' ? value : value.title),
-          // map(value => this._filterTour(value)),
-          map(value => value ? this._filterTour(value) : this.serviceHParent.slice())
+          map(value => value ? this._filterTour(value) : this.areaHParent.slice())
         );
       });
- }
- 
- displayFn(parent) {
-    // return parent ? parent.title : parent;
-    return this.serviceHParent.find(item => item.id === parent).title;
-}
+  }
+
+  displayFn(parent) {
+    return this.areaHParent.find(item => item.id === parent).title;
+  }
 
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
@@ -60,8 +56,8 @@ export class AreaHierarchyEditComponent implements OnInit {
     });
   }
 
-updateService(): void {
-    this.areaHierarchyService.update(this.currentService.id, this.currentService)
+  updateArea(): void {
+    this.areaService.update(this.currentArea.id, this.currentArea)
       .subscribe(
         response => {
           console.log(response);

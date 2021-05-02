@@ -6,7 +6,7 @@
             <label for="">Photo</label>
             <div class="img" (click)="addImage()">                
                 <ng-container *ngIf="selectedImage; else icon">
-                    <img src="http://localhost:8080/uploads/{{selectedImage.name}}" alt="">
+                    <img src="{{selectedImage}}" alt="">
                 </ng-container>
                 <ng-template #icon> <mat-icon >insert_photo</mat-icon></ng-template>
             </div>
@@ -14,7 +14,7 @@
         <div>
             <mat-form-field class="input-width">
                 <mat-label>Title</mat-label>
-                <input matInput id="title" [(ngModel)]="serviceHierarchy.title" name="title">
+                <input matInput id="title" required [(ngModel)]="serviceHierarchy.title" name="title">
             </mat-form-field>
         </div>
 
@@ -40,7 +40,7 @@
             <div fxFlex="50" fxFlex.xs="100">
                 <mat-form-field class="input-width">
                     <mat-label>Status</mat-label>
-                    <mat-select [(ngModel)]="serviceHierarchy.status" name="status">
+                    <mat-select required [(ngModel)]="serviceHierarchy.status" name="status">
                         <mat-option>None</mat-option>
                         <mat-option value="0">Active</mat-option>
                         <mat-option value="1">Inactive</mat-option>
@@ -130,6 +130,6 @@
         </div>
 
     </div>
-    <button mat-raised-button (click)="save()">Submit</button>
+    <button mat-raised-button (click)="createService()" style="margin-right: 10px;">Submit</button>
     <button mat-button [mat-dialog-close]>Close</button>
 </div>

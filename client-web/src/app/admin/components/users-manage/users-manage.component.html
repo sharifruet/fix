@@ -15,7 +15,7 @@
         <div>
             <mat-form-field>
                 <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. AC" #input>
+                <input matInput (keyup)="applyFilter($event)" placeholder="User Name" #input>
             </mat-form-field>
         </div>
         <div>
@@ -85,13 +85,13 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="primary" matTooltip="View Service" (click)="viewService(element)">
+                <button mat-icon-button color="primary" matTooltip="View User" (click)="viewUser(element)">
           <mat-icon>visibility</mat-icon>
         </button>
-                <button mat-icon-button color="accent" matTooltip="Edit User" (click)="editService(element)">
+                <button mat-icon-button color="accent" matTooltip="Edit User" (click)="editUser(element)">
           <mat-icon>edit</mat-icon>
         </button>
-                 <button mat-icon-button color="warn" (click)="deleteService(element.id)" matTooltip="Delete USer">
+                 <button mat-icon-button color="warn" (click)="deleteUser(element.id)" matTooltip="Delete USer">
           <mat-icon>delete</mat-icon>
         </button>
 		

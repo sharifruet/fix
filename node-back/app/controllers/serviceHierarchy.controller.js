@@ -2,7 +2,6 @@ const db = require("../models");
 const ServiceHierarchyModel = db.ServiceHierarchy;
 const Op = db.Sequelize.Op;
 
-
 // Create and Save a new Service
 exports.create = (req, res) => {
   // Validate request

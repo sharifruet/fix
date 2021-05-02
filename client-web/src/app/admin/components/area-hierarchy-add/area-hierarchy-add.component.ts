@@ -3,7 +3,7 @@ import { AreaHierarchyService } from '../../../services/area-hierarchy.service';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs'
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -13,51 +13,33 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AreaHierarchyAddComponent implements OnInit {
 
-areaHierarchy = {
+  areaHierarchy = {
     title: '',
-	areaType:'',
-	parentId:'',
-	hierarchyPath:'',
-	status:'',
-	end:''
-
+    areaType: '',
+    parentId: '',
+    hierarchyPath: '',
+    status: '',
+    end: ''
   };
 
-endLevel=false;
-  isEnd(event){
-    console.log(event);
-    if(event.checked == true){
-      this.endLevel= true;
-    }else{
-      this.endLevel = false;
-    }
-  }
-
- hidden=false;
-  on(event){
-    if(event.checked == true){
-      this.hidden= true;
-    }else{
-      this.hidden = false;
-    }
-  }
- serviceHParent: any[] = [];
+  serviceHParent: any[] = [];
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
-  
-  constructor(private service: AreaHierarchyService, private _snackBar: MatSnackBar) { }
+
+  constructor(private areaService: AreaHierarchyService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-	  this.getAllAreaHierarchy();
+    this.getAllAreaHierarchy();
   }
-  
-    private _filterTour(value: string): any[] {
+
+  private _filterTour(value: string): any[] {
     const filterValue = value.toLowerCase();
     return this.serviceHParent.filter(option => option.title.toLowerCase().includes(filterValue));
   }
-  
-  getAllAreaHierarchy(){
-     this.service.getAll().subscribe(
+
+  // get all area hierarchy
+  getAllAreaHierarchy() {
+    this.areaService.getAll().subscribe(
       data => {
         this.serviceHParent = data;
         this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -66,11 +48,11 @@ endLevel=false;
           map(value => value ? this._filterTour(value) : this.serviceHParent.slice())
         );
       });
- }
- 
-displayFn(parent) {
+  }
+
+  displayFn(parent) {
     return this.serviceHParent.find(item => item.id === parent).title;
-}
+  }
 
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
@@ -78,41 +60,35 @@ displayFn(parent) {
     });
   }
 
-  save(): void {
-    console.log(this.service);
+  createArea(): void {
     const data = {
       title: this.areaHierarchy.title,
-	  areaType: this.areaHierarchy.areaType,
-	  parentId:this.areaHierarchy.parentId,
-	  hierarchyPath:this.areaHierarchy.hierarchyPath,
-	  status:this.areaHierarchy.status,
-	  end: this.areaHierarchy.end,
-
+      areaType: this.areaHierarchy.areaType,
+      parentId: this.areaHierarchy.parentId,
+      hierarchyPath: this.areaHierarchy.hierarchyPath,
+      status: this.areaHierarchy.status,
+      end: this.areaHierarchy.end,
     };
-
-    this.service.create(data)
+    this.areaService.create(data)
       .subscribe(
         response => {
-          console.log("1");
           console.log(response);
           this.openSnackBar('The service added successfully!');
-          this.newService();
+          this.newArea();
         },
         error => {
-          console.log("2");
           console.log(error);
         });
   }
 
-  newService(): void {
+  newArea(): void {
     this.areaHierarchy = {
       title: '',
-	  areaType:'',
-	  parentId:'',
-	  hierarchyPath:'',
-	  status:'',
-	  end:''
-
+      areaType: '',
+      parentId: '',
+      hierarchyPath: '',
+      status: '',
+      end: ''
     }
   }
 
