@@ -2,7 +2,12 @@
 .banner img{
    width: 100%;
 }
-
+.single-slider{
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 /* service category */
 .category-area{
     position: relative;
@@ -38,9 +43,6 @@
 }
 
  /* service item */
- .single-service{
-	max-width: 263px;
-}
  .single-service>a{
     color:#000;
     text-decoration: none;
