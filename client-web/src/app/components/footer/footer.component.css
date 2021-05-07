@@ -1,7 +1,7 @@
 
 /* footer */
 ul{
-    padding-left:15px;
+    padding:0;
     margin:0;
 }
 .single-footer h4{
@@ -10,13 +10,13 @@ ul{
 .single-footer a{
     color:#444;
 }
-.single-footer ul li a{
-    display: inline-block;
+.single-footer ul li{
+    display: block;
     padding:5px 0;
-    text-decoration: none;
     transition: 0.5s;
+    cursor: pointer;
 }
-.single-footer ul li a:hover{
+.single-footer ul li:hover{
     color:#000000;
 }
 

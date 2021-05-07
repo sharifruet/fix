@@ -249,12 +249,12 @@
             </div>
 
             <owl-carousel-o [options]="relatedService" class="categoryCarousel">
-                <ng-template carouselSlide *ngFor="let count of [1,2,3]">
-                    <div matRipple class="tab-item">
+                <ng-template carouselSlide *ngFor="let service of serviceRelated">
+                    <div matRipple class="tab-item" routerLink="/service/{{service.id}}">
                         <div>
-                            <img src="assets/images/laptop2.jpg">
+                            <img src="{{service.photoPath}}">
                             <div>
-                                Laptop Service {{count}}
+                                {{service.title}}
                             </div>
                         </div>
                         <mat-icon>keyboard_arrow_right</mat-icon>

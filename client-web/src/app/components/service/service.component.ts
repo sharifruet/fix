@@ -19,6 +19,7 @@ export class ServiceComponent implements OnInit {
   mediaAll:any = [];
   serviceDetail:any = [];
   serviceChild:any = [];
+  serviceRelated:any = [];
   ngOnInit(): void {
     this.getImages();
     this.route.paramMap.subscribe(params => { 
@@ -39,9 +40,14 @@ export class ServiceComponent implements OnInit {
             element.photoPath = this.getImage(element.photo);
           }
         });
-        console.log(this.serviceDetail[0]);
         
-        // console.log(this.serviceChild);
+        this.serviceRelated = data.filter((sh:any) => sh.parentId == this.serviceDetail[0].parentId && sh.id !== this.serviceDetail[0].id);
+        this.serviceRelated.forEach(element => {
+          if(element.photo !== null){
+            element.photoPath = this.getImage(element.photo);
+          }
+        });
+        console.log(this.serviceRelated);
       },
       error => {
         console.log(error);
