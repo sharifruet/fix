@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { MediaUploadComponent } from '../media-upload/media-upload.component';
 import { MediaService } from '../../../services/media.service';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-media',
@@ -14,22 +15,24 @@ import { MediaService } from '../../../services/media.service';
 })
 export class MediaComponent implements OnInit {
 
+  mediaAll: any = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
   
-  displayedColumns = ['name', 'description', 'originalName','type', 'status','action'];
+  displayedColumns = ['photo', 'name', 'description', 'originalName','type', 'status','action'];
   dataSource = new MatTableDataSource();
   
- constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private mediaservice:MediaService) {
+ constructor(private confirmDialog:ConfirmDialogService, private _snackBar: MatSnackBar, public dialog: MatDialog, private mediaService:MediaService) {
   }
 
   ngOnInit(): void {
     this.retrieveMedia();
+    this.getImages();
   }
 
   retrieveMedia(): void {
-    this.mediaservice.getAll()
+    this.mediaService.getAll()
       .subscribe(
         data => {
           this.dataSource = new MatTableDataSource<any>(data);
@@ -40,6 +43,24 @@ export class MediaComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  getPhoto(id: number) {
+    let photo = this.mediaAll.filter(sh => sh.id == id);
+    if (photo.length > 0)
+      return this.mediaService.mediaPath + photo[0].name;
+      return "";
+  }
+
+  getImages() {
+    this.mediaService.getAll().subscribe(
+      data => {
+        this.mediaAll = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   applyFilter(event: Event) {
@@ -67,6 +88,25 @@ export class MediaComponent implements OnInit {
     this._snackBar.open(message, '', {
       duration: 2000,
     });
+  }
+
+  deleteMedia(id:number){
+    this.confirmDialog.openConfirmDialog('Are you sure to delete this?').afterClosed().subscribe(res => {
+      if (res) {
+        this.mediaService.delete(id)
+          .subscribe(
+            response => {
+              console.log(response);
+              
+              this.openSnackBar('The media deleted successfully');
+              this.refreshList();
+            },
+            error => {
+              console.log(error);
+            }
+          );
+      }
+    })
   }
 
  

@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
-import {  AddToCartComponent } from '../add-to-cart/add-to-cart.component'
+import {  AddToCartComponent } from '../add-to-cart/add-to-cart.component';
+import { MediaService } from '../../services/media.service';
 
 @Component({
   selector: 'app-service',
@@ -13,11 +14,13 @@ import {  AddToCartComponent } from '../add-to-cart/add-to-cart.component'
 export class ServiceComponent implements OnInit {
 
   panelOpenState = false;
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ServiceHierarchyService, private location: Location) { }
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private service: ServiceHierarchyService, private location: Location, private mediaService:MediaService) { }
   
-  serviceDetail;
-  serviceChild;
+  mediaAll:any = [];
+  serviceDetail:any = [];
+  serviceChild:any = [];
   ngOnInit(): void {
+    this.getImages();
     this.route.paramMap.subscribe(params => { 
        let id = params.get('id');
        this.getServiceDetail(id);
@@ -31,12 +34,35 @@ export class ServiceComponent implements OnInit {
         this.serviceDetail = data.filter((sh:any) => sh.id == id);
         this.serviceDetail[0].faq = JSON.parse(this.serviceDetail[0].faq);
         this.serviceChild = data.filter((sh:any) => sh.parentId == id);
+        this.serviceChild.forEach(element => {
+          if(element.photo !== null){
+            element.photoPath = this.getImage(element.photo);
+          }
+        });
+        console.log(this.serviceDetail[0]);
+        
+        // console.log(this.serviceChild);
       },
       error => {
         console.log(error);
       });
   }
   
+  getImages(){
+    this.mediaService.getAll().subscribe(
+      data => {
+        this.mediaAll = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  
+  getImage(id:number){
+      let c = this.mediaAll.find((sh:any) => sh.id == id);
+      return this.mediaService.mediaPath + c.name;
+  }
   
 
   openAddToCart(service){

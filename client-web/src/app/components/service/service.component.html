@@ -1,190 +1,246 @@
-<div *ngFor="let serviceH of serviceDetail">
-    <div class="service-area" style="background-image:url('assets/images/laptop-servicing.jpg');">
-        <div class="container">
-            <div fxLayout="row wrap">
-                <div fxFlex="80%" fxFlex.sm="70%" fxFlex.xs="100%">
-                    <div class="breadcrumb pb-5">
-                        <ul>
-                            <li> <a href="#">Home</a> </li>
-                            <li> <a href="#">Commercial</a> </li>
-                            <li> <a href="#">Electronics</a> </li>
-                            <li>Laptop Servicing</li>
-                        </ul>
-                    </div>
-                </div>
-                <div fxFlex="20%" fxFlex.sm="30%" fxFlex.xs="100%">
-                    <div class="social-share">
-                        <span>Share on</span>
-                        <ul>
-                            <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/733/733547.svg"
-                                        alt=""></a></li>
-                            <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/1409/1409937.svg"
-                                        alt=""></a></li>
-                            <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg"
-                                        alt=""></a></li>
-                            <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/2111/2111463.svg"
-                                        alt=""></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div fxLayout="row wrap" fxLayoutGap="30px grid">
-                <div fxFlex="50%" fxFlex.xs="100%">
-                    <div class="service-content">
-                        <h2>{{serviceH.title}}</h2>
-                        <div class="ratings">
-                            <button mat-raised-button color="accent">
-                                <mat-icon>star</mat-icon> 4.5 Out of 5
-                            </button>
-                            <span>( 100 ratings on 2 services)</span>
+<div *ngFor="let service of serviceDetail">
+    <ng-container *ngIf="service.serviceLayer == true; else services">
+        <div class="service-area" style="background-image:url('assets/images/laptop-servicing.jpg');">
+            <div class="container">
+                <div fxLayout="row wrap">
+                    <div fxFlex="80%" fxFlex.sm="70%" fxFlex.xs="100%">
+                        <div class="breadcrumb pb-5">
+                            <ul>
+                                <li> <a href="#">Home</a> </li>
+                                <li> <a href="#">Commercial</a> </li>
+                                <li> <a href="#">Electronics</a> </li>
+                                <li>Laptop Servicing</li>
+                            </ul>
                         </div>
-                        <p>{{serviceH.description}}</p>
+                    </div>
+                    <div fxFlex="20%" fxFlex.sm="30%" fxFlex.xs="100%">
+                        <div class="social-share">
+                            <span>Share on</span>
+                            <ul>
+                                <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/733/733547.svg"
+                                            alt=""></a></li>
+                                <li><a href="#"><img
+                                            src="https://www.flaticon.com/svg/static/icons/svg/1409/1409937.svg"
+                                            alt=""></a></li>
+                                <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg"
+                                            alt=""></a></li>
+                                <li><a href="#"><img
+                                            src="https://www.flaticon.com/svg/static/icons/svg/2111/2111463.svg"
+                                            alt=""></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div fxFlex="50%" fxFlex.xs="100%">
-                    <div class="service-content">
-                        <ul>
-                            <li>
-                                <mat-icon>check</mat-icon> In publishing and graphic design
-                            </li>
-                            <li>
-                                <mat-icon>check</mat-icon> Lorem ipsum is a placeholder text commonly
-                            </li>
-                            <li>
-                                <mat-icon>check</mat-icon> A document or a typeface without relying on meaningful
-                                content
-                            </li>
-                            <li>
-                                <mat-icon>check</mat-icon> In publishing and graphic design
-                            </li>
-                        </ul>
+                <div fxLayout="row wrap" fxLayoutGap="30px grid">
+                    <div fxFlex="50%" fxFlex.xs="100%">
+                        <div class="service-content">
+                            <h2>{{service.title}}</h2>
+                            <div class="ratings">
+                                <button mat-raised-button color="accent">
+                                    <mat-icon>star</mat-icon> 4.5 Out of 5
+                                </button>
+                                <span>( 100 ratings on 2 services)</span>
+                            </div>
+                            <p>{{service.description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="service-tab" style="background-color: #fdfdfd;">
-        <div class="container">
-            <div fxLayout="row wrap">
-                <div fxFlex="65%" fxFlex.xs="100%" fxFlexOrder.xs="2">
-                    <mat-tab-group style="padding-top:30px">
-                        <mat-tab>
-                            <ng-template mat-tab-label>
-                                <mat-icon>description</mat-icon>
-                                <p>Service Overview</p>
-                            </ng-template>
+        <div class="service-tab" style="background-color: #fdfdfd;">
+            <div class="container">
+                <div fxLayout="row wrap">
+                    <div fxFlex="65%" fxFlex.xs="100%" fxFlexOrder.xs="2">
+                        <mat-tab-group style="padding-top:30px">
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <mat-icon>description</mat-icon>
+                                    <p>Service Overview</p>
+                                </ng-template>
 
-                            <div class="description-block">
-                                <h2>Overview</h2>
-                                <div class="service-content">
-                                    {{serviceH.overview}}
+                                <div class="description-block">
+                                    <h2>Overview</h2>
+                                    <div class="service-content">
+                                        {{service.overview}}
+                                    </div>
                                 </div>
-                            </div>
-                        </mat-tab>
-                        <mat-tab label="Tab Two">
-                            <ng-template mat-tab-label>
-                                <mat-icon>live_help</mat-icon>
-                                <p>FAQ</p>
-                            </ng-template>
-                            <div class="description-block">
-                                <mat-accordion>
-                                    <mat-expansion-panel *ngFor="let serviceHFaq of serviceH.faq"
-                                        (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                                        <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                {{serviceHFaq.question}}
-                                            </mat-panel-title>
-                                        </mat-expansion-panel-header>
-                                        <p>{{serviceHFaq.answer}}</p>
-                                    </mat-expansion-panel>
-                                </mat-accordion>
-                            </div>
-                        </mat-tab>
+                            </mat-tab>
+                            <mat-tab label="Tab Two">
+                                <ng-template mat-tab-label>
+                                    <mat-icon>live_help</mat-icon>
+                                    <p>FAQ</p>
+                                </ng-template>
+                                <div class="description-block">
+                                    <mat-accordion>
+                                        <mat-expansion-panel *ngFor="let serviceHFaq of service.faq"
+                                            (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                    {{serviceHFaq.question}}
+                                                </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <p>{{serviceHFaq.answer}}</p>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                            </mat-tab>
 
-                        <mat-tab label="Tab Two">
-                            <ng-template mat-tab-label>
-                                <mat-icon>stars</mat-icon>
-                                <p>Reviews</p>
-                            </ng-template>
-                            <div class="reviews_comment">
-                                <div fxLayout="row">
-                                    <div fxFlex="15">
-                                        <div class="review-image">
-                                            <img src="assets/images/user.jpg" alt="">
+                            <mat-tab label="Tab Two">
+                                <ng-template mat-tab-label>
+                                    <mat-icon>stars</mat-icon>
+                                    <p>Reviews</p>
+                                </ng-template>
+                                <div class="reviews_comment">
+                                    <div fxLayout="row">
+                                        <div fxFlex="15">
+                                            <div class="review-image">
+                                                <img src="assets/images/user.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div fxFlex="85" class="review-details">
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <h4>Tanvir <i>- October 05, 2020</i></h4>
+                                            <p>Very good service, highly recommanded, I am very satisfied get this
+                                                work.I will
+                                                work with again.</p>
                                         </div>
                                     </div>
-                                    <div fxFlex="85" class="review-details">
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <h4>Tanvir <i>- October 05, 2020</i></h4>
-                                        <p>Very good service, highly recommanded, I am very satisfied get this
-                                            work.I will
-                                            work with again.</p>
-                                    </div>
-                                </div>
-                                <mat-divider></mat-divider>
-                                <div fxLayout="row" class="margin-top">
-                                    <div fxFlex="15">
-                                        <div class="review-image">
-                                            <img src="assets/images/user.jpg" alt="">
+                                    <mat-divider></mat-divider>
+                                    <div fxLayout="row" class="margin-top">
+                                        <div fxFlex="15">
+                                            <div class="review-image">
+                                                <img src="assets/images/user.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div fxFlex="85" class="review-details">
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <mat-icon>star</mat-icon>
+                                            <h4>Hajrat <i>- October 06, 2020</i></h4>
+                                            <p>Very good service, highly recommanded, I am very satisfied get this
+                                                work.I will
+                                                work with again.</p>
                                         </div>
                                     </div>
-                                    <div fxFlex="85" class="review-details">
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <mat-icon>star</mat-icon>
-                                        <h4>Hajrat <i>- October 06, 2020</i></h4>
-                                        <p>Very good service, highly recommanded, I am very satisfied get this
-                                            work.I will
-                                            work with again.</p>
+
+                                </div>
+                            </mat-tab>
+
+                            <mat-tab label="Tab Two">
+                                <ng-template mat-tab-label>
+                                    <mat-icon>description</mat-icon>
+                                    <p>Details</p>
+                                </ng-template>
+                                <div class="description-block">
+                                    <div class="content">
+                                        <h2>Details</h2>
+                                        {{service.detail}}
                                     </div>
                                 </div>
+                            </mat-tab>
 
-                            </div>
-                        </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div fxFlex="35%" fxFlex.xs="100%" *ngIf="serviceChild.length > 0">
+                        <div class="service-sub-category">
+                            <h2>{{service.title}}</h2>
 
-                        <mat-tab label="Tab Two">
-                            <ng-template mat-tab-label>
-                                <mat-icon>description</mat-icon>
-                                <p>Details</p>
-                            </ng-template>
-                            <div class="description-block">
-                                <div class="content">
-                                    <h2>Details</h2>
-                                    {{serviceH.detail}}
-                                </div>
-                            </div>
-                        </mat-tab>
-
-                    </mat-tab-group>
-                </div>
-                <div fxFlex="35%" fxFlex.xs="100%" *ngIf="serviceChild.length > 0">
-                    <div class="service-sub-category">
-                        <h2>{{serviceH.title}}</h2>
-
-                        <div *ngFor="let serviceC of serviceChild" matRipple class="tab-item"
-                            (click)="openAddToCart(serviceC)">
-                            <div>
-                                <img src="assets/images/laptop.jpg">
+                            <div *ngFor="let serviceC of serviceChild" matRipple class="tab-item"
+                                (click)="openAddToCart(serviceC)">
                                 <div>
-                                    {{serviceC.title}}
+                                    <img src="{{serviceC.photoPath}}">
+                                    <div>
+                                        {{serviceC.title}}
+                                    </div>
                                 </div>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
                             </div>
-                            <mat-icon>keyboard_arrow_right</mat-icon>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ng-container>
 
+
+
+    <ng-template #services>
+        <div class="service-area" style="background-image:url('assets/images/laptop-servicing.jpg');">
+            <div class="container">
+                <div fxLayout="row wrap">
+                    <div fxFlex="80%" fxFlex.sm="70%" fxFlex.xs="100%">
+                        <div class="breadcrumb pb-5">
+                            <ul>
+                                <li> <a href="#">Home</a> </li>
+                                <li> <a href="#">Commercial</a> </li>
+                                <li> <a href="#">Electronics</a> </li>
+                                <li>Laptop Servicing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div fxFlex="20%" fxFlex.sm="30%" fxFlex.xs="100%">
+                        <div class="social-share">
+                            <span>Share on</span>
+                            <ul>
+                                <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/733/733547.svg"
+                                            alt=""></a></li>
+                                <li><a href="#"><img
+                                            src="https://www.flaticon.com/svg/static/icons/svg/1409/1409937.svg"
+                                            alt=""></a></li>
+                                <li><a href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg"
+                                            alt=""></a></li>
+                                <li><a href="#"><img
+                                            src="https://www.flaticon.com/svg/static/icons/svg/2111/2111463.svg"
+                                            alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row wrap" fxLayoutGap="30px grid">
+                    <div fxFlex="50%" fxFlex.xs="100%">
+                        <div class="service-content">
+                            <h2>{{serviceDetail[0].title}}</h2>
+                            <p>{{serviceDetail[0].description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-items pt-5 pb-5">
+            <div class="container">
+                <div class="title">
+                    <h2>Services</h2>
+                </div>
+                <div fxLayout="row wrap" fxLayoutGap="15px grid">
+                    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let serviceC of serviceChild">
+                        <div class="single-service">
+                            <a routerLink="/service/{{serviceC.id}}">
+                                <div class="body">
+                                    <div class="img">
+                                        <img src="{{serviceC.photoPath}}" alt="">
+                                    </div>
+                                    <div class="body">
+                                        <h3>{{serviceC.title}}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </ng-template>
 
     <div class="related-service pt-5 pb-5">
         <div class="container">
