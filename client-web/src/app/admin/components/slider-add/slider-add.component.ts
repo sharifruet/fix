@@ -50,18 +50,21 @@ export class SliderAddComponent implements OnInit {
       photo: this.slider.photo,
       published: this.slider.published
     }
-    this.sliderService.create(data)
-    .subscribe(
-      response => {
-        console.log(response);
-        this.openSnackBar('The slider added successfully');
-        this.newslider();
-      },
-      error => {
-        console.log(error);
-      }
-    )
-
+    if(data.photo == ''){
+      this.openSnackBar('Photo required');
+    }else{
+      this.sliderService.create(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.openSnackBar('The slider added successfully');
+          this.newslider();
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   // empty a slider form

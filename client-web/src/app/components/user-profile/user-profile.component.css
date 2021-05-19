@@ -5,23 +5,16 @@
 .mat-tab-label {
 	height: 50px;
 }
-.text-center{
-    text-align: center;
-}
 
 
 /* description area */
 .block{
-    max-width:600px;
+    max-width:500px;
     width: 100%;
 }
-
-
-.content_list{
-    width: 500px;
-    margin: auto;
+h2{
+    margin-top: 0;
 }
-
 .mat-list span{
     font-weight:500;
     color:#000;
@@ -33,7 +26,10 @@
 } 
 
 .profile_icon img{
-    width: 140px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .profile_icon {
@@ -45,16 +41,12 @@
 	bottom: 10px;
 }
 
-
-
 .mb-5{
     margin-bottom: 100px;
 }
 .mb-2{
     margin-bottom: 20px!important;
 }
-
-
 .flex{
     display: flex;
     align-items: center;
@@ -83,16 +75,12 @@
     display: flex;
     align-items: center;
 }
-
 .offers_content>h1 {
 	margin-top: 0;
 }
-
-
 mat-form-field, mat-radio-group{
     display: block;
     width: 90%;
-    margin:auto;
 }
 mat-radio-group {
     text-align: left;

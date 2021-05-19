@@ -60,16 +60,20 @@ export class SliderEditComponent implements OnInit {
 
   // update slider
   updateSlider():void{
-    this.slidersService.update(this.currentSlider.id, this.currentSlider)
-    .subscribe(
-      response => {
-        console.log(response);
-        this.openSnackBar('The slide updated successfully');
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    if(this.currentSlider.photo == ''){
+      this.openSnackBar('Photo required');
+    }else{
+      this.slidersService.update(this.currentSlider.id, this.currentSlider)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.openSnackBar('The slide updated successfully');
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
 

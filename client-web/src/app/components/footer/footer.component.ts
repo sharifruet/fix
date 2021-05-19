@@ -1,4 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { LoginSignupComponent } from '../login-signup/login-signup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-footer',
@@ -7,11 +10,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
-
   
   isShow: boolean = false;
   topPosToStartShowing = 100;
@@ -27,6 +29,18 @@ export class FooterComponent implements OnInit {
       top: 0, 
       left: 0, 
       behavior: 'smooth' 
+    });
+  }
+
+  openLogin(){
+    const dialogRef = this.dialog.open(LoginSignupComponent, {
+      width:'500px'
+    });
+  }
+
+  openCart(){
+    const dialogRef = this.dialog.open(CartComponent, {
+      width:'600px'
     });
   }
 
