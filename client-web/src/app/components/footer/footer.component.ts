@@ -14,7 +14,6 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   
   isShow: boolean = false;
   topPosToStartShowing = 100;

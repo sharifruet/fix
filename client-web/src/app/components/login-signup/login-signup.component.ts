@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login-signup',
@@ -13,11 +14,11 @@ export class LoginSignupComponent implements OnInit {
   logIn : boolean = true;
   signUp : boolean;
   phoneNumber:string = '';
+  otpInput;
 
-  constructor(private userservice: UserService, private loginService: LoginService, private _snackBar: MatSnackBar) { }
+  constructor(private dialog:MatDialog, private router:Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
 
   openSignUp() {
-
     this.signUp = true;
     this.logIn = false;
     this.otpSection = false;
@@ -62,15 +63,11 @@ export class LoginSignupComponent implements OnInit {
   otpSection=false;
 
   sendOTP(): void {
-    console.log(this.phoneNumber);
-
-
     this.loginService.signUpOTP(this.phoneNumber)
       .subscribe(
         response => {
           console.log("1");
           console.log(response);
-          // this.openSnackBar('The user added successfully!');
           this.otpSection = true;
           this.signUp = false;
         },
@@ -80,6 +77,27 @@ export class LoginSignupComponent implements OnInit {
         });
   }
 
+
+  signUpConfirm():void {
+    const data = {
+      phone: this.phoneNumber,
+      otp: this.otpInput
+    }
+    this.loginService.verifyOTP(data)
+      .subscribe(
+        response => {
+          console.log("1");
+          console.log(response);
+          this.dialog.closeAll();
+          this.openSnackBar('OTP verified');
+          this.router.navigate(['/profile/', response.data[0].id]);
+        },
+        error => {
+          console.log("2");
+          console.log(error);
+          this.openSnackBar('OTP not verified');
+        });
+  }
 
 
 
