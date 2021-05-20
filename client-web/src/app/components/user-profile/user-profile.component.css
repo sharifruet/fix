@@ -85,8 +85,9 @@ mat-form-field, mat-radio-group{
 mat-radio-group {
     text-align: left;
 }
-.mat-focus-indicator.mat-stroked-button.mat-button-base {
-	margin-top: 12px;
+.content_list button[type="submit"] {
+	margin: 12px 10px 0 0;
+
 }
 
 .mat-radio-button ~ .mat-radio-button {

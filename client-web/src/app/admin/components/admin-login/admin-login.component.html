@@ -4,12 +4,12 @@
         <h3>Welcome to</h3>
         <img src="assets/images/logo.png" alt="">
         <mat-error *ngIf="loginInvalid">
-          The username and password were not recognised
+          Invalid username and password
         </mat-error>
         <mat-form-field class="full-width-input">
           <input matInput placeholder="Email" formControlName="username" required>
           <mat-error>
-            Please provide a valid email address
+            Enter valid email address
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
@@ -18,10 +18,10 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error>
-            Please provide a valid password
+            Enter valid password
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="black">Login</button>
+        <button mat-raised-button color="black" [disabled]="!form.valid">Login</button>
       </form>
     </mat-card-content>
   </mat-card>

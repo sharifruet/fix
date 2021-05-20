@@ -9,7 +9,8 @@ module.exports = app => {
     router.post("/refresh-token", loginController.refreshToken);
     router.post("/logout", loginController.deleteToken);
     router.get("/posts", loginController.authenticateToken, loginController.posts);
-    router.get("/otp-signup/:phone", loginController.signupOTP);
+    router.get("/otp-signup/:phone", loginController.signUpOTP);
+    router.get("/otp-signin/:phone", loginController.signInOTP);
     router.post("/otp-verify", loginController.verifyOTP);
     
   

@@ -11,6 +11,7 @@
 }
 .input-button{
     line-height: 44px;
+    margin-top: 8px;
 }
 .refer-btn{
     margin-top: 15px;
@@ -19,5 +20,5 @@
     margin-right: 5px;
 }
 .resend-code{
-    margin:0 0 15px 0;
+    margin:10px 0 0 0;
 }

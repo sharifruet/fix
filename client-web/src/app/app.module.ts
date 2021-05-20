@@ -12,8 +12,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import {MatCheckboxModule} from '@angular/material/checkbox';
-
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -72,6 +70,8 @@ import { SlidersComponent } from './admin/components/sliders/sliders.component';
 import { SliderAddComponent } from './admin/components/slider-add/slider-add.component';
 import { SliderEditComponent } from './admin/components/slider-edit/slider-edit.component';
 
+
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -132,10 +132,11 @@ import { SliderEditComponent } from './admin/components/slider-edit/slider-edit.
     MaterialModule,
     CarouselModule,
     FlexLayoutModule,
-    AngularEditorModule,
-    MatCheckboxModule
+    AngularEditorModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
   bootstrap: [AppComponent],
   entryComponents:[
     HowItWorkVideoComponent, 
