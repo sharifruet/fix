@@ -34,7 +34,7 @@
 		
     ],
     "User":[
-        {"id":1, "name": "Admin", "username" : "admin", "password" : "$2b$10$eIFravUafS2niXp4N1nHuenIJ0V9R8eVdd4aAB8m5v08DphOywPoK", "email" : "admin@fixall.com.bd", "phone" : "017XXXXXX", "address":"","district":1, "upazila":2, "status":0}
+        {"id":1, "name": "Admin", "username" : "admin", "password" : "$2b$10$eIFravUafS2niXp4N1nHuenIJ0V9R8eVdd4aAB8m5v08DphOywPoK", "email" : "admin@fixall.com.bd", "phone" : "01712122501", "dob":"01/01/1990", "gender":"Male", "address":"","district":1, "upazila":2, "status":0}
     ],
     "Role":[
         {"id":1, "name": "Admin", "description" : "Admin Role", "status":0},

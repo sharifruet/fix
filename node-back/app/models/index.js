@@ -48,7 +48,6 @@ addEntity = (model, entity, cb) => {
         message: "Added successfully",
         data: data
       });
-      //res.send(data);
     })
     .catch(err => {
       console.log('ERROR @ INSERT');
@@ -63,25 +62,24 @@ updateEntity = (model, entity, id, cb) => {
   model.update(entity, {
     where: { id: id }
   })
-    .then(num => {
-		console.log(num);
-      if (num >= 1) {
+    .then(data => {
+		console.log(data);
+      if (data >= 1) {
         cb({
           status:0,
           message: "Updated successfully",
-          data: []
+          data: [{id:id}]
         });
       } else {
         cb({
           status:1,
-          message: `Cannot update Service with id=${id}!`
+          message: `Cannot update feature with id=${id}!`
         });
       }
     })
     .catch(err => {
       console.log("Error @ Update");
       cb({
-        
         status:1,
         message: err.message || "Some error occurred while creating the Service.",
       });

@@ -14,16 +14,16 @@
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/848/848006.svg" alt="">
                             </div>
                             <div class="content_list">
-                                <mat-list>
-                                    <mat-list-item><span>Name: </span> Md.Tanvir Rahman</mat-list-item>
+                                <mat-list *ngIf="userDetails">
+                                    <mat-list-item><span>Name: </span> {{userDetails.name}}</mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item><span>Phone: </span> +8801749996663</mat-list-item>
+                                    <mat-list-item><span>Phone: </span> {{userDetails.phone}}</mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item><span>Email: </span> 123tanvirlove@gmail.com</mat-list-item>
+                                    <mat-list-item><span>Email: </span> {{userDetails.email}}</mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item><span>Date Of Birth: </span> 18-02-1996</mat-list-item>
+                                    <mat-list-item><span>Date Of Birth: </span> {{userDetails.dob | date:'d MMMM, y'}}</mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item><span>Gender: </span> Male</mat-list-item>
+                                    <mat-list-item><span>Gender: </span> {{userDetails.gender}}</mat-list-item>
                                 </mat-list>
                                 <button mat-stroked-button (click)="openEditProfile()">Edit Profile</button>
                             </div>
@@ -38,34 +38,37 @@
                                 </button>
                             </div>
                             <div class="content_list">
-                                <mat-form-field>
-                                    <mat-label>Name</mat-label>
-                                    <input matInput type="text">
-                                </mat-form-field>
-
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Phone No:</mat-label>
-                                    <span matPrefix>+880 &nbsp;</span>
-                                    <input type="tel" matInput placeholder="1712122501">
-                                </mat-form-field>
-
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Email</mat-label>
-                                    <input matInput placeholder="demo@example.com">
-                                </mat-form-field>
-                                <mat-form-field>
-                                    <mat-label>Date of Birth</mat-label>
-                                    <input matInput [matDatepicker]="picker">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
-
-                                <mat-radio-group>
-                                    <mat-label>Gender:</mat-label>
-                                    <mat-radio-button value="1">Male</mat-radio-button>
-                                    <mat-radio-button value="2">Female</mat-radio-button>
-                                </mat-radio-group>
-                                <button mat-stroked-button (click)="openProfile()">Submit</button>
+                                <form [formGroup]="form" (ngSubmit)="updateProfile()">
+                                    <mat-form-field>
+                                        <mat-label>Name</mat-label>
+                                        <input matInput formControlName="name">
+                                    </mat-form-field>
+    
+                                    <mat-form-field>
+                                        <mat-label>Phone No:</mat-label>
+                                        <input matInput placeholder="01712122501" formControlName="phone">
+                                    </mat-form-field>
+    
+                                    <mat-form-field>
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="demo@example.com"  formControlName="email">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Date of Birth</mat-label>
+                                        <input matInput [matDatepicker]="picker"  formControlName="dob">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+    
+                                    <mat-radio-group formControlName="gender">
+                                        <mat-label>Gender:</mat-label>
+                                        <mat-radio-button value="Male">Male</mat-radio-button>
+                                        <mat-radio-button value="Female">Female</mat-radio-button>
+                                    </mat-radio-group>
+                                    <button mat-raised-button color="black" type="submit" [disabled]="form.invalid">Update</button>
+                                    
+                                    <button mat-stroked-button (click)="openProfile()">Back</button>
+                                </form>
                             </div>
                         </div>
 

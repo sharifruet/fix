@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-signup',
@@ -11,10 +12,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class LoginSignupComponent implements OnInit {
   
+  phoneNumber = '';
+  signInPhone = new FormControl('', [Validators.required, Validators.pattern('[0-9]{11}')]);
+  signUpPhone = new FormControl('', [Validators.required, Validators.pattern('[0-9]{11}')]);
+  otpInput = new FormControl('', [Validators.required, Validators.pattern('[0-9]{5}')]);
   logIn : boolean = true;
   signUp : boolean;
-  phoneNumber:string = '';
-  otpInput;
 
   constructor(private dialog:MatDialog, private router:Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
 
@@ -32,22 +35,7 @@ export class LoginSignupComponent implements OnInit {
   login(){
     this.otpSection = true;
     this.logIn = false;
-  }
-
-  user = {
-    name: '',
-    username: '',
-    password: '',
-    email: '',
-    phone: '',
-    otp: '1234',
-    address: '',
-    district: '',
-    upazila: '',
-    status: ''
-  };
-
-  
+  }  
 
   ngOnInit(): void {
   }
@@ -62,26 +50,48 @@ export class LoginSignupComponent implements OnInit {
   // otp form section
   otpSection=false;
 
-  sendOTP(): void {
-    this.loginService.signUpOTP(this.phoneNumber)
+  signUpOTP(): void {
+    this.loginService.signUpOTP(this.signUpPhone.value)
       .subscribe(
         response => {
           console.log("1");
           console.log(response);
+          this.phoneNumber = this.signUpPhone.value;
           this.otpSection = true;
           this.signUp = false;
         },
         error => {
+          this.signUpPhone.setErrors({
+            exist: true,
+          });
           console.log("2");
           console.log(error);
         });
   }
 
+  signInOTP(): void {
+    this.loginService.signInOTP(this.signInPhone.value)
+      .subscribe(
+        response => {
+          console.log("1");
+          console.log(response);
+          this.phoneNumber = this.signInPhone.value;
+          this.otpSection = true;
+          this.logIn = false;
+        },
+        error => {
+          this.signInPhone.setErrors({
+            invalid: true,
+          });
+          console.log("2");
+          console.log(error);
+        });
+  }
 
-  signUpConfirm():void {
+  confirmOTP():void {
     const data = {
       phone: this.phoneNumber,
-      otp: this.otpInput
+      otp: this.otpInput.value
     }
     this.loginService.verifyOTP(data)
       .subscribe(
@@ -89,13 +99,14 @@ export class LoginSignupComponent implements OnInit {
           console.log("1");
           console.log(response);
           this.dialog.closeAll();
-          this.openSnackBar('OTP verified');
           this.router.navigate(['/profile/', response.data[0].id]);
         },
         error => {
+          this.otpInput.setErrors({
+            invalid: true,
+          });
           console.log("2");
           console.log(error);
-          this.openSnackBar('OTP not verified');
         });
   }
 

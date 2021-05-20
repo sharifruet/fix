@@ -15,8 +15,8 @@ export class AdminLoginComponent implements OnInit {
   private formSubmitAttempt: boolean;
   private returnUrl: string;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private service: AuthenticationService ) { 
-    if (this.service.currentUserValue) { 
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthenticationService ) { 
+    if (this.authService.currentUserValue) { 
       this.router.navigate(['admin/dashboard']);
     }
   }
@@ -33,26 +33,28 @@ export class AdminLoginComponent implements OnInit {
     }*/
   }
 
+
   async onSubmit() {
     this.loginInvalid = false;
     this.formSubmitAttempt = false;
     if (this.form.valid) {
-      try {
         const username = this.form.get('username').value;
         const password = this.form.get('password').value;
-        this.service.login(username, password).subscribe(
+        this.authService.login(username, password).subscribe(
           data => {
             console.log('test 001');
             console.log(data);
             this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            console.log(error);
+            this.loginInvalid = true;
           });
-      } catch (err) {
-        this.loginInvalid = true;
-      }
     } else {
       this.formSubmitAttempt = true;
     }
   }
+  
 
   hide = true;
 

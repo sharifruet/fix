@@ -3,12 +3,18 @@
     <h4>Login with</h4>
     <form>
         <div>
-            <mat-form-field appearance="fill" class="input-width">
+            <mat-form-field class="input-width">
                 <mat-label>Mobile Number</mat-label>
-                <input matInput [(ngModel)]="user.phone" name="phone" type="text" required>
+                <input matInput [formControl]="signInPhone">
+                <mat-error *ngIf="!signInPhone.errors?.invalid">
+                    Enter valid phone number
+                </mat-error>
+                <mat-error *ngIf="signInPhone.errors?.invalid">
+                    Not register this number
+                </mat-error>
             </mat-form-field>
         </div>
-        <button mat-button color="black" class="input-button" (click)="login()">Continue</button>
+        <button mat-raised-button color="black" type="submit" class="input-button" [disabled]="!signInPhone.valid" (click)="signInOTP()">Continue</button>
     </form>
 
     <div class="refer-btn">
@@ -23,12 +29,18 @@
     <h4>Signup with</h4>
     <form>
         <div>
-            <mat-form-field appearance="fill" class="input-width">
+            <mat-form-field class="input-width">
                 <mat-label>Mobile Number</mat-label>
-                <input matInput [(ngModel)]="phoneNumber" type="text" name="phone" required>
+                <input matInput [formControl]="signUpPhone">
+                <mat-error *ngIf="!signUpPhone.errors?.exist">
+                    Enter valid phone number
+                </mat-error>
+                <mat-error *ngIf="signUpPhone.errors?.exist">
+                    Register already exist
+                </mat-error>
             </mat-form-field>
         </div>
-        <button mat-button color="black" class="input-button" (click)="sendOTP()">Continue</button>
+        <button mat-raised-button color="black" type="submit" class="input-button" [disabled]="!signUpPhone.valid" (click)="signUpOTP()">Continue</button>
     </form>
 
     <div class="refer-btn">
@@ -42,13 +54,19 @@
     <p>Type the 5 digit code send to <strong>{{phoneNumber}}</strong></p>
     <form>
         <div>
-            <mat-form-field appearance="fill" class="input-width">
+            <mat-form-field class="input-width">
                 <mat-label>OTP</mat-label>
-                <input matInput type="text" [(ngModel)]="otpInput" name="otp" required>
+                <input matInput type="text" [formControl]="otpInput" name="otp">
+                <mat-error *ngIf="!otpInput.errors?.invalid">
+                    Enter valid OTP
+                </mat-error>
+                <mat-error *ngIf="otpInput.errors?.invalid">
+                    Invalid OTP
+                </mat-error>
             </mat-form-field>
         </div>
         <p class="resend-code">Resend code in 02:00 </p>
-        <button mat-button color="black" class="input-button" (click)="signUpConfirm()">Continue</button>
+        <button mat-raised-button color="black" type="submit" class="input-button" [disabled]="!otpInput.valid" (click)="confirmOTP()">Confirm</button>
     </form>
 
     <div class="refer-btn">

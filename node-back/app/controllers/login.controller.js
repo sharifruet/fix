@@ -8,127 +8,159 @@ const stringUtil = require("../util/stringUtil.js");
 
 // Create and Save a new Service
 exports.login = (req, res) => {
-	
-    // Validate request
-    if (!req.body.username || !req.body.password) {
-      res.status(400).send({status: 1, message: "Username and password can not be empty!"});
-      return;
-    }
-    // Create a Service
-  const username = req.body.username;
-  const password = req.body.password;
-  const user = {name:username};
-  
-  userModel.findAll({ where: {email:username} })
-      .then(data => {
-        if(data.length == 0){
-			res.status(400).send({status:1, message:"User not found"});
-		}else{ 
-			const usr = data[0];
-			
-			if(stringUtil.compareHash(password, usr.password)){
-				const accessToken = generateAccessToken(user);
-				const refreshToken = generateRefreshToken(user);
-				refreshTokens.push(refreshToken);
-				res.json({status:0, message:"Login successful", accessToken:accessToken,refreshToken:refreshToken});
-			}else{
-				res.status(404).send({status:3, message:"Wrong password"});
+
+	// Validate request
+	if (!req.body.username || !req.body.password) {
+		res.status(400).send({ status: 1, message: "Username and password can not be empty!" });
+		return;
+	}
+	// Create a Service
+	const username = req.body.username;
+	const password = req.body.password;
+	const user = { name: username };
+
+	userModel.findAll({ where: { email: username } })
+		.then(data => {
+			if (data.length == 0) {
+				res.status(400).send({ status: 1, message: "User not found" });
+			} else {
+				const usr = data[0];
+
+				if (stringUtil.compareHash(password, usr.password)) {
+					const accessToken = generateAccessToken(user);
+					const refreshToken = generateRefreshToken(user);
+					refreshTokens.push(refreshToken);
+					res.json({ status: 0, message: "Login successful", accessToken: accessToken, refreshToken: refreshToken });
+				} else {
+					res.status(404).send({ status: 3, message: "Wrong password" });
+				}
 			}
-		}
-		//res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
-      });
+		})
+		.catch(err => {
+			res.status(500).send({ status: 2, message: err.message || "Some error occurred while find user." });
+		});
 };
 
-function generateAccessToken(user){
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {"expiresIn":"1m"});
+function generateAccessToken(user) {
+	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { "expiresIn": "1m" });
 }
 
-function generateRefreshToken(user){
-  return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+function generateRefreshToken(user) {
+	return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
 }
 
-exports.authenticateToken = (req,res, next) =>{
+exports.authenticateToken = (req, res, next) => {
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
-	if(token == null) return res.sendStatus(401).send({status:2, message: "Token not found"});;
-	
-	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user)=>{
-		if(err) return res.sendStatus(401).send({status:2, message: err.message});;
+	if (token == null) return res.sendStatus(401).send({ status: 2, message: "Token not found" });;
+
+	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+		if (err) return res.sendStatus(401).send({ status: 2, message: err.message });;
 		req.user = user;
 		next();
 	});
 };
 
-exports.deleteToken = (req,res) =>{
-  refreshTokens = refreshTokens.filter(token=>token!=req.body.token);
-  res.sendStatus(204);
+exports.deleteToken = (req, res) => {
+	refreshTokens = refreshTokens.filter(token => token != req.body.token);
+	res.sendStatus(204);
 };
 
-genOtp = function(){
-	return Math.floor(Math.random()*89999 +10000);
+genOtp = function () {
+	return Math.floor(Math.random() * 89999 + 10000);
 }
-exports.signupOTP = (req,res) =>{
+exports.signUpOTP = (req, res) => {
 	const phone = req.params.phone;
 	console.log("phoneNumber = " + phone);
-	const userEntity = {phone:phone, otp:genOtp()}
-	userModel.create(userEntity)
-	.then(result=>{
-		res.send({status:0, message:"OTP Sent", data:result});
-	}).catch(err => {
-        res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
-      });
-  };
 
-  exports.signInOTP = (req,res) =>{
-	const phone = req.params.phone;
-	console.log("phoneNumber = " + phone);
-	const userEntity = {phone:phone, otp:genOtp()}
-	userModel.findAll({where:{phone:phone}})
-	.then(result=>{
-		if(result.length>0){
-			res.send({status:0, message:"OTP Sent", data:result});
-		}else{
-			res.status(404).send({status:1, message:"This number is not registered yet, please sign up."});
-		}
-	}).catch(err => {
-        res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
-      });
-  };
-
-  exports.verifyOTP = (req,res) =>{
-	  const filter = {phone:req.body.phone, otp:req.body.otp}; 
-	  console.log(filter);
-	  
-	  userModel.findAll({where:filter})
-		.then(result=>{
-
-			if(result.length>0){
-				res.send({status:0, message:"OTP Verified", data:result});
-			}else{
-				res.status(404).send({status:0, message:"OTP not found", data:result});
+	userModel.findAll({ where: { phone: phone } })
+		.then(data => {
+			if (data.length > 0) {
+				if (data[0].status == 1) {
+					updateEntity(userModel, { otp: genOtp() }, data[0].id, (result) => {
+						if (result.status == 0) {
+							res.send(result);
+						} else {
+							res.status(500).send(result);
+						}
+					});
+				} else {
+					res.status(302).send({ status: 1, message: "Register already exists." });
+				}
+			} else {
+				const userEntity = { phone: phone, otp: genOtp(), status: 1 }
+				userModel.create(userEntity)
+					.then(result => {
+						res.send({ status: 0, message: "OTP Sent", data: result });
+					}).catch(err => {
+						res.status(500).send({ status: 2, message: err.message || "Some error occurred while send signup otp." });
+					});
 			}
-			
 		}).catch(err => {
-        	res.status(500).send({status:2, message: err.message || "Some error occurred while retrieving Service."});
-      	});
-  };
+			res.status(500).send({ status: 2, message: err.message || "Some error occurred while send sign up otp." });
+		});
+};
+
+exports.signInOTP = (req, res) => {
+	const phone = req.params.phone;
+	console.log("phoneNumber = " + phone);
+	userModel.findAll({ where: { phone: phone } })
+		.then(data => {
+			if (data.length > 0) {
+				if (data[0].status == 0) {
+					updateEntity(userModel, { otp: genOtp() }, data[0].id, (result) => {
+						if (result.status == 0) {
+							res.send(result);
+						} else {
+							res.status(500).send(result);
+						}
+					});
+				}else{
+					res.status(404).send({ status: 1, message: "This number is not registered yet, please sign up." });
+				}
+			} else {
+				res.status(404).send({ status: 1, message: "This number is not registered yet, please sign up." });
+			}
+		}).catch(err => {
+			res.status(500).send({ status: 2, message: err.message || "Some error occurred while retrieving Service." });
+		});
+};
+
+exports.verifyOTP = (req, res) => {
+	const filter = { phone: req.body.phone, otp: req.body.otp };
+	console.log(filter);
+
+	userModel.findAll({ where: filter })
+		.then(data => {
+			if (data.length > 0) {
+				updateEntity(userModel, { status: 0 }, data[0].id, (result) => {
+					if (result.status == 0) {
+						res.send(result);
+					} else {
+						res.status(500).send(result);
+					}
+				});
+			} else {
+				res.status(404).send({ status: 0, message: "OTP not found", data: result });
+			}
+		}).catch(err => {
+			res.status(500).send({ status: 2, message: err.message || "Some error occurred while verify otp." });
+		});
+};
 
 let refreshTokens = [];
-exports.refreshToken = (req,res) =>{
+exports.refreshToken = (req, res) => {
 	const refreshToken = req.body.token;;
-	if(refreshToken == null) return res.sendStatus(401).send({status:2, message: "Refresh token not found"});
-  if(!refreshTokens.includes(refreshToken)) return res.sendStatus(403).send({status:2, message: "Refresh token not found"});
-	
-	jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user)=>{
-		if(err) return res.sendStatus(403).send({status:2, message: err.message});
-		const accessToken = generateAccessToken({name:user.name});
-		res.send({status:0, message:"Token refresh successful!",accessToken:accessToken});
+	if (refreshToken == null) return res.sendStatus(401).send({ status: 2, message: "Refresh token not found" });
+	if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403).send({ status: 2, message: "Refresh token not found" });
+
+	jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+		if (err) return res.sendStatus(403).send({ status: 2, message: err.message });
+		const accessToken = generateAccessToken({ name: user.name });
+		res.send({ status: 0, message: "Token refresh successful!", accessToken: accessToken });
 	});
 };
 
-exports.posts = (req, res) =>{
+exports.posts = (req, res) => {
 	res.json(req.user);
 };
