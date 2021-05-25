@@ -20,8 +20,8 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    public login(username: string, password: string) {
-        const data = { "username":username, "password":password };
+    public login(email: string, password: string) {
+        const data = { "email":email, "password":password };
         console.log(`${Env.apiUrl}/api/auth/login`);
         /*
         this.http.post(`${Env.apiUrl}/api/auth/login`, data).subscribe((data) => {

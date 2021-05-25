@@ -24,7 +24,7 @@ export class AdminLoginComponent implements OnInit {
   async ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || 'admin/dashboard';
     this.form = this.fb.group({
-      username: ['', Validators.email],
+      email: ['', Validators.email],
       password: ['', Validators.required]
     });
 /*
@@ -38,9 +38,9 @@ export class AdminLoginComponent implements OnInit {
     this.loginInvalid = false;
     this.formSubmitAttempt = false;
     if (this.form.valid) {
-        const username = this.form.get('username').value;
+        const email = this.form.get('email').value;
         const password = this.form.get('password').value;
-        this.authService.login(username, password).subscribe(
+        this.authService.login(email, password).subscribe(
           data => {
             console.log('test 001');
             console.log(data);

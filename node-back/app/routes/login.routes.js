@@ -13,6 +13,5 @@ module.exports = app => {
     router.get("/otp-signin/:phone", loginController.signInOTP);
     router.post("/otp-verify", loginController.verifyOTP);
     
-  
     app.use('/api/auth', router);
   };

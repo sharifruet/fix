@@ -2,24 +2,25 @@ const db = require("../models");
 const jwt = require("jsonwebtoken");
 const { request } = require("express");
 const userModel = db.User;
+const roleModel = db.Role;
 const Op = db.Sequelize.Op;
 
 const stringUtil = require("../util/stringUtil.js");
 
-// Create and Save a new Service
+// login user
 exports.login = (req, res) => {
 
 	// Validate request
-	if (!req.body.username || !req.body.password) {
+	if (!req.body.email || !req.body.password) {
 		res.status(400).send({ status: 1, message: "Username and password can not be empty!" });
 		return;
 	}
-	// Create a Service
-	const username = req.body.username;
+	// login an user
+	const email = req.body.email;
 	const password = req.body.password;
-	const user = { name: username };
+	const user = { name: email };
 
-	userModel.findAll({ where: { email: username } })
+	userModel.findAll({ where: { email: email } })
 		.then(data => {
 			if (data.length == 0) {
 				res.status(400).send({ status: 1, message: "User not found" });
@@ -89,12 +90,15 @@ exports.signUpOTP = (req, res) => {
 				}
 			} else {
 				const userEntity = { phone: phone, otp: genOtp(), status: 1 }
-				userModel.create(userEntity)
-					.then(result => {
+				addEntity(userModel, userEntity, (result) => {
+					if (result.status == 0) {
+						userObj = result.data;
+						userObj.addRole('2');
 						res.send({ status: 0, message: "OTP Sent", data: result });
-					}).catch(err => {
-						res.status(500).send({ status: 2, message: err.message || "Some error occurred while send signup otp." });
-					});
+					} else {
+						res.status(500).send(result);
+					}
+				});
 			}
 		}).catch(err => {
 			res.status(500).send({ status: 2, message: err.message || "Some error occurred while send sign up otp." });
@@ -115,7 +119,7 @@ exports.signInOTP = (req, res) => {
 							res.status(500).send(result);
 						}
 					});
-				}else{
+				} else {
 					res.status(404).send({ status: 1, message: "This number is not registered yet, please sign up." });
 				}
 			} else {
@@ -128,7 +132,6 @@ exports.signInOTP = (req, res) => {
 
 exports.verifyOTP = (req, res) => {
 	const filter = { phone: req.body.phone, otp: req.body.otp };
-	console.log(filter);
 
 	userModel.findAll({ where: filter })
 		.then(data => {
