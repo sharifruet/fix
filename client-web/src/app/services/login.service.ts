@@ -21,9 +21,9 @@ export class LoginService extends BaseService implements OnInit {
     return this.http.get(this.apiBaseUrl+"/otp-signin/"+phoneNumber);
   } 
 
-  verifyOTP(data): Observable<any> {
-    return this.http.post(this.apiBaseUrl+"/otp-verify/", data);
-  }
+  // verifyOTP(data): Observable<any> {
+  //   return this.http.post(this.apiBaseUrl+"/otp-verify/", data);
+  // }
 
 
   ngOnInit(){
