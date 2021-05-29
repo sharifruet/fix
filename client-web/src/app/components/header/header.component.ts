@@ -6,7 +6,9 @@ import { CartComponent } from '../cart/cart.component';
 import { OrdersService } from '../../services/orders.service';
 import { OrderItemsService } from '../../services/order-items.service';
 import { CallToActionService } from '../../services/call-to-action.service';
+import { AuthenticationService } from '../../services/authentication.service'
 import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +21,11 @@ export class HeaderComponent implements OnInit {
   serviceHierarchies:any = [];
   initalParent:number = 1;
   topLevelMenu : any;
+  user:any;
 
   constructor(
+    private router: Router,
+    private authService:AuthenticationService,
     public dialog: MatDialog, 
     private servicehierarchy:ServiceHierarchyService,
     private order:OrdersService,
@@ -35,7 +40,19 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getServiceHierarchyParent();
     this.getCartId();
+    this.currentUser();
   }
+
+  currentUser(){
+    this.user = this.authService.currentUserValue;
+    console.log(this.user);
+  }
+
+  logout():void{
+    this.authService.logout();
+    this.router.navigate(['home']);
+  }
+ 
 
 
   // get cart id

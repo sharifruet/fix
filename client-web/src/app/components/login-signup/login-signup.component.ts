@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
+import { AuthenticationService } from '../../services/authentication.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +20,7 @@ export class LoginSignupComponent implements OnInit {
   logIn : boolean = true;
   signUp : boolean;
 
-  constructor(private dialog:MatDialog, private router:Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
+  constructor(private authService:AuthenticationService, private dialog:MatDialog, private router:Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
 
   openSignUp() {
     this.signUp = true;
@@ -93,7 +94,7 @@ export class LoginSignupComponent implements OnInit {
       phone: this.phoneNumber,
       otp: this.otpInput.value
     }
-    this.loginService.verifyOTP(data)
+    this.authService.otpLogin(data)
       .subscribe(
         response => {
           console.log("1");

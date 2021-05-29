@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TopbarComponent implements OnInit {
 
   @Output() toggleNav:EventEmitter<any> = new EventEmitter();
-  constructor(private router: Router, private service: AuthenticationService) { 
+  constructor(private router: Router, private authService: AuthenticationService) { 
 
   }
 
@@ -22,7 +22,7 @@ export class TopbarComponent implements OnInit {
   }
 
   signout(): void{
-    this.service.logout();
+    this.authService.logout();
     this.router.navigate(['admin/login']);
   }
 

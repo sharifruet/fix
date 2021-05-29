@@ -40,6 +40,18 @@ export class AuthenticationService {
             }));
     }
 
+
+    public otpLogin(data) {
+        return this.http.post<any>(`${Env.apiUrl}/api/auth/otp-verify`, data)
+            .pipe(map(user => {
+                //console.log('11111111111111111111111111');
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                return user;
+            }));
+    }
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

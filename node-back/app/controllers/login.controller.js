@@ -131,18 +131,28 @@ exports.signInOTP = (req, res) => {
 };
 
 exports.verifyOTP = (req, res) => {
-	const filter = { phone: req.body.phone, otp: req.body.otp };
+	const phone = req.body.phone;
+	const otp = req.body.otp;
 
-	userModel.findAll({ where: filter })
-		.then(data => {
-			if (data.length > 0) {
-				updateEntity(userModel, { status: 0 }, data[0].id, (result) => {
-					if (result.status == 0) {
-						res.send(result);
-					} else {
-						res.status(500).send(result);
-					}
-				});
+	userModel.findAll({ where: { phone: phone, otp:otp } })
+		.then(result => {
+			if (result.length > 0) {
+				//res.send(data);
+				if(!result[0].status == 0){
+					updateEntity(userModel, { status: 0 }, result[0].id, (result) => {
+						if (result.status == 0) {
+							res.send(result);						
+						} else {
+							res.status(500).send(result);
+						}
+					});
+				}
+				const user = { phone: phone };
+				const accessToken = generateAccessToken(user);
+				const refreshToken = generateRefreshToken(user);
+				refreshTokens.push(refreshToken);
+				res.json({ status: 0, message: "OTP Login successful", accessToken: accessToken, refreshToken: refreshToken, data:result });
+
 			} else {
 				res.status(404).send({ status: 0, message: "OTP not found", data: result });
 			}
