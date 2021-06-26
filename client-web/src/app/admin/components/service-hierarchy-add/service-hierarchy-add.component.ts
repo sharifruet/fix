@@ -59,7 +59,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
   serviceHierarchy = {
     title: '',
     description: '',
-    photo:'',
+    photo: '',
     published: true,
     parentId: '',
     hierarchyPath: '',
@@ -108,20 +108,20 @@ export class ServiceHierarchyAddComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   myControl = new FormControl;
 
-  constructor(private mediaService:MediaService, private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
-  
+  constructor(private mediaService: MediaService, private service: ServiceHierarchyService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+
   ngOnInit(): void {
     this.getAllServiceHierarchy();
   }
-  
+
   selectedImage;
-  addImage(){
+  addImage() {
     const dialogRef = this.dialog.open(MediaPopupComponent, {
-      width:'600px'
+      width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result !== undefined){
-        this.selectedImage = this.mediaService.mediaPath+result.name;
+      if (result !== undefined) {
+        this.selectedImage = this.mediaService.mediaPath + result.name;
         this.serviceHierarchy.photo = result.id;
       }
     });
@@ -133,14 +133,14 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   displayFn(parent) {
-    if(this.serviceHParent.length > 0){
+    if (this.serviceHParent.length > 0) {
       return this.serviceHParent.find(item => item.id === parent).title;
-    }else{
+    } else {
       return [];
     }
   }
-  
-  
+
+
   getAllServiceHierarchy() {
     this.service.getAll().subscribe(
       data => {
@@ -150,7 +150,7 @@ export class ServiceHierarchyAddComponent implements OnInit {
           map(value => typeof value === 'string' ? value : value.title),
           map(value => value ? this._filterTour(value) : this.serviceHParent.slice())
         );
-    });
+      });
   }
 
   openSnackBar(message: string) {
@@ -191,11 +191,11 @@ export class ServiceHierarchyAddComponent implements OnInit {
   }
 
   newService(): void {
-    this.selectedImage='';
+    this.selectedImage = '';
     this.serviceHierarchy = {
       title: '',
       description: '',
-      photo:'',
+      photo: '',
       published: true,
       parentId: '',
       hierarchyPath: '',

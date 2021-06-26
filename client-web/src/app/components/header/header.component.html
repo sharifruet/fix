@@ -23,11 +23,12 @@
                     <mat-icon [matBadge]="cartItems?.length || null" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
                 
-                <button mat-button color="black" *ngIf="user; else login" (click)="logout()">Logout</button>
-                
+                <button *ngIf="user; else login" mat-button color="black" (click)="logout()">Logout</button>
+
                 <ng-template #login>
-                    <button mat-button color="black"  (click)="openLogin()">Login</button>
+                    <button mat-button color="black" (click)="openLogin()">Login</button>
                 </ng-template>
+
             </div>
         </div>
     </div>

@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { FormGroup, FormBuilder, Validators} from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators'
+
+export interface User {
+  name: string;
+}
+
 
 @Component({
   selector: 'app-user-profile',
@@ -16,7 +23,18 @@ export class UserProfileComponent implements OnInit {
   editProfile : boolean;
   userDetails;
 
+  filteredOptions: Observable<any[]>;
+  myControl = new FormControl;
+
+  options: string[] = ['One', 'Two', 'Three'];
+
+
   constructor( private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService) { }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
 
   openEditProfile() {
     this.editProfile = true;
@@ -37,6 +55,13 @@ export class UserProfileComponent implements OnInit {
       let id = params.get('id');
       this.getUserDetail(id);
     })
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.options.slice())
+      );
   }
 
   getUserDetail(id){
