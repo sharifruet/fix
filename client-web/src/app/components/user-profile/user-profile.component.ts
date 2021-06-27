@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { MatDialog } from '@angular/material/dialog'
 import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators'
+import { ElementsPopupComponent } from '../elements-popup/elements-popup.component'
 
 export interface User {
   name: string;
@@ -23,18 +25,9 @@ export class UserProfileComponent implements OnInit {
   editProfile : boolean;
   userDetails;
 
-  filteredOptions: Observable<any[]>;
-  myControl = new FormControl;
 
-  options: string[] = ['One', 'Two', 'Three'];
+  constructor( private dialog:MatDialog, private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService) { }
 
-
-  constructor( private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService) { }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-  }
 
   openEditProfile() {
     this.editProfile = true;
@@ -55,13 +48,6 @@ export class UserProfileComponent implements OnInit {
       let id = params.get('id');
       this.getUserDetail(id);
     })
-
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filter(name) : this.options.slice())
-      );
   }
 
   getUserDetail(id){
@@ -103,6 +89,14 @@ export class UserProfileComponent implements OnInit {
       }
     )
 
+  }
+  
+  openElements(){
+    const dialogRef = this.dialog.open(ElementsPopupComponent, {
+      width:'800px',
+      disableClose: false,
+      maxHeight: '90vh'
+    });
   }
 
 }

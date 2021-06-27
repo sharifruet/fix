@@ -118,32 +118,14 @@
                         <div class="offers_content">
                             <h2>My Services</h2>
 
-                            <div fxLayout="row wrap" fxLayoutGap="35px grid">
-                                <div fxFlex="30%" fxFlex.sm="50%" fxFlex.xs="100%">
-                                    <mat-form-field class="input-full-width">
-                                        <mat-label>Select Service</mat-label>
-                                        <input type="text" placeholder="Select one"  matInput
-                                            [formControl]="myControl" [matAutocomplete]="auto">
-                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                                {{option}}
-                                            </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
+                            <div fxLayout="row wrap" fxLayoutGap="30px grid">
+                                <div fxFlex.xs="100%">
+                                    <button mat-button (click)="openElements()"> Service Hierarchy </button>
                                 </div>
-                                <div fxFlex="30%" fxFlex.sm="50%" fxFlex.xs="100%">
-                                    <mat-form-field class="input-full-width">
-                                        <mat-label>Select Area</mat-label>
-                                        <input type="text" placeholder="Select one" matInput
-                                            [formControl]="myControl" [matAutocomplete]="auto">
-                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                                {{option}}
-                                            </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
+                                <div fxFlex.xs="100%">
+                                    <button mat-button (click)="openElements()"> Area Hierarchy </button>
                                 </div>
-                                <div fxFlex="30%" fxFlex.sm="50%" fxFlex.xs="100%">
+                                <div fxFlex.xs="100%">
                                     <button mat-button color="black">Add Service</button>
                                 </div>
                             </div>

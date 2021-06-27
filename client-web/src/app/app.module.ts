@@ -72,6 +72,7 @@ import { SliderEditComponent } from './admin/components/slider-edit/slider-edit.
 
 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ElementsPopupComponent } from './components/elements-popup/elements-popup.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     SlidersComponent,
     SliderAddComponent,
     SliderEditComponent,
+    ElementsPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -161,7 +163,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     PrivilegeAddComponent,
     CartComponent,
     SliderAddComponent,
-    SliderEditComponent
+    SliderEditComponent,
+    ElementsPopupComponent
   ]
 })
 export class AppModule { }
