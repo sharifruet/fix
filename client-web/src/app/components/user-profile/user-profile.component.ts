@@ -94,8 +94,7 @@ export class UserProfileComponent implements OnInit {
   openElements(){
     const dialogRef = this.dialog.open(ElementsPopupComponent, {
       width:'800px',
-      disableClose: false,
-      maxHeight: '90vh'
+      disableClose: false
     });
   }
 
