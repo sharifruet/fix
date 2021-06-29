@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="10px grid">
   <div fxFlex="50%">
-    <h3 style="margin: 0;">Service Hierarchy</h3>
+    <h3 style="margin-top: 0;">Service Hierarchy</h3>
     <div style="border-right: 1px solid #ddd;max-height: 40vh;overflow-y: auto;">
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
@@ -16,7 +16,7 @@
             </button>
           </div>
           <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
-            <ng-container *ngIf="node.serviceLayer"><button (click)="serviceView(node.id)" mat-stroked-button>Add</button></ng-container>
+            <ng-container *ngIf="node.serviceLayer"><button mat-stroked-button>Add</button></ng-container>
             <ng-container matTreeNodeOutlet>
             </ng-container>
           </div>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div fxFlex="50%">
-    <h3 style="margin: 0;">Area Hierarchy</h3>
+    <h3 style="margin-top: 0;">Area Hierarchy</h3>
 
     <div style="max-height:40vh;overflow-y: auto;">
       <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl" class="example-tree">
@@ -49,8 +49,23 @@
     </div>
   </div>
 
-  <div fxFlex="100%">
+  <div fxFlex="100%" style="border-top:1px solid #ddd">
+
     <h3>Service</h3>
+    <div class="view">
+      <div class="img">
+        <img src="assets/images/ac.jpg" alt="">
+      </div>
+      <div class="details">
+        <h3>Service Title</h3>
+        <p>Description</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 0;">Area : <span>Uttara</span></h3>
+    <div class="text-right">
+      <button mat-button color="black">Submit</button>
+    </div>
   </div>
 
 </div>

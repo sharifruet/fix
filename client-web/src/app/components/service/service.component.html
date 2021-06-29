@@ -53,7 +53,7 @@
             <div class="container">
                 <div fxLayout="row wrap">
                     <div fxFlex="65%" fxFlex.xs="100%" fxFlexOrder.xs="2">
-                        <mat-tab-group style="padding-top:30px">
+                        <mat-tab-group class="pt-5 pb-5">
                             <mat-tab>
                                 <ng-template mat-tab-label>
                                     <mat-icon>description</mat-icon>
@@ -236,13 +236,11 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </ng-template>
 
-    <div class="related-service pt-5 pb-5">
+    <div *ngIf="serviceRelated.length" class="related-service pb-5">
         <div class="container">
             <div class="title">
                 <h2>Related Service</h2>

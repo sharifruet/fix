@@ -12,6 +12,14 @@ export interface User {
   name: string;
 }
 
+// demo order table data
+const ELEMENT_DATA = [
+  {sn: 1, title: 'Service1', price: 500, quantity: 1, subtotal: 500},
+  {sn: 2, title: 'Service2', price: 800, quantity: 2, subtotal: 1600},
+  {sn: 3, title: 'Service3', price: 600, quantity: 2, subtotal: 600},
+  {sn: 4, title: 'Service4', price: 900, quantity: 3, subtotal: 900}
+];
+
 
 @Component({
   selector: 'app-user-profile',
@@ -24,6 +32,10 @@ export class UserProfileComponent implements OnInit {
   profile : boolean = true;
   editProfile : boolean;
   userDetails;
+
+  // demo order table data
+  displayedColumns: string[] = ['sn', 'title', 'price', 'quantity', 'subtotal'];
+  dataSource = ELEMENT_DATA;
 
 
   constructor( private dialog:MatDialog, private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService) { }
@@ -97,5 +109,8 @@ export class UserProfileComponent implements OnInit {
       disableClose: false
     });
   }
+
+
+  
 
 }

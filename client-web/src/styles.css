@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
-body { margin: 0; font-size:13px; font-family: Roboto, "Helvetica Neue", sans-serif;color:#555 }
+body { margin: 0;font-family: 'Roboto', sans-serif; font-size:13px;color:#555 }
 p{
     line-height: 22px;
 }
@@ -34,6 +33,9 @@ h2{
 .text-right {
 	text-align: right;
 }
+.m-0{
+    margin:0;
+}
 .m-auto{
     margin:auto;
 }
@@ -44,9 +46,7 @@ h2{
     background-color:#000000;
     color:#ffffff;
 }
-.mat-button, .mat-menu-item, .mat-tab-label, .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab, .mat-list-base .mat-list-item {
-    font-size:13px!important;
-}
+
 
 input{
     outline: 0;
@@ -182,4 +182,9 @@ input{
 }
 table{
     width: 100%;
+}
+
+/* font size */
+.mat-button, .mat-menu-item, .mat-tab-label, .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab, .mat-list-base .mat-list-item, .mat-cell, .mat-footer-cell, .mat-expansion-panel-header {
+    font-size:13px!important;
 }

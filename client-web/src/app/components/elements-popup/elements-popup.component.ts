@@ -49,10 +49,7 @@ export class ElementsPopupComponent implements OnInit {
       this.dataSource2.data = this.areasTree;
     })
   }
-
-  serviceView(id){
-    console.log(id);
-  }
+  
 
   treedatalist(data, type) {
     if (data.length === 0) {
