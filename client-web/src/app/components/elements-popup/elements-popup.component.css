@@ -11,19 +11,45 @@
   padding-left:30px;
 }
 
-
-.view {
-  display: flex;
+.hierarchy-area{
+  position: relative;
+}
+.hierarchy-area:after{
+  content:"";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #ddd;
+  top:0;
+  right:10px;
+}
+.view{
+  margin-bottom: 15px;
 }
 .view .img img {
-  width: 70px;
-  height: 40px;
+  width: 100%;
+  height: 100px;
   object-fit: cover;
-  margin-right: 10px;
   border-radius: 4px;
 }
-.view h3, .view p{
+.view h3{
+  margin:0 0 5px;
+}
+.view p{
   margin:0;
+}
+.details ul{
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+.details ul li {
+	display: inline-block;
+	padding: 10px 15px;
+	margin-right: 10px;
+	background: #eee;
+	border-radius: 4px;
+	margin-bottom: 10px;
 }
   
   

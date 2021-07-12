@@ -3,6 +3,9 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ServiceHierarchyService } from '../../services/service-hierarchy.service';
 import { AreaHierarchyService } from '../../services/area-hierarchy.service';
+import { UserServiceService } from '../../services/user-service.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface ServiceNode {
   id: number;
@@ -24,22 +27,37 @@ export class ElementsPopupComponent implements OnInit {
 
   servicesTree: ServiceNode[] = [];
   areasTree: ServiceNode[] = [];
+  serviceH = [];
+  areaH = [];
+  currentUser;
 
-
-  constructor(private services: ServiceHierarchyService, private areas:AreaHierarchyService) {
+  constructor(
+    private services: ServiceHierarchyService, 
+    private areas: AreaHierarchyService, 
+    private userService: UserServiceService, 
+    private authService: AuthenticationService, 
+    private _snackBar:MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.getServices();
     this.getAreas();
+    this.currentUser = this.authService.currentUserValue;
   }
   hasChild = (_: number, node: ServiceNode) => !!node.children && node.children.length > 0;
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
+    });
+  }
 
 
   getServices() {
     this.services.getAll().subscribe(data => {
       this.treedatalist(data, 'services');
       this.dataSource.data = this.servicesTree;
+      this.serviceH = data;
     })
   }
 
@@ -47,9 +65,10 @@ export class ElementsPopupComponent implements OnInit {
     this.areas.getAll().subscribe(data => {
       this.treedatalist(data, 'areas');
       this.dataSource2.data = this.areasTree;
+      this.areaH = data;
     })
   }
-  
+
 
   treedatalist(data, type) {
     if (data.length === 0) {
@@ -58,16 +77,16 @@ export class ElementsPopupComponent implements OnInit {
     for (let i = 0; i < data.length; i++) {
       if (data[i]["parentId"] == -1) {
         data[i]["children"] = [];
-        if(type == 'services'){
+        if (type == 'services') {
           this.servicesTree.push(data[i]);
-        }else{
+        } else {
           this.areasTree.push(data[i]);
         }
       }
     }
-    if(type == 'services'){
+    if (type == 'services') {
       return this.treedatalistdg(data, this.servicesTree);
-    }else{
+    } else {
       return this.treedatalistdg(data, this.areasTree);
     }
   }
@@ -90,7 +109,44 @@ export class ElementsPopupComponent implements OnInit {
     }
   }
 
+  serviceItem;
+  areaItems = [];
+  areaItem;
+  myServices = [];
 
+  myService(id) {
+    this.serviceItem = this.serviceH.filter((sh: any) => sh.id == id)[0];
+  }
+  myArea(event, id) {
+    if(event.checked){
+      this.areaItems.push(this.areaH.filter((ah: any) => ah.id == id)[0]);
+      this.areaItem = this.areaH.filter((ah: any) => ah.id == id)[0];
+      this.myServices.push({ userId: 1, serviceId: this.serviceItem.id, areaId: this.areaItem.id });
+    }
+  }
+  
+  show = true;
+  next() {
+    this.show = false;
+  }
+  previous() {
+    this.show = true;
+  }
+
+  addMyServices() {
+    this.myServices.forEach(item => {
+      this.userService.create(item)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.openSnackBar('Providing service added');
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    })
+  }
 
 
 
