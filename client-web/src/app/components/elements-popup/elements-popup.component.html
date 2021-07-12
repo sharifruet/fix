@@ -34,7 +34,7 @@
         <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl" class="example-tree">
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
             <ng-container *ngIf="node.end">
-              <mat-checkbox (change)="myArea($event, node.id)" style="margin-right:10px">{{node.title}}</mat-checkbox>
+              <mat-checkbox (change)="myArea($event, node.id)" [checked]="node.checked" style="margin-right:10px">{{node.title}}</mat-checkbox>
             </ng-container>
             <ng-container *ngIf="!node.end">{{node.title}}</ng-container>
           </mat-tree-node>
@@ -86,7 +86,7 @@
     </div>
     <div class="text-right" *ngIf="show == false">
       <button mat-stroked-button style="margin-right: 6px;" (click)="previous()">Previous</button>
-      <button mat-raised-button color="black" [disabled]="!areaItems.length > 0" (click)="addMyServices()">Submit</button>
+      <button mat-raised-button color="black" [disabled]="!areaItems.length" (click)="addMyServices()">Submit</button>
     </div>
   </div>
 </div>

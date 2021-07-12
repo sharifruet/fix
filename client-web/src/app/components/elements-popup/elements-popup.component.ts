@@ -32,11 +32,11 @@ export class ElementsPopupComponent implements OnInit {
   currentUser;
 
   constructor(
-    private services: ServiceHierarchyService, 
-    private areas: AreaHierarchyService, 
-    private userService: UserServiceService, 
-    private authService: AuthenticationService, 
-    private _snackBar:MatSnackBar) {
+    private services: ServiceHierarchyService,
+    private areas: AreaHierarchyService,
+    private userService: UserServiceService,
+    private authService: AuthenticationService,
+    private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -66,6 +66,8 @@ export class ElementsPopupComponent implements OnInit {
       this.treedatalist(data, 'areas');
       this.dataSource2.data = this.areasTree;
       this.areaH = data;
+
+      console.log(this.dataSource2.data);
     })
   }
 
@@ -118,13 +120,16 @@ export class ElementsPopupComponent implements OnInit {
     this.serviceItem = this.serviceH.filter((sh: any) => sh.id == id)[0];
   }
   myArea(event, id) {
-    if(event.checked){
-      this.areaItems.push(this.areaH.filter((ah: any) => ah.id == id)[0]);
+    if(event.checked == true){
       this.areaItem = this.areaH.filter((ah: any) => ah.id == id)[0];
+      this.areaItems.push(this.areaItem);
       this.myServices.push({ userId: 1, serviceId: this.serviceItem.id, areaId: this.areaItem.id });
+    }else{
+      this.areaItems.splice(this.areaItems.findIndex(el => el.id === id), 1);
+      this.myServices.splice(this.myServices.findIndex(el => el.areaId === id), 1);
     }
   }
-  
+
   show = true;
   next() {
     this.show = false;
@@ -136,15 +141,15 @@ export class ElementsPopupComponent implements OnInit {
   addMyServices() {
     this.myServices.forEach(item => {
       this.userService.create(item)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.openSnackBar('Providing service added');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+        .subscribe(
+          response => {
+            console.log(response);
+            this.openSnackBar('Providing service added');
+          },
+          error => {
+            console.log(error);
+          }
+        );
     })
   }
 
