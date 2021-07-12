@@ -52,7 +52,6 @@ export class ElementsPopupComponent implements OnInit {
     });
   }
 
-
   getServices() {
     this.services.getAll().subscribe(data => {
       this.treedatalist(data, 'services');
@@ -70,7 +69,6 @@ export class ElementsPopupComponent implements OnInit {
       console.log(this.dataSource2.data);
     })
   }
-
 
   treedatalist(data, type) {
     if (data.length === 0) {
@@ -120,11 +118,11 @@ export class ElementsPopupComponent implements OnInit {
     this.serviceItem = this.serviceH.filter((sh: any) => sh.id == id)[0];
   }
   myArea(event, id) {
-    if(event.checked == true){
+    if (event.checked == true) {
       this.areaItem = this.areaH.filter((ah: any) => ah.id == id)[0];
       this.areaItems.push(this.areaItem);
       this.myServices.push({ userId: 1, serviceId: this.serviceItem.id, areaId: this.areaItem.id });
-    }else{
+    } else {
       this.areaItems.splice(this.areaItems.findIndex(el => el.id === id), 1);
       this.myServices.splice(this.myServices.findIndex(el => el.areaId === id), 1);
     }
@@ -152,7 +150,5 @@ export class ElementsPopupComponent implements OnInit {
         );
     })
   }
-
-
 
 }
