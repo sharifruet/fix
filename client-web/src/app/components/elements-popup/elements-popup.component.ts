@@ -128,6 +128,10 @@ export class ElementsPopupComponent implements OnInit {
     }
   }
 
+  isChecked(id){
+  return this.areaItems.find((item) => item.id == id);
+  }
+
   show = true;
   next() {
     this.show = false;
