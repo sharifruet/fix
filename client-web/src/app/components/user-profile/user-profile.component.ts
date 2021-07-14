@@ -4,9 +4,8 @@ import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog'
 import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators'
-import { ElementsPopupComponent } from '../elements-popup/elements-popup.component'
+import { ElementsPopupComponent } from '../elements-popup/elements-popup.component';
+import { UserServiceService } from '../../services/user-service.service';
 
 export interface User {
   name: string;
@@ -38,7 +37,7 @@ export class UserProfileComponent implements OnInit {
   dataSource = ELEMENT_DATA;
 
 
-  constructor( private dialog:MatDialog, private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService) { }
+  constructor( private dialog:MatDialog, private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService, private userServicesService:UserServiceService) { }
 
 
   openEditProfile() {
@@ -59,7 +58,8 @@ export class UserProfileComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
       this.getUserDetail(id);
-    })
+    });
+    this.myServicesList();
   }
 
   getUserDetail(id){
@@ -111,6 +111,18 @@ export class UserProfileComponent implements OnInit {
   }
 
 
+  userServicesServiceList:any = [];
+  myServicesList(){
+    this.userServicesService.getAll().subscribe( 
+      result => {
+      console.log(result);
+      this.userServicesServiceList = result;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
   
 
 }

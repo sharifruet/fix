@@ -33,13 +33,45 @@ exports.create = (req, res) => {
 
 
 exports.findAll = (req, res) => {
-    const data = db.sequelize.query('SELECT * FROM userservices', {
-        type: db.Sequelize.SELECT
-    });
+    var condition = {};
 
-    return res.status(200).json(data)
+    UserServicesModel.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving sliders."
+            });
+        });
 }
 
+
+// Delete a user service with the specified id in the request
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    UserServicesModel.destroy({
+        where: { id: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            res.send({
+                message: "User service was deleted successfully!"
+            });
+        } else {
+            res.send({
+                message: `Cannot delete user service with id=${id}. Maybe user service was not found!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Could not delete slider with id=" + id
+        });
+    });
+};
 
 
 
