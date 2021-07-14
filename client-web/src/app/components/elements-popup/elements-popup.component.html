@@ -6,7 +6,7 @@
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
             <ng-container *ngIf="node.end">
-              <mat-radio-button (change)="myService(node.id)">{{node.title}}</mat-radio-button>
+              <mat-radio-button (change)="myService(node.id)" [checked]="isChecked('service', node.id)">{{node.title}}</mat-radio-button>
             </ng-container>
             <ng-container *ngIf="!node.end">{{node.title}}</ng-container>
           </mat-tree-node>
@@ -34,7 +34,7 @@
         <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl" class="example-tree">
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
             <ng-container *ngIf="node.end">
-              <mat-checkbox (change)="myArea($event, node.id)" [checked]="isChecked(node.id)" style="margin-right:10px">{{node.title}}</mat-checkbox>
+              <mat-checkbox (change)="myArea($event, node.id)" [checked]="isChecked('area', node.id)" style="margin-right:10px">{{node.title}}</mat-checkbox>
             </ng-container>
             <ng-container *ngIf="!node.end">{{node.title}}</ng-container>
           </mat-tree-node>

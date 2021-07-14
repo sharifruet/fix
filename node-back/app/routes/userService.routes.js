@@ -5,6 +5,7 @@ module.exports = app => {
   
     // Create a new Service
     router.post("/", userService.create);
+    router.get("/", userService.findAll);
   
   
     app.use('/api/user-service', router);

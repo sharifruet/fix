@@ -26,8 +26,20 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the slider."
+                    err.message || "Some error occurred while creating the user services."
             });
         });
 };
+
+
+exports.findAll = (req, res) => {
+    const data = db.sequelize.query('SELECT * FROM userservices', {
+        type: db.Sequelize.SELECT
+    });
+
+    return res.status(200).json(data)
+}
+
+
+
 

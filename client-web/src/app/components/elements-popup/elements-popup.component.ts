@@ -128,8 +128,14 @@ export class ElementsPopupComponent implements OnInit {
     }
   }
 
-  isChecked(id){
-  return this.areaItems.find((item) => item.id == id);
+  isChecked(type, id){
+    if(type == 'service'){
+      if(this.serviceItem){
+        return this.serviceItem.id == id;
+      }
+    }else{
+      return this.areaItems.find((item) => item.id == id);
+    }
   }
 
   show = true;
