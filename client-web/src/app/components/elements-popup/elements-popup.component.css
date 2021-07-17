@@ -1,0 +1,56 @@
+.example-tree-invisible {
+    display: none;
+}
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+.example-tree .mat-nested-tree-node div[role=group] {
+  padding-left:30px;
+}
+
+.hierarchy-area{
+  position: relative;
+}
+.hierarchy-area:after{
+  content:"";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #ddd;
+  top:0;
+  right:10px;
+}
+.view{
+  margin-bottom: 15px;
+}
+.view .img img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.view h3{
+  margin:0 0 5px;
+}
+.view p{
+  margin:0;
+}
+.details ul{
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+.details ul li {
+	display: inline-block;
+	padding: 10px 15px;
+	margin-right: 10px;
+	background: #eee;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+  
+  
+  

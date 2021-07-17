@@ -10,9 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TopbarComponent implements OnInit {
 
   @Output() toggleNav:EventEmitter<any> = new EventEmitter();
-  constructor(private router: Router, private authService: AuthenticationService) { 
-
-  }
+  constructor(private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }

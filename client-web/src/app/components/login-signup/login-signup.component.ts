@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
+import { CallToActionService } from '../../services/call-to-action.service';
 
 @Component({
   selector: 'app-login-signup',
@@ -12,15 +13,15 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent implements OnInit {
-  
+
   phoneNumber = '';
   signInPhone = new FormControl('', [Validators.required, Validators.pattern('[0-9]{11}')]);
   signUpPhone = new FormControl('', [Validators.required, Validators.pattern('[0-9]{11}')]);
   otpInput = new FormControl('', [Validators.required, Validators.pattern('[0-9]{5}')]);
-  logIn : boolean = true;
-  signUp : boolean;
+  logIn: boolean = true;
+  signUp: boolean;
 
-  constructor(private authService:AuthenticationService, private dialog:MatDialog, private router:Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
+  constructor(private callAction:CallToActionService, private authService: AuthenticationService, private dialog: MatDialog, private router: Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
 
   openSignUp() {
     this.signUp = true;
@@ -28,15 +29,15 @@ export class LoginSignupComponent implements OnInit {
     this.otpSection = false;
 
   }
-  openLogIn(){
+  openLogIn() {
     this.signUp = false;
     this.logIn = true;
   }
 
-  login(){
+  login() {
     this.otpSection = true;
     this.logIn = false;
-  }  
+  }
 
   ngOnInit(): void {
   }
@@ -49,7 +50,7 @@ export class LoginSignupComponent implements OnInit {
 
 
   // otp form section
-  otpSection=false;
+  otpSection = false;
 
   signUpOTP(): void {
     this.loginService.signUpOTP(this.signUpPhone.value)
@@ -89,7 +90,7 @@ export class LoginSignupComponent implements OnInit {
         });
   }
 
-  confirmOTP():void {
+  confirmOTP(): void {
     const data = {
       phone: this.phoneNumber,
       otp: this.otpInput.value
@@ -101,6 +102,7 @@ export class LoginSignupComponent implements OnInit {
           console.log(response);
           this.dialog.closeAll();
           this.router.navigate(['/profile/', response.data[0].id]);
+          this.callAction.sendAction();
         },
         error => {
           this.otpInput.setErrors({

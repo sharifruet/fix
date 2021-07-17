@@ -5,7 +5,9 @@
 .mat-tab-label {
 	height: 50px;
 }
-
+.input-full-width{
+    width: 100%;
+}
 
 /* description area */
 .block{
@@ -21,9 +23,6 @@ h2{
     margin-right: 8px;
     display: inline-block;
 }
-.mat-list-base .mat-list-item{
-    font-size: 15px!important;
-} 
 
 .profile_icon img{
     width: 120px;
@@ -60,24 +59,6 @@ h2{
 }
 
 
-
-.gradient{
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    border-radius: 5px 5px 0 0;
-}
-.gradient h2{
-    padding:25px 15px;
-    color:#fff;
-    margin: 0;
-}
-
-.validity{
-    display: flex;
-    align-items: center;
-}
-.offers_content>h1 {
-	margin-top: 0;
-}
 mat-form-field, mat-radio-group{
     display: block;
     width: 90%;

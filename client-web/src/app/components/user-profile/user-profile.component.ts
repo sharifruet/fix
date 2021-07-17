@@ -1,8 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { FormGroup, FormBuilder, Validators} from "@angular/forms";
+import { MatDialog } from '@angular/material/dialog'
+import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ElementsPopupComponent } from '../elements-popup/elements-popup.component';
+import { UserServiceService } from '../../services/user-service.service';
+
+export interface User {
+  name: string;
+}
+
+// demo order table data
+const ELEMENT_DATA = [
+  {sn: 1, title: 'Service1', price: 500, quantity: 1, subtotal: 500},
+  {sn: 2, title: 'Service2', price: 800, quantity: 2, subtotal: 1600},
+  {sn: 3, title: 'Service3', price: 600, quantity: 2, subtotal: 600},
+  {sn: 4, title: 'Service4', price: 900, quantity: 3, subtotal: 900}
+];
+
 
 @Component({
   selector: 'app-user-profile',
@@ -16,7 +32,13 @@ export class UserProfileComponent implements OnInit {
   editProfile : boolean;
   userDetails;
 
-  constructor( private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService) { }
+  // demo order table data
+  displayedColumns: string[] = ['sn', 'title', 'price', 'quantity', 'subtotal'];
+  dataSource = ELEMENT_DATA;
+
+
+  constructor( private dialog:MatDialog, private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService, private userServicesService:UserServiceService) { }
+
 
   openEditProfile() {
     this.editProfile = true;
@@ -36,7 +58,8 @@ export class UserProfileComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
       this.getUserDetail(id);
-    })
+    });
+    this.myServicesList();
   }
 
   getUserDetail(id){
@@ -79,5 +102,27 @@ export class UserProfileComponent implements OnInit {
     )
 
   }
+  
+  openElements(){
+    const dialogRef = this.dialog.open(ElementsPopupComponent, {
+      width:'800px',
+      disableClose: false
+    });
+  }
+
+
+  userServicesServiceList:any = [];
+  myServicesList(){
+    this.userServicesService.getAll().subscribe( 
+      result => {
+      console.log(result);
+      this.userServicesServiceList = result;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  
 
 }

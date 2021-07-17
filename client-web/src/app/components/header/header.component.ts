@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
     ) { 
       this.actionSubscription = this.callAction.getAction().subscribe(() => {
         this.getCartId();
+        this.currentUser();
       })
      }
 
@@ -51,6 +52,7 @@ export class HeaderComponent implements OnInit {
   logout():void{
     this.authService.logout();
     this.router.navigate(['home']);
+    this.currentUser();
   }
  
 
@@ -64,7 +66,6 @@ export class HeaderComponent implements OnInit {
     this.order.filter(cart)
       .subscribe(
         res => {
-          console.log(res);
           if(res.data.length > 0){
             this.getCartItem(res.data[0].id);
           }
@@ -107,23 +108,6 @@ export class HeaderComponent implements OnInit {
     let c = this.serviceHierarchies.filter((sh:any) => sh.parentId == parentId);
     return c;
   }
-  
-  getChildrenTree(id : number){
-	  let tree = this.getChildren(id);
-	  tree.forEach(node=>{
-		  node.children = this.getChildren(node.id);
-		  node.children.forEach(node1=>{
-			  node1.children = this.getChildren(node1.id);
-				node1.children.forEach(node2=>{
-				  node2.children = this.getChildren(node2.id);
-			  });
-		  });
-	  });
-	  
-	console.log(tree);
-	return tree;
-  }
-
 
   changeTopLevelMenu(id : number): void{
     this.initalParent = id;

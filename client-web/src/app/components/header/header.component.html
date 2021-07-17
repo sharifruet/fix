@@ -19,15 +19,31 @@
             <div fxFlex="35%" fxFlex.xs="100%" class="text-right">
                 <button *ngFor="let menuItem of topLevelMenu" mat-button (click)="changeTopLevelMenu(menuItem.id)"
                     [class.selected]="initalParent===menuItem.id">{{menuItem.title}}</button>
+
                 <button mat-icon-button class="cart" (click)="openCart()">
                     <mat-icon [matBadge]="cartItems?.length || null" matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
-                
-                <button mat-button color="black" *ngIf="user; else login" (click)="logout()">Logout</button>
-                
+
+                <ng-container *ngIf="user; else login">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>person</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item routerLink="/profile/{{user.data[0].id}}">
+                            <mat-icon>person</mat-icon>
+                            <span>Profile</span>
+                        </button>
+                        <button mat-menu-item (click)="logout()">
+                            <mat-icon>logout</mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                </ng-container>
+
                 <ng-template #login>
-                    <button mat-button color="black"  (click)="openLogin()">Login</button>
+                    <button mat-button color="black" (click)="openLogin()">Login</button>
                 </ng-template>
+
             </div>
         </div>
     </div>

@@ -30,6 +30,7 @@ db.Role = require("./role.model.js")(sequelize, Sequelize);
 db.Privilege = require("./privilege.model.js")(sequelize, Sequelize);
 db.Fileupload = require("./fileupload.model.js")(sequelize, Sequelize);
 db.Sliders = require("./sliders.model.js")(sequelize, Sequelize);
+db.UserServices = require("./userService.model.js")(sequelize, Sequelize);
 
 db.User.belongsToMany(db.Role, { through: 'UserRole' }); 
 db.Role.belongsToMany(db.Privilege, { through: 'RolePrivilege' });
