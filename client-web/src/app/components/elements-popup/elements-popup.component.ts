@@ -6,6 +6,7 @@ import { AreaHierarchyService } from '../../services/area-hierarchy.service';
 import { UserServiceService } from '../../services/user-service.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CallToActionService } from '../../services/call-to-action.service';
 
 interface ServiceNode {
   id: number;
@@ -36,7 +37,8 @@ export class ElementsPopupComponent implements OnInit {
     private areas: AreaHierarchyService,
     private userService: UserServiceService,
     private authService: AuthenticationService,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar,
+    private callToAction:CallToActionService) {
   }
 
   ngOnInit(): void {
@@ -152,6 +154,7 @@ export class ElementsPopupComponent implements OnInit {
         .subscribe(
           response => {
             console.log(response);
+            this.callToAction.sendAction();
             this.openSnackBar('Providing service added');
           },
           error => {

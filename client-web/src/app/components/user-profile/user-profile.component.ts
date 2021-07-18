@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog'
-import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ElementsPopupComponent } from '../elements-popup/elements-popup.component';
 import { UserServiceService } from '../../services/user-service.service';
+import { CallToActionService } from '../../services/call-to-action.service';
+import { Subscription } from 'rxjs';
+import { ConfirmDialogService } from '../../services/confirm-dialog.service'
 
 export interface User {
   name: string;
@@ -13,10 +16,10 @@ export interface User {
 
 // demo order table data
 const ELEMENT_DATA = [
-  {sn: 1, title: 'Service1', price: 500, quantity: 1, subtotal: 500},
-  {sn: 2, title: 'Service2', price: 800, quantity: 2, subtotal: 1600},
-  {sn: 3, title: 'Service3', price: 600, quantity: 2, subtotal: 600},
-  {sn: 4, title: 'Service4', price: 900, quantity: 3, subtotal: 900}
+  { sn: 1, title: 'Service1', price: 500, quantity: 1, subtotal: 500 },
+  { sn: 2, title: 'Service2', price: 800, quantity: 2, subtotal: 1600 },
+  { sn: 3, title: 'Service3', price: 600, quantity: 2, subtotal: 600 },
+  { sn: 4, title: 'Service4', price: 900, quantity: 3, subtotal: 900 }
 ];
 
 
@@ -27,9 +30,10 @@ const ELEMENT_DATA = [
 })
 export class UserProfileComponent implements OnInit {
 
-  public form:FormGroup;
-  profile : boolean = true;
-  editProfile : boolean;
+  actionSubscription:Subscription;
+  public form: FormGroup;
+  profile: boolean = true;
+  editProfile: boolean;
   userDetails;
 
   // demo order table data
@@ -37,14 +41,27 @@ export class UserProfileComponent implements OnInit {
   dataSource = ELEMENT_DATA;
 
 
-  constructor( private dialog:MatDialog, private _snackBar: MatSnackBar, private fb:FormBuilder, private route:ActivatedRoute, private userService:UserService, private userServicesService:UserServiceService) { }
+  constructor(
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private userServicesService: UserServiceService,
+    private callToAction: CallToActionService,
+    private confirmDialog: ConfirmDialogService
+  ) {
+    this.actionSubscription = this.callToAction.getAction().subscribe(() => {
+      this.myServicesList();
+    })
+  }
 
 
   openEditProfile() {
     this.editProfile = true;
     this.profile = false;
   }
-  openProfile(){
+  openProfile() {
     this.editProfile = false;
     this.profile = true;
   }
@@ -62,7 +79,7 @@ export class UserProfileComponent implements OnInit {
     this.myServicesList();
   }
 
-  getUserDetail(id){
+  getUserDetail(id) {
     console.log(id);
     this.userService.get(id).subscribe(
       result => {
@@ -81,48 +98,65 @@ export class UserProfileComponent implements OnInit {
     )
   }
 
-  updateProfile(){
+  updateProfile() {
     const data = {
-      name : this.form.get('name').value,
-      phone : this.form.get('phone').value,
-      email : this.form.get('email').value,
-      dob : this.form.get('dob').value,
-      gender : this.form.get('gender').value
+      name: this.form.get('name').value,
+      phone: this.form.get('phone').value,
+      email: this.form.get('email').value,
+      dob: this.form.get('dob').value,
+      gender: this.form.get('gender').value
     }
     this.userService.update(this.userDetails.id, data)
-    .subscribe(
-      result => {
-        console.log(result);
-        this.getUserDetail(this.userDetails.id);
-        this.openSnackBar('Profile updated successfully');
-      },
-      error => {
-        console.log(error);
-      }
-    )
+      .subscribe(
+        result => {
+          console.log(result);
+          this.getUserDetail(this.userDetails.id);
+          this.openSnackBar('Profile updated successfully');
+        },
+        error => {
+          console.log(error);
+        }
+      )
 
   }
-  
-  openElements(){
+
+  openElements() {
     const dialogRef = this.dialog.open(ElementsPopupComponent, {
-      width:'800px',
+      width: '800px',
       disableClose: false
     });
   }
 
 
-  userServicesServiceList:any = [];
-  myServicesList(){
-    this.userServicesService.getAll().subscribe( 
+  userServicesServiceList: any = [];
+  myServicesList() {
+    this.userServicesService.getAll().subscribe(
       result => {
-      console.log(result);
-      this.userServicesServiceList = result;
+        console.log(result);
+        this.userServicesServiceList = result;
       },
       error => {
         console.log(error);
       }
     )
   }
-  
+
+  delSerivce(id) {
+    this.confirmDialog.openConfirmDialog('Are you sure to remove this?').afterClosed().subscribe(res => {
+      if(res){
+        this.userServicesService.delete(id).subscribe(
+          result => {
+            console.log(result);
+            this. myServicesList();
+            this.openSnackBar('Service deleted successfully');
+          },
+          error => {
+            console.log(error);
+          }
+        )
+      }
+    })
+  }
+
 
 }

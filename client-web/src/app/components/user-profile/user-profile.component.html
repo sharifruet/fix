@@ -21,10 +21,14 @@
                                     <mat-divider></mat-divider>
                                     <mat-list-item><span>Email: </span> {{userDetails.email}}</mat-list-item>
                                     <mat-divider></mat-divider>
+                                    <mat-list-item><span>Gender: </span> {{userDetails.gender}}</mat-list-item>
+                                    <mat-divider></mat-divider>
                                     <mat-list-item><span>Date Of Birth: </span> {{userDetails.dob | date:'d MMMM, y'}}
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item><span>Gender: </span> {{userDetails.gender}}</mat-list-item>
+                                    <mat-list-item><span>Role: </span>
+                                        Customer, Service Provider
+                                    </mat-list-item>
                                 </mat-list>
                                 <button mat-stroked-button (click)="openEditProfile()">Edit Profile</button>
                             </div>
@@ -54,6 +58,16 @@
                                         <mat-label>Email</mat-label>
                                         <input matInput placeholder="demo@example.com" formControlName="email">
                                     </mat-form-field>
+
+                                    <div style="margin-bottom:20px;">
+                                        <mat-radio-group formControlName="gender">
+                                            <mat-label>Gender:</mat-label>
+                                            <mat-radio-button value="Male">Male</mat-radio-button>
+                                            <mat-radio-button value="Female">Female</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                        
+
                                     <mat-form-field>
                                         <mat-label>Date of Birth</mat-label>
                                         <input matInput [matDatepicker]="picker" formControlName="dob">
@@ -61,11 +75,14 @@
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
 
-                                    <mat-radio-group formControlName="gender">
-                                        <mat-label>Gender:</mat-label>
-                                        <mat-radio-button value="Male">Male</mat-radio-button>
-                                        <mat-radio-button value="Female">Female</mat-radio-button>
-                                    </mat-radio-group>
+                                    <div style="margin-bottom:20px;">
+                                        <mat-label>Role:</mat-label>
+                                        <mat-checkbox style="margin-right: 10px;" [checked]="true">Customer
+                                        </mat-checkbox>
+                                        <mat-checkbox>Service Provider</mat-checkbox>
+                                    </div>
+
+
                                     <button mat-button color="black" type="submit"
                                         [disabled]="form.invalid">Update</button>
 
@@ -209,57 +226,36 @@
 
 
                             <div class="user-service-lists" style="margin-top:15px;">
-                                
-
                                 <mat-accordion multi *ngIf="userServicesServiceList.length">
                                     <mat-expansion-panel *ngFor="let serviceList of userServicesServiceList">
                                         <mat-expansion-panel-header>
+                                            <button mat-icon-button color="warn" (click)="$event.stopPropagation(); delSerivce(serviceList.usId)">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
                                             <mat-panel-title>
-                                                Order #002 (29 June, 2021)
+                                                {{serviceList.title}} ({{serviceList.ahTitle}})
                                             </mat-panel-title>
                                         </mat-expansion-panel-header>
-                                        <table mat-table [dataSource]="dataSource">
+                                        <div class="myservices-content">
+                                            <h3> {{serviceList.title}} </h3>
+                                            <p><strong>Area :</strong> {{serviceList.ahTitle}}</p>
+                                            <p><strong>Description :</strong> {{serviceList.description}} </p>
+                                            <p><strong>Overview :</strong> {{serviceList.overview}} </p>
+                                            <p><strong>Detail :</strong> {{serviceList.detail}} </p>
+                                            {{serviceList.faq | json}}
 
-                                            <ng-container matColumnDef="sn">
-                                                <th mat-header-cell *matHeaderCellDef> SN. </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.sn}} </td>
-                                            </ng-container>
-                                            <ng-container matColumnDef="title">
-                                                <th mat-header-cell *matHeaderCellDef> Title </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                                            </ng-container>
-
-                                            <ng-container matColumnDef="price">
-                                                <th mat-header-cell *matHeaderCellDef> Price </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-                                            </ng-container>
-
-                                            <ng-container matColumnDef="quantity">
-                                                <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-                                            </ng-container>
-
-                                            <ng-container matColumnDef="subtotal">
-                                                <th mat-header-cell *matHeaderCellDef> Subtotal </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.subtotal}} </td>
-                                            </ng-container>
-
-                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                        </table>
+                                            <p><strong>Price :</strong> {{serviceList.price}} </p>
+                                        </div>
                                     </mat-expansion-panel>
                                 </mat-accordion>
 
                             </div>
-
-
-
                         </div>
                     </mat-tab>
 
                     <mat-tab label="Tab Two">
                         <ng-template mat-tab-label>
-                            <p>My Promosions</p>
+                            <p>My Reviews</p>
                         </ng-template>
                         <div class="block">
                             <div class="content">

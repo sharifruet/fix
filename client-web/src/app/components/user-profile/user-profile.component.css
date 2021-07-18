@@ -57,8 +57,6 @@ h2{
 .flex h4{
     margin-left: 10px;
 }
-
-
 mat-form-field, mat-radio-group{
     display: block;
     width: 90%;
@@ -70,16 +68,23 @@ mat-radio-group {
 	margin: 12px 10px 0 0;
 
 }
-
 .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
 }
-
 mat-label {
 	margin-right: 12px;
 }  
-
-
 .mat-card-content {
 	margin: 0;
+}
+
+/* mat-expansion-panel */
+.user-service-lists .mat-expansion-panel-header{
+    position: relative;
+    padding-right: 55px;
+}
+.mat-expansion-panel-header .mat-icon-button{
+    position: absolute;
+    top:6px;
+    right:5px;
 }

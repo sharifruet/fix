@@ -2,6 +2,9 @@ const db = require("../models");
 const UserServicesModel = db.UserServices;
 const Op = db.Sequelize.Op;
 
+const { QueryTypes } = require('sequelize');
+
+
 
 // Create and Save a new user service
 exports.create = (req, res) => {
@@ -32,19 +35,19 @@ exports.create = (req, res) => {
 };
 
 
-exports.findAll = (req, res) => {
-    var condition = {};
-
-    UserServicesModel.findAll({ where: condition })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving sliders."
-            });
+exports.findAll = async (req, res) => {
+    const data = await db.sequelize.query('select us.id as usId, us.*, ah.id as ahId, ah.title as ahTitle, ah.parentId as ahParentId, ah.hierarchyPath as ahHierarchyPath, ah.end as ahEnd, sh.id as shId, sh.* from userservices as us inner join servicehierarchies as sh on us.serviceId = sh.id inner join areahierarchies as ah on us.areaId = ah.id order by us.id desc', {
+        type: QueryTypes.SELECT
+    })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while fetching the user services."
         });
+    });
 }
 
 
