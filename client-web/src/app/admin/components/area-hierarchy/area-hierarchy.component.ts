@@ -25,6 +25,7 @@ export class AreaHierarchyComponent implements OnInit {
   currentService = null;
   currentIndex = -1;
   title = '';
+  areaHierarchies : any[] = [];
 
 
   displayedColumns = ['title', 'areaType', 'parent', 'hierarchyPath', 'status', 'end', 'action'];
@@ -38,10 +39,18 @@ export class AreaHierarchyComponent implements OnInit {
     this.retrieveAreaHierarchy();
   }
 
+  getParentName(parentId: number) : string {
+    let parent = this.areaHierarchies.filter(ah=>ah.id==parentId);
+    if(parent.length > 0)
+      return parent[0].title;
+      return "";
+  }
+
   retrieveAreaHierarchy(): void {
     this.areaService.getAll()
       .subscribe(
         data => {
+          this.areaHierarchies = data;
           this.dataSource = new MatTableDataSource<any>(data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
