@@ -7,9 +7,37 @@ const Op = db.Sequelize.Op;
 
 const stringUtil = require("../util/stringUtil.js");
 
+
+// FOR DEVELOPMENT
+exports.signUp = (req, res) => {
+	const phone = req.body.phone;
+	const email = req.body.email;
+	const password = req.body.password;
+
+	userModel.findAll({ where: { phone: phone } })
+		.then(data => {
+			if (data.length > 0) {
+				res.status(302).send({ status: 1, message: "Register already exists." });
+			} else {
+				const userEntity = { phone: phone, password:stringUtil.hashPassword(password), email:email, otp: genOtp(), status: 1 }
+				addEntity(userModel, userEntity, (result) => {
+					if (result.status == 0) {
+						userObj = result.data;
+						userObj.addRole('2');
+						res.send({ status: 0, message: "Sign Up Completed", data: result });
+					} else {
+						res.status(500).send(result);
+					}
+				});
+			}
+		}).catch(err => {
+			res.status(500).send({ status: 2, message: err.message || "Some error occurred while send sign up." });
+		});
+};
+// END FOR DEVELOPMENT
+
 // login user
 exports.login = (req, res) => {
-
 	// Validate request
 	if (!req.body.email || !req.body.password) {
 		res.status(400).send({ status: 1, message: "Username and password can not be empty!" });
@@ -31,7 +59,7 @@ exports.login = (req, res) => {
 					const accessToken = generateAccessToken(user);
 					const refreshToken = generateRefreshToken(user);
 					refreshTokens.push(refreshToken);
-					res.json({ status: 0, message: "Login successful", accessToken: accessToken, refreshToken: refreshToken });
+					res.json({ status: 0, data:usr, message: "Login successful", accessToken: accessToken, refreshToken: refreshToken });
 				} else {
 					res.status(404).send({ status: 3, message: "Wrong password" });
 				}
@@ -70,6 +98,7 @@ exports.deleteToken = (req, res) => {
 genOtp = function () {
 	return Math.floor(Math.random() * 89999 + 10000);
 }
+
 exports.signUpOTP = (req, res) => {
 	const phone = req.params.phone;
 	console.log("phoneNumber = " + phone);

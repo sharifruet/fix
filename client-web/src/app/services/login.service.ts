@@ -13,6 +13,10 @@ export class LoginService extends BaseService implements OnInit {
 	  super(http, "/auth");
   }
 
+  signUp(data): Observable<any> {
+    return this.http.post(this.apiBaseUrl+"/signup", data);
+  }
+  
   signUpOTP(phoneNumber:String): Observable<any> {
     return this.http.get(this.apiBaseUrl+"/otp-signup/"+phoneNumber);
   }

@@ -19,7 +19,7 @@ export class AuthenticationService {
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
-
+    
     public login(email: string, password: string) {
         const data = { "email":email, "password":password };
         console.log(`${Env.apiUrl}/api/auth/login`);

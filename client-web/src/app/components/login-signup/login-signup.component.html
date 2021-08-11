@@ -4,6 +4,82 @@
     <form>
         <div>
             <mat-form-field class="input-width">
+                <mat-label>Email Address</mat-label>
+                <input matInput [formControl]="signInEmail">
+                <mat-error *ngIf="!signInEmail.errors?.invalid">
+                    Enter valid email
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-width">
+                <mat-label>Password</mat-label>
+                <input matInput [formControl]="signInPassword">
+                <mat-error *ngIf="!signInPassword.errors?.invalid">
+                    Enter valid password
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="black" type="submit" class="input-button" [disabled]="!signInEmail.valid || !signInPassword.valid" (click)="signInSubmit()">Sign In</button>
+    </form>
+
+    <div class="refer-btn">
+        <span>Don't have an account in fixall?</span>
+        <button mat-button color="primary" (click)="openSignUp()">Signup Now</button>
+    </div>
+</div>
+
+
+<div *ngIf="signUp" class="signup-form">
+    <img src="assets/images/logo.png" alt="">
+    <h4>Signup with</h4>
+    <form>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput [formControl]="signUpPhone">
+                <mat-error *ngIf="!signUpPhone.errors?.exist">
+                    Enter valid phone number
+                </mat-error>
+                <mat-error *ngIf="signUpPhone.errors?.exist">
+                    Register already exist
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Email address</mat-label>
+                <input matInput [formControl]="signUpEmail">
+                <mat-error *ngIf="!signUpEmail.errors?.exist">
+                    Enter email
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input-width">
+                <mat-label>Password</mat-label>
+                <input matInput [formControl]="signUpPassword">
+                <mat-error *ngIf="!signUpPassword.errors?.exist">
+                    Enter password at least 6 characters
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="black" type="submit" class="input-button" [disabled]="!signUpPhone.valid || !signUpEmail.valid || !signUpPassword.valid" (click)="signUpSubmit()">Sign Up</button>
+    </form>
+
+    <div class="refer-btn">
+        <span>Already have an account in fixall?</span>
+        <button mat-button color="primary" (click)="openLogIn()">Login Now</button>
+    </div>
+</div>
+
+
+
+
+<!-- <div *ngIf="logIn" class="login-form">
+    <img src="assets/images/logo.png" alt="">
+    <h4>Login with</h4>
+    <form>
+        <div>
+            <mat-form-field class="input-width">
                 <mat-label>Mobile Number</mat-label>
                 <input matInput [formControl]="signInPhone">
                 <mat-error *ngIf="!signInPhone.errors?.invalid">
@@ -49,7 +125,7 @@
     </div>
 </div>
 
-<div *ngIf="otpSection" class="otp-form">
+ <div *ngIf="otpSection" class="otp-form">
     <img src="assets/images/logo.png" alt="">
     <p>Type the 5 digit code send to <strong>{{phoneNumber}}</strong></p>
     <form>
@@ -73,4 +149,4 @@
         <span>Don't have an account in fixall?</span>
         <button mat-button color="primary" (click)="openSignUp()">Signup Now</button>
     </div>
-</div>
+</div> -->
